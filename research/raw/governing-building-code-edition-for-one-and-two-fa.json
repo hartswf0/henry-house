@@ -1,0 +1,150 @@
+{
+  "topic": "Governing building code edition for one- and two-family dwellings in North Carolina, and in Watauga County / Town of Boone, as of 2026-08-10 — plus permitting AHJ determination for a steep-site custom house \"outside Boone\"",
+  "summary": "TOOL LIMITATION FIRST — READ THIS: I could not open ANY live page. WebFetch returned EGRESS_BLOCKED for every domain tried (ncosfm.gov, nclicensing.org, icc-nta.org, constructionowners.com), and curl through the mandated proxy returned \"HTTP/1.1 403 Forbidden\" on CONNECT for ncosfm.gov, ncleg.gov, wataugacounty.org, townofboone.net, codes.iccsafe.org, and up.codes. Per /root/.ccr/README.md these are organization egress-policy denials that must be reported, not routed around. Therefore NOTHING below is \"verified-primary.\" Everything rests on WebSearch result titles/URLs plus the search tool's summaries of pages I could not read. Treat every number below as REQUIRING re-verification before design use. SUBSTANCE: The 2018 NC Residential Code (derived from the 2015 IRC), effective 2019-01-01, still governs one- and two-family dwellings statewide as of 2026. The adopted 2024 NC Residential Code is NOT yet in effect: SL 2024-57 pushed it from 2025-01-01 to 2025-07-01, then SL 2025-2 §5.12(b) replaced the fixed date with a trigger — 12 months after the State Fire Marshal certifies both that the fully adopted 2024 Code is published/distributed AND that the Residential Code Council is fully constituted. Sources disagree on the earliest possible date (Jan 1 2027 vs Mar 1 2027), and the Council's formation depends on Governor/General Assembly appointments outside OSFM control, so the date is genuinely unresolved. This is real, material ambiguity, not a gap in my search. JURISDICTION — the single most consequential finding: Boone's extraterritorial jurisdiction was abolished by a 2014 local act upheld by the NC Supreme Court on 2016-12-21, and planning/permitting authority in the former ETJ transferred to Watauga County. A site \"outside Boone\" is therefore almost certainly permitted by Watauga County Planning & Inspections, NOT the Town of Boone — the once-standard \"Boone ETJ\" assumption is obsolete and would send the project to the wrong AHJ. Both Watauga County and the Town of Boone run their own inspections departments.",
+  "findings": [
+    {
+      "claim": "Current NC Residential Code edition governing one- and two-family dwellings statewide",
+      "value": "2018 North Carolina State Building Code: Residential Code; effective January 1, 2019 (with a voluntary transition/early-use window July 1, 2018 – December 31, 2018). Still the enforceable edition as of August 2026.",
+      "source_url": "https://www.ncosfm.gov/codes/codes-current-and-past",
+      "source_name": "NC Office of State Fire Marshal — Codes, Current and Past",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — ncosfm.gov is blocked by the org egress proxy (curl CONNECT returned 403 Forbidden; WebFetch returned EGRESS_BLOCKED). Basis is the recurring appearance of this exact OSFM page title/URL across multiple independent searches plus consistent search-summary statements that 'the 2018 North Carolina State Building Code remains in effect' until the 2024 effective date is determined. The Jan 1 2019 effective date and the 2018 transition window came from search summaries only and were not read on a primary page."
+    },
+    {
+      "claim": "Base ICC code the current NC Residential Code is derived from (IRC year)",
+      "value": "2015 International Residential Code (IRC 2015), with North Carolina amendments and additions",
+      "source_url": "https://up.codes/viewer/north_carolina/irc-2015",
+      "source_name": "UpCodes — 'North Carolina Residential Code 2018 based on the International Residential Code 2015 (IRC 2015)'",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — up.codes blocked by egress proxy (403 on CONNECT). Strong circumstantial support: the URL path itself encodes 'north_carolina/irc-2015' and the search-result page TITLE (which is literal page metadata, not model summarization) states the derivation explicitly. Corroborated by parallel UpCodes titles for NC Building Code 2018 based on IBC 2015 and NC Existing Building Code 2018 based on IEBC 2015, which is an internally consistent 2015-vintage adoption family."
+    },
+    {
+      "claim": "Status and effective-date mechanism of the 2024 NC Residential Code",
+      "value": "Adopted but NOT yet effective. Original effective date 2025-01-01; delayed to 2025-07-01 by Session Law 2024-57 (enacted 2024-12-11); then Session Law 2025-2 (enacted 2025-03-19), Section 5.12(b), replaced the fixed date with a conditional trigger: effective 12 months AFTER the State Fire Marshal certifies both (1) the Building Code Council and Residential Code Council have completed publication and distribution of the fully adopted 2024 Code, and (2) the Residential Code Council is fully constituted.",
+      "source_url": "https://www.ncosfm.gov/news/press-releases/2025/04/07/north-carolina-delays-implementation-2024-state-building-code",
+      "source_name": "NC OSFM press release — 'North Carolina Delays Implementation of 2024 State Building Code' (2025-04-07)",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — ncosfm.gov blocked by egress proxy. The two session law numbers (2024-57, 2025-2), the enactment dates, the §5.12(b) citation, and the two-condition trigger were stated consistently and in matching detail across three separately-worded searches drawing on OSFM, ICC-NTA, NC Board of Architecture, and NC Licensing Board documents. The consistency across independent secondary channels is why I rate this secondary rather than uncertain, but I did NOT read the session law text on ncleg.gov (also blocked)."
+    },
+    {
+      "claim": "Actual effective date of the 2024 NC Residential Code / when the 2018 Code stops governing",
+      "value": "UNDETERMINED as of 2026-08-10. Sources give conflicting earliest-possible estimates: a 2025-11-11 NC Licensing Board update indicated earliest ~January 1, 2027; a 2026-02-15 update indicated earliest ~March 1, 2027. Neither is a set date. Further delay is possible because Residential Code Council formation depends on Governor/General Assembly appointments outside OSFM's control.",
+      "source_url": "https://nclicensing.org/wp-content/uploads/2026/02/2026-02-15-Code-Update.pdf",
+      "source_name": "NC Licensing Board for General Contractors — 'Update on New North Carolina State Building Code Effective Dates' (2026-02-15)",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE PDF — nclicensing.org blocked by egress proxy (EGRESS_BLOCKED). I am flagging this as uncertain BECAUSE my searches returned genuinely contradictory dates (one summary said earliest Jan 1 2027, another said earliest Mar 1 2027, an older one implied ~Jul 31 2026). I did not resolve the contradiction and am deliberately not picking one. The direction of travel (not effective yet, at least 12 months of runway after a certification that has not occurred) is consistent across all sources; the specific date is not."
+    },
+    {
+      "claim": "Whether the older (2018) edition remains permitted, and whether the 2024 edition may be used early",
+      "value": "The 2018 Code is not in a 'sunset transition' — it is simply still the mandatory code. Separately, the 2024 Code reportedly may be used voluntarily as an alternative method of construction if requested by the building owner or their agent.",
+      "source_url": "https://www.ncosfm.gov/letter-re-2024-state-building-code-effective-date/open",
+      "source_name": "NC OSFM — letter re: 2024 State Building Code Effective Date",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE DOCUMENT — ncosfm.gov blocked by egress proxy. The 'alternative method of construction' early-use option appeared in only ONE search summary and I could not corroborate it or read its exact conditions. This inverts the usual transition question: the risk here is not an expiring old code but whether the design team may opt into the 2024 code early. Do not rely on this without reading the OSFM letter."
+    },
+    {
+      "claim": "NC-specific deck provisions (material for a steep site with elevated decks)",
+      "value": "North Carolina adds Appendix M 'Wood Decks' to the Residential Code — a state-created appendix not present in the base IRC. It contains prescriptive footing sizes, post heights, beam/joist spans, guards, stairs, lateral bracing, and ledger attachment. Section AM104.1 'Deck attachment' governs attaching the deck band to the structure via Tables AM104.1(1) and AM104.1(2).",
+      "source_url": "https://codes.iccsafe.org/content/NCRC2018/appendix-m-wood-decks",
+      "source_name": "ICC Digital Codes — 2018 North Carolina State Building Code: Residential Code, Appendix M Wood Decks",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — codes.iccsafe.org blocked by egress proxy (403 on CONNECT). Support is the literal ICC page titles and section-level URLs returned by search: 'APPENDIX M WOOD DECKS - 2018 NORTH CAROLINA STATE BUILDING CODE: RESIDENTIAL CODE' and a discrete section URL for 'AM104.1 Deck attachment', plus a parallel UpCodes NC-specific Appendix M viewer URL. The existence and NC-specific nature of Appendix M is well supported; the detailed fastener values reported in the search summary (0.195 in shank screws, 250 lb allowable shear, 2.5 in bolt edge distance, etc.) are NOT verified and must be read from the actual tables."
+    },
+    {
+      "claim": "NC stair geometry amendment — maximum riser height (differs from IRC)",
+      "value": "Maximum riser height 8 1/4 inches in the NC Residential Code, versus 7 3/4 inches in the base IRC. Greatest riser within a flight shall not exceed the smallest by more than 3/8 inch.",
+      "source_url": "https://codes.iccsafe.org/s/NCRC2018/chapter-3-building-planning/NCRC2018-Pt03-Ch03-SecR311.7.5.2",
+      "source_name": "ICC Digital Codes — 2018 NC Residential Code R311.7.5 Stair treads and risers",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — codes.iccsafe.org blocked by egress proxy. The 8 1/4 in value arose UNPROMPTED in a search where I did not supply any number, and was explicitly contrasted against the IRC's 7 3/4 in — that independence is why I rate it secondary rather than uncertain. It was then reproduced in a second search. Still: this is a load-bearing dimension for a steep-site house with long stair runs and MUST be confirmed against the actual code text before design."
+    },
+    {
+      "claim": "NC stair geometry amendment — minimum tread depth (differs from IRC)",
+      "value": "Minimum tread depth 9 inches in the NC Residential Code (base IRC 2015 requires 10 inches)",
+      "source_url": "https://codes.iccsafe.org/s/NCRC2018/chapter-3-building-planning/NCRC2018-Pt03-Ch03-SecR311.7.5.2",
+      "source_name": "ICC Digital Codes — 2018 NC Residential Code R311.7.5.2 Treads",
+      "confidence": "inferred",
+      "verified_note": "COULD NOT OPEN THE PAGE — codes.iccsafe.org blocked. IMPORTANT METHODOLOGICAL CAVEAT: the 9 in figure first appeared in response to a LEADING query in which I myself included '9', so that hit is contaminated by confirmation bias. I ran a second, deliberately non-leading query ('minimum tread depth requirement how many inches NC differs') which also returned 9 inches against the same ICC NCRC2018 section URL. That partially rehabilitates it, but I am rating this only 'inferred' because I never saw the code text. The parenthetical comparison to IRC 10 in is my own framing and was not confirmed by any source I read."
+    },
+    {
+      "claim": "NC braced wall / lateral bracing provisions (material for steep-site lateral design)",
+      "value": "North Carolina maintains its own substantially rewritten Section R602.10 for wall bracing — OSFM has published a dedicated 'R602.10 Code and Commentary' document for the NC Residential Code, indicating NC does not simply adopt the IRC text. Reported provisions include a minimum of two braced wall panels per side of the floor plan per story, a braced wall panel within 12 feet of both ends of each elevation, and townhouses in Seismic Design Category C designed per R602.10.5 or the 2015 IRC.",
+      "source_url": "https://www.ncosfm.gov/2012-nc-residential-code-r60210-code-and-commentary-final-03-06-13/open",
+      "source_name": "NC OSFM — 'R602.10 Code and Commentary for 2012 NC Residential Code'",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE DOCUMENT — ncosfm.gov blocked by egress proxy. TWO SEPARATE PROBLEMS: (1) the OSFM commentary document I found is for the 2012 NC Residential Code, NOT the currently-governing 2018 edition, so it may be superseded; (2) the specific bracing rules quoted came from a single search summary that may have blended NC and generic IRC text. The only claim I hold with any confidence is the structural one — that NC has its own R602.10 rather than the stock IRC section. All numbers here are unverified and a steep site will likely need engineered lateral design anyway rather than prescriptive bracing."
+    },
+    {
+      "claim": "NC guard and handrail heights",
+      "value": "NO NC-SPECIFIC DEVIATION CONFIRMED. Searches returned only the standard IRC values (guards not less than 36 in; 4 in sphere opening limit; handrails 34–38 in) without establishing whether these are NC-amended or simply inherited from the IRC.",
+      "source_url": "https://www.ncosfm.gov/residential/2017-2021-approved-amendments-210914residential-code/open",
+      "source_name": "NC OSFM — 2018 NC State Residential Code Approved Amendments (Nov 8, 2021)",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE AMENDMENTS DOCUMENT — ncosfm.gov blocked by egress proxy. I am explicitly NOT asserting these as NC amendments. The search returned generic values that match the base IRC, which is exactly the failure mode where a summarizer substitutes familiar IRC text for the state-amended text. Whether NC modified R312 guards or handrail geometry is UNRESOLVED. Note that guard requirements matter unusually much here — a steep site produces tall walking-surface drops where guard height and loading are critical."
+    },
+    {
+      "claim": "NC attached-garage separation (R302.6)",
+      "value": "NO NC-SPECIFIC DEVIATION FOR NEW CONSTRUCTION CONFIRMED. The only NC-specific item surfaced is an allowance in Table R302.6 that for dwellings built before the 2012 code effective date, existing gypsum of 1/2 in or greater on the garage ceiling underside is acceptable — an existing-building provision, not a new-construction rule.",
+      "source_url": "https://www.ncosfm.gov/2012-north-carolina-building-code-2012-2017-supplement/open",
+      "source_name": "NC OSFM — NC State Building Codes Amendments effective 1/1/2017",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE DOCUMENT — ncosfm.gov blocked by egress proxy. The pre-2012 existing-gypsum allowance is irrelevant to a new custom house and I am reporting it only to show what the search actually found. The generic values also returned (1/2 in gypsum garage side; 5/8 in Type X where habitable space is above) match the base IRC and were NOT confirmed as NC-amended. Unresolved."
+    },
+    {
+      "claim": "NC emergency escape and rescue openings (R310)",
+      "value": "NOT DETERMINED. No NC-specific amendment to R310 was located.",
+      "source_url": "https://www.ncosfm.gov/2018-north-carolina-residential-code-proposed-amendments",
+      "source_name": "NC OSFM — 2018 North Carolina Residential Code Proposed Amendments",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE PAGE — ncosfm.gov blocked by egress proxy. Two targeted searches covering R310 returned no NC-specific content; one search summary affirmatively stated it found nothing on R310. Absence of evidence here is NOT evidence of absence — I simply could not reach the amendment documents. This matters for a steep-site house because a daylight/walkout basement on a falling grade changes which levels require EEROs and whether window wells are involved."
+    },
+    {
+      "claim": "Does Watauga County perform its own building inspections, and what is the permitting office",
+      "value": "YES. Watauga County Planning and Inspections issues building permits and performs inspections for new construction, additions/remodels, decks/accessory buildings, retaining walls, demolition, relocation, and occupancy. Address: 126 Poplar Grove Connector, Suite 201, Boone, NC 28607. Phone: 828-265-8043. Fax: 828-265-8080. Email: p&i@watgov.org",
+      "source_url": "https://www.wataugacounty.org/App_Pages/Dept/Planning/contact.aspx",
+      "source_name": "Watauga County Planning and Inspections — Contact",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — wataugacounty.org blocked by egress proxy (403 on CONNECT). Support is consistent contact details across search summaries plus multiple corroborating county URLs on both wataugacounty.org and the watgov.org mirror (forms, ordinances, and a 'Building Permit 2022.pdf' application). Note the permit-type list explicitly includes RETAINING WALLS, which is directly relevant to a steep site. Verify the address and phone by calling before relying on them."
+    },
+    {
+      "claim": "Does the Town of Boone perform its own building inspections, and what is the permitting office",
+      "value": "YES. Town of Boone Planning & Inspections performs its own code enforcement; its Chief Code Compliance Official holds Level III certification in building, electrical, mechanical, and plumbing and reviews/inspects all phases of building construction. Phone: 828-268-6960. An online permit portal exists for zoning and building permits.",
+      "source_url": "https://www.townofboone.net/192/Planning-Inspections",
+      "source_name": "Town of Boone — Planning & Inspections",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — townofboone.net blocked by egress proxy. Support is consistent search summaries describing Level III certified in-house staff (not third-party contracted inspection) plus multiple distinct townofboone.net URLs (/192 Planning-Inspections, /193 Permit-Information, /705 About-Us, /487 Do-I-Need-a-Permit, and a civicgov4.com citizen portal). CAUTION: many search hits for 'Boone building department' are Boone County KY, Boone County IL, Boone MO, and Boone IA — I filtered those out, but it is an easy contamination trap."
+    },
+    {
+      "claim": "WHICH AHJ actually governs a site 'outside Boone' — Boone ETJ status",
+      "value": "The Town of Boone's extraterritorial jurisdiction was ABOLISHED by a 2014 local act of the General Assembly, upheld as constitutional by the NC Supreme Court on 2016-12-21. Planning, zoning, permitting, and code enforcement authority in the former ~1-mile ETJ transferred to Watauga County. Therefore a site outside Boone town limits is presumptively under WATAUGA COUNTY jurisdiction, not the Town of Boone.",
+      "source_url": "https://www.wataugademocrat.com/news/nc-supreme-court-upholds-law-abolishing-boone-etj/article_ac6f6bdb-2c89-5672-956f-0b6edf1d3ceb.html",
+      "source_name": "Watauga Democrat — 'NC Supreme Court upholds law abolishing Boone ETJ'",
+      "confidence": "verified-secondary",
+      "verified_note": "COULD NOT OPEN THE PAGE — no article page was reachable. Support is convergent reporting across four independent outlets (Watauga Democrat, High Country Press x2, Carolina Journal) plus a Watauga Democrat headline 'Planning authority transferred to county after ETJ court ruling'. All are journalism, not the statute or the opinion — I could not reach ncleg.gov or any court record. THIS IS THE HIGHEST-LEVERAGE FINDING IN THIS REPORT: an out-of-date assumption that Boone's ETJ still reaches one mile past town limits would route the permit application to the wrong AHJ entirely. Confirm by parcel before filing."
+    },
+    {
+      "claim": "NC Mountain Ridge Protection Act — potential overlay on a steep mountain site",
+      "value": "NC General Statutes Chapter 113A, Article 14 (Mountain Ridge Protection Act of 1983). Protected mountain ridges are reported as those at 3,000 ft elevation or above AND 500 or more feet above the elevation of the adjacent valley floor; counties may regulate or deny permits for tall buildings/structures on protected ridges.",
+      "source_url": "https://www.ncleg.net/enactedlegislation/statutes/html/byarticle/chapter_113a/article_14.html",
+      "source_name": "NC General Assembly — Chapter 113A, Article 14",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE STATUTE — ncleg.net/ncleg.gov blocked by egress proxy. Elevation thresholds came from a single search summary and the claim that 'Watauga County adopted the State mountain ridge law' was NOT corroborated. I am surfacing this unprompted because the site is described as STEEP MOUNTAIN LAND outside Boone, where Boone-area elevations routinely exceed 3,000 ft — this overlay could constrain building height independent of the building code, and it was outside the literal scope of the question asked."
+    }
+  ],
+  "unknowns": [
+    "BLOCKING METHODOLOGICAL CAVEAT: I could not open a single live page. WebFetch returned EGRESS_BLOCKED on every domain attempted and curl through the mandated proxy returned 403 Forbidden on CONNECT for ncosfm.gov, ncleg.gov, wataugacounty.org, townofboone.net, codes.iccsafe.org, and up.codes. Per /root/.ccr/README.md these are organization egress-policy denials that must be reported rather than circumvented. EVERY finding above is search-summary-derived and none qualifies as primary-verified. If this research is to be relied upon for design or permitting, the whole set must be re-verified from an environment with unrestricted access to ncosfm.gov and codes.iccsafe.org.",
+    "The actual effective date of the 2024 NC Residential Code. My sources contradict each other (earliest Jan 1 2027 vs Mar 1 2027 vs an older ~Jul 31 2026 figure). Requires reading the current OSFM effective-date letter and confirming whether the State Fire Marshal has yet issued the §5.12(b) certification, and whether the Residential Code Council has been fully constituted.",
+    "Whether the Residential Code Council has been constituted as of August 2026, and whether any 2025 or 2026 session law further amended or superseded S.L. 2025-2 §5.12(b). I could not reach ncleg.gov at all, so I verified NO session law text directly — the law numbers themselves are secondhand.",
+    "Which base IRC year the 2024 NC Residential Code derives from (likely 2021 or 2024 IRC, but I verified nothing). This matters for anticipating the eventual change even though the 2018/IRC-2015 edition governs today.",
+    "Whether NC amends IRC R310 (emergency escape and rescue openings) at all. Not determined. Especially consequential on a falling grade where a walkout/daylight basement changes which storeys need EEROs.",
+    "Whether NC amends R312 guards or handrail geometry, or simply inherits the IRC text. Not resolved — my searches returned generic IRC values that may be summarizer substitution rather than actual NC text.",
+    "Whether NC amends R302.6 attached-garage separation for NEW construction. Only a pre-2012 existing-building allowance surfaced, which does not apply to a new house.",
+    "The actual content of NC's amended R602.10 braced wall provisions in the 2018 edition. The only OSFM commentary I located is for the 2012 edition and may be superseded. Steep sites frequently exceed prescriptive bracing limits (tall cripple walls, stepped foundations, large downhill openings) and may require engineered lateral design under R301.1.3 — unverified.",
+    "The full current list of approved amendments to the 2018 NC Residential Code. OSFM posts dated amendment packages (Aug 2021, Nov 2021, Sep 2022, Mar 2023 all appeared in search); I could not open any of them and cannot confirm the Mar 2023 package is the latest or that no 2024–2026 amendments exist.",
+    "WHICH JURISDICTION ACTUALLY APPLIES. 'Outside Boone' is not a legal description. The parcel could be (a) unincorporated Watauga County — most likely given ETJ abolition; (b) inside Boone town limits after annexation; or (c) inside another municipality with its own ordinances such as Blowing Rock, Seven Devils, Beech Mountain, or Foscoe/Sugar Mountain areas. Requires the parcel ID / PIN and a Watauga County GIS jurisdiction lookup.",
+    "Whether Watauga County has adopted a local steep-slope, landslide-hazard, or high-elevation development ordinance beyond the state Ridge Law, and whether the completed Watauga landslide hazard maps carry any regulatory effect or are advisory only. One source hinted at notification-system problems around landslide hazard zones. Unverified.",
+    "Site-specific engineering inputs entirely outside what any code page can answer: ground snow load, design wind speed, Seismic Design Category, frost depth, and the actual slope percentage and soil bearing capacity. These require the ASCE Hazard Tool by lat/long plus a geotechnical report — NOT a code lookup. Elevation varies enormously in Watauga County, so snow and wind cannot be inferred from 'near Boone'.",
+    "Whether a private road, driveway grade, or NCDOT driveway permit constrains the site, and whether septic is required — a steep mountain site outside municipal sewer will likely need a Watauga County Environmental Health / NCDHHS wastewater soil evaluation, which on steep ground is frequently the binding constraint on where and whether a house can be built at all. Not researched; deq.nc.gov and ncdhhs.gov were not reachable.",
+    "Whether the project may voluntarily elect the 2024 Code early as an 'alternative method of construction.' Single-sourced and unverified; the conditions and approval path are unknown."
+  ]
+}

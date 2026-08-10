@@ -1,0 +1,108 @@
+{
+  "topic": "NC Energy Conservation Code applicability to a new single-family house in Watauga County / Boone NC, as of 2026-08-10",
+  "summary": "CRITICAL METHODOLOGY WARNING: In this session the network egress proxy blocked WebFetch for EVERY host attempted — ncosfm.gov, ncleg.gov, codes.iccsafe.org, up.codes, energycodes.gov, wataugacounty.org, icc-nta.org, nclicensing.org, en.wikipedia.org, and even google.com all returned EGRESS_BLOCKED. Per /root/.ccr/README.md these are organization egress-policy denials that must be reported rather than routed around. Therefore I could not open a single live page. Everything below comes from WebSearch result summaries, which are machine-synthesized and demonstrably unreliable here: they returned directly contradictory values for the same code cells (ceiling R-38 vs R-49; fenestration U-0.35 vs U-0.32; air leakage 3.0 ACH50 vs 5.0 ACH50). NO NUMBER BELOW SHOULD BE USED FOR DESIGN OR PERMITTING WITHOUT DIRECT VERIFICATION. What is reasonably well-corroborated is the adoption picture: the 2018 NC Energy Conservation Code (based on IECC 2015, with NC amendments) has been the enforceable residential energy code, the 2024 NC codes were repeatedly delayed by S.L. 2025-2 (HB 47) which ties the effective date to a State Fire Marshal certification plus formation of the new Residential Code Council, and S.L. 2023-108 (HB 488) froze the residential/energy/mechanical/plumbing codes with the next comprehensive revision cycle aimed at 2031. There is an unresolved and consequential timing question: at least one source stated the earliest possible 2024 code effective date was July 31, 2026 — which is BEFORE today's date of 2026-08-10 — so the 2024 NCECC may have just become mandatory, may not have, or may be in a transition window. This must be settled by calling the AHJ before relying on any edition. Jurisdictionally, a site \"outside Boone\" is almost certainly under Watauga County Planning and Inspections, not the Town of Boone: NC legislation from 2014, upheld by the NC Supreme Court in December 2016, abolished the Town of Boone's extraterritorial jurisdiction, moving ETJ planning and permitting to the County. The energy code itself is a statewide code and does not vary between the two AHJs, but administration, amendments-in-effect interpretation, and inspection practice do.",
+  "findings": [
+    {
+      "claim": "Current enforceable NC residential energy code edition",
+      "value": "2018 NC Energy Conservation Code (NCECC), which is based on the 2015 IECC with North Carolina amendments. The 2024 NCECC existed as an owner-requested alternate method under Section 102.5 of the 2018 NC Administrative Code and Policies rather than as the mandatory code.",
+      "source_url": "https://www.ncosfm.gov/news/press-releases/2025/04/07/north-carolina-delays-implementation-2024-state-building-code",
+      "source_name": "NC Office of State Fire Marshal - press release, North Carolina Delays Implementation of 2024 State Building Code",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE PAGE - ncosfm.gov returned EGRESS_BLOCKED from the network proxy. This is from a WebSearch summary that stated the 2018 code 'remains in full force and should continue to be enforced as the governing standard, unless a building owner or his agent requests that the 2024 North Carolina State Building Code be applied.' Multiple independent search summaries agreed on this, but the statement reflects conditions as of the April 2025 press release and may be stale as of August 2026. Edition must be confirmed with the AHJ."
+    },
+    {
+      "claim": "Legal mechanism delaying the 2024 NC State Building Code",
+      "value": "S.L. 2025-2 (House Bill 47) sets the effective date of the 2024 Code at 12 months after the State Fire Marshal certifies two conditions: (1) the Building Code Council and Residential Code Council have completed publication and distribution of the fully adopted 2024 Code, and (2) the Residential Code Council is fully constituted. The original effective date had been January 1, 2025.",
+      "source_url": "https://www.wardandsmith.com/article/house-bill-47-delays-effective-date-for-north-carolinas-new-building-code",
+      "source_name": "Ward and Smith, P.A. - House Bill 47 Delays Effective Date for North Carolina's New Building Code",
+      "confidence": "inferred",
+      "verified_note": "COULD NOT OPEN THE PAGE - all hosts blocked by egress proxy. The two-condition certification structure was reported consistently across several independent WebSearch summaries (ncosfm.gov, icc-nta.org, wardandsmith.com, constructionowners.com), which makes the mechanism credible, but I did not read the session law text on ncleg.gov."
+    },
+    {
+      "claim": "Whether the 2024 NC code is now mandatory as of today (2026-08-10)",
+      "value": "UNRESOLVED AND TIME-CRITICAL. One search summary stated 'the soonest the new building standards could take effect is July 31, 2026' — a date that has already passed as of today, 2026-08-10. A February 2026 code-update bulletin exists but could not be read.",
+      "source_url": "https://nclicensing.org/wp-content/uploads/2026/02/2026-02-15-Code-Update.pdf",
+      "source_name": "NC Licensing Board for General Contractors - UPDATE ON NEW NORTH CAROLINA STATE BUILDING CODE EFFECTIVE DATES, dated 2026-02-15",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN THE PDF - nclicensing.org returned EGRESS_BLOCKED. This is the single most important unknown in the whole task. The project may be sitting exactly on an edition-change boundary, which also raises a permit-vesting question (which edition applies is normally fixed by permit application date). Must be confirmed directly with Watauga County Planning and Inspections."
+    },
+    {
+      "claim": "Statutory freeze on the NC residential and energy codes",
+      "value": "S.L. 2023-108 (House Bill 488), enacted over the Governor's veto on 2023-08-16, limits the Residential Code Council to reviewing and revising the NC Residential Code every six years, with the first six-year revision effective January 1, 2031. It also directed review of the NC Energy Conservation Code, NC Fuel Gas Code and NC Mechanical Code, permitting amendment of the relevant chapters by January 1, 2026.",
+      "source_url": "https://www.ncleg.gov/BillLookup/2023/H488",
+      "source_name": "North Carolina General Assembly - House Bill 488 / S.L. 2023-108 bill lookup",
+      "confidence": "inferred",
+      "verified_note": "COULD NOT OPEN THE PAGE - ncleg.gov returned EGRESS_BLOCKED. Reported consistently in search summaries and corroborated by an NRDC press release about the veto override. This is the key reason NC residential energy requirements have not tracked newer IECC editions, and it is the most likely explanation for why NC energy provisions remain at effectively 2018/IECC-2015-era stringency."
+    },
+    {
+      "claim": "Existence of recent amendments to the 2018 NCECC",
+      "value": "An OSFM document titled 'January 7, 2026 2018 NC State Energy Conservation Code Amendments' exists, indicating approved amendments to the 2018 NCECC with a 2026-01-07 date. Content not determined.",
+      "source_url": "https://www.ncosfm.gov/2017-2024-approved-amendments-241210energy-conservation-code/open",
+      "source_name": "NC Office of State Fire Marshal - 2018 NC State Energy Conservation Code Amendments (January 7, 2026)",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - ncosfm.gov blocked. Only the document title was visible in search results. This document is likely decisive for questions (c) through (f) since it postdates everything else found, and it plausibly reflects the HB 488 authorization to amend energy chapters by January 1, 2026. It should be the first thing retrieved when network access permits."
+    },
+    {
+      "claim": "IECC climate zone for Watauga County NC",
+      "value": "Reported as Climate Zone 5A (cool-humid), grouped with Avery and Mitchell counties as the NC mountain counties in Zone 5A. NOT VERIFIED against the code's own county table.",
+      "source_url": "https://codes.iccsafe.org/content/NCECC2018P2/chapter-3-re-general-requirements",
+      "source_name": "ICC Digital Codes - 2018 NC Energy Conservation Code, Chapter 3 [RE] General Requirements (contains Table R301.1 NC county climate zone list)",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - codes.iccsafe.org and up.codes both EGRESS_BLOCKED. The 5A assignment came only from a commercial HVAC marketing blog (northcarolinahvacauthority.com), not from the code table. Search summaries asserted the code 'confirms' this but never quoted the actual county list. Because every envelope R-value and U-factor in part (c) is keyed to this zone, an error here propagates through the entire design. The task explicitly warned that Watauga's high elevation (~3,300-4,000 ft) may make it differ from surrounding counties — that warning is exactly right and remains unresolved. Treat Zone 5A as a working hypothesis only."
+    },
+    {
+      "claim": "Prescriptive envelope values, Table R402.1.2 (ceiling, wall, floor, slab, basement/crawl, fenestration, skylight, SHGC)",
+      "value": "CONFLICTING AND UNUSABLE. Search summaries returned mutually inconsistent values: ceiling R-38 vs R-49; wood-frame wall R-15 or R-13+2.5ci (a value that does not match standard IECC Zone 5 wording); fenestration U-0.35 vs a stated 'maximum U-factor of 0.32 shall apply in Climate Zone 5'; basement wall R-15 or R-10ci; crawlspace wall R-19 or R-10ci. Floor R-value, slab edge R-value and depth, skylight U-factor, and SHGC were never returned at all.",
+      "source_url": "https://insulationinstitute.org/wp-content/uploads/2025/05/N107-NC-Energy-Code-0425.pdf",
+      "source_name": "Insulation Institute - 2018 North Carolina Energy Conservation Code, Summary of Key Residential Energy Requirements (April 2025)",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - insulationinstitute.org not fetchable (all WebFetch blocked). The contradictions between search summaries are self-evident proof that these numbers cannot be trusted. Reporting any of them as design values would be exactly the 'confidently-stated wrong number' failure mode the task warned against. NC amends the IECC baseline table substantially, so generic IECC 2015 Zone 5 values must NOT be substituted either."
+    },
+    {
+      "claim": "Mandatory air leakage / blower door threshold (ACH50)",
+      "value": "CONFLICTING. Search summaries variously reported: 3.0 ACH50 for Climate Zones 3 through 5 when complying via Section R401.2.1; 5 ACH50 or 0.30 CFM50 per sq ft of shell area under a Section R402.4.2.2 'testing option'; and a claim of 'less than 3.0' tied to the January 7, 2026 amendments. Testing standard cited as ANSI/RESNET/ICC 380, ASTM E779 or ASTM E1827 at 0.2 in. w.g. (50 Pa).",
+      "source_url": "https://up.codes/viewer/north_carolina/iecc-2015/chapter/new_R3/sample-worksheets-for-residential-air-and-duct-leakage-testing",
+      "source_name": "UpCodes - NC Energy Conservation Code 2018, Appendix R3 Sample Worksheets for Residential Air and Duct Leakage Testing",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - up.codes EGRESS_BLOCKED. NC historically diverges from the base IECC here by offering multiple compliance paths (a prescriptive/visual-inspection path versus a tested path) with different thresholds, which is the likely source of the 3.0-vs-5.0 conflict — but I could not confirm which path applies or what the current threshold is. The identity of who may perform and sign the test (permit holder, NC licensed GC, NC licensed HVAC contractor, NC licensed Home Inspector, registered design professional, certified BPI Envelope Professional, or certified HERS rater) was reported but likewise unverified."
+    },
+    {
+      "claim": "Duct leakage testing requirement",
+      "value": "NOT DETERMINED. NC has a dedicated appendix for residential air AND duct leakage testing worksheets, implying a duct test requirement exists, but no threshold (CFM25 per 100 sq ft, total vs to-outside, rough-in vs postconstruction) was obtained. Duct insulation values of R-8 for outdoor ducts and R-6 for ducts in unconditioned space appeared in one summary but were reported as R-12/R-6 in another and are not reliable.",
+      "source_url": "https://up.codes/viewer/north_carolina/iecc-2015/chapter/new_R3/sample-worksheets-for-residential-air-and-duct-leakage-testing",
+      "source_name": "UpCodes - NC Energy Conservation Code 2018, Appendix R3",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - blocked. Only the appendix title, which references 'Air and Duct Leakage Testing', supports the inference that duct testing is required at all."
+    },
+    {
+      "claim": "Mechanical ventilation requirement and whether ASHRAE 62.2 is referenced",
+      "value": "NOT DETERMINED FOR NORTH CAROLINA. No NC-specific source was obtained. Search results returned generic ASHRAE 62.2 material and a California (Energy Code Ace) reference, neither of which governs here. The referenced standard, its version year, and the required whole-house airflow rate for NC are all unknown.",
+      "source_url": "https://up.codes/viewer/north_carolina/imc-2021/chapter/4/ventilation",
+      "source_name": "UpCodes - North Carolina Mechanical Code, Chapter 4 Ventilation",
+      "confidence": "uncertain",
+      "verified_note": "COULD NOT OPEN - blocked. Note also that in NC the whole-house ventilation requirement may live in the NC Residential Code or NC Mechanical Code rather than the NCECC, so the correct code book itself is unconfirmed. Nothing here should be treated as an NC requirement."
+    },
+    {
+      "claim": "Authority having jurisdiction for a site outside Boone town limits",
+      "value": "Watauga County Planning and Inspections (126 Poplar Grove Connector, Suite 201, Boone NC) enforces the NC State Building Code in unincorporated Watauga County. The Town of Boone's extraterritorial jurisdiction was abolished by a 2014 state law upheld by the NC Supreme Court in December 2016, transferring ETJ planning and permitting authority to the County. Town of Boone Planning and Inspections (828-268-6960) applies only inside the corporate limits.",
+      "source_url": "https://www.wataugacounty.org/App_Pages/Dept/Planning/home.aspx",
+      "source_name": "Watauga County Planning and Inspections",
+      "confidence": "inferred",
+      "verified_note": "COULD NOT OPEN - wataugacounty.org EGRESS_BLOCKED. The ETJ abolition and the resulting County jurisdiction were reported consistently across a local news source (High Country Press), WataugaOnline, and county directory listings. Practical consequence: the NC Energy Conservation Code is a STATEWIDE code and does not differ between the two AHJs, so items (a) through (f) do not change with jurisdiction; what changes is administration, plan review, and inspection practice. Local overlays that DO differ by jurisdiction (steep slope, viewshed, watershed, stormwater) are outside this topic but are highly relevant on steep mountain land."
+    }
+  ],
+  "unknowns": [
+    "BLOCKING ISSUE: WebFetch was blocked by the organization egress proxy for every host attempted (ncosfm.gov, ncleg.gov, codes.iccsafe.org, up.codes, energycodes.gov, wataugacounty.org, townofboone.net, icc-nta.org, nclicensing.org, insulationinstitute.org, wikipedia, google). No live page could be opened. Every finding above rests on machine-generated search summaries. This research must be re-run with working network access, or performed by a human, before any of it informs design or permitting.",
+    "Which code edition is actually mandatory TODAY (2026-08-10). One source indicated the earliest possible effective date for the 2024 NC code was 2026-07-31, which has now passed. Whether the State Fire Marshal issued the certification, when the 12-month clock started or expired, and whether a transition/grandfathering window applies are all unknown. Requires the OSFM certification letter and the current OSFM 'Codes - Current and Past' page.",
+    "Whether Watauga County is genuinely Climate Zone 5A under the NC code's own county table (Table R301.1 of the NCECC), or whether its elevation places it differently. Never verified against code text — only against a commercial HVAC blog. All envelope requirements depend on this.",
+    "Every prescriptive envelope number in part (c): ceiling R-value, wood-frame wall R-value, mass wall, floor R-value, slab edge R-value AND depth, basement wall R-value, crawlspace wall R-value, fenestration U-factor, skylight U-factor, and SHGC. Search results were mutually contradictory and incomplete. Requires reading NCECC Table R402.1.2 (and NC's amended version of it) directly.",
+    "The actual ACH50 threshold and which compliance path triggers it. Sources conflicted between 3.0 and 5.0 ACH50, and there appears to be an alternative CFM50-per-square-foot-of-shell-area metric and possibly a visual-inspection path. The interaction between Section R401.2.1 and Section R402.4.2.2 is unresolved.",
+    "The duct leakage test threshold, the metric used, and whether rough-in and/or postconstruction testing is required. Also whether ducts inside conditioned space exempt the test.",
+    "The mechanical ventilation requirement for NC: whether ASHRAE 62.2 is referenced at all, which version year, the required whole-house rate and formula, and which code book (NCECC, NC Residential Code, or NC Mechanical Code) contains it.",
+    "The content of the 'January 7, 2026 2018 NC State Energy Conservation Code Amendments' document on ncosfm.gov. This postdates all other material found and may change answers (c) through (f). Highest-priority retrieval.",
+    "The full list of NC amendments that soften or modify the IECC baseline (part f). NC is known to amend the base IECC table and testing provisions substantially, but the specific amendment set in force could not be enumerated.",
+    "Whether a permit application date vests the project in a particular code edition under NC administrative rules, which matters enormously given the possible edition change mid-2026.",
+    "Site-specific items no desk research can resolve: the parcel's actual jurisdiction (confirm by parcel ID whether it is inside Boone corporate limits, in the former ETJ, or unincorporated county), and whether any local steep-slope, high-elevation, viewshed, watershed, or stormwater ordinance imposes requirements beyond the state energy code. Steep mountain land in Watauga County commonly triggers these.",
+    "Whether Watauga County or Town of Boone inspections departments apply any local interpretation or additional documentation requirement for energy compliance (e.g., required use of a specific compliance path, REScheck acceptance, or mandatory third-party testing documentation)."
+  ]
+}
