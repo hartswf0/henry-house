@@ -275,6 +275,26 @@ for (const R of ROOFS.slice(0, 2)) {
   else ok('HEADROOM', `${R.name}: ${dim(low)} at the low eave, ${dim(R.topAtY1 - ROOF_ASSEMBLY - lvlFfe)} at the spine`);
 }
 
+// ── 11. THE SKELETON — members sized, not asserted ──────────────────────────
+{
+  const S = await import('../../model/structure.mjs');
+  for (const m of S.MEMBERS) {
+    if (!m.ok) { fail('STRUCTURE', `${m.label}: ${m.note}`); continue; }
+    ok('STRUCTURE', `${m.label}: ${m.section} ${m.material} — S ${m.Sprov}/${m.Sreq} in³, Δ ${m.deflIn}"/${m.deflAllowIn}" (${m.governs} governs)`);
+  }
+  // the old placeholder, kept as a regression guard
+  const OLD_PLACEHOLDER_DEPTH = 15;
+  if (S.RIB_ROOF.depth > OLD_PLACEHOLDER_DEPTH) {
+    warn('STRUCTURE', `The former placeholder rib (5-1/8 x ${OLD_PLACEHOLDER_DEPTH}) was UNDERSIZED — sizing gives ${S.RIB_ROOF.section}. Every drawing showing a 15" rib is wrong.`);
+  }
+  for (const [nm, w] of [['SPINE WALL', S.SPINE_WALL], ['MOTOR COURT WALL', S.COURT_WALL]]) {
+    if (w.retainedFt > 4) {
+      warn('STRUCTURE', `${nm} retains ${w.retainedFt} ft (${w.thicknessIn}" stem, ${w.footingWidthFt} ft footing) — over 4 ft, so it requires an ENGINEERED design and almost certainly a permit of its own.`);
+    }
+  }
+  warn('STRUCTURE', `Governing load is GROUND SNOW at ${S.LOADS.SNOW_GROUND.v} psf — ${S.LOADS.SNOW_GROUND.status}. Every member above resizes if this number changes.`);
+}
+
 // ── report ──────────────────────────────────────────────────────────────────
 const counts = fixtureCounts();
 const fails = results.filter(r => r.level === 'fail');
@@ -292,3 +312,4 @@ console.log('\nNOTE: clearance values are the common IRC/ANSI figures and are UN
 console.log('against the governing NC code edition. See docs/02-code-basis.md.');
 
 process.exitCode = fails.length ? 1 : 0;
+
