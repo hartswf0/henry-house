@@ -117,7 +117,7 @@
 <line x1="1476.875" y1="775.625" x2="1595.625" y2="775.625" stroke="#4a5560" stroke-width="1" stroke-linecap="butt"/>
 <polygon points="1339.375,742.813 1595.625,742.813 1595.625,605.313 1339.375,605.313" fill="none" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
 <line x1="1398.75" y1="947.5" x2="1398.75" y2="767.813" stroke="#b8562f" stroke-width="2.2" stroke-linecap="butt"/>
-<polygon points="1398.75,947.5 1383.125,910 1414.375,910" fill="#b8562f" stroke="#b8562f" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1398.75,767.813 1383.125,805.313 1414.375,805.313" fill="#b8562f" stroke="#b8562f" stroke-width="1" stroke-linejoin="miter"/>
 <text x="1398.75" y="1041.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#b8562f" text-anchor="middle" letter-spacing="0">UP</text>
 <line x1="1464.375" y1="861.344" x2="1608.125" y2="798.844" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
 <line x1="1464.375" y1="823.844" x2="1608.125" y2="761.344" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
@@ -295,7 +295,7 @@
 <line x1="2092.5" y1="775.625" x2="2211.25" y2="775.625" stroke="#4a5560" stroke-width="1" stroke-linecap="butt"/>
 <polygon points="1955,742.813 2211.25,742.813 2211.25,605.313 1955,605.313" fill="none" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
 <line x1="2014.375" y1="947.5" x2="2014.375" y2="767.813" stroke="#b8562f" stroke-width="2.2" stroke-linecap="butt"/>
-<polygon points="2014.375,767.813 1998.75,805.313 2030,805.313" fill="#b8562f" stroke="#b8562f" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="2014.375,947.5 1998.75,910 2030,910" fill="#b8562f" stroke="#b8562f" stroke-width="1" stroke-linejoin="miter"/>
 <text x="2014.375" y="699.063" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#b8562f" text-anchor="middle" letter-spacing="0">DN</text>
 <text x="2131.563" y="566.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">16 R @ 7.5"</text>
 <rect x="2099.013" y="1243.125" width="127.6" height="42" fill="#ffffff" opacity="0.82"/>

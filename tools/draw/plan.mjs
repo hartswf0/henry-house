@@ -101,8 +101,10 @@ function stair(s, st, { levelId }) {
   // travel arrow on the first run
   const ax = x + cw / 2;
   s.line(ax, y + 8, ax, y + runLen - 8, { w: LW.medium, color: INK.accent });
-  const tipY = isDown ? y + runLen - 8 : y + 8;
-  const back = isDown ? -1 : 1;
+  // The arrow must point the way you TRAVEL. Both runs go +Y (north on the
+  // sheet), so UP points north and DN points south. These were swapped.
+  const tipY = isDown ? y + 8 : y + runLen - 8;
+  const back = isDown ? 1 : -1;
   s.poly([[ax, tipY], [ax - 5, tipY + back * 12], [ax + 5, tipY + back * 12]],
     { fill: INK.accent, color: INK.accent, w: LW.thin });
   s.text(ax, isDown ? y + runLen + 14 : y - 22, label, { size: 17, anchor: 'middle', weight: 700, color: INK.accent });
