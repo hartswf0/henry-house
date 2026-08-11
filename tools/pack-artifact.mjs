@@ -20,6 +20,7 @@ import { estimate } from '../model/cost.mjs';
 import { driveProfile, siteTotals } from '../model/site.mjs';
 import { areaSummary } from '../model/geometry.mjs';
 import { S4, viabilityGaps } from '../model/vsm.mjs';
+import { runGauntlet } from './gauntlet/run.mjs';
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const RENDERS = [
@@ -42,6 +43,18 @@ const SHEETS = [
   ['M-101-air.png', 'M-101', 'Ventilation + HVAC', 'The airway is separate from the heating system, exactly as it is in a body.'],
   ['E-101-power.png', 'E-101', 'Electrical + data', 'One brain, home runs, and reflex arcs that work when the brain is offline.'],
   ['G-001-viable-system-and-cost.png', 'G-001', 'The house as a system, and what it costs', 'What the house does before the weather does it — and the first price in the package.'],
+  ['X-101-seven-schemes.png', 'X-101', 'Seven schemes, one scale', 'Six alternatives against the current design, drawn at the same scale over the same hill.'],
+  ['R-101-reference-bar.png', 'R-101', 'The reference set, as a bar', 'Six real houses with published numbers — turned into figures every scheme has to beat.'],
+];
+/** The alternatives, rendered from ONE fixed camera so this is a comparison. */
+const SCHEME_SHOTS = [
+  ['S0-SPINE.png',    'The Spine',    'The current design, and the opponent every alternative is measured against.'],
+  ['S1-ARMATURE.png', 'The Armature', 'One roof standing over the slope on day one; two bays enclosed, the rest becomes rooms later.'],
+  ['S2-BRIDGE.png',   'The Bridge',   'The structure spans, so the house touches the ground in six places instead of along a wall.'],
+  ['S3-NARROW.png',   'The Narrow',   'A body narrow enough to daylight from both sides, with a dogtrot cut through the middle.'],
+  ['S4-CORE.png',     'The Core',     'Every expensive, fixed thing in one permanent core. Everything around it is re-plannable.'],
+  ['S5-PERCH.png',    'The Perch',    'Refuses the horizontal — small footprint, lifted clear, stacked, one enormous opening downhill.'],
+  ['S6-TOWER.png',    'The Tower',    'If the buildable shelf is small, vertical growth is cheaper than long foundations.'],
 ];
 /** Re-encode a PNG to a JPEG data URI at a target width, through the browser. */
 async function jpeg(page, absPath, width, quality) {
@@ -68,6 +81,8 @@ const jsonSafe = (v) => JSON.stringify(v)
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+/** "THE SPINE" -> "The Spine". The model shouts; the page for Henry should not. */
+const titleCase = (s) => String(s).toLowerCase().replace(/(^|\s)(\S)/g, (_, sp, c) => sp + c.toUpperCase());
 // ── build ───────────────────────────────────────────────────────────────────
 const browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox'] });
 const page = await browser.newPage();
@@ -90,6 +105,14 @@ for (const [file, no, title, note] of SHEETS) {
   sheets.push({ no, title, note, thumb: thumb.uri, full: full.uri, w: thumb.w, h: thumb.h });
   console.log(`  ✓ ${no.padEnd(8)} ${((thumb.uri.length + full.uri.length) / 1024).toFixed(0)} kB`);
 }
+const shots = [];
+for (const [file, title, note] of SCHEME_SHOTS) {
+  const p = resolve(ROOT, 'out/schemes', file);
+  if (!existsSync(p)) { console.log(`  ! missing scheme render ${file}`); continue; }
+  const r = await jpeg(page, p, 1100, 0.74);
+  shots.push({ id: file.replace('.png', ''), title, note, ...r });
+  console.log(`  ✓ ${file.padEnd(26)} ${(r.uri.length / 1024).toFixed(0)} kB`);
+}
 await browser.close();
 const walk = bundleHtml('web/walk.html').html;
 console.log(`  ✓ walkthrough  ${(walk.length / 1024 / 1024).toFixed(2)} MB inlined\n`);
@@ -97,14 +120,15 @@ const est = estimate();
 const drive = driveProfile();
 const totals = siteTotals();
 const A = areaSummary();
-const html = renderPage({ renders, sheets, walk, est, drive, totals, A });
+const gaunt = runGauntlet();
+const html = renderPage({ renders, sheets, shots, gaunt, walk, est, drive, totals, A });
 mkdirSync(resolve(ROOT, 'out/artifact'), { recursive: true });
 const out = resolve(ROOT, 'out/artifact/henry-house.html');
 writeFileSync(out, html);
 console.log(`  → out/artifact/henry-house.html   ${(Buffer.byteLength(html) / 1024 / 1024).toFixed(2)} MB`);
 if (Buffer.byteLength(html) > 15.5 * 1024 * 1024) console.log('  ! over the 16 MB artifact limit — drop image quality');
 // ── the page ────────────────────────────────────────────────────────────────
-function renderPage({ renders, sheets, walk, est, drive, totals, A }) {
+function renderPage({ renders, sheets, shots, gaunt, walk, est, drive, totals, A }) {
   const hero = renders[0];
   const decisions = [
     ['The driveway is 1% too steep for a fire truck',
@@ -129,7 +153,7 @@ function renderPage({ renders, sheets, walk, est, drive, totals, A }) {
 :root{
   --paper:#eceeec; --surface:#ffffff; --sunken:#e2e5e3;
   --ink:#141a1e; --mid:#59656d; --faint:#94a0a6; --rule:#cfd6d5;
-  --accent:#b8562f; --earth:#8a6508; --alarm:#a83232; --cool:#1d6fa5;
+  --accent:#b8562f; --earth:#8a6508; --alarm:#a83232; --cool:#1d6fa5; --good:#2f7d54;
   --shadow:0 1px 2px rgba(20,26,30,.06), 0 8px 30px rgba(20,26,30,.07);
   --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
@@ -137,13 +161,13 @@ function renderPage({ renders, sheets, walk, est, drive, totals, A }) {
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#11161a; --surface:#181f24; --sunken:#0d1215;
   --ink:#e7edea; --mid:#94a3ab; --faint:#63727a; --rule:#2a343a;
-  --accent:#d0713f; --earth:#c39b2e; --alarm:#d15b56; --cool:#5aa5d8;
+  --accent:#d0713f; --earth:#c39b2e; --alarm:#d15b56; --cool:#5aa5d8; --good:#6ec191;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 34px rgba(0,0,0,.36);
 }}
 :root[data-theme="dark"]{
   --paper:#11161a; --surface:#181f24; --sunken:#0d1215;
   --ink:#e7edea; --mid:#94a3ab; --faint:#63727a; --rule:#2a343a;
-  --accent:#d0713f; --earth:#c39b2e; --alarm:#d15b56; --cool:#5aa5d8;
+  --accent:#d0713f; --earth:#c39b2e; --alarm:#d15b56; --cool:#5aa5d8; --good:#6ec191;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 34px rgba(0,0,0,.36);
 }
 *{box-sizing:border-box}
@@ -229,6 +253,27 @@ section:first-of-type{border-top:0}
 .unknown{border-top:2px solid var(--earth);padding-top:14px;display:flex;flex-direction:column;gap:6px}
 .unknown h3{font-size:1rem}
 .unknown p{font-size:.9rem;color:var(--mid);line-height:1.5}
+/* ── the alternatives ─────────────────────────────────────────────── */
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.shot{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  overflow:hidden;box-shadow:var(--shadow)}
+.shot.opp{border-color:var(--accent);border-width:1px;box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.shot .meta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:5px}
+.shot h3{font-size:1rem}
+.shot p{font-size:.86rem;color:var(--mid);line-height:1.45}
+.shot .badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent)}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+  box-shadow:var(--shadow);margin-top:28px}
+table.rank{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+table.rank th,table.rank td{padding:12px 16px;text-align:right;border-bottom:1px solid var(--rule);
+  font-variant-numeric:tabular-nums;font-family:var(--mono)}
+table.rank th{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--mid);font-weight:400}
+table.rank td:first-child,table.rank th:first-child{text-align:left;font-family:var(--serif);font-size:1rem}
+table.rank tr:last-child td{border-bottom:0}
+table.rank tr.opp td{color:var(--accent)}
+table.rank tr.opp td:first-child{font-weight:600}
+.win{color:var(--good)}
 /* ── lightbox ─────────────────────────────────────────────────────── */
 dialog{border:0;padding:0;max-width:98vw;max-height:98vh;background:transparent}
 dialog::backdrop{background:rgba(8,12,14,.9)}
@@ -317,6 +362,40 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     <div class="k eyebrow">Project range, everything in</div>
     <div class="n">${money(est.total.lo)} — ${money(est.total.hi)}</div>
     <p class="d" style="color:var(--mid);margin-top:8px;max-width:64ch">Construction, plus 15% contingency, plus 12% for design, engineering, survey, geotechnical work and permits. That is <b>${money(est.perSf.lo)}–${money(est.perSf.hi)} per square foot</b>. Earthwork, spoil, driveway and erosion control alone account for about a fifth of construction cost before a single wall is framed — on steep land the site is a wing of the house you cannot see.</p>
+  </div>
+</section>
+<section>
+  <div class="head">
+    <div class="sheetno">The alternatives</div>
+    <h2>Six other houses, and the one above losing to all of them</h2>
+    <p class="lede">The house you have been looking at is <b>${gaunt.opponent.m.conditionedSf.toLocaleString()} sf</b>. Before defending that, it is worth seeing it beaten. Each of these was built in the same model, on the same hill, and photographed from the same camera — so this is a comparison, not a beauty contest between whichever one got the better light.</p>
+  </div>
+  <div class="shots">
+    ${shots.map(s => `<figure class="shot${s.id === 'S0-SPINE' ? ' opp' : ''}" style="margin:0">
+      <img src="${s.uri}" alt="${esc(s.title)}" loading="lazy">
+      <figcaption class="meta">${s.id === 'S0-SPINE' ? '<span class="badge">The design above</span>' : ''}<h3>${esc(s.title)}</h3><p>${esc(s.note)}</p></figcaption>
+    </figure>`).join('\n    ')}
+  </div>
+  <div class="tablewrap">
+    <table class="rank">
+      <thead><tr><th>Scheme</th><th>Heated</th><th>Exterior wall</th><th>Earth moved</th><th>Building cost</th><th>Critics won</th></tr></thead>
+      <tbody>
+        ${gaunt.ranked.map(r => `<tr${r.scheme.id === 'S0-SPINE' ? ' class="opp"' : ''}>
+          <td>${esc(titleCase(r.scheme.name))}</td>
+          <td>${r.m.conditionedSf.toLocaleString()} sf</td>
+          <td>${r.m.perimeterLf} lf</td>
+          <td>${r.m.cutCY.toLocaleString()} CY</td>
+          <td>${money(r.cost.total)}</td>
+          <td class="${r.wins >= 5 ? 'win' : ''}">${r.wins} of 8</td>
+        </tr>`).join('\n        ')}
+      </tbody>
+    </table>
+  </div>
+  <div class="stack col" style="margin-top:28px">
+    <p>Eight critics score every scheme, and none of them reads a word of argument — each is a function of a measured quantity. The figures they judge against are not opinions either: they are computed from six real houses with published numbers, on sheet <b>R-101</b>. The best envelope efficiency in that set belongs to a 1,364 sf three-bedroom house.</p>
+    <p>The current design wins two critics, and both are worth keeping: it has the second-cheapest envelope of the seven, and by far the most room per bedroom. Six critics say the same thing back — it is a large house, and largeness is what it is paying for. It costs <b>${money(gaunt.opponent.cost.total)}</b> against <b>${money(Math.min(...gaunt.ranked.map(r => r.cost.total)))}</b> for the cheapest alternative, at a competitive <b>${money(gaunt.opponent.cost.perSf)} per square foot</b> — it is not badly built, it is big.</p>
+    <p><b>The critic almost nothing passes is phasing.</b> One reference house dimensions its rear porch so that it can later become a bedroom; only two of these seven have anything equivalent. That is the question worth putting to you before any of this is drawn further: does Henry need all of it on day one, or does he need the part he will build first to be the part that never has to be undone?</p>
+    <p style="font-size:.9rem;color:var(--mid)">Cost here is the <b>building only</b> — no drive, motor court, septic, water, standby power, mechanical or soft costs, because every scheme carries the same ones. The rates are placeholders. <b>The ranking is the output, not the totals.</b></p>
   </div>
 </section>
 <section>

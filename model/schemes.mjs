@@ -246,9 +246,21 @@ export function roofBase(scheme, r) {
   // wall top left the plane four feet clear of the wall where they actually
   // meet — a floating canopy instead of a roof. Back the slope off from each
   // wall's downhill face to the eave, and take the governing case.
+  //
+  // Two things this must NOT do, both of which it did:
+  //
+  // 1. Back the slope off from a wall the roof does not reach. A volume can
+  //    overlap a roof by two feet and still start twenty feet uphill of it.
+  //    Extrapolating the plane back to a station it never covers raised the
+  //    Core's east roof 8.5 ft into the air over the room it shelters. The
+  //    governing station is where the two ACTUALLY overlap.
+  // 2. Let zLow win against a wall. zLow is the fallback for a roof standing
+  //    over nothing — a canopy, a carport — and floor-ing the walls with it put
+  //    the Tower's roof two feet above the tower. Where there are walls, the
+  //    walls decide; zLow decides only when there are none.
   const slope = r.pitch / 12;
-  return Math.max(r.zLow, ...covered.map(v =>
-    ft(v.ffe) + 120 * (v.storeys ?? 1) - slope * (v.y0 - r.y0)));
+  return Math.max(...covered.map(v =>
+    ft(v.ffe) + 120 * (v.storeys ?? 1) - slope * (Math.max(v.y0, r.y0) - r.y0)));
 }
 
 // ── METRICS — the reference test, computed ──────────────────────────────────

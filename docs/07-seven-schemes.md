@@ -78,11 +78,47 @@ Read the sheet, not this paragraph. But three things are already clear:
 
 **2. Perimeter is where Rural Studio's discipline bites.** The Spine spends **226 linear feet of exterior wall** on 3,747 sf. The Perch spends 100 on 1,872 — the same ratio, half the house. The Tower spends 72. Exterior wall is envelope, insulation, cladding, flashing, air-sealing and heat loss, in that order, forever.
 
-**3. Nothing here has been costed, and that changes the ranking.** The Bridge's trusses are not free; the piers it saves are cheap holes but the span above them is not. The Armature's roof is built at full size on day one and paid for by a 616 sf house. The Tower needs a stair through four floors and a crane. **The next move is to price all seven off the same unit rates in `model/cost.mjs`, because until that runs, "least earth" is not the same as "least money."**
+**3. Costing changed the ranking, exactly as predicted.** All seven are now priced off one rate set in `tools/gauntlet/run.mjs`, and "least earth" turned out not to be "least money," nor "least money" to be "cheapest house":
+
+| | Building only | $ per sf |
+|---|---:|---:|
+| The Armature | $537k | **$871** |
+| The Tower | $573k | $442 |
+| The Bridge | $726k | $605 |
+| The Core | $807k | $537 |
+| The Perch | $819k | **$438** |
+| The Narrow | $859k | $501 |
+| The Spine | **$1,727k** | $461 |
+
+The Armature is the cheapest cheque and the **most expensive square foot in the set** — a full-size roof and twelve piers paid for by 616 sf of house. The Perch is the cheapest square foot and one of the larger cheques, because it is a bigger house done efficiently. The Spine's $461/sf is mid-field; it costs $1.7M because it is 3,747 sf, not because it is badly built.
+
+Cost excludes the drive, motor court, septic, water, standby power, mechanical and soft costs, because those are common to all seven. The rates are placeholders in `model/cost.mjs`. **The ranking is the output, not the totals.**
 
 ---
 
-## D. WHAT THIS IS NOT
+## D. THE GAUNTLET
+
+`tools/gauntlet/run.mjs` runs eight critics over all seven schemes. Every critic is a function of a **computed metric**, never of prose, and every bar it judges against is **derived from the Front Porch product line rather than chosen** — `bars()` in `model/references.mjs` reads the published figures and returns the best one. A scheme cannot argue with a critic; it can only have different numbers. Blind A/B against the Spine, tie counts as a loss.
+
+| | Score | Wins | A/B |
+|---|---:|---:|---|
+| The Bridge | 0.87 | 7/8 | win |
+| The Armature | 0.86 | 6/8 | win |
+| The Perch | 0.84 | 6/8 | win |
+| The Tower | 0.83 | 5/8 | win |
+| The Narrow | 0.80 | 5/8 | win |
+| The Core | 0.70 | 3/8 | win |
+| **The Spine** | **0.54** | **2/8** | *the opponent* |
+
+The Spine wins two critics and they are worth naming: **ENVELOPE**, where 0.060 lf/sf is beaten only by the Perch, and **GENEROSITY**, at 937 sf per bedroom against a product line that runs 428–536. Both wins say the same thing — it is a large, disciplined house — and six critics say that is the problem.
+
+**The critic no massing decision satisfies is PHASING.** It is the biggest gap for the Spine, the Perch, the Core and the Tower alike. MacArthur's House dimensions its rear porch so it can *become a bedroom*; only the Armature and the Bridge have anything equivalent. The Tower fails it in a more interesting way: vertical growth is cheap in foundation and expensive in roof, because adding a level means lifting and re-setting the roof — cutting into finished work, which is precisely what Rev. Walker's armature exists to avoid.
+
+Three findings are common to every scheme and therefore **not scored**, because scoring them would let a massing decision take credit for something it does not touch: the 655 ft drive at 11% exceeding the 10% commonly required for fire apparatus; the 3,530 CY of drive-and-court spoil that arrives whichever house is built; and the absence of a survey, a soils report, a tested spring or a line of read code.
+
+---
+
+## E. WHAT THIS IS NOT
 
 - **Not a recommendation.** Seven propositions, one opponent, one computed table.
 - **Not detailed.** The 3D is massing only, unfurnished and unglazed by intent — at this stage detail would flatter whichever scheme got detailed first.
