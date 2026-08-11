@@ -90,23 +90,18 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true, plan = null
     ]) s.wall(x1, y1, x2, y2, INT_T, { fill: INK.poche, color: INK.line, w: LW.light });
   }
 
-  // ── room fills and tags ──────────────────────────────────────────────────
+  // ── room fills ───────────────────────────────────────────────────────────
+  // The NAMES are held back to a pass of their own, below the fixtures. Drawn
+  // here they were painted over by the shower and the bed that land on top of
+  // them, so "BATH 2" read as "TH 2" on the Armature and several rooms lost
+  // their names entirely. A room whose label a fixture ate is a room the
+  // reader cannot identify, which on a phone is most of the drawing.
+  const tags = [];
   for (const r of rooms) {
     const q = R(r);
     s.rect(q.x0 + INT_T / 2, q.y0 + INT_T / 2, (q.x1 - q.x0) - INT_T, (q.y1 - q.y0) - INT_T,
       { fill: FILL[r.use] ?? '#f2f3f1', color: 'none', w: 0 });
-    // A room too small to letter gets a leader rather than an unreadable label.
-    const sf = Math.round(r.w * r.d);
-    if (r.w >= 7 && r.d >= 6) {
-      // roomTag appends the unit itself; passing "84 SF" printed "84 SF SF".
-      // Long names are shortened to the box, because a label that overruns its
-      // own room reads as a drawing error even when the room is correct.
-      s.roomTag((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r), sf,
-        { size: r.w >= 14 ? 18 : 14 });
-    } else {
-      s.text((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r),
-        { size: 11, anchor: 'middle', color: INK.mid, dy: 4 });
-    }
+    tags.push([r, q]);
     if (WET.has(r.use)) {
       // the plumbing wall of this room: its uphill (+y) face
       s.line(q.x0 + 6, q.y1 - 7, q.x1 - 6, q.y1 - 7, { w: LW.heavy, color: INK.water });
@@ -126,6 +121,22 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true, plan = null
       const fn = sym[f.type];
       if (fn) fn(s, f);
       else s.rect(f.x, f.y, f.w, f.d, { fill: 'none', color: INK.mid, w: LW.thin });
+    }
+  }
+
+  // ── room names, over everything they name ────────────────────────────────
+  for (const [r, q] of tags) {
+    // A room too small to letter gets a leader rather than an unreadable label.
+    const sf = Math.round(r.w * r.d);
+    if (r.w >= 7 && r.d >= 6) {
+      // roomTag appends the unit itself; passing "84 SF" printed "84 SF SF".
+      // Long names are shortened to the box, because a label that overruns its
+      // own room reads as a drawing error even when the room is correct.
+      s.roomTag((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r), sf,
+        { size: r.w >= 14 ? 18 : 14 });
+    } else {
+      s.text((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r),
+        { size: 11, anchor: 'middle', color: INK.mid, dy: 4 });
     }
   }
 
