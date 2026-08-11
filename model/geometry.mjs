@@ -375,7 +375,7 @@ export function areaSummary() {
   for (const l of LEVELS) {
     const fp = FOOTPRINTS[l.id];
     const gross = sf((fp.x1 - fp.x0) * (fp.y1 - fp.y0));
-    const net = ROOMS[l.id].reduce((a, r) => a + r.area, 0);
+    const net = ROOMS[l.id].filter(r => !r.link).reduce((a, r) => a + r.area, 0);
     out[l.id] = { name: l.name, gross, net };
     heated += gross;
   }
