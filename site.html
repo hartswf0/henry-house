@@ -13,7 +13,7 @@
 <div class="dock"><button id="site" class="on" type="button">Site</button><button id="drive" type="button">Drive</button><button id="house" type="button">House</button><button id="aerial" type="button">Aerial</button><a href="web/walk.html">Walk</a></div>
 <aside id="panel">
 <h2>Site fit</h2>
-<p>The coordinate is a reference point, not a building pad. The house is kept at its modeled 1:1 size and fitted to terrain using the same stepped ground logic it was designed against.</p>
+<p>The coordinate is a reference point, not a building pad. Default bearing is 252°. The selected house area is cut/fill graded to a flat construction bench and blended back into the natural terrain.</p>
 <div class="metric">Terrain <b id="terrainMetric">loading</b></div>
 <div class="metric">Aerial <b id="imageryMetric">loading</b></div>
 <div class="metric">House fit <b id="fitMetric">loading</b></div>
@@ -21,7 +21,7 @@
 <div class="metric">Drive <b id="driveMetric">loading</b></div>
 <h3>Candidate pads</h3>
 <div id="candidateButtons" class="candidates"></div>
-<label>Long-axis bearing <b id="azv">70°</b></label><input id="az" type="range" min="0" max="359" value="70">
+<label>Long-axis bearing <b id="azv">252°</b></label><input id="az" type="range" min="0" max="359" value="252">
 <h3>Fine move · 10 ft</h3>
 <div class="nudge"><button class="blank"></button><button data-d="n">N</button><button class="blank"></button><button data-d="w">W</button><button id="reset">Best</button><button data-d="e">E</button><button class="blank"></button><button data-d="s">S</button><button class="blank"></button></div>
 <p id="off">—</p>
@@ -32,7 +32,7 @@
 <div class="row"><button id="fast">Fast</button><button id="detail">Detail</button></div>
 <h3>Provenance</h3>
 <p id="prov">Checking Tennessee Comptroller parcel geometry…</p>
-<p>The existing road is registered from the supplied cadastral screenshot against the official parcel. A/B/C, grading, and the orange driveway are DEM studies, not survey, soils, septic, floodplain, or permitting determinations.</p>
+<p>The existing road is registered from the supplied cadastral screenshot against the official parcel. The flattened bench and orange driveway are preliminary grading studies, not survey, soils, septic, floodplain, or permitting determinations.</p>
 </aside>
 <div id="status"><b id="statusTitle">LOADING SITE</b> · <span id="statusText">parcel, terrain, aerial, road registration</span></div>
 <script type="importmap">{"imports":{"three":"./web/vendor/three/three.module.js","three/addons/":"./web/vendor/three/addons/"}}</script>
