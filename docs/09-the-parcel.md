@@ -105,11 +105,9 @@ glass performance and heating, and it makes the winter-sun-tempering argument
 in the systems package void. This is the cheapest change to the drawings and
 the most expensive change to the building.
 
-**3. Move the house on the parcel.** A 31 m DEM cannot see a bench or a spur.
-The parcel may well have a shoulder that faces east or west where the two
-directions come closer together. This is the option worth the most and the one
-that cannot be taken from this container: it needs the finer DEM and then a
-survey.
+**3. Move the house on the parcel.** — **and this one turns out to be
+available.** See section F: the parcel has south-west facing ground on a 9%
+slope, and the anchor point is one of the worst positions on it.
 
 ## E. WHAT IS UNSAFE TO CONCLUDE
 
@@ -131,3 +129,45 @@ survey.
 *Elevation: terrarium tiles, AWS open data. Map data: © OpenStreetMap
 contributors, ODbL. Both read via CREO (`hartswf0/motor`), place file
 `creo3/places/36-28727-n-81-92510-w.json`.*
+
+---
+
+## F. THE PARCEL IS NOT THE POINT
+
+The coordinate is one spot. The client owns **29.34 acres**. `tools/site-study.mjs`
+scores every position on it — 331 candidates at 50 ft centres, 60 ft clear of
+the boundary — on aspect, buildable slope, cut and fill for a level 72 × 26 pad,
+and the driveway needed to reach it.
+
+**The anchor is one of the worst positions on the parcel.**
+
+| | the anchor | best ground found |
+|---|---|---|
+| ground falls to | **31° — NNE** | **206° — SSW** |
+| off due north | 31° | **154°** |
+| slope across the pad | **38%** | **9%** |
+| cut / fill for the pad | 85 / 156 CY | 0 / 120 CY |
+| driveway from the road | 357 ft at **25%** | 1,010 ft at **12%** |
+
+**A 25% driveway is not a driveway.** Residential drives are normally held to
+12–15%; 25% is beyond what a loaded concrete truck will climb and beyond what
+anyone should be asked to descend on ice at 2,300 ft. That is a straight-line
+grade — a switchbacked route would be gentler and much longer — but it is
+computed identically for every candidate, so the comparison holds.
+
+**And what the parcel is made of:**
+
+- **51%** faces north — the docs/09 problem
+- **44%** faces east or west — the view and the sun return to adjacent faces
+- **5%** faces south — what the whole package was drawn for
+
+So the design is not wrong for this land. **It is wrong for this 100 ft of it.**
+The best ground sits about **656 ft north-west of the coordinate**, and it is
+south-west facing at 9%, which is the condition every scheme in the set assumes.
+Option 1 (split the faces) and option 2 (accept a north house) are answers to a
+problem the parcel does not force. Option 3 was the cheap one all along.
+
+**What this does not settle.** The DEM is 30.8 m — one sample is wider than the
+house — so this says where the hillside turns, not where the bench is. It has no
+knowledge of soils, rock, springs, trees, the septic field, or whether the deed
+allows a drive on that line. The output is a list of places to walk.
