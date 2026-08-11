@@ -317,7 +317,7 @@ export function plasterMaterial({ size = 512 } = {}) {
   const { c: hc, x: hx } = canvas(size, size);
   hx.putImageData(fbm(0, hx, size, size, 61, 5, 0.05, 0.5), 0, 0);
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#b8b0a3'; cx.fillRect(0, 0, size, size);
+  cx.fillStyle = '#918a7e'; cx.fillRect(0, 0, size, size);
   cx.globalAlpha = 0.10; cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
     map: tex(cc, [3, 3], true),

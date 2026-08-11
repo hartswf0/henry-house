@@ -250,6 +250,10 @@ export class Sheet {
 
   /** Room tag: name over area. */
   roomTag(x, y, name, area, { size = 20, color = INK.line, sub = null } = {}) {
+    // white backing so the tag stays readable where it lands on a fixture
+    const [a, b] = this.P(x, y);
+    const wpx = name.length * size * 0.62 + 16;
+    this.body.push(`<rect x="${n(a - wpx / 2)}" y="${n(b - size)}" width="${n(wpx)}" height="${n(size * (area != null ? 2.1 : 1.35))}" fill="${INK.paper}" opacity="0.82"/>`);
     this.text(x, y, name, { size, anchor: 'middle', weight: 700, color, spacing: 1.2 });
     if (area != null) this.text(x, y, `${area} SF`, { size: size - 4, anchor: 'middle', color: INK.mid, dy: size + 4 });
     if (sub) this.text(x, y, sub, { size: size - 5, anchor: 'middle', color: INK.mid, dy: size * 2 + 4 });

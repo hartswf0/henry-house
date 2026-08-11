@@ -61,12 +61,12 @@ function sheetA101() {
 
 // ── A-102  LOWER + UPPER LEVEL PLANS ────────────────────────────────────────
 function sheetA102() {
-  const scaleName = '1/4"=1\'-0"';
+  const scaleName = '3/8"=1\'-0"';
   const s = new Sheet({
     size: 'ARCH_D', scale: SCALES[scaleName],
     number: 'A-102', title: 'LOWER + UPPER LEVEL PLANS',
     subtitle: 'THE WALKOUT LEVEL AND THE SLEEPING LEVEL',
-    originX: 470, originY: 1150,
+    originX: 430, originY: 1560,
     notes: [
       '1. THE LOWER LEVEL IS FREE FLOOR AREA. The hill already removed the earth; enclosing it costs a wall that had to exist anyway as a retaining structure. This is the single largest reason the house steps rather than sitting on a pad.',
       '2. "THE HEART" is a real mechanical room, not a closet: pressure tank, filtration, heat-pump water heater, ERV, electrical, battery and the plumbing manifold all live in one conditioned space with a 36" door so equipment can be replaced without demolition.',
@@ -81,14 +81,14 @@ function sheetA102() {
   s.border();
   s.sheetTitle(300, 150);
 
-  s.ox = 470; s.oy = 1150;
+  s.ox = 430; s.oy = 1560;
   drawPlan(s, 'L0', { clearances: true, ghostAbove: 'L1', caption: 'Walks out at grade to the SSE. Second means of egress.', dimOffsetY: -160 });
 
-  s.ox = 1560 - 576 * s.scale; s.oy = 1150;
+  s.ox = 1930 - 576 * s.scale; s.oy = 1560;
   drawPlan(s, 'L2', { clearances: true, ghostBelow: 'L1', caption: 'Sleeping level under the shed. Interior overlook into the great room.', dimOffsetY: -160 });
 
-  s.scaleBar(2380, 2180, { scaleName, feetTicks: [0, 4, 8, 16] });
-  s.northArrow(2620, 480, 46, G.ORIENTATION.longAxisAzimuth);
+  s.scaleBar(2300, 2230, { scaleName, feetTicks: [0, 2, 4, 8, 16] });
+  s.northArrow(2700, 400, 46, G.ORIENTATION.longAxisAzimuth);
   s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
     'AREA SUMMARY (gross, out-to-out):',
     ...Object.entries(areaSummary())

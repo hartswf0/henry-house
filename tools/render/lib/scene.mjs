@@ -516,14 +516,14 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     floor: MAT.floorMaterial(),
     plaster: MAT.plasterMaterial(),
     ceilWood: MAT.ceilingWoodMaterial(),
-    fabric: MAT.simple(0x5f5c58, 0.96),
-    linen: MAT.simple(0xbfb8ac, 0.95),
-    wood: MAT.simple(0x5d4530, 0.72),
-    stoneTop: MAT.simple(0x8e887d, 0.42),
-    porcelain: MAT.simple(0xe8e6e1, 0.22),
+    fabric: MAT.simple(0x3f3d3a, 0.97),
+    linen: MAT.simple(0x8d8779, 0.95),
+    wood: MAT.simple(0x4a3626, 0.74),
+    stoneTop: MAT.simple(0x54504a, 0.4),
+    porcelain: MAT.simple(0xc9c7c2, 0.22),
     appliance: MAT.simple(0x8f959b, 0.32, 0.7),
     equip: MAT.simple(0x6a7076, 0.6, 0.3),
-    rug: MAT.simple(0x6a6f63, 0.98),
+    rug: MAT.simple(0x494c43, 0.98),
   };
 
   buildSky(renderer, scene, sun.dir);

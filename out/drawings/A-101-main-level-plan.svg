@@ -146,6 +146,7 @@
 <path d="M 560 1180 L 1910 1180 L 1910 692.5 L 560 692.5 L 560 1180 Z M 575.625 1164.375 L 1894.375 1164.375 L 1894.375 708.125 L 575.625 708.125 L 575.625 1164.375 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
 <path d="M 1910 1086.25 L 2191.25 1086.25 L 2191.25 692.5 L 1910 692.5 L 1910 1086.25 Z M 1925.625 1070.625 L 2175.625 1070.625 L 2175.625 708.125 L 1925.625 708.125 L 1925.625 1070.625 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
 <path d="M 2228.75 1086.25 L 2678.75 1086.25 L 2678.75 636.25 L 2228.75 636.25 L 2228.75 1086.25 Z M 2244.375 1070.625 L 2663.125 1070.625 L 2663.125 651.875 L 2244.375 651.875 L 2244.375 1070.625 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<rect x="2408.55" y="841.25" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="2453.75" y="861.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">GARAGE</text>
 <text x="2453.75" y="885.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">576 SF</text>
 <text x="2453.75" y="905.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">DETACHED — 2 BAYS + SHOP</text>
@@ -411,30 +412,43 @@
 <polygon points="1044.375,783.906 1036.563,802.656 1052.188,802.656" fill="#b8562f" stroke="#b8562f" stroke-width="1" stroke-linejoin="miter"/>
 <text x="1044.375" y="749.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#b8562f" text-anchor="middle" letter-spacing="0">DN</text>
 <text x="1114.688" y="683.125" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">16 R @ 7.5"</text>
+<rect x="623.063" y="1011.563" width="202" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="724.063" y="1031.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">PRIMARY BEDROOM</text>
 <text x="724.063" y="1055.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">224 SF</text>
+<rect x="594.788" y="779.531" width="164.8" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="677.188" y="799.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">PRIMARY BATH</text>
 <text x="677.188" y="823.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">106 SF</text>
+<rect x="783.174" y="788.283" width="92.714" height="23.622" fill="#ffffff" opacity="0.82"/>
 <text x="829.531" y="799.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.24840909090909" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">W.I. CLOSET</text>
 <text x="829.531" y="814.78" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="7.248409090909091" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">45 SF</text>
+<rect x="875.731" y="919.382" width="131.038" height="35.422" fill="#ffffff" opacity="0.82"/>
 <text x="941.25" y="936.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16.867727272727272" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">THE GALLERY</text>
 <text x="941.25" y="957.118" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.867727272727272" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">158 SF</text>
+<rect x="1165" y="1011.563" width="140" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1235" y="1031.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">GREAT ROOM</text>
 <text x="1235" y="1055.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">340 SF</text>
+<rect x="1244.888" y="779.531" width="189.6" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1339.688" y="799.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">OFFICE / STUDY</text>
 <text x="1339.688" y="823.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">117 SF</text>
+<rect x="1539.019" y="1011.563" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1584.219" y="1031.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">DINING</text>
 <text x="1584.219" y="1055.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">176 SF</text>
+<rect x="1750.006" y="1011.563" width="102.8" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1801.406" y="1031.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">KITCHEN</text>
 <text x="1801.406" y="1055.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">140 SF</text>
+<rect x="1688.969" y="779.531" width="78" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1727.969" y="799.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">ENTRY</text>
 <text x="1727.969" y="823.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">69 SF</text>
+<rect x="1803.081" y="779.531" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="1848.281" y="799.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">PANTRY</text>
 <text x="1848.281" y="823.531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">48 SF</text>
+<rect x="1937.225" y="949.063" width="226.8" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="2050.625" y="969.063" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">MUDROOM / AIRLOCK</text>
 <text x="2050.625" y="993.063" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">144 SF</text>
+<rect x="1952.35" y="763.906" width="102.8" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="2003.75" y="783.906" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">LAUNDRY</text>
 <text x="2003.75" y="807.906" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">67 SF</text>
+<rect x="2087.456" y="763.906" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
 <text x="2132.656" y="783.906" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">POWDER</text>
 <text x="2132.656" y="807.906" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">37 SF</text>
 <line x1="560" y1="1476.875" x2="1910" y2="1476.875" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>

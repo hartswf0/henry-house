@@ -33,14 +33,14 @@ export const VIEWS = {
   'int-great': {
     title: 'GREAT ROOM — TOWARD THE VIEW',
     caption: 'Ceiling falls from 16\'-4" at the spine to 9\'-10" at the glass: compression toward the view.',
-    pos: [28, 15.5, -13.0], target: [56, 15.5, 42], focal: 21, shift: 0.06,
-    sun: { dayOfYear: 288, hour: 13.4 }, exposure: 1.35, interior: true, w: 1620, h: 1110,
+    pos: [40, 15.4, -13.4], target: [40, 15.4, 60], focal: 22, shift: 0.04,
+    sun: { dayOfYear: 288, hour: 13.4 }, exposure: 0.95, interior: true, w: 1620, h: 1110,
   },
   'int-great-west': {
     title: 'GREAT ROOM — TOWARD THE MASONRY MASS',
     caption: 'The stone mass holds the stove and the flue and stores heat. The gallery is beyond.',
-    pos: [56, 15.2, -7.5], target: [6, 15.2, -11], focal: 26, shift: 0.06,
-    sun: { dayOfYear: 288, hour: 14.2 }, exposure: 1.3, interior: true, w: 1620, h: 1110,
+    pos: [60, 15.4, -12.0], target: [16, 15.4, -13], focal: 24, shift: 0.08,
+    sun: { dayOfYear: 288, hour: 14.2 }, exposure: 0.92, interior: true, w: 1620, h: 1110,
   },
   'site-aerial': {
     title: 'THE HOUSE ON THE HILL',
