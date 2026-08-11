@@ -3,139 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<title>Henry House — Actual Site</title>
-<style>
-:root{--bg:#101310;--ink:#f2f3ee;--muted:#aab2aa;--line:#4a504a;--accent:#e6784e;--panel:rgba(16,19,16,.92);--good:#a9d49d;--warn:#f0c26e;--mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--mono)}canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}button,a,input{font:inherit}button,a{min-height:44px}button{cursor:pointer}
-#load{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:#101310;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:28px}.loadbox{max-width:420px}.loadbar{height:2px;background:#303630;margin-top:14px;overflow:hidden}.loadbar i{display:block;height:100%;width:28%;background:var(--accent);animation:scan 1.3s linear infinite}@keyframes scan{from{transform:translateX(-120%)}to{transform:translateX(460%)}}
-.head{position:fixed;z-index:30;top:0;left:0;right:0;padding:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}.id,#menu,.dock>*{pointer-events:auto;background:var(--panel);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(9px)}.id{padding:9px 10px;max-width:calc(100vw - 66px)}.id b{display:block;font-size:11px;letter-spacing:.04em}.id small{display:block;margin-top:2px;color:var(--muted);font-size:9px}#menu{width:46px;height:46px;font-size:18px}
-.dock{position:fixed;z-index:30;left:10px;bottom:10px;display:flex;gap:5px}.dock>*{padding:0 11px;text-decoration:none;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.08em;text-transform:uppercase}.dock .on{border-color:var(--accent);color:#fff}
-#panel{position:fixed;z-index:40;right:10px;top:66px;width:min(342px,calc(100vw - 20px));max-height:calc(100% - 130px);overflow:auto;background:rgba(16,19,16,.97);border:1px solid var(--line);padding:13px;transform:translateX(calc(100% + 20px));transition:.18s transform;-webkit-overflow-scrolling:touch}#panel.on{transform:none}h2{font-size:12px;letter-spacing:.12em;margin:0 0 8px}h3{font-size:9px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin:15px 0 7px;padding-top:11px;border-top:1px solid var(--line)}p{font-size:10px;line-height:1.5;color:var(--muted);margin:6px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:5px}.row button,.nudge button{background:#191d19;color:var(--ink);border:1px solid var(--line);min-height:44px}.row button.on{border-color:var(--accent)}label{font-size:10px}input[type=range]{width:100%;accent-color:var(--accent);margin:9px 0}.nudge{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.blank{visibility:hidden}.metric{font-size:10px;color:var(--ink);padding:8px 0;border-bottom:1px solid #2a302a}.metric b{color:var(--good)}
-#status{position:fixed;right:10px;bottom:10px;z-index:26;max-width:440px;padding:7px 9px;background:rgba(16,19,16,.78);border-left:2px solid var(--good);color:var(--muted);font-size:9px;line-height:1.45;pointer-events:none}#status b{color:var(--ink)}#status.warn{border-left-color:var(--warn)}
-#legend{position:fixed;left:10px;top:68px;z-index:24;padding:7px 9px;background:rgba(16,19,16,.72);color:var(--muted);font-size:9px;line-height:1.5;pointer-events:none}#legend i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin:0 5px 2px 0}#legend .existing{background:#f1eee4}#legend .proposed{background:var(--accent)}#legend .parcel{background:#ffcf55}
-@media(max-width:760px){.head{padding:8px}.id small{display:none}.dock{left:8px;right:8px;bottom:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.dock>*{padding:0 2px;font-size:8px}#status{left:8px;right:8px;bottom:59px;max-width:none}#legend{left:8px;top:62px;font-size:8px}#panel{right:8px;top:60px;width:calc(100vw - 16px);max-height:calc(100% - 126px)}}
-@media(prefers-reduced-motion:reduce){#panel{transition:none}.loadbar i{animation:none;width:100%}}
-</style>
+<title>Henry House — Actual Site Fit</title>
+<link rel="stylesheet" href="web/site-v3.css">
 </head>
 <body>
-<div id="load"><div class="loadbox"><div id="loadText">Loading actual terrain + aerial imagery…</div><div class="loadbar"><i></i></div></div></div>
-<div class="head"><div class="id"><b>HENRY HOUSE · ACTUAL SITE</b><small>Johnson County, TN · parcel 100 064.03 · point 36.28727778, −81.92511111</small></div><button id="menu" type="button" aria-label="Site settings">≡</button></div>
-<div id="legend"><div><i class="parcel"></i>parcel</div><div><i class="existing"></i>existing cadastral drive</div><div><i class="proposed"></i>terrain-fit connector</div></div>
+<div id="load"><div class="loadbox"><div id="loadText">Loading actual parcel, terrain, and road…</div><div class="loadbar"><i></i></div></div></div>
+<div class="head"><div class="id"><b>HENRY HOUSE · ACTUAL SITE FIT</b><small>Johnson County, Tennessee · parcel 100 064.03 · yellow point = supplied coordinate</small></div><button id="menu" type="button" aria-label="Site settings">≡</button></div>
+<div id="legend"><div><i class="parcel"></i>parcel</div><div><i class="existing"></i>existing cadastral drive</div><div><i class="proposed"></i>new driveway</div><div><span class="swatch cut"></span>cut <span class="swatch fill" style="margin-left:8px"></span>fill</div></div>
 <div class="dock"><button id="site" class="on" type="button">Site</button><button id="drive" type="button">Drive</button><button id="house" type="button">House</button><button id="aerial" type="button">Aerial</button><a href="web/walk.html">Walk</a></div>
 <aside id="panel">
-  <h2>Site fit</h2>
-  <p>The building is the same Henry House model. The old assumed mountain plane and invented 655 ft switchback are not used in this view.</p>
-  <div class="metric">Terrain <b id="terrainMetric">loading</b></div>
-  <div class="metric">Aerial <b id="imageryMetric">loading</b></div>
-  <div class="metric">Drive proposal <b id="driveMetric">loading</b></div>
-  <label>House long-axis bearing <b id="azv">70°</b></label><input id="az" type="range" min="0" max="359" value="70">
-  <h3>Move house point · 10 ft</h3><div class="nudge"><button class="blank" type="button"></button><button data-d="n" type="button">N</button><button class="blank" type="button"></button><button data-d="w" type="button">W</button><button id="reset" type="button">Reset</button><button data-d="e" type="button">E</button><button class="blank" type="button"></button><button data-d="s" type="button">S</button><button class="blank" type="button"></button></div><p id="off">Offset E 0 ft · N 0 ft</p>
-  <h3>Layers</h3><div class="row"><button id="parcel" class="on" type="button">Parcel</button><button id="roads" class="on" type="button">Roads</button></div><div class="row" style="margin-top:5px"><button id="satellite" class="on" type="button">Aerial</button><button id="proposal" class="on" type="button">Proposal</button></div>
-  <h3>Performance</h3><div class="row"><button id="fast" type="button">Fast</button><button id="detail" type="button">Detail</button></div>
-  <h3>Provenance</h3><p id="prov">Parcel boundary: checking Tennessee Comptroller service…</p><p>Aerial imagery is visual context. Elevation is public raster terrain. The existing drive is traced from your cadastral screenshot. The orange connector is a preliminary least-grade path on the DEM, not a surveyed or permitted driveway.</p>
+<h2>Site fit</h2>
+<p>The coordinate is a reference point, not a building pad. The house is kept at its modeled 1:1 size and fitted to terrain using the same stepped ground logic it was designed against.</p>
+<div class="metric">Terrain <b id="terrainMetric">loading</b></div>
+<div class="metric">Aerial <b id="imageryMetric">loading</b></div>
+<div class="metric">House fit <b id="fitMetric">loading</b></div>
+<div class="metric">Grading <b id="cutFillMetric">loading</b></div>
+<div class="metric">Drive <b id="driveMetric">loading</b></div>
+<h3>Candidate pads</h3>
+<div id="candidateButtons" class="candidates"></div>
+<label>Long-axis bearing <b id="azv">70°</b></label><input id="az" type="range" min="0" max="359" value="70">
+<h3>Fine move · 10 ft</h3>
+<div class="nudge"><button class="blank"></button><button data-d="n">N</button><button class="blank"></button><button data-d="w">W</button><button id="reset">Best</button><button data-d="e">E</button><button class="blank"></button><button data-d="s">S</button><button class="blank"></button></div>
+<p id="off">—</p>
+<h3>Layers</h3>
+<div class="row"><button id="parcel" class="on">Parcel</button><button id="roads" class="on">Roads</button></div>
+<div class="row" style="margin-top:5px"><button id="satellite" class="on">Aerial</button><button id="proposal" class="on">Drive</button></div>
+<h3>Performance</h3>
+<div class="row"><button id="fast">Fast</button><button id="detail">Detail</button></div>
+<h3>Provenance</h3>
+<p id="prov">Checking Tennessee Comptroller parcel geometry…</p>
+<p>The existing road is registered from the supplied cadastral screenshot against the official parcel. A/B/C, grading, and the orange driveway are DEM studies, not survey, soils, septic, floodplain, or permitting determinations.</p>
 </aside>
-<div id="status"><b id="statusTitle">LOADING SITE</b> · <span id="statusText">terrain, aerial, cadastral geometry</span></div>
+<div id="status"><b id="statusTitle">LOADING SITE</b> · <span id="statusText">parcel, terrain, aerial, road registration</span></div>
 <script type="importmap">{"imports":{"three":"./web/vendor/three/three.module.js","three/addons/":"./web/vendor/three/addons/"}}</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { buildScene } from './tools/render/lib/scene.mjs';
-import { sunDirection } from './tools/render/lib/render.mjs';
-import { SITE_SLOPE } from './model/geometry.mjs';
-import { SITE_CONTEXT, PARCEL_LONLAT, ROAD_LOCAL_FT, HIGHWAY_LOCAL_FT, PARCEL_LOCAL_FT, lonLatToLocalFt, localFtToLonLat } from './model/site-context.mjs';
-
-const ids=['load','loadText','menu','panel','site','drive','house','aerial','terrainMetric','imageryMetric','driveMetric','az','azv','off','reset','parcel','roads','satellite','proposal','fast','detail','prov','status','statusTitle','statusText'];
-const el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
-const mobile=matchMedia('(pointer:coarse)').matches||innerWidth<760;
-const renderer=new THREE.WebGLRenderer({antialias:!mobile,powerPreference:'high-performance'});
-renderer.setPixelRatio(mobile?1:Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;renderer.shadowMap.enabled=!mobile;document.body.prepend(renderer.domElement);
-
-const built=buildScene(renderer,{sun:sunDirection({dayOfYear:288,hour:14}),realtime:true});
-const scene=built.scene,rig=built.rig;scene.fog=new THREE.FogExp2(0xb8c5c8,.00016);
-const groups=scene.children.filter(x=>x.type==='Group'&&x.name!=='SYSTEMS');
-const [shell,interior,frames,oldDrive,vegetation,ridges]=groups;
-function discard(obj){if(!obj)return;scene.remove(obj);obj.traverse(n=>{if(n.geometry)n.geometry.dispose()})}
-discard(oldDrive);discard(vegetation);discard(ridges);
-const oldTerrain=scene.children.find(x=>x.isMesh&&x.geometry?.type==='PlaneGeometry'&&Math.abs((x.geometry.parameters?.width||0)-900)<2);if(oldTerrain){scene.remove(oldTerrain);oldTerrain.geometry.dispose()}
-if(built.systems?.group)built.systems.group.visible=false;if(interior)interior.visible=!mobile;
-
-const placementRoot=new THREE.Group(),architecture=new THREE.Group();placementRoot.name='ACTUAL_SITE_PLACEMENT';architecture.name='HENRY_HOUSE_MODEL';scene.add(placementRoot);placementRoot.add(architecture);for(const x of[shell,interior,frames])if(x)architecture.attach(x);
-const placeDef=SITE_CONTEXT.placement;architecture.position.set(-placeDef.modelPivotXFt,0,placeDef.modelPivotYFt);const modelGround=SITE_SLOPE.grade(placeDef.modelPivotXFt*12,placeDef.modelPivotYFt*12)/12;
-
-const camera=new THREE.PerspectiveCamera(mobile?58:52,innerWidth/innerHeight,.5,12000),orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=false;orbit.maxPolarAngle=Math.PI*.495;orbit.maxDistance=7000;orbit.addEventListener('change',draw);
-let renderQueued=false;function draw(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;renderer.render(scene,camera)})}
-function setStatus(title,text,warn=false){el.statusTitle.textContent=title;el.statusText.textContent=text;el.status.classList.toggle('warn',warn)}
-
-let parcelLL=PARCEL_LONLAT.slice();let parcelPts=PARCEL_LOCAL_FT.map(p=>({...p}));let roadPts=ROAD_LOCAL_FT.map(p=>({...p}));let highwayPts=HIGHWAY_LOCAL_FT.map(p=>({...p}));
-let sampler=null,anchorMeters=0,terrainMesh=null,aerialTexture=null,parcelMesh=null,roadMesh=null,highwayMesh=null,proposalMesh=null,pointMesh=null,terrainBounds=null,terrainRange={min:0,max:0};
-let az=70,east=0,north=0,drivePath=[];
-
-function polygonArea(points){let a=0;for(let i=0,j=points.length-1;i<points.length;j=i++)a+=points[j].east*points[i].north-points[i].east*points[j].north;return a/2}
-function polygonCentroid(points){let a=0,cx=0,cy=0;for(let i=0,j=points.length-1;i<points.length;j=i++){const f=points[j].east*points[i].north-points[i].east*points[j].north;a+=f;cx+=(points[j].east+points[i].east)*f;cy+=(points[j].north+points[i].north)*f}a*=.5;if(Math.abs(a)<1)return{east:0,north:0};return{east:cx/(6*a),north:cy/(6*a)}}
-function insidePoly(e,n,poly=parcelPts){let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if(((a.north>n)!=(b.north>n))&&(e<(b.east-a.east)*(n-a.north)/(b.north-a.north+1e-9)+a.east))c=!c}return c}
-
-async function loadOfficialParcel(){
-  const base='https://maps.cot.tn.gov/server3/rest/services/IMPACT/Parcels/FeatureServer/0/query';
-  const q=new URLSearchParams({where:'1=1',geometry:`${SITE_CONTEXT.anchor.lon},${SITE_CONTEXT.anchor.lat}`,geometryType:'esriGeometryPoint',inSR:'4326',spatialRel:'esriSpatialRelIntersects',outFields:'GISLINK,GISLINK2,CALC_ACRE,PARCELWP,COUNTY_ID',returnGeometry:'true',outSR:'4326',f:'geojson'});
-  const r=await fetch(`${base}?${q}`);if(!r.ok)throw Error(`parcel ${r.status}`);const data=await r.json();
-  const feature=(data.features||[]).filter(f=>f.geometry).sort((a,b)=>Math.abs((a.properties?.CALC_ACRE??999)-29.34)-Math.abs((b.properties?.CALC_ACRE??999)-29.34))[0];if(!feature)throw Error('no parcel at point');
-  const rings=feature.geometry.type==='Polygon'?feature.geometry.coordinates:feature.geometry.coordinates.flat();const ring=rings.slice().sort((a,b)=>b.length-a.length)[0];
-  const officialPts=ring.map(([lon,lat])=>lonLatToLocalFt(lon,lat));const srcC=polygonCentroid(parcelPts),dstC=polygonCentroid(officialPts);const srcA=Math.abs(polygonArea(parcelPts)),dstA=Math.abs(polygonArea(officialPts));const scale=srcA>1?Math.sqrt(dstA/srcA):1;
-  const fit=p=>({east:(p.east-srcC.east)*scale+dstC.east,north:(p.north-srcC.north)*scale+dstC.north});roadPts=roadPts.map(fit);highwayPts=highwayPts.map(fit);parcelPts=officialPts;parcelLL=ring;
-  const acres=feature.properties?.CALC_ACRE;el.prov.textContent=`Parcel boundary: Tennessee Comptroller geometry loaded${Number.isFinite(acres)?` · ${acres.toFixed(2)} calculated acres`:''}. Road trace registered to the parcel centroid/scale.`;
-}
-
-const DEM_Z=15,demCache=new Map();const tileX=(lon,z)=>(lon+180)/360*2**z;const tileY=(lat,z)=>(1-Math.asinh(Math.tan(lat*Math.PI/180))/Math.PI)/2*2**z;const lonAt=(x,z)=>x/2**z*360-180;const latAt=(y,z)=>Math.atan(Math.sinh(Math.PI*(1-2*y/2**z)))*180/Math.PI;const demKey=(x,y)=>`${DEM_Z}/${x}/${y}`;
-function loadImage(url){return new Promise((resolve,reject)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>resolve(i);i.onerror=()=>reject(Error(url));i.src=url})}
-async function loadDemTile(x,y){const k=demKey(x,y);if(demCache.has(k))return;const image=await loadImage(`https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${DEM_Z}/${x}/${y}.png`),c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d',{willReadFrequently:true});g.drawImage(image,0,0);demCache.set(k,g.getImageData(0,0,256,256).data)}
-function elevationMeters(lon,lat){const X=tileX(lon,DEM_Z),Y=tileY(lat,DEM_Z),a=Math.floor(X),b=Math.floor(Y),data=demCache.get(demKey(a,b));if(!data)return null;const px=Math.max(0,Math.min(255,Math.floor((X-a)*256))),py=Math.max(0,Math.min(255,Math.floor((Y-b)*256))),i=(py*256+px)*4;return data[i]*256+data[i+1]+data[i+2]/256-32768}
-function fallbackHeight(e,n){const a=70*Math.PI/180,d=160*Math.PI/180;return .08*(e*Math.sin(a)+n*Math.cos(a))-.30*(e*Math.sin(d)+n*Math.cos(d))}
-function H(e,n){return sampler?sampler(e,n):fallbackHeight(e,n)}
-function contextPoints(){return [...parcelPts,...roadPts,...highwayPts,{east:0,north:0}]}
-function boundsOf(points,pad=0){const es=points.map(p=>p.east),ns=points.map(p=>p.north);return{minE:Math.min(...es)-pad,maxE:Math.max(...es)+pad,minN:Math.min(...ns)-pad,maxN:Math.max(...ns)+pad}}
-async function loadTerrain(){const b=boundsOf(contextPoints(),260),ll0=localFtToLonLat(b.minE,b.minN),ll1=localFtToLonLat(b.maxE,b.maxN),x0=Math.floor(tileX(Math.min(ll0.lon,ll1.lon),DEM_Z)),x1=Math.floor(tileX(Math.max(ll0.lon,ll1.lon),DEM_Z)),y0=Math.floor(tileY(Math.max(ll0.lat,ll1.lat),DEM_Z)),y1=Math.floor(tileY(Math.min(ll0.lat,ll1.lat),DEM_Z)),jobs=[];for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)jobs.push(loadDemTile(x,y));await Promise.all(jobs);anchorMeters=elevationMeters(SITE_CONTEXT.anchor.lon,SITE_CONTEXT.anchor.lat);if(!Number.isFinite(anchorMeters))throw Error('anchor elevation unavailable');sampler=(e,n)=>{const ll=localFtToLonLat(e,n),m=elevationMeters(ll.lon,ll.lat);return Number.isFinite(m)?(m-anchorMeters)*3.280839895:0};el.terrainMetric.textContent=`DEM · anchor ${Math.round(anchorMeters*3.28084)} ft`}
-
-async function loadAerialTexture(){
-  const IMG_Z=mobile?16:17,b=boundsOf(contextPoints(),300),sw=localFtToLonLat(b.minE,b.minN),ne=localFtToLonLat(b.maxE,b.maxN);const x0=Math.floor(tileX(sw.lon,IMG_Z)),x1=Math.floor(tileX(ne.lon,IMG_Z)),y0=Math.floor(tileY(ne.lat,IMG_Z)),y1=Math.floor(tileY(sw.lat,IMG_Z));const nx=x1-x0+1,ny=y1-y0+1;if(nx*ny>24)throw Error('imagery window too large');
-  const canvas=document.createElement('canvas');canvas.width=nx*256;canvas.height=ny*256;const ctx=canvas.getContext('2d');const jobs=[];for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)jobs.push(loadImage(`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${IMG_Z}/${y}/${x}`).then(im=>ctx.drawImage(im,(x-x0)*256,(y-y0)*256)));await Promise.all(jobs);
-  aerialTexture=new THREE.CanvasTexture(canvas);aerialTexture.colorSpace=THREE.SRGBColorSpace;aerialTexture.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());aerialTexture.needsUpdate=true;
-  const left=lonAt(x0,IMG_Z),right=lonAt(x1+1,IMG_Z),top=latAt(y0,IMG_Z),bottom=latAt(y1+1,IMG_Z),p0=lonLatToLocalFt(left,bottom),p1=lonLatToLocalFt(right,top);terrainBounds={minE:p0.east,maxE:p1.east,minN:p0.north,maxN:p1.north};el.imageryMetric.textContent=`Esri World Imagery · z${IMG_Z}`;
-}
-
-function ribbon(points,width,color,lift=2,opacity=1){const pos=[],idx=[],half=width/2;for(let i=0;i<points.length;i++){const a=points[Math.max(0,i-1)],b=points[Math.min(points.length-1,i+1)],dx=b.east-a.east,dz=-(b.north-a.north),L=Math.hypot(dx,dz)||1,nx=dz/L,nz=dx/L;for(const s of[-1,1]){const x=points[i].east+nx*half*s,Z=-points[i].north+nz*half*s;pos.push(x,H(x,-Z)+lift,Z)}if(i<points.length-1){const j=i*2;idx.push(j,j+2,j+1,j+1,j+2,j+3)}}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();const m=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,transparent:opacity<1,opacity,depthWrite:opacity>=1});return new THREE.Mesh(g,m)}
-function buildTerrainMesh(){const b=terrainBounds||boundsOf(contextPoints(),300),w=b.maxE-b.minE,d=b.maxN-b.minN,g=new THREE.PlaneGeometry(w,d,mobile?52:92,mobile?52:92);g.rotateX(-Math.PI/2);const p=g.attributes.position,cE=(b.minE+b.maxE)/2,cN=(b.minN+b.maxN)/2;let lo=Infinity,hi=-Infinity;for(let i=0;i<p.count;i++){const e=p.getX(i)+cE,n=-p.getZ(i)+cN,h=H(e,n);p.setX(i,e);p.setZ(i,-n);p.setY(i,h);lo=Math.min(lo,h);hi=Math.max(hi,h)}g.computeVertexNormals();terrainRange={min:lo,max:hi};const mat=new THREE.MeshStandardMaterial({map:aerialTexture||null,color:aerialTexture?0xffffff:0x59634f,roughness:1,metalness:0});terrainMesh=new THREE.Mesh(g,mat);terrainMesh.receiveShadow=true;scene.add(terrainMesh)}
-function buildOverlays(){parcelMesh=ribbon(parcelPts,6,0xffcf55,3);roadMesh=ribbon(roadPts,10,0xf1eee4,2.5,.9);highwayMesh=ribbon(highwayPts,5,0xf1eee4,2.7,.62);scene.add(parcelMesh,roadMesh,highwayMesh);pointMesh=new THREE.Group();const y=H(0,0),stem=new THREE.Mesh(new THREE.CylinderGeometry(.8,.8,24,8),new THREE.MeshBasicMaterial({color:0xffcf55})),head=new THREE.Mesh(new THREE.SphereGeometry(4,12,8),new THREE.MeshBasicMaterial({color:0xffcf55}));stem.position.y=y+12;head.position.y=y+26;pointMesh.add(stem,head);scene.add(pointMesh)}
-
-class MinHeap{constructor(){this.a=[]}push(x){const a=this.a;a.push(x);let i=a.length-1;while(i){const p=(i-1)>>1;if(a[p].f<=x.f)break;a[i]=a[p];i=p}a[i]=x}pop(){const a=this.a;if(!a.length)return null;const root=a[0],last=a.pop();if(a.length){let i=0;while(true){let l=i*2+1,r=l+1;if(l>=a.length)break;let c=r<a.length&&a[r].f<a[l].f?r:l;if(a[c].f>=last.f)break;a[i]=a[c];i=c}a[i]=last}return root}get length(){return this.a.length}}
-function lineOK(a,b,maxGrade=.16){const L=Math.hypot(b.east-a.east,b.north-a.north),N=Math.max(2,Math.ceil(L/18));let prev={...a,h:H(a.east,a.north)};for(let i=1;i<=N;i++){const t=i/N,e=a.east+(b.east-a.east)*t,n=a.north+(b.north-a.north)*t;if(!insidePoly(e,n))return false;const h=H(e,n),run=Math.hypot(e-prev.east,n-prev.north);if(Math.abs(h-prev.h)/(run||1)>maxGrade)return false;prev={east:e,north:n,h}}return true}
-function smoothPath(path){if(path.length<3)return path;const out=[path[0]];let i=0;while(i<path.length-1){let j=path.length-1;for(;j>i+1;j--)if(lineOK(path[i],path[j]))break;out.push(path[j]);i=j}return out}
-function buildDrivePath(){
-  if(proposalMesh){scene.remove(proposalMesh);proposalMesh.geometry.dispose();proposalMesh=null}const start=roadPts[0],goal={east,north};if(!insidePoly(goal.east,goal.north)){el.driveMetric.textContent='house point outside parcel';drivePath=[];return}
-  const b=boundsOf(parcelPts,0),step=mobile?34:28,nx=Math.max(2,Math.ceil((b.maxE-b.minE)/step)),ny=Math.max(2,Math.ceil((b.maxN-b.minN)/step));if(nx*ny>18000){el.driveMetric.textContent='grid too large';return}const idx=(i,j)=>j*(nx+1)+i,coord=(i,j)=>({east:b.minE+i*step,north:b.minN+j*step}),snap=p=>({i:Math.max(0,Math.min(nx,Math.round((p.east-b.minE)/step))),j:Math.max(0,Math.min(ny,Math.round((p.north-b.minN)/step)))});let S=snap(start),G=snap(goal);
-  function nearestInside(q){if(insidePoly(coord(q.i,q.j).east,coord(q.i,q.j).north))return q;for(let r=1;r<8;r++)for(let dj=-r;dj<=r;dj++)for(let di=-r;di<=r;di++){const i=q.i+di,j=q.j+dj;if(i>=0&&i<=nx&&j>=0&&j<=ny){const p=coord(i,j);if(insidePoly(p.east,p.north))return{i,j}}}return q}S=nearestInside(S);G=nearestInside(G);
-  const N=(nx+1)*(ny+1),gScore=new Float64Array(N);gScore.fill(Infinity);const came=new Int32Array(N);came.fill(-1),closed=new Uint8Array(N),heap=new MinHeap(),sId=idx(S.i,S.j),gId=idx(G.i,G.j);gScore[sId]=0;heap.push({id:sId,i:S.i,j:S.j,f:0});const dirs=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];let found=false,guard=0;
-  while(heap.length&&guard++<N*3){const cur=heap.pop();if(closed[cur.id])continue;closed[cur.id]=1;if(cur.id===gId){found=true;break}const cp=coord(cur.i,cur.j),ch=H(cp.east,cp.north);for(const[dI,dJ]of dirs){const i=cur.i+dI,j=cur.j+dJ;if(i<0||i>nx||j<0||j>ny)continue;const p=coord(i,j);if(!insidePoly(p.east,p.north))continue;const run=step*Math.hypot(dI,dJ),grade=Math.abs(H(p.east,p.north)-ch)/run;if(grade>.20)continue;const penalty=1+Math.max(0,grade-.08)*38+Math.max(0,grade-.12)*140,cost=gScore[cur.id]+run*penalty,id=idx(i,j);if(cost<gScore[id]){gScore[id]=cost;came[id]=cur.id;const h=Math.hypot(p.east-goal.east,p.north-goal.north);heap.push({id,i,j,f:cost+h})}}}
-  if(!found){el.driveMetric.textContent='no ≤20% DEM route at this point';drivePath=[];return}const raw=[];let id=gId;while(id>=0){const j=Math.floor(id/(nx+1)),i=id-j*(nx+1);raw.push(coord(i,j));if(id===sId)break;id=came[id]}raw.reverse();raw[0]={...start};raw[raw.length-1]={...goal};drivePath=smoothPath(raw);let len=0,maxG=0;for(let i=1;i<drivePath.length;i++){const a=drivePath[i-1],b2=drivePath[i],run=Math.hypot(b2.east-a.east,b2.north-a.north);len+=run;maxG=Math.max(maxG,Math.abs(H(b2.east,b2.north)-H(a.east,a.north))/(run||1))}proposalMesh=ribbon(drivePath,12,0xe6784e,3.5,.98);scene.add(proposalMesh);el.driveMetric.textContent=`${Math.round(len)} ft · max segment ${Math.round(maxG*100)}%`;draw()}
-
-function placeHouse(rebuildDrive=true){placementRoot.rotation.y=THREE.MathUtils.degToRad(90-az);placementRoot.position.set(east,H(east,north)-modelGround,-north);el.azv.textContent=`${az}°`;el.off.textContent=`Offset E ${east} ft · N ${north} ft`;if(rebuildDrive&&sampler)buildDrivePath();draw()}
-function siteMetrics(){const b=boundsOf(contextPoints(),0);return{center:new THREE.Vector3((b.minE+b.maxE)/2,(terrainRange.min+terrainRange.max)/2,-(b.minN+b.maxN)/2),span:Math.max(b.maxE-b.minE,b.maxN-b.minN)}}
-function activate(which){for(const k of['site','drive','house','aerial'])el[k].classList.toggle('on',k===which)}
-function viewSite(){const m=siteMetrics(),yTop=terrainRange.max;camera.position.set(m.center.x-m.span*.32,yTop+m.span*.34,m.center.z+m.span*.62);orbit.target.set(m.center.x,(terrainRange.min+terrainRange.max)/2,m.center.z);orbit.update();activate('site');draw()}
-function viewAerial(){const m=siteMetrics();camera.position.set(m.center.x,terrainRange.max+m.span*.92,m.center.z+m.span*.08);orbit.target.copy(m.center);orbit.update();activate('aerial');draw()}
-function viewHouse(){const y=H(east,north);camera.position.set(east-110,y+78,-north+155);orbit.target.set(east,y+16,-north);orbit.update();activate('house');draw()}
-function viewDrive(){const pts=drivePath.length?drivePath:roadPts,start=roadPts[roadPts.length-1],target=pts[Math.max(0,Math.floor(pts.length*.4))]||roadPts[0],dx=target.east-start.east,dn=target.north-start.north,L=Math.hypot(dx,dn)||1,sideE=-dn/L*55,sideN=dx/L*55;camera.position.set(start.east+sideE,H(start.east,start.north)+42,-(start.north+sideN));orbit.target.set(target.east,H(target.east,target.north)+10,-target.north);orbit.update();activate('drive');draw()}
-function quality(detail){renderer.setPixelRatio(detail?Math.min(devicePixelRatio,mobile?1.25:1.7):1);renderer.shadowMap.enabled=detail&&!mobile;rig.sun.castShadow=detail&&!mobile;rig.skyLight.visible=detail&&!mobile;if(interior)interior.visible=detail||!mobile;el.fast.classList.toggle('on',!detail);el.detail.classList.toggle('on',detail);renderer.setSize(innerWidth,innerHeight);draw()}
-
-el.menu.addEventListener('click',()=>{const on=el.panel.classList.toggle('on');el.menu.textContent=on?'×':'≡'});el.site.addEventListener('click',viewSite);el.drive.addEventListener('click',viewDrive);el.house.addEventListener('click',viewHouse);el.aerial.addEventListener('click',viewAerial);el.az.addEventListener('input',e=>{az=+e.target.value;placeHouse(false)});document.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{const d=b.dataset.d;if(d==='n')north+=10;if(d==='s')north-=10;if(d==='e')east+=10;if(d==='w')east-=10;placeHouse(true)}));el.reset.addEventListener('click',()=>{az=70;east=0;north=0;el.az.value='70';placeHouse(true)});
-el.parcel.addEventListener('click',()=>{if(!parcelMesh)return;parcelMesh.visible=!parcelMesh.visible;el.parcel.classList.toggle('on',parcelMesh.visible);draw()});el.roads.addEventListener('click',()=>{if(!roadMesh)return;const on=!roadMesh.visible;roadMesh.visible=on;if(highwayMesh)highwayMesh.visible=on;el.roads.classList.toggle('on',on);draw()});el.satellite.addEventListener('click',()=>{if(!terrainMesh)return;const on=!terrainMesh.material.map;terrainMesh.material.map=on?aerialTexture:null;terrainMesh.material.color.set(on&&aerialTexture?0xffffff:0x59634f);terrainMesh.material.needsUpdate=true;el.satellite.classList.toggle('on',!!terrainMesh.material.map);draw()});el.proposal.addEventListener('click',()=>{if(!proposalMesh)return;proposalMesh.visible=!proposalMesh.visible;el.proposal.classList.toggle('on',proposalMesh.visible);draw()});el.fast.addEventListener('click',()=>quality(false));el.detail.addEventListener('click',()=>quality(true));addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);draw()});
-
-addEventListener('error',e=>{setStatus('SITE ERROR',e.message||'browser error',true)});
-try{el.loadText.textContent='Locating parcel…';await loadOfficialParcel()}catch(err){el.prov.textContent='Parcel boundary: official service unavailable; using the screenshot reconstruction.'}
-try{el.loadText.textContent='Loading elevation terrain…';await loadTerrain()}catch(err){sampler=null;el.terrainMetric.textContent='assumed slope fallback';setStatus('TERRAIN FALLBACK','public elevation tiles did not load',true)}
-try{el.loadText.textContent='Loading aerial imagery…';await loadAerialTexture()}catch(err){aerialTexture=null;el.imageryMetric.textContent='imagery unavailable';setStatus('AERIAL FALLBACK','terrain is loaded without imagery',true)}
-buildTerrainMesh();buildOverlays();placeHouse(false);buildDrivePath();quality(!mobile);viewSite();
-if(sampler&&aerialTexture)setStatus('ACTUAL SITE','aerial imagery draped on elevation terrain · cadastral road + DEM driveway connector');else if(sampler)setStatus('ACTUAL TERRAIN','elevation loaded · aerial unavailable',true);else setStatus('PRELIMINARY SITE','assumed terrain fallback',true);
-el.load.remove();draw();
-</script>
+<script type="module" src="web/site-v3.mjs"></script>
 </body>
 </html>
