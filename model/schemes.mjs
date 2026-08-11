@@ -215,6 +215,21 @@ export const SCHEMES = [
 
 export const schemeById = (id) => SCHEMES.find(s => s.id === id);
 
+/**
+ * Where a roof plane actually starts.
+ *
+ * zLow is a declared minimum, not the answer: a roof must sit ON the walls it
+ * covers. Taking the declaration literally put the Spine's roof twelve feet up
+ * through a twenty-foot volume. Derived here so the plan, the section and the
+ * 3D cannot disagree about it.
+ */
+export function roofBase(scheme, r) {
+  const covered = scheme.volumes.filter(v => v.kind !== 'shelt' &&
+    v.x0 < r.x1 && v.x1 > r.x0 && v.y0 < r.y1 && v.y1 > r.y0);
+  if (!covered.length) return r.zLow;
+  return Math.max(r.zLow, ...covered.map(v => ft(v.ffe) + 120 * (v.storeys ?? 1)));
+}
+
 // ── METRICS — the reference test, computed ──────────────────────────────────
 const STEP = 12;                                   // 1 ft raster
 
@@ -349,4 +364,4 @@ function unionArea(rects) {
 
 export function allMetrics() { return SCHEMES.map(metrics); }
 
-export default { SCHEMES, schemeById, metrics, allMetrics, groundMetrics };
+export default { SCHEMES, schemeById, metrics, allMetrics, groundMetrics, roofBase };

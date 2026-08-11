@@ -388,3 +388,62 @@ import { drawVSM, drawS4Schedule, drawCost, drawGaps } from './draw/vsm.mjs';
   ] });
   write('G-001-viable-system-and-cost.svg', s.toString());
 }
+
+// ── X-101  THE SEVEN SCHEMES ────────────────────────────────────────────────
+import { drawSchemePlan, drawSchemeSection, drawSchemeTable, drawProvenance } from './draw/schemes.mjs';
+import { SCHEMES as ALT_SCHEMES, allMetrics } from '../model/schemes.mjs';
+{
+  const scaleName = '1/32"=1\'-0"';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: 'X-101', title: 'SEVEN SCHEMES',
+    subtitle: 'ALTERNATIVES DRIVEN BY THE REFERENCE PACK · ALL AT ONE SCALE, ON ONE HILL',
+    notes: [
+      'THE REFERENCE TEST, quoted from the blueprint wall: "Do not ask whether HENRY resembles these houses. Put HENRY\'s plan and section beside them at the same scale. Compare conditioned area, sheltered area, perimeter, wet-wall length, foundations, roof intersections, ground contacts, rooms served, future capacity, and cost." This sheet is that test.',
+      'NOTHING IS SCALED TO FIT ITS OWN BOX. Every plan and every section is at the same scale, over the same 30% hill, cut at the middle of its own plan. The Tower looks small because it is small.',
+      'RURAL STUDIO IS THE BUILD-INTELLIGENCE BAR: phasing, kit-of-parts, minimum viable dwelling, structure as architecture, utility concentration. THE MOUNTAIN CABINS ARE THE VISUAL AND SECTIONAL BAR: tiny footprint with large presence, minimal ground contact, one great roof, resilience as a state rather than equipment in a closet.',
+      'S0 THE SPINE IS THE OPPONENT, not the answer. It carries the systems intelligence of the current package and it must be beaten on mass, phasing, cost, ground relationship and clarity — or kept for stated reasons.',
+      'THE HEAVY BLUE LINE in each plan is the WET-WALL RUN. Concentrating plumbing is the single largest transferable lesson in the Rural Studio set, and the schemes differ by a factor of four on it.',
+      'OCHRE HATCH IS GROUND DISTURBED. Where a scheme stands on piers there is no hatch, because there is almost nothing to disturb — twelve holes instead of a bench.',
+      'NUMBERS IN THE TABLE ARE COMPUTED from the same declarations that build the 3D. Perimeter is measured off a one-foot raster of the union, so two volumes that touch do not each pay for the shared wall.',
+      'THESE ARE MASSING PROPOSITIONS. They are deliberately undetailed and unfurnished: at this stage detail would only flatter whichever scheme got detailed first. None of them is engineered, priced by a builder, or code-checked.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+
+  const COLS = 4, CW = 570, RH = 320, X0 = 300;
+  s.stext(300, 300, 'PLANS — ALL AT 1/32" = 1\'-0"', { size: 15, weight: 700, spacing: 1.6 });
+  ALT_SCHEMES.forEach((sc, i) => {
+    const cx = X0 + (i % COLS) * CW, cy = 520 + Math.floor(i / COLS) * RH;
+    s.ox = cx; s.oy = cy;
+    const m = drawSchemePlan(s, sc);
+    // labels clear of the plan, which extends BELOW the origin wherever a
+    // scheme has a porch or deck on its downhill side
+    s.stext(cx, cy + 96, sc.name, { size: 13, weight: 700, spacing: 1.1 });
+    s.stext(cx, cy + 112, `${m.conditionedSf.toLocaleString()} sf conditioned  ·  ${m.perimeterLf} lf perimeter`,
+      { size: 10, color: INK.mid });
+    s.stext(cx, cy + 126, `${m.cutCY.toLocaleString()} CY of earth  ·  ${m.groundNote}`, { size: 10, color: '#8a6508' });
+  });
+
+  s.stext(300, 1200, 'SECTIONS — ONE SCALE, ONE HILL, CUT AT THE MIDDLE OF EACH PLAN', { size: 15, weight: 700, spacing: 1.6 });
+  ALT_SCHEMES.forEach((sc, i) => {
+    s.ox = 330 + i * 320; s.oy = 1400;
+    drawSchemeSection(s, sc);
+    s.stext(330 + i * 320 - 60, 1440, sc.name.replace('THE ', ''), { size: 11, weight: 700, spacing: 1 });
+  });
+
+  drawSchemeTable(s, 300, 1520, 2240, allMetrics());
+  drawProvenance(s, 300, 1990, 2240, 7);
+
+  s.scaleBar(2280, 340, { scaleName, feetTicks: [0, 32, 64] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    'Seven schemes from model/schemes.mjs.',
+    'Areas, perimeters, wet-wall runs, roof',
+    'junctions and earthwork are COMPUTED',
+    'from the same declarations that build',
+    'the 3D — not estimated per scheme.',
+  ] });
+  write('X-101-seven-schemes.svg', s.toString());
+}

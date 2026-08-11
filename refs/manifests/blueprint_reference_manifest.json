@@ -1,0 +1,94 @@
+{
+  "project": "HENRY HOUSE",
+  "purpose": "Blueprint-first Rural Studio precedent set",
+  "references": [
+    {
+      "rank": 1,
+      "name": "Rev. Walker's Home",
+      "role": "phased kit / permanent shelter / future infill",
+      "project_page": "https://ruralstudio.org/project/rev-walkers-home/",
+      "design_story": "https://ruralstudio.org/reverend-walkers-home/",
+      "construction_story": "https://ruralstudio.org/beginning-the-enclosure/",
+      "plan_image": "https://ruralstudio.org/wp-content/uploads/2021/03/Walker_Batterboards_1.jpg",
+      "render_image": "https://ruralstudio.org/wp-content/uploads/2021/04/Walker_Render1_Opt.jpg"
+    },
+    {
+      "rank": 2,
+      "name": "Sylvia's House 2/1 + Madison County NC",
+      "role": "real steep North Carolina adaptation",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/sylvias-house/",
+      "case_study": "https://frontporch.ruralstudio.org/case_studies/kelly-hunter-road/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/Sylvia-2-1_Floorplan.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia-2-1_Floorplan-Final.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia-2-1_Section.png",
+      "axon_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia2-1_Model-Axon-Roof-b.png"
+    },
+    {
+      "rank": 3,
+      "name": "Dave's House",
+      "role": "minimum narrow body / slope-friendly pier logic",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/daves-house/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv08_Dave_Floorplan_MF.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Floorplan.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Sections.png",
+      "roof_axon": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Model-Roof2.png"
+    },
+    {
+      "rank": 4,
+      "name": "MacArthur's House",
+      "role": "porch-to-bedroom expansion / tiny viable nucleus",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/macarthurs-house/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv09_Mac_Floorplan_MF.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Mac_Floorplan.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/MacArthur_Sections.png",
+      "roof_axon": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/MacArthur_Model-Axon-Roof.png"
+    },
+    {
+      "rank": 5,
+      "name": "Myers' Home",
+      "role": "protected shell / service core / attic expansion",
+      "project_page": "https://ruralstudio.org/project/myers-home/",
+      "design_story": "https://ruralstudio.org/up-we-go/",
+      "plan_options": "https://ruralstudio.org/wp-content/uploads/2021/02/myers_2-plans-1024x512.jpg",
+      "core_diagram": "https://ruralstudio.org/wp-content/uploads/2021/02/Myers_split-flex-diagram-1024x663.jpg",
+      "flex_plans": "https://ruralstudio.org/wp-content/uploads/2021/02/Myers_flexplans-1024x512.jpg",
+      "attic_plans": "https://ruralstudio.org/wp-content/uploads/2021/02/Myers_attic-plans-1024x345.jpg",
+      "attic_truss": "https://ruralstudio.org/wp-content/uploads/2021/02/myers_attic-truss-1024x883.jpg"
+    },
+    {
+      "rank": 6,
+      "name": "Joanne's House",
+      "role": "perimeter efficiency / no-corridor compactness",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/joannes-house/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv10_Joanne_Floorplan_MF.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Joanne_Floorplan.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Joanne_Sections.png"
+    },
+    {
+      "rank": 7,
+      "name": "Sylvia's House 2/2",
+      "role": "mid-growth reference",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/sylvias-house-2-2/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/03/Sylvia-2-2_Floorplan.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia-2-2_Floorplan-1.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia2-2_Sections.png"
+    },
+    {
+      "rank": 8,
+      "name": "Sylvia's House 3/2",
+      "role": "mature-size comparison",
+      "product_page": "https://frontporch.ruralstudio.org/product_line_homes/sylvias-house-3-2/",
+      "base_plan_pdf": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/03/Sylvia-3-2_Floorplan.pdf",
+      "floorplan_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia-3-2_Floorplan-slider.png",
+      "section_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia3bd_Sections.png",
+      "axon_image": "https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/CAM01-Axon-Model-copy.png"
+    },
+    {
+      "rank": 9,
+      "name": "18x18 House",
+      "role": "compact vertical counter-hypothesis",
+      "project_page": "https://ruralstudio.org/project/18x18-house/",
+      "archive": "https://ruralstudio.org/category/recently-completed/18x18house/"
+    }
+  ]
+}

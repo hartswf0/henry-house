@@ -16,6 +16,8 @@ export const SHEETS = {
 
 /** Drawing scale: sheet units per model inch. e.g. quarter inch = 1'-0" */
 export const SCALES = {
+  '1/32"=1\'-0"': (0.03125 / 12) * 100,
+  '1/16"=1\'-0"': (0.0625 / 12) * 100,
   '1/8"=1\'-0"': (0.125 / 12) * 100,
   '3/16"=1\'-0"': (0.1875 / 12) * 100,
   '1/4"=1\'-0"': (0.25 / 12) * 100,

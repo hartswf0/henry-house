@@ -12,7 +12,7 @@
 
 import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
-import { SCHEMES, schemeById, metrics } from '../../../model/schemes.mjs';
+import { SCHEMES, schemeById, metrics, roofBase } from '../../../model/schemes.mjs';
 import { SITE_SLOPE } from '../../../model/geometry.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
@@ -69,12 +69,12 @@ const boxAt = (x0, x1, y0, y1, z0, z1, mat, cast = true) => {
 };
 
 /** A shed roof plane: a thin slab tilted about the X axis, falling toward -Y. */
-function shed(r, mat) {
+function shed(r, mat, base) {
   const wIn = r.x1 - r.x0, dIn = r.y1 - r.y0;
   const rise = (r.pitch / 12) * dIn;
   const len = Math.hypot(dIn, rise);
   const m = new THREE.Mesh(new THREE.BoxGeometry(F(wIn), F(10), F(len)), mat);
-  m.position.set(F((r.x0 + r.x1) / 2), F(r.zLow + rise / 2), -F((r.y0 + r.y1) / 2));
+  m.position.set(F((r.x0 + r.x1) / 2), F(base + rise / 2), -F((r.y0 + r.y1) / 2));
   m.rotation.x = -Math.atan2(rise, dIn);
   m.castShadow = true; m.receiveShadow = true;
   return m;
@@ -118,7 +118,7 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
     if (v.kind === 'cond') {
       g.add(boxAt(v.x0, v.x1, v.y0, v.y1, ffeIn, top, mats.solid));
       // the downhill face is the glass face on every scheme
-      g.add(boxAt(v.x0 + 8, v.x1 - 8, v.y0 - 2, v.y0 + 3, ffeIn + 18, top - 18, mats.glass, false));
+      g.add(boxAt(v.x0 + 14, v.x1 - 14, v.y0 - 2, v.y0 + 3, ffeIn + 30, ffeIn + 96, mats.glass, false));
       if (v.core) g.add(boxAt(v.x0 - 3, v.x1 + 3, v.y0 - 3, v.y1 + 3, ffeIn - 36, top + 26, mats.conc));
     } else if (v.kind === 'future') {
       // roofed, floored, framed — but open. This is the territory that becomes
@@ -131,7 +131,7 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
     }
   }
 
-  for (const r of s.roofs) g.add(shed(r, mats.roof));
+  for (const r of s.roofs) g.add(shed(r, mats.roof, roofBase(s, r)));
 
   // ground contact, drawn honestly: piers are thin, benches are a wall
   if (s.ground.kind === 'piers') {
@@ -154,7 +154,8 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
   scene.add(buildVegetation({
     heightAt: groundFn,
     naturalAt: natural,
-    keepOut: (X, Y) => X > ft(-26) && X < ft(96) && Y > ft(-30) && Y < ft(58),
+    // clear the foreground as well as the pad, or the comparison is of trees
+    keepOut: (X, Y) => X > ft(-44) && X < ft(112) && Y > ft(-105) && Y < ft(64),
     F, ft,
     counts: realtime ? { conifer: 90, hardwood: 70, shrub: 160, grass: 320 }
                      : { conifer: 150, hardwood: 120, shrub: 280, grass: 560 },
@@ -214,9 +215,9 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
  * truth about them.
  */
 export const SCHEME_CAMERA = {
-  pos: [-72, 56, 148],
-  target: [40, 15, -8],
+  pos: [-50, 31, 104],
+  target: [42, 13, -6],
   focal: 40,
-  shift: 0.06,
+  shift: 0.03,
 };
 export function schemeCamera() { return SCHEME_CAMERA; }
