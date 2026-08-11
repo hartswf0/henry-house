@@ -51,10 +51,53 @@ const benchFront = (x) => (x > ft(94) ? COURT.apron.y0 : COURT.main.y0);
 const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 const lateral = (x) => smooth(ft(-56), ft(-22), x) * (1 - smooth(ft(150), ft(186), x));
 
+/**
+ * The driveway bench, as a surface.
+ *
+ * The drive holds a design grade while the ground rises more slowly, so for
+ * most of its length it sits IN CUT — up to 8 ft below natural at the apron.
+ * A terrain model that does not excavate for it puts 655 ft of road
+ * underground: in the 3D site view the drive appeared as a broken dotted line,
+ * visible only near the road where the cut tapers to nothing.
+ *
+ * Returns the finished elevation at (x, y) if the point lies in the corridor,
+ * otherwise null. Cross-section matches C-101: level platform, 1.5H:1V
+ * backslope uphill, 2H:1V fill downhill, each run until it meets the ground.
+ */
+let _driveSegs = null;
+export function driveBench(x, y) {
+  if (!_driveSegs) {
+    const p = driveProfile().pts;
+    _driveSegs = p.slice(1).map((b, i) => ({ a: p[i], b }));
+  }
+  const half = ft(DRIVE_SECTION.widthFt / 2 + DRIVE_SECTION.ditchFt);
+  let best = null;
+  for (const { a, b } of _driveSegs) {
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const L2 = dx * dx + dy * dy || 1;
+    let t = ((x - a.x) * dx + (y - a.y) * dy) / L2;
+    t = Math.max(0, Math.min(1, t));
+    const px = a.x + t * dx, py = a.y + t * dy;
+    const off = Math.hypot(x - px, y - py);
+    if (best === null || off < best.off) best = { off, z: a.z + t * (b.z - a.z), px, py };
+  }
+  if (!best) return null;
+  if (best.off <= half) return best.z;
+  const nat = natural(x, y);
+  const over = best.off - half;
+  if (nat > best.z) {                                   // uphill side: cut back
+    const z = best.z + over / DRIVE_SECTION.backslope;
+    return z >= nat ? null : z;
+  }
+  const z = best.z - over / DRIVE_SECTION.fillslope;    // downhill side: fill out
+  return z <= nat ? null : z;
+}
+
 export function finished(x, y) {
   const nat = natural(x, y);
   const lat = lateral(x);
-  if (lat < 0.002) return nat;
+  const drive = driveBench(x, y);
+  if (lat < 0.002) return drive ?? nat;
   const front = benchFront(x), back = benchBack(x);
   let z;
   if (y > back) z = Math.min(nat, COURT.z + (y - back) / 1.5);   // laid-back cut face
@@ -67,7 +110,10 @@ export function finished(x, y) {
   // buried the east end of the house in four feet of imaginary fill.
   else if (y > DECKS[1].y0 && x > DECKS[1].x0 - ft(6) && x < DECKS[1].x1 + ft(6)) z = -6;
   else z = nat;
-  return nat + (z - nat) * lat;
+  const pad = nat + (z - nat) * lat;
+  // Where the court bench and the drive bench overlap, the drive is built into
+  // the court, so the LOWER of the two is the finished surface.
+  return drive === null ? pad : Math.min(pad, drive);
 }
 
 // ── CONTOURS ────────────────────────────────────────────────────────────────
@@ -305,6 +351,9 @@ export function earthwork({ x0 = ft(-70), x1 = ft(170), y0 = ft(-40), y1 = ft(11
   const cellSf = (step / 12) ** 2;
   for (let x = x0; x <= x1; x += step) {
     for (let y = y0; y <= y1; y += step) {
+      // The corridor is priced by driveEarthwork(); counting it here too would
+      // report the same cubic yards twice and call it rigour.
+      if (driveBench(x, y) !== null) continue;
       const d = finished(x, y) - natural(x, y);   // inches, + = fill
       if (Math.abs(d) < 2) continue;
       disturbed += cellSf;

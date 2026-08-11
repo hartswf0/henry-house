@@ -62,7 +62,10 @@ export function siteZ(X, Y) {
 }
 
 function buildTerrain(realtime = false) {
-  const W = 620, D = 640, SEG = realtime ? 96 : 132;               // feet
+  // Big enough that an aerial cannot see the edge of the world. The previous
+  // 620 x 640 plane ended inside the frame of the site view, leaving trees
+  // floating in white void beyond it.
+  const W = realtime ? 900 : 1300, D = realtime ? 900 : 1300, SEG = realtime ? 110 : 190;   // feet
   const g = new THREE.PlaneGeometry(W, D, SEG, SEG);
   g.rotateX(-Math.PI / 2);
   const cx = F(ft(50)), cz = 40;
@@ -557,6 +560,30 @@ function buildRidges() {
   return g;
 }
 
+/**
+ * Is this point inside the driveway corridor?
+ *
+ * Vegetation was being planted on the drive, because the placement test only
+ * rejected spots where finished grade differed from natural — and the terrain
+ * model does not carry the drive bench. The site aerial showed 655 ft of
+ * driveway as a dotted line under a forest.
+ */
+const DRIVE_SEGS = (() => {
+  const p = driveProfile().pts;
+  return p.slice(1).map((b, i) => ({ a: p[i], b }));
+})();
+export function nearDrive(X, Y, clearFt = 26) {
+  const lim = ft(clearFt);
+  for (const { a, b } of DRIVE_SEGS) {
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const L2 = dx * dx + dy * dy || 1;
+    let t = ((X - a.x) * dx + (Y - a.y) * dy) / L2;
+    t = Math.max(0, Math.min(1, t));
+    if (Math.hypot(X - (a.x + t * dx), Y - (a.y + t * dy)) < lim) return true;
+  }
+  return false;
+}
+
 function buildDrive(M) {
   const g = new THREE.Group();
   // MOTOR COURT — two limbs. The apron is what lets a car back clear of the
@@ -567,23 +594,28 @@ function buildDrive(M) {
     g.add(mbox(r.x0, r.x1, r.y0, r.y1, COURT.z - 6, COURT.z + 2, M.gravel, { cast: false }));
   }
   // THE DRIVE — the solved alignment from model/site.mjs, not 22 guessed boxes.
+  // Built as slabs ROTATED to each segment heading. Axis-aligned boxes on a
+  // diagonal alignment render as a staircase of squares, not a road.
   const d = driveProfile();
   const halfW = ft(DRIVE_SECTION.widthFt) / 2;
   for (let i = 1; i < d.pts.length; i++) {
     const a = d.pts[i - 1], b = d.pts[i];
     const dx = b.x - a.x, dy = b.y - a.y;
     const L = Math.hypot(dx, dy) || 1;
-    const steps = Math.max(2, Math.round(L / ft(12)));
+    const steps = Math.max(2, Math.round(L / ft(16)));
+    const ang = -Math.atan2(-F(dy), F(dx));           // heading in the three.js XZ plane
     for (let k = 0; k < steps; k++) {
-      const t0 = k / steps, t1 = (k + 1) / steps;
-      const x0 = a.x + dx * t0, y0 = a.y + dy * t0;
-      const x1 = a.x + dx * t1, y1 = a.y + dy * t1;
-      const z = a.z + (b.z - a.z) * ((t0 + t1) / 2);
-      // axis-aligned slab wide enough to cover the segment either way it runs
-      const pad = Math.abs(dx) > Math.abs(dy) ? [0, halfW] : [halfW, 0];
-      g.add(mbox(Math.min(x0, x1) - pad[0], Math.max(x0, x1) + pad[0],
-                 Math.min(y0, y1) - pad[1], Math.max(y0, y1) + pad[1],
-                 z - 8, z + 2, M.gravel, { cast: false }));
+      const t = (k + 0.5) / steps;
+      const cxm = a.x + dx * t, cym = a.y + dy * t;
+      const z = a.z + (b.z - a.z) * t;
+      const seg = (L / steps) + ft(2);                // overlap so joints do not gap
+      const g2 = new THREE.BoxGeometry(F(seg), F(10), F(halfW * 2));
+      if (_M) boxUV(g2, F(seg), F(10), F(halfW * 2), TILE.gravel);
+      const m = new THREE.Mesh(g2, M.gravel);
+      m.position.set(F(cxm), F(z - 3), -F(cym));
+      m.rotation.y = ang;
+      m.castShadow = false; m.receiveShadow = true;
+      g.add(m);
     }
   }
   return g;
@@ -696,8 +728,9 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false,
     heightAt: siteZ,
     naturalAt: (X, Y) => SITE_SLOPE.grade(X, Y),
     keepOut: (X, Y) =>
-      (X > ft(-46) && X < ft(136) && Y > ft(-40) && Y < ft(72)) ||     // house, court, drive
-      (Y > ft(-150) && Y < ft(10) && X > ft(-16) && X < ft(96)),       // the view cone
+      (X > ft(-46) && X < ft(160) && Y > ft(-40) && Y < ft(64)) ||     // house, court, apron
+      (Y > ft(-150) && Y < ft(10) && X > ft(-16) && X < ft(96)) ||     // the view cone
+      nearDrive(X, Y),                                                 // the drive corridor
     F, ft,
     counts: realtime ? { conifer: 110, hardwood: 90, shrub: 200, grass: 400 } : {},
   }));

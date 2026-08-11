@@ -246,13 +246,13 @@
 <text x="2188.8" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$83,640</text>
 <text x="2480" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$147,600</text>
 <text x="1440" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">EARTHWORK — cut and fill placed</text>
-<text x="1960" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">6,682 CY</text>
-<text x="2188.8" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$93,548</text>
-<text x="2480" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$173,732</text>
+<text x="1960" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">6,124 CY</text>
+<text x="2188.8" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$85,736</text>
+<text x="2480" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$159,224</text>
 <text x="1440" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">SPOIL — hauled off site</text>
-<text x="1960" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">6,403 CY</text>
-<text x="2188.8" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$140,866</text>
-<text x="2480" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$288,135</text>
+<text x="1960" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">5,845 CY</text>
+<text x="2188.8" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$128,590</text>
+<text x="2480" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$263,025</text>
 <text x="1440" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">DRIVEWAY — 5 switchbacks at 11%</text>
 <text x="1960" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">655 LF</text>
 <text x="2188.8" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$72,050</text>
@@ -279,25 +279,25 @@
 <text x="2480" y="1365" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$68,000</text>
 <line x1="1440" y1="1378" x2="2480" y2="1378" stroke="#c6cfd8" stroke-width="0.6"/>
 <text x="1440" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">CONSTRUCTION</text>
-<text x="2188.8" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$1,819,394</text>
-<text x="2480" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$3,042,477</text>
+<text x="2188.8" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$1,799,306</text>
+<text x="2480" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$3,002,859</text>
 <text x="1440" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Contingency @ 15%</text>
-<text x="2188.8" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$272,909</text>
-<text x="2480" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$456,372</text>
+<text x="2188.8" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$269,896</text>
+<text x="2480" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$450,429</text>
 <text x="1440" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Design, engineering, survey, geotech, permits @ 12%</text>
-<text x="2188.8" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$218,327</text>
-<text x="2480" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$365,097</text>
+<text x="2188.8" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$215,917</text>
+<text x="2480" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$360,343</text>
 <line x1="1440" y1="1430" x2="2480" y2="1430" stroke="#111418" stroke-width="2.2"/>
 <text x="1440" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.4">PROJECT RANGE</text>
-<text x="2480" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$2,310,630 — $3,863,946</text>
-<text x="1440" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">617 — 1,031 $/sf on 3,747 sf heated</text>
+<text x="2480" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$2,285,119 — $3,813,631</text>
+<text x="1440" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">610 — 1,018 $/sf on 3,747 sf heated</text>
 <rect x="1440" y="1484" width="1040" height="58" rx="3" fill="#f6efef" stroke="#b03535" stroke-width="1.4"/>
 <text x="1448" y="1500" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">NOT IN THE TOTAL: $211,850 — $379,100</text>
 <text x="1448" y="1518" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">IF the geotechnical report says the 16.4 ft motor court cut will not stand at 1.5H:1V, it</text>
 <text x="1448" y="1532" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">must be retained. 2230 sf of engineered wall, NOT in the total above.</text>
 <text x="1440" y="1562" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">THE THREE LINES THAT COME FROM THE GROUND, NOT THE HOUSE</text>
-<text x="1440" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Earthwork, spoil, drive and erosion control together run $318,464 to $653,067 — 18% to</text>
-<text x="1440" y="1594" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">21% of construction cost, before a single wall is framed. On steep land the site is not</text>
+<text x="1440" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Earthwork, spoil, drive and erosion control together run $298,376 to $613,449 — 17% to</text>
+<text x="1440" y="1594" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">20% of construction cost, before a single wall is framed. On steep land the site is not</text>
 <text x="1440" y="1608" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">a preliminary; it is a wing of the house you cannot see.</text>
 <text x="1440" y="1668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.6">WHERE THE MODEL SAYS THIS IS STILL NOT VIABLE</text>
 <text x="1440" y="1690" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">The point of applying the VSM is not to label the parts. It is to find the missing channels.</text>

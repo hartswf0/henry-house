@@ -47,8 +47,10 @@ export const VIEWS = {
   },
   'site-aerial': {
     title: 'THE HOUSE ON THE HILL',
-    caption: 'Built along the contour, not across it. Cut behind, terraces below.',
-    pos: [-70, 168, 250], target: [58, 12, -20], focal: 48, shift: 0, pitch: true,
+    caption: 'Built along the contour, not across it — and the 655 ft the drive takes to climb 72 ft at 11%. Cut behind, terraces below.',
+    // Framed to include the DRIVE. The old aerial cropped to the building and
+    // left out the single most consequential thing on the site.
+    pos: [-90, 300, 290], target: [150, 40, -95], focal: 32, shift: 0, pitch: true,
     sun: { dayOfYear: 288, hour: 13.0 }, exposure: 1.0, w: 1800, h: 1030,
   },
 };
