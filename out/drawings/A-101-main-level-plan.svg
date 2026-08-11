@@ -145,20 +145,20 @@
 <text x="1308" y="947.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">CLERESTORY OVER (ROOF STEP)</text>
 <path d="M 560 1180 L 1910 1180 L 1910 692.5 L 560 692.5 L 560 1180 Z M 575.625 1164.375 L 1894.375 1164.375 L 1894.375 708.125 L 575.625 708.125 L 575.625 1164.375 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
 <path d="M 1910 1086.25 L 2191.25 1086.25 L 2191.25 692.5 L 1910 692.5 L 1910 1086.25 Z M 1925.625 1070.625 L 2175.625 1070.625 L 2175.625 708.125 L 1925.625 708.125 L 1925.625 1070.625 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
-<path d="M 2228.75 1086.25 L 2678.75 1086.25 L 2678.75 636.25 L 2228.75 636.25 L 2228.75 1086.25 Z M 2244.375 1070.625 L 2663.125 1070.625 L 2663.125 651.875 L 2244.375 651.875 L 2244.375 1070.625 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
-<rect x="2408.55" y="841.25" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
-<text x="2453.75" y="861.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">GARAGE</text>
-<text x="2453.75" y="885.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">576 SF</text>
-<text x="2453.75" y="905.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">DETACHED — 2 BAYS + SHOP</text>
-<polygon points="2247.5,628.438 2416.25,628.438 2416.25,644.063 2247.5,644.063" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
-<line x1="2247.5" y1="636.25" x2="2416.25" y2="636.25" stroke="#111418" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="butt"/>
-<polygon points="2453.75,628.438 2622.5,628.438 2622.5,644.063 2453.75,644.063" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
-<line x1="2453.75" y1="636.25" x2="2622.5" y2="636.25" stroke="#111418" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="butt"/>
-<polygon points="2220.938,1023.75 2220.938,967.5 2236.563,967.5 2236.563,1023.75" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
-<line x1="2228.75" y1="1023.75" x2="2172.5" y2="1023.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
-<path d="M 2172.5 1023.75 A 56.25 56.25 0 0 1 2228.75 967.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
-<polygon points="2191.25,1023.75 2228.75,1023.75 2228.75,805 2191.25,805" fill="none" stroke="#8d99a6" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
-<text x="2210" y="789.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">COVERED</text>
+<path d="M 2360 1086.25 L 2810 1086.25 L 2810 636.25 L 2360 636.25 L 2360 1086.25 Z M 2375.625 1070.625 L 2794.375 1070.625 L 2794.375 651.875 L 2375.625 651.875 L 2375.625 1070.625 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<rect x="2539.8" y="841.25" width="90.4" height="42" fill="#ffffff" opacity="0.82"/>
+<text x="2585" y="861.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">GARAGE</text>
+<text x="2585" y="885.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">576 SF</text>
+<text x="2585" y="905.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">DETACHED — 2 BAYS + SHOP</text>
+<polygon points="2810,1022.188 2978.75,1022.188 2978.75,1037.813 2810,1037.813" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2810" y1="1030" x2="2978.75" y2="1030" stroke="#111418" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="butt"/>
+<polygon points="2810,834.688 2978.75,834.688 2978.75,850.313 2810,850.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2810" y1="842.5" x2="2978.75" y2="842.5" stroke="#111418" stroke-width="2.2" stroke-dasharray="14 8" stroke-linecap="butt"/>
+<polygon points="2352.188,1023.75 2352.188,967.5 2367.813,967.5 2367.813,1023.75" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2360" y1="1023.75" x2="2303.75" y2="1023.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2303.75 1023.75 A 56.25 56.25 0 0 1 2360 967.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2191.25,1023.75 2360,1023.75 2360,805 2191.25,805" fill="none" stroke="#8d99a6" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="2275.625" y="789.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">COVERED</text>
 <polygon points="575.625,898.75 872.5,898.75 872.5,890.938 575.625,890.938" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="872.5,1164.375 880.313,1164.375 880.313,898.75 872.5,898.75" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="575.625,901.875 778.75,901.875 778.75,890.938 575.625,890.938" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>

@@ -16,6 +16,7 @@
 import { ROOMS, LEVELS, FOOTPRINTS, BAR, STAIRS, LINK, ROOFS, ROOF_ASSEMBLY, ceilingAt } from '../../model/geometry.mjs';
 import { OPENINGS, OPEN_EDGES } from '../../model/openings.mjs';
 import { FIXTURES, CLEARANCE, fixturesFor, fixtureCounts } from '../../model/fixtures.mjs';
+import { EXT_STAIR } from '../../model/geometry.mjs';
 import { dim } from '../../model/units.mjs';
 
 const results = [];
@@ -202,6 +203,26 @@ for (const [lvl, rooms] of Object.entries(ROOMS)) {
   }
 }
 if (!noEero) ok('EGRESS', 'every bedroom has an escape-and-rescue window (dimensions still UNVERIFIED against code)');
+
+// ── 8b. Nothing outside may stand in front of an escape window ──────────────
+// The terrace stair was first placed directly in front of W-002, the guest
+// bedroom's escape opening. Blocking an EERO is a life-safety fault, not a
+// clash, so it gets its own check.
+{
+  let blockedEero = 0;
+  const obstructions = [
+    { id: EXT_STAIR.id, name: EXT_STAIR.name, x: EXT_STAIR.x, w: EXT_STAIR.w },
+  ];
+  for (const o of OPENINGS.filter(o => o.egress && o.orient === 'H' && o.y <= 12)) {
+    for (const ob of obstructions) {
+      if (ob.x < o.x + o.len && o.x < ob.x + ob.w) {
+        fail('EERO-BLOCKED', `${ob.name} (${ob.id}) stands in front of ${o.id} — ${o.room}'s escape window`);
+        blockedEero++;
+      }
+    }
+  }
+  if (!blockedEero) ok('EERO-BLOCKED', 'no exterior construction stands in front of an escape window');
+}
 
 // ── 9. Stairs fit the floor-to-floor they span ──────────────────────────────
 for (const st of STAIRS) {

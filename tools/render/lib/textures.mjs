@@ -117,8 +117,8 @@ export function sidingMaterial({ boards = 16, size = 1024 } = {}) {
   hx.globalAlpha = 1;
 
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#2c3a30'; cx.fillRect(0, 0, size, size);   // dark green, real albedo
-  cx.globalAlpha = 0.42; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
+  cx.fillStyle = '#222c24'; cx.fillRect(0, 0, size, size);   // dark green, real albedo
+  cx.globalAlpha = 0.16; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
 
   return new THREE.MeshStandardMaterial({
     map: tex(cc, [1, 1], true),

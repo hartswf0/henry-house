@@ -354,12 +354,12 @@ export const DECKS = [
 // that the hill gives you the lower level, that is a serious omission.
 export const EXT_STAIR = {
   id: 'S3', name: 'TERRACE STAIR',
-  x: ft(25), w: 48,                 // 4'-0" clear
+  x: ft(32), w: 48,                 // 4'-0" clear — clear of W-002 (egress)
   yBot: ft(-14) - 24, yTop: -6,     // runs north, up toward the house
   zBot: -6, zTop: ft(10) - 8,
   risers: 16, riserHeight: 7.375, treadDepth: 11,
   guard: '42" steel guard, cable infill, both sides',
-  note: 'Lands on the terrace at the foot of the lower-level walkout.',
+  note: 'At the terrace/deck junction so it lands under the deck, and clear of the guest bedroom escape window.',
 };
 
 export const DRAIN_GAP = {

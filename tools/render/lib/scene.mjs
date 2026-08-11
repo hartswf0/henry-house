@@ -264,14 +264,14 @@ function buildHouse(M) {
   // ---- GARAGE (detached) --------------------------------------------------
   const ga = GARAGE;
   g.add(mbox(ga.x0, ga.x1, ga.y0, ga.y1, ga.ffe - 40, ga.ffe, M.concrete, { cast: false }));
-  wallRun({ axis: 'H', bandLo: ga.y0, bandHi: ga.y0 + 10, from: ga.x0, to: ga.x1,
-    zBot: ga.ffe, zTop: RG.topAtY0 - 14, ffe: ga.ffe, mat: M.siding, glass: M.garageDoor,
-    group: g, openings: GARAGE_OPENINGS.map(o => ({ ...o, y: ga.y0 })) });
+  // Doors are on the EAST face, square to the arriving drive.
+  wallRun({ axis: 'V', bandLo: ga.x1 - 10, bandHi: ga.x1, from: ga.y0, to: ga.y1,
+    zBot: ga.ffe, zTop: RG.topAtY0 + 30, ffe: ga.ffe, mat: M.siding, glass: M.garageDoor,
+    group: g, openings: GARAGE_OPENINGS.filter(o => o.type === 'garage').map(o => ({ ...o, x: ga.x1 - 10 })) });
+  g.add(mbox(ga.x0, ga.x1, ga.y0, ga.y0 + 10, ga.ffe, RG.topAtY0 - 14, M.siding));
   g.add(mbox(ga.x0, ga.x1, ga.y1 - 10, ga.y1, ga.ffe, RG.topAtY1 - 14, M.siding));
   g.add(prismYZ([[ga.y0, ga.ffe], [ga.y1, ga.ffe], [ga.y1, RG.topAtY1 - 14], [ga.y0, RG.topAtY0 - 14]],
     ga.x0, ga.x0 + 10, M.siding));
-  g.add(prismYZ([[ga.y0, ga.ffe], [ga.y1, ga.ffe], [ga.y1, RG.topAtY1 - 14], [ga.y0, RG.topAtY0 - 14]],
-    ga.x1 - 10, ga.x1, M.siding));
   g.add(prismYZ([[ga.y0 - RG.overhang.south, RG.topAtY0 - 14], [ga.y1 + RG.overhang.north, RG.topAtY1 - 14],
                  [ga.y1 + RG.overhang.north, RG.topAtY1], [ga.y0 - RG.overhang.south, RG.topAtY0]],
                  ga.x0 - 24, ga.x1 + 24, M.roof));
@@ -395,9 +395,13 @@ function buildInterior(M) {
       zBot: lvl.ffe, zTop: top, ffe: lvl.ffe,
       mat: M.plaster, glass: null, group: g, openings: ops,
     });
-    liner('H', T, fp.x0 + T, fp.x1 - T);
+    // These take ABSOLUTE band positions. Passing bare `T` put the UPPER level's
+    // west liner at x = 10in instead of fp.x0 + 10in — 48 ft from where it
+    // belongs and at upper-level height, which is the white fin that was
+    // punching through Roof A. Found by tools/render/probe-roof.mjs.
+    liner('H', fp.y0 + T, fp.x0 + T, fp.x1 - T);
     liner('H', fp.y1 - T - 1.5, fp.x0 + T, fp.x1 - T);
-    liner('V', T, fp.y0 + T, fp.y1 - T);
+    liner('V', fp.x0 + T, fp.y0 + T, fp.y1 - T);
     liner('V', fp.x1 - T - 1.5, fp.y0 + T, fp.y1 - T);
 
     // partitions from the room rectangles, honouring the open edges
