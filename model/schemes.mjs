@@ -174,8 +174,17 @@ const BUILT = [
     henryTest: 'What in this house must be permanent, and what should remain transient? Anything permanent that did not have to be is a mistake you live with.',
     rooms: 4, roomsNote: '2 bedrooms now, 4 later, all off the core',
     volumes: [
-      V('core', 'cond', 22, 8, 16, 20, { storeys: 2, ffe: 0, wet: true, core: true,
-        note: 'stair, both baths, laundry, mechanical, flue — the only permanent thing' }),
+      // The core is TWO pieces, because its section is two pieces. Declared as
+      // one 20 ft deep two-storey block it had floors only at ffe 0 and 10 —
+      // and its own room plan needed a floor at ffe 6, where the shells are,
+      // so the plan was rejected for putting rooms where the scheme had no
+      // floor. The builder's section says why: the downhill 8 ft is the
+      // two-storey part, and the uphill 12 ft is slab on fill at ffe 6, which
+      // is what lets arrival be level with grade and with all three shells.
+      V('core-low', 'cond', 22, 8, 16, 8, { storeys: 2, ffe: 0, wet: true, core: true,
+        note: 'the two-storey core: plant and stair foot below, lookout above' }),
+      V('core-plat', 'cond', 22, 16, 16, 12, { storeys: 1, ffe: 6, wet: true, core: true,
+        note: 'slab on fill, level with the shells — kitchen, entry, stair hall, bath 1' }),
       V('shellW', 'cond', 4, 6, 18, 24, { storeys: 1, ffe: 6, phase: 1 }),
       V('shellE', 'cond', 38, 6, 18, 24, { storeys: 1, ffe: 6, phase: 1 }),
       V('shellN', 'future', 22, 28, 16, 14, { ffe: 6, phase: 2, note: 'sheltered work bay, later two rooms' }),

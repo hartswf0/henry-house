@@ -6,7 +6,7 @@
 // wall and a bed wall, wet rooms grouped or stacked, stairs landing on the
 // stair below. A plan that failed was reported and dropped, not repaired.
 //
-// 7 plans.
+// 9 plans.
 
 export const PLANS = [
   {
@@ -1355,6 +1355,308 @@ export const PLANS = [
     ]
   },
   {
+    "id": "S4-CORE",
+    "levels": [
+      {
+        "ffe": 0,
+        "name": "CORE LOWER",
+        "rooms": [
+          {
+            "name": "STAIR LOWER",
+            "use": "circ",
+            "x0": 31,
+            "y0": 8,
+            "w": 7,
+            "d": 8,
+            "phase": 1
+          },
+          {
+            "name": "MECH",
+            "use": "mech",
+            "x0": 22,
+            "y0": 8,
+            "w": 4,
+            "d": 8,
+            "phase": 1
+          },
+          {
+            "name": "LAUNDRY",
+            "use": "laundry",
+            "x0": 26,
+            "y0": 8,
+            "w": 5,
+            "d": 3,
+            "phase": 1
+          },
+          {
+            "name": "BATH 2",
+            "use": "bath",
+            "x0": 26,
+            "y0": 11,
+            "w": 5,
+            "d": 5,
+            "phase": 1
+          }
+        ],
+        "doors": [
+          {
+            "x": 34,
+            "y": 8,
+            "face": "S",
+            "kind": "service",
+            "ffe": 0
+          }
+        ]
+      },
+      {
+        "ffe": 6,
+        "name": "MAIN",
+        "rooms": [
+          {
+            "name": "KITCHEN",
+            "use": "kitchen",
+            "x0": 22,
+            "y0": 16,
+            "w": 9,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "ENTRY",
+            "use": "entry",
+            "x0": 22,
+            "y0": 23,
+            "w": 9,
+            "d": 5,
+            "phase": 1
+          },
+          {
+            "name": "STAIR HALL",
+            "use": "circ",
+            "x0": 31,
+            "y0": 16,
+            "w": 7,
+            "d": 6,
+            "phase": 1
+          },
+          {
+            "name": "BATH 1",
+            "use": "bath",
+            "x0": 31,
+            "y0": 22,
+            "w": 7,
+            "d": 6,
+            "phase": 1
+          },
+          {
+            "name": "LIVING",
+            "use": "living",
+            "x0": 4,
+            "y0": 6,
+            "w": 18,
+            "d": 12,
+            "phase": 1
+          },
+          {
+            "name": "DINING",
+            "use": "dining",
+            "x0": 4,
+            "y0": 18,
+            "w": 18,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "PANTRY GEAR",
+            "use": "store",
+            "x0": 4,
+            "y0": 25,
+            "w": 18,
+            "d": 5,
+            "phase": 1
+          },
+          {
+            "name": "GALLERY",
+            "use": "circ",
+            "x0": 38,
+            "y0": 6,
+            "w": 4,
+            "d": 24,
+            "phase": 1
+          },
+          {
+            "name": "BED 1",
+            "use": "bed",
+            "x0": 42,
+            "y0": 6,
+            "w": 14,
+            "d": 10,
+            "phase": 1
+          },
+          {
+            "name": "BED 2",
+            "use": "bed",
+            "x0": 42,
+            "y0": 16,
+            "w": 14,
+            "d": 10,
+            "phase": 1
+          },
+          {
+            "name": "CLOSET BAND",
+            "use": "store",
+            "x0": 42,
+            "y0": 26,
+            "w": 14,
+            "d": 4,
+            "phase": 1
+          },
+          {
+            "name": "HALL N",
+            "use": "circ",
+            "x0": 22,
+            "y0": 28,
+            "w": 16,
+            "d": 4,
+            "phase": 2
+          },
+          {
+            "name": "BED 3",
+            "use": "bed",
+            "x0": 28,
+            "y0": 32,
+            "w": 10,
+            "d": 10,
+            "phase": 2
+          },
+          {
+            "name": "STORE N",
+            "use": "store",
+            "x0": 22,
+            "y0": 32,
+            "w": 6,
+            "d": 10,
+            "phase": 2
+          }
+        ],
+        "doors": [
+          {
+            "x": 26,
+            "y": 28,
+            "face": "N",
+            "kind": "entry",
+            "ffe": 6
+          },
+          {
+            "x": 10,
+            "y": 6,
+            "face": "S",
+            "kind": "slider",
+            "ffe": 6
+          },
+          {
+            "x": 40,
+            "y": 6,
+            "face": "S",
+            "kind": "deck",
+            "ffe": 6
+          },
+          {
+            "x": 8,
+            "y": 30,
+            "face": "N",
+            "kind": "service",
+            "ffe": 6
+          }
+        ]
+      },
+      {
+        "ffe": 10,
+        "name": "CORE UPPER",
+        "rooms": [
+          {
+            "name": "LOFT WORK",
+            "use": "work",
+            "x0": 22,
+            "y0": 8,
+            "w": 9,
+            "d": 8,
+            "phase": 1
+          },
+          {
+            "name": "UPPER LANDING",
+            "use": "circ",
+            "x0": 31,
+            "y0": 8,
+            "w": 7,
+            "d": 4,
+            "phase": 1
+          },
+          {
+            "name": "STAIR VOID",
+            "use": "circ",
+            "x0": 31,
+            "y0": 12,
+            "w": 7,
+            "d": 4,
+            "phase": 1
+          }
+        ],
+        "doors": []
+      }
+    ],
+    "doors": [
+      {
+        "x": 26,
+        "y": 28,
+        "face": "N",
+        "kind": "entry",
+        "ffe": 6
+      },
+      {
+        "x": 10,
+        "y": 6,
+        "face": "S",
+        "kind": "slider",
+        "ffe": 6
+      },
+      {
+        "x": 40,
+        "y": 6,
+        "face": "S",
+        "kind": "deck",
+        "ffe": 6
+      },
+      {
+        "x": 8,
+        "y": 30,
+        "face": "N",
+        "kind": "service",
+        "ffe": 6
+      },
+      {
+        "x": 34,
+        "y": 8,
+        "face": "S",
+        "kind": "service",
+        "ffe": 0
+      }
+    ],
+    "notes": "Section: the core's downhill 8 ft (y8-16) is the two-storey part (ffe 0 + ffe 10); its uphill 12 ft (y16-28) is slab-on-fill at ffe 6, so arrival is level with grade at y=28 and meets shellW, shellE and shellN all at ffe 6. Two flights spring south from y=16 in one 7 ft well: down 10 risers to ffe 0, up 6 risers to ffe 10. ALL PLUMBING HANGS ON ONE INTERIOR PLANE AT x=31; nothing wet sits in a shell. Worst compromise: the kitchen is landlocked inside the core, lit only by clerestory and the west opening to dining. Bed 4 must be carved from LIVING - 18 ft shells yield two compliant bedrooms each, shellN only one.",
+    "flags": [
+      "FREEZE RULE — \"MECH\" (CORE LOWER @ffe 0) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
+      "FREEZE RULE — \"BATH 2\" (CORE LOWER @ffe 0) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
+      "NO WALL THICKNESS — rooms on CORE LOWER @ffe 0 sum to 100.0% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.",
+      "NO DAYLIGHT — the kitchen (MAIN @ffe 6) touches no exterior wall.",
+      "KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once cabinets land on both faces.",
+      "NO WALL THICKNESS — rooms on MAIN @ffe 6 sum to 100.0% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.",
+      "NO WALL THICKNESS — rooms on CORE UPPER @ffe 10 sum to 100.0% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.",
+      "THROUGH A PRIVATE ROOM — LAUNDRY (CORE LOWER @ffe 0) can only be reached by walking through the bathroom \"BATH 2\"",
+      "THROUGH A PRIVATE ROOM — MECH (CORE LOWER @ffe 0) can only be reached by walking through the bathroom \"BATH 2\"",
+      "SEVERED — the plan is 2 disconnected groups of rooms (256 sf and 1280 sf). There is no interior route between them, so the corridor joining this house to itself is OUTDOORS. Any circulation figure quoted for this plan excludes it."
+    ]
+  },
+  {
     "id": "S5-PERCH",
     "levels": [
       {
@@ -2257,6 +2559,367 @@ export const PLANS = [
       "NO WALL THICKNESS — rooms on UPPER @ffe 20.5 sum to 100.0% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.",
       "SEVERED — the plan is 2 disconnected groups of rooms (968 sf and 968 sf). There is no interior route between them, so the corridor joining this house to itself is OUTDOORS. Any circulation figure quoted for this plan excludes it.",
       "ONE WAY DOWN — 3 sleeping rooms more than a storey above the entry (BEDROOM 2 at ffe 20.5, BEDROOM 3 at ffe 20.5, BEDROOM 4 at ffe 20.5) served by a single stair. Second means of escape not drawn."
+    ]
+  },
+  {
+    "id": "S8-WATER",
+    "levels": [
+      {
+        "ffe": 13,
+        "name": "ENTRY",
+        "rooms": [
+          {
+            "name": "BEDROOM 4",
+            "use": "bed",
+            "x0": -6,
+            "y0": 2,
+            "w": 14,
+            "d": 11,
+            "phase": 2
+          },
+          {
+            "name": "STUDY / WEST BUNK",
+            "use": "work",
+            "x0": -6,
+            "y0": 13,
+            "w": 14,
+            "d": 7,
+            "phase": 2
+          },
+          {
+            "name": "WEST GALLERY",
+            "use": "circ",
+            "x0": 8,
+            "y0": 2,
+            "w": 4,
+            "d": 18,
+            "phase": 2
+          },
+          {
+            "name": "GREAT ROOM",
+            "use": "living",
+            "x0": 12,
+            "y0": 2,
+            "w": 15,
+            "d": 11,
+            "phase": 1
+          },
+          {
+            "name": "DINING",
+            "use": "dining",
+            "x0": 27,
+            "y0": 2,
+            "w": 7,
+            "d": 11,
+            "phase": 1
+          },
+          {
+            "name": "PANTRY",
+            "use": "store",
+            "x0": 12,
+            "y0": 13,
+            "w": 6,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "KITCHEN",
+            "use": "kitchen",
+            "x0": 18,
+            "y0": 13,
+            "w": 16,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "CORE HALL",
+            "use": "circ",
+            "x0": 34,
+            "y0": 2,
+            "w": 6,
+            "d": 6,
+            "phase": 1
+          },
+          {
+            "name": "BATH 1",
+            "use": "bath",
+            "x0": 34,
+            "y0": 8,
+            "w": 6,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "UTILITY BAY / LAUNDRY",
+            "use": "laundry",
+            "x0": 34,
+            "y0": 15,
+            "w": 10,
+            "d": 5,
+            "phase": 1
+          },
+          {
+            "name": "STAIR",
+            "use": "circ",
+            "x0": 40,
+            "y0": 2,
+            "w": 4,
+            "d": 13,
+            "phase": 1
+          },
+          {
+            "name": "PRIMARY BEDROOM",
+            "use": "bed",
+            "x0": 44,
+            "y0": 2,
+            "w": 12,
+            "d": 10,
+            "phase": 1
+          },
+          {
+            "name": "BOOT ROOM",
+            "use": "entry",
+            "x0": 44,
+            "y0": 12,
+            "w": 12,
+            "d": 8,
+            "phase": 1
+          }
+        ],
+        "doors": [
+          {
+            "x": 50,
+            "y": 20,
+            "face": "N",
+            "kind": "entry",
+            "ffe": 13
+          },
+          {
+            "x": 24,
+            "y": 2,
+            "face": "S",
+            "kind": "deck",
+            "ffe": 13
+          },
+          {
+            "x": 50,
+            "y": 2,
+            "face": "S",
+            "kind": "deck",
+            "ffe": 13
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "face": "S",
+            "kind": "deck",
+            "ffe": 13
+          }
+        ]
+      },
+      {
+        "ffe": 3.5,
+        "name": "WALKOUT",
+        "rooms": [
+          {
+            "name": "BEDROOM 5",
+            "use": "bed",
+            "x0": -6,
+            "y0": 2,
+            "w": 12,
+            "d": 10,
+            "phase": 2
+          },
+          {
+            "name": "GEAR STORE",
+            "use": "store",
+            "x0": 6,
+            "y0": 2,
+            "w": 6,
+            "d": 10,
+            "phase": 2
+          },
+          {
+            "name": "WEST HALL",
+            "use": "circ",
+            "x0": -6,
+            "y0": 12,
+            "w": 19,
+            "d": 4,
+            "phase": 2
+          },
+          {
+            "name": "BEDROOM 2",
+            "use": "bed",
+            "x0": 13,
+            "y0": 2,
+            "w": 10.5,
+            "d": 10,
+            "phase": 1
+          },
+          {
+            "name": "BEDROOM 3",
+            "use": "bed",
+            "x0": 23.5,
+            "y0": 2,
+            "w": 10.5,
+            "d": 10,
+            "phase": 1
+          },
+          {
+            "name": "BEDROOM CORRIDOR",
+            "use": "circ",
+            "x0": 13,
+            "y0": 12,
+            "w": 21,
+            "d": 4,
+            "phase": 1
+          },
+          {
+            "name": "WALKOUT LANDING",
+            "use": "circ",
+            "x0": 34,
+            "y0": 2,
+            "w": 6,
+            "d": 4,
+            "phase": 1
+          },
+          {
+            "name": "BATH 2",
+            "use": "bath",
+            "x0": 34,
+            "y0": 6,
+            "w": 6,
+            "d": 7,
+            "phase": 1
+          },
+          {
+            "name": "STAIR",
+            "use": "circ",
+            "x0": 40,
+            "y0": 2,
+            "w": 4,
+            "d": 14,
+            "phase": 1
+          },
+          {
+            "name": "WATER PLANT",
+            "use": "mech",
+            "x0": 44,
+            "y0": 2,
+            "w": 9,
+            "d": 9,
+            "phase": 1
+          },
+          {
+            "name": "BATH 3",
+            "use": "bath",
+            "x0": 44,
+            "y0": 11,
+            "w": 9,
+            "d": 5,
+            "phase": 2
+          }
+        ],
+        "doors": [
+          {
+            "x": 37,
+            "y": 2,
+            "face": "S",
+            "kind": "walkout",
+            "ffe": 3.5
+          },
+          {
+            "x": 18,
+            "y": 2,
+            "face": "S",
+            "kind": "egress",
+            "ffe": 3.5
+          },
+          {
+            "x": 48,
+            "y": 2,
+            "face": "S",
+            "kind": "service",
+            "ffe": 3.5
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "face": "S",
+            "kind": "walkout",
+            "ffe": 3.5
+          }
+        ]
+      }
+    ],
+    "doors": [
+      {
+        "x": 50,
+        "y": 20,
+        "face": "N",
+        "kind": "entry",
+        "ffe": 13
+      },
+      {
+        "x": 24,
+        "y": 2,
+        "face": "S",
+        "kind": "deck",
+        "ffe": 13
+      },
+      {
+        "x": 50,
+        "y": 2,
+        "face": "S",
+        "kind": "deck",
+        "ffe": 13
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "face": "S",
+        "kind": "deck",
+        "ffe": 13
+      },
+      {
+        "x": 37,
+        "y": 2,
+        "face": "S",
+        "kind": "walkout",
+        "ffe": 3.5
+      },
+      {
+        "x": 18,
+        "y": 2,
+        "face": "S",
+        "kind": "egress",
+        "ffe": 3.5
+      },
+      {
+        "x": 48,
+        "y": 2,
+        "face": "S",
+        "kind": "service",
+        "ffe": 3.5
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "face": "S",
+        "kind": "walkout",
+        "ffe": 3.5
+      }
+    ],
+    "notes": "The massing showed one roof, one leader, one stack; the plan shows what that costs in rooms. Every fixture in the house lands in a 6 ft strip at x34-40 with the stair beside it at x40-44: kitchen sink on the west face of the x=34 wall, bath 1 and the 10x5 utility bay above it, bath 2 directly under bath 1 (they overlap y8-13, so the drain is one plumb line), and the WATER PLANT as an 81 sf room at the foot of the stair - first flush, sediment, UV, pressure tank and heater all racked on the interior x=44 core wall, buried-tank line entering under the slab and relief draining to daylight through the walkout face, so not one pipe sits in an exterior wall on either floor. Phase 2's bath 3 tucks against the plant for the shortest hot run in the house. The single uphill door at x50,y20 lands in a 12x8 boot room that is also the laundry's standing room and the hinge to primary, stair and mudroom, so a wet dog and a filter change use the same treads and never cross the great room. The worst compromise: the future west bay - 576 sf, two bedrooms and a study - carries no plumbing at all. The one-stack bet means a guest in bedroom 4 walks 22 ft to bath 1, and the mature five-bedroom house ends up with two of its three baths on the walkout level. I would rather explain that walk than explain a second stack freezing on the cold end of the house.",
+    "flags": [
+      "FREEZE RULE — \"KITCHEN\" (ENTRY @ffe 13) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
+      "FREEZE RULE — \"UTILITY BAY / LAUNDRY\" (ENTRY @ffe 13) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
+      "KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once cabinets land on both faces.",
+      "NO WALL THICKNESS — rooms on ENTRY @ffe 13 sum to 100.0% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.",
+      "FREEZE RULE — \"BATH 3\" (WALKOUT @ffe 3.5) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
+      "THROUGH A PRIVATE ROOM — WALKOUT LANDING (WALKOUT @ffe 3.5) can only be reached by walking through the bedroom \"BEDROOM 3\"",
+      "ONE WAY DOWN — 2 sleeping rooms more than a storey above the entry (BEDROOM 4 at ffe 13, PRIMARY BEDROOM at ffe 13) served by a single stair. Second means of escape not drawn."
     ]
   }
 ];

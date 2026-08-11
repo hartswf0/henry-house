@@ -226,9 +226,9 @@ export const PROPOSED = [
       {
         "id": "lower",
         "kind": "cond",
-        "x0": 13,
+        "x0": 12,
         "y0": 2,
-        "w": 40,
+        "w": 41,
         "d": 14,
         "storeys": 1,
         "ffe": 3.5,

@@ -196,7 +196,13 @@ export function checkPlan(scheme, plan) {
   if (plan.levels.length > 1) {
     if (stairs.some(s => !s.length)) warnings.push('a level has no stair, on a scheme with more than one floor');
     else for (let i = 1; i < stairs.length; i++) {
-      const aligned = stairs[i].some(a => stairs[i - 1].some(b => overlap(a, b) > 12));
+      // A stair lands on the one below if it sits OVER it, or if it SHARES AN
+      // EDGE with it. The overlap-only test assumed stacked flights and so
+      // rejected the Core, whose two flights spring in opposite directions
+      // from one mid-landing — a split-level stair, which is the whole reason
+      // its arrival can be level with grade. Touching still catches the real
+      // fault this test is for: a stair that lands in mid-air across the plan.
+      const aligned = stairs[i].some(a => stairs[i - 1].some(b => overlap(a, b) > 12 || touching(a, b)));
       if (!aligned) errors.push(`the stair at ffe ${plan.levels[i].ffe} does not land on the stair below it`);
     }
   }

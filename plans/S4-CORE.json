@@ -1,39 +1,250 @@
 {
   "id": "S4-CORE",
   "levels": [
-    {"ffe": 0, "name": "CORE LOWER", "rooms": [
-      {"name":"STAIR LOWER","use":"circ","x0":31,"y0":8,"w":7,"d":8,"phase":1},
-      {"name":"MECH","use":"mech","x0":22,"y0":8,"w":4,"d":8,"phase":1},
-      {"name":"LAUNDRY","use":"laundry","x0":26,"y0":8,"w":5,"d":3,"phase":1},
-      {"name":"BATH 2","use":"bath","x0":26,"y0":11,"w":5,"d":5,"phase":1}
-    ]},
-    {"ffe": 6, "name": "MAIN", "rooms": [
-      {"name":"KITCHEN","use":"kitchen","x0":22,"y0":16,"w":9,"d":7,"phase":1},
-      {"name":"ENTRY","use":"entry","x0":22,"y0":23,"w":9,"d":5,"phase":1},
-      {"name":"STAIR HALL","use":"circ","x0":31,"y0":16,"w":7,"d":6,"phase":1},
-      {"name":"BATH 1","use":"bath","x0":31,"y0":22,"w":7,"d":6,"phase":1},
-      {"name":"LIVING","use":"living","x0":4,"y0":6,"w":18,"d":12,"phase":1},
-      {"name":"DINING","use":"dining","x0":4,"y0":18,"w":18,"d":7,"phase":1},
-      {"name":"PANTRY GEAR","use":"store","x0":4,"y0":25,"w":18,"d":5,"phase":1},
-      {"name":"GALLERY","use":"circ","x0":38,"y0":6,"w":4,"d":24,"phase":1},
-      {"name":"BED 1","use":"bed","x0":42,"y0":6,"w":14,"d":10,"phase":1},
-      {"name":"BED 2","use":"bed","x0":42,"y0":16,"w":14,"d":10,"phase":1},
-      {"name":"CLOSET BAND","use":"store","x0":42,"y0":26,"w":14,"d":4,"phase":1},
-      {"name":"HALL N","use":"circ","x0":22,"y0":28,"w":16,"d":4,"phase":2},
-      {"name":"BED 3","use":"bed","x0":28,"y0":32,"w":10,"d":10,"phase":2},
-      {"name":"STORE N","use":"store","x0":22,"y0":32,"w":6,"d":10,"phase":2}
-    ]},
-    {"ffe": 10, "name": "CORE UPPER", "rooms": [
-      {"name":"LOFT WORK","use":"work","x0":22,"y0":8,"w":9,"d":8,"phase":1},
-      {"name":"UPPER LANDING","use":"circ","x0":31,"y0":8,"w":7,"d":4,"phase":1}
-    ]}
+    {
+      "ffe": 0,
+      "name": "CORE LOWER",
+      "rooms": [
+        {
+          "name": "STAIR LOWER",
+          "use": "circ",
+          "x0": 31,
+          "y0": 8,
+          "w": 7,
+          "d": 8,
+          "phase": 1
+        },
+        {
+          "name": "MECH",
+          "use": "mech",
+          "x0": 22,
+          "y0": 8,
+          "w": 4,
+          "d": 8,
+          "phase": 1
+        },
+        {
+          "name": "LAUNDRY",
+          "use": "laundry",
+          "x0": 26,
+          "y0": 8,
+          "w": 5,
+          "d": 3,
+          "phase": 1
+        },
+        {
+          "name": "BATH 2",
+          "use": "bath",
+          "x0": 26,
+          "y0": 11,
+          "w": 5,
+          "d": 5,
+          "phase": 1
+        }
+      ]
+    },
+    {
+      "ffe": 6,
+      "name": "MAIN",
+      "rooms": [
+        {
+          "name": "KITCHEN",
+          "use": "kitchen",
+          "x0": 22,
+          "y0": 16,
+          "w": 9,
+          "d": 7,
+          "phase": 1
+        },
+        {
+          "name": "ENTRY",
+          "use": "entry",
+          "x0": 22,
+          "y0": 23,
+          "w": 9,
+          "d": 5,
+          "phase": 1
+        },
+        {
+          "name": "STAIR HALL",
+          "use": "circ",
+          "x0": 31,
+          "y0": 16,
+          "w": 7,
+          "d": 6,
+          "phase": 1
+        },
+        {
+          "name": "BATH 1",
+          "use": "bath",
+          "x0": 31,
+          "y0": 22,
+          "w": 7,
+          "d": 6,
+          "phase": 1
+        },
+        {
+          "name": "LIVING",
+          "use": "living",
+          "x0": 4,
+          "y0": 6,
+          "w": 18,
+          "d": 12,
+          "phase": 1
+        },
+        {
+          "name": "DINING",
+          "use": "dining",
+          "x0": 4,
+          "y0": 18,
+          "w": 18,
+          "d": 7,
+          "phase": 1
+        },
+        {
+          "name": "PANTRY GEAR",
+          "use": "store",
+          "x0": 4,
+          "y0": 25,
+          "w": 18,
+          "d": 5,
+          "phase": 1
+        },
+        {
+          "name": "GALLERY",
+          "use": "circ",
+          "x0": 38,
+          "y0": 6,
+          "w": 4,
+          "d": 24,
+          "phase": 1
+        },
+        {
+          "name": "BED 1",
+          "use": "bed",
+          "x0": 42,
+          "y0": 6,
+          "w": 14,
+          "d": 10,
+          "phase": 1
+        },
+        {
+          "name": "BED 2",
+          "use": "bed",
+          "x0": 42,
+          "y0": 16,
+          "w": 14,
+          "d": 10,
+          "phase": 1
+        },
+        {
+          "name": "CLOSET BAND",
+          "use": "store",
+          "x0": 42,
+          "y0": 26,
+          "w": 14,
+          "d": 4,
+          "phase": 1
+        },
+        {
+          "name": "HALL N",
+          "use": "circ",
+          "x0": 22,
+          "y0": 28,
+          "w": 16,
+          "d": 4,
+          "phase": 2
+        },
+        {
+          "name": "BED 3",
+          "use": "bed",
+          "x0": 28,
+          "y0": 32,
+          "w": 10,
+          "d": 10,
+          "phase": 2
+        },
+        {
+          "name": "STORE N",
+          "use": "store",
+          "x0": 22,
+          "y0": 32,
+          "w": 6,
+          "d": 10,
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "ffe": 10,
+      "name": "CORE UPPER",
+      "rooms": [
+        {
+          "name": "LOFT WORK",
+          "use": "work",
+          "x0": 22,
+          "y0": 8,
+          "w": 9,
+          "d": 8,
+          "phase": 1
+        },
+        {
+          "name": "UPPER LANDING",
+          "use": "circ",
+          "x0": 31,
+          "y0": 8,
+          "w": 7,
+          "d": 4,
+          "phase": 1
+        },
+        {
+          "name": "STAIR VOID",
+          "use": "circ",
+          "x0": 31,
+          "y0": 12,
+          "w": 7,
+          "d": 4,
+          "phase": 1
+        }
+      ]
+    }
   ],
   "doors": [
-    {"x":26,"y":28,"face":"N","kind":"entry","ffe":6},
-    {"x":10,"y":6,"face":"S","kind":"slider","ffe":6},
-    {"x":40,"y":6,"face":"S","kind":"deck","ffe":6},
-    {"x":8,"y":30,"face":"N","kind":"service","ffe":6},
-    {"x":34,"y":8,"face":"S","kind":"service","ffe":0}
+    {
+      "x": 26,
+      "y": 28,
+      "face": "N",
+      "kind": "entry",
+      "ffe": 6
+    },
+    {
+      "x": 10,
+      "y": 6,
+      "face": "S",
+      "kind": "slider",
+      "ffe": 6
+    },
+    {
+      "x": 40,
+      "y": 6,
+      "face": "S",
+      "kind": "deck",
+      "ffe": 6
+    },
+    {
+      "x": 8,
+      "y": 30,
+      "face": "N",
+      "kind": "service",
+      "ffe": 6
+    },
+    {
+      "x": 34,
+      "y": 8,
+      "face": "S",
+      "kind": "service",
+      "ffe": 0
+    }
   ],
   "notes": "Section: the core's downhill 8 ft (y8-16) is the two-storey part (ffe 0 + ffe 10); its uphill 12 ft (y16-28) is slab-on-fill at ffe 6, so arrival is level with grade at y=28 and meets shellW, shellE and shellN all at ffe 6. Two flights spring south from y=16 in one 7 ft well: down 10 risers to ffe 0, up 6 risers to ffe 10. ALL PLUMBING HANGS ON ONE INTERIOR PLANE AT x=31; nothing wet sits in a shell. Worst compromise: the kitchen is landlocked inside the core, lit only by clerestory and the west opening to dining. Bed 4 must be carved from LIVING - 18 ft shells yield two compliant bedrooms each, shellN only one."
 }
