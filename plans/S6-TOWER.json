@@ -1,0 +1,46 @@
+{
+  "id": "S6-TOWER",
+  "levels": [
+    {"ffe": 2, "name": "DECK LEVEL", "rooms": [
+      {"name":"BATH 1","use":"bath","x0":26,"y0":18,"w":6,"d":5},
+      {"name":"MECH","use":"mech","x0":26,"y0":23,"w":6,"d":3},
+      {"name":"STAIR LOBBY","use":"circ","x0":32,"y0":18,"w":4,"d":8},
+      {"name":"STAIR","use":"circ","x0":36,"y0":18,"w":8,"d":8},
+      {"name":"KITCHEN","use":"kitchen","x0":26,"y0":13,"w":7,"d":5},
+      {"name":"DINING","use":"dining","x0":26,"y0":8,"w":7,"d":5},
+      {"name":"LIVING","use":"living","x0":33,"y0":8,"w":11,"d":6},
+      {"name":"ENTRY / MUD","use":"entry","x0":33,"y0":14,"w":11,"d":4}
+    ]},
+    {"ffe": 12, "name": "LEVEL 2", "rooms": [
+      {"name":"LAUNDRY","use":"laundry","x0":26,"y0":18,"w":6,"d":5},
+      {"name":"STORE","use":"store","x0":26,"y0":23,"w":6,"d":3},
+      {"name":"HALL","use":"circ","x0":32,"y0":18,"w":4,"d":5},
+      {"name":"LINEN / COAT","use":"store","x0":32,"y0":23,"w":4,"d":3},
+      {"name":"STAIR","use":"circ","x0":36,"y0":18,"w":8,"d":8},
+      {"name":"WORK","use":"work","x0":26,"y0":8,"w":8,"d":10},
+      {"name":"BED 2","use":"bed","x0":34,"y0":8,"w":10,"d":10}
+    ]},
+    {"ffe": 22, "name": "LEVEL 3", "rooms": [
+      {"name":"BATH 2","use":"bath","x0":26,"y0":18,"w":6,"d":8},
+      {"name":"HALL","use":"circ","x0":32,"y0":18,"w":4,"d":5},
+      {"name":"LINEN","use":"store","x0":32,"y0":23,"w":4,"d":3},
+      {"name":"STAIR","use":"circ","x0":36,"y0":18,"w":8,"d":8},
+      {"name":"FAMILY","use":"living","x0":26,"y0":8,"w":8,"d":10},
+      {"name":"BED 3","use":"bed","x0":34,"y0":8,"w":10,"d":10}
+    ]},
+    {"ffe": 32, "name": "LEVEL 4", "rooms": [
+      {"name":"DRESSING","use":"store","x0":26,"y0":18,"w":6,"d":8},
+      {"name":"HALL","use":"circ","x0":32,"y0":18,"w":4,"d":5},
+      {"name":"CLOSET","use":"store","x0":32,"y0":23,"w":4,"d":3},
+      {"name":"STAIR","use":"circ","x0":36,"y0":18,"w":8,"d":8},
+      {"name":"LOOKOUT / SITTING","use":"living","x0":26,"y0":8,"w":8,"d":10},
+      {"name":"BED 1 PRIMARY","use":"bed","x0":34,"y0":8,"w":10,"d":10}
+    ]}
+  ],
+  "doors": [
+    {"x":44,"y":16,"face":"E","kind":"entry","ffe":2},
+    {"x":38,"y":8,"face":"S","kind":"deck","ffe":2},
+    {"x":29.5,"y":8,"face":"S","kind":"deck","ffe":2}
+  ],
+  "notes": "The massing shows one 18 ft cube stacked four times; the plan shows the cube tiles only one way - an 8 ft deep uphill service band (wet cell 6x8 at x26-32, lobby 4x8, stair 8x8 in the NE corner) over a 10 ft deep downhill room band that splits 8 + 10. THAT SPLIT IS THE FINDING: once the stair and the stack are paid for, an 18 ft plate holds exactly ONE conforming bedroom (10x10, glass south and east, egress window) plus one 8x10 secondary room, so three bedrooms cost three whole floors and no floor can carry a second 10 ft bedroom. Every bath, laundry and mech sits in the single 6x8 cell at x26-32 / y18-26 on all four levels, fixtures hung only on the interior y=18 wall - the 18 ft wet wall - and the x=32 partition, nothing in an exterior wall; the ffe2 kitchen sink backs onto that same wall 6 ft from the riser, and the ffe32 dressing room sits directly over the ffe22 bath so a third bath later costs fixtures only. The stair is a three-run stair (three 3 ft flights, 16 risers at 7.5 in) in the same 8x8 well on every level: 64 sf x 4 = 256 sf, 19.8% of the 1,296 sf gross, and with the four landings and halls vertical circulation costs 348 sf, 27% of the house - THE ENTIRE SAVING IN FOUNDATION AND 72 LF OF PERIMETER IS SPENT CLIMBING. Entry is on the east at ffe2 into an 11x4 mudroom with the stair immediately north of it, so you arrive at the spine and never cross a room to climb. Worst compromise: with only two baths on the stack NO bedroom has a bath on its own floor - each is one 10 ft flight from a WC - and the primary at ffe32 stands 30 ft above the downhill grade served by one stair, above portable-ladder rescue; at four storeys this dwelling is outside IRC scope, so the scheme is only honest if the stair well is enclosed 1-hr with self-closing doors at each landing and NFPA 13D sprinklers run off the same stack, or the fourth floor is deleted."
+}
