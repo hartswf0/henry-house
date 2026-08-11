@@ -259,11 +259,11 @@ export function schemeViews(schemeId) {
   // Stand mostly DOWNHILL rather than off to the west: the west side of this
   // site carries a rock outcrop, and the first version of this camera put it
   // straight through the left third of every hero shot.
-  const dist = size * 1.75 + 26;
+  const dist = size * 1.7 + 38;
   out.push({
     id: 'hero',
-    pos: [cx - dist * 0.22, top * 0.78 + 10, -(by0 - dist * 1.0)],
-    target: [cx + w * 0.08, top * 0.42, -(cy - d * 0.1)],
+    pos: [cx - dist * 0.20, top * 0.95 + 16, -(by0 - dist * 1.0)],
+    target: [cx + w * 0.08, top * 0.55, -(cy - d * 0.1)],
     focal: 38, shift: 0.16, w: 1700, h: 1062, exposure: 1.02,
     sun: { dayOfYear: 288, hour: 13.9 },
   });

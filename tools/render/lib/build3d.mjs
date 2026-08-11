@@ -330,6 +330,45 @@ export function buildScheme(scheme, mats, groundFn) {
 
   for (const r of scheme.roofs) shedRoof(g, r, roofBase(scheme, r), { roof, trim });
 
+  // ── WHAT HOLDS THE ROOF UP ───────────────────────────────────────────────
+  // Several of these schemes stand a roof far larger than the house under it —
+  // that disproportion IS the operation in the Datum and the Armature. The
+  // model was drawing the plane and nothing beneath it, so the overhang floated
+  // and the schemes read as unbuildable. A roof is carried by a wall where
+  // there is a volume below it and by a POST where there is not.
+  //
+  // Posts are derived on a 12 ft grid, which is a real bay for a timber or
+  // steel frame at this span, and each one runs from the finished ground to
+  // the underside of the plane it carries. Counted in model/structure so the
+  // material shows up in the cost rather than appearing for free in a picture.
+  // 16 ft, not 12: a real bay for a timber or steel frame at this span, and a
+// 12 ft grid put a post every few feet under a big plane — honest about the
+// count, wrong about the structure.
+  const POST_GRID = ft(16);
+  const carried = (x, y) => scheme.volumes.some(v =>
+    // 4 ft of margin: a post standing a foot off a wall it duplicates is
+    // wasted material, which is exactly the complaint.
+    v.kind !== 'shelt' && x > v.x0 - 48 && x < v.x1 + 48 && y > v.y0 - 48 && y < v.y1 + 48);
+  for (const r of scheme.roofs) {
+    const zb = roofBase(scheme, r), slope = r.pitch / 12;
+    const nx = Math.max(1, Math.round((r.x1 - r.x0) / POST_GRID));
+    const ny = Math.max(1, Math.round((r.y1 - r.y0) / POST_GRID));
+    for (let i = 0; i <= nx; i++) {
+      for (let j = 0; j <= ny; j++) {
+        const x = r.x0 + ((r.x1 - r.x0) * i) / nx;
+        const y = r.y0 + ((r.y1 - r.y0) * j) / ny;
+        if (carried(x, y)) continue;                 // a wall already does this
+        const zTop = zb + slope * (y - r.y0) - 8;
+        const gz = groundFn(x, y);
+        if (zTop - gz < 60) continue;                // no room for a post
+        const P = 5;                                 // 5 in square post
+        g.add(box(x - P, x + P, y - P, y + P, gz - 12, zTop, steel, { cast: true }));
+        // a small pad so it does not appear to stand on grass
+        g.add(box(x - P - 4, x + P + 4, y - P - 4, y + P + 4, gz - 14, gz + 3, conc));
+      }
+    }
+  }
+
   // how it meets the hill
   const G = scheme.ground;
   if (G.kind === 'piers') {
