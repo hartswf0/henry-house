@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HENRY HOUSE</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --panel:#fff; --ink:#15191e; --mid:#5a6672; --line:#e4e7ea;
+    --accent:#b8562f; --ok:#2f7d5a; --warn:#b8860b; --bad:#a8322f;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --line:#272d36;
+    --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d; }}
+  :root[data-theme="dark"]{
+    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --line:#272d36;
+    --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--mono);
+       font-size:14px;line-height:1.62;padding:0 0 90px}
+  .wrap{max-width:1260px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--line);padding:52px 0 28px;margin-bottom:8px}
+  h1{font-size:42px;margin:0 0 8px;letter-spacing:3px}
+  .sub{color:var(--mid);font-size:13px;letter-spacing:1.5px}
+  .body-line{color:var(--accent);font-size:12px;letter-spacing:1.6px;margin-top:16px}
+  h2{font-size:15px;letter-spacing:2px;margin:48px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  a{color:var(--accent)}
+  .tiles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:24px 0}
+  .tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:5px;
+        padding:18px 20px;text-decoration:none;color:inherit}
+  .tile:hover{border-color:var(--accent)}
+  .tile .t{font-size:15px;letter-spacing:1.6px;font-weight:700;margin-bottom:5px}
+  .tile .d{color:var(--mid);font-size:11.5px;line-height:1.55}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .card img{width:100%;display:block;background:#fff;border-bottom:1px solid var(--line)}
+  .card .meta{padding:11px 13px}
+  .card .t{font-weight:700;letter-spacing:1.1px;font-size:12.5px}
+  .card .d{color:var(--mid);font-size:11.5px;margin-top:3px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mid);font-weight:400;letter-spacing:1.2px;font-size:11px;text-transform:uppercase}
+  .tag{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10.5px;letter-spacing:1px}
+  .t-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+  .t-warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .t-bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+  .scroll{overflow-x:auto}
+  .banner{border:1px solid var(--bad);border-left:4px solid var(--bad);border-radius:3px;
+          background:color-mix(in srgb,var(--bad) 7%,transparent);padding:16px 18px;margin:26px 0}
+  .banner b{color:var(--bad);letter-spacing:1.2px}
+  code{background:color-mix(in srgb,var(--mid) 12%,transparent);padding:1px 5px;border-radius:3px;font-size:12px}
+  pre{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:13px 15px;
+      overflow-x:auto;font-size:11.5px;line-height:1.6}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  ul{padding-left:20px} li{margin:5px 0}
+  footer{color:var(--mid);font-size:11.5px;margin-top:60px;padding-top:18px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>HENRY HOUSE</h1>
+  <div class="sub">A HOUSE FOR STEEP MOUNTAIN LAND · WATAUGA COUNTY, NORTH CAROLINA · SCHEMATIC DESIGN</div>
+  <div class="body-line">STRUCTURE IS SKELETON · WATER IS CIRCULATION · WASTE IS DIGESTION · HVAC IS RESPIRATION ·
+    POWER AND DATA ARE THE NERVOUS SYSTEM · THE ENVELOPE IS SKIN · STORAGE, BACKUP AND CONTROLS ARE HOMEOSTASIS</div>
+</header>
+
+<div class="tiles">
+  <a class="tile" href="web/walk.html">
+    <div class="t">→ WALK THROUGH IT</div>
+    <div class="d">Real-time model. Orbit or walk in first person, hide the roofs to read the plan from
+      above, move the sun through the day and the year. <b>Needs the local server</b> — see below.</div>
+  </a>
+  <a class="tile" href="web/walk.html">
+    <div class="t">→ X-RAY IT</div>
+    <div class="d">Ghost the shell and switch on WATER, WASTE, AIR and POWER as real routed runs —
+      232 of them, generated from the actual fixture positions, not drawn by hand.</div>
+  </a>
+  <a class="tile" href="web/index.html">
+    <div class="t">→ INSPECT IT</div>
+    <div class="d">Drawings and renders at full size, coordination results, open problems,
+      unresolved site facts, and the documents.</div>
+  </a>
+</div>
+
+<pre>git clone https://github.com/hartswf0/henry-house &amp;&amp; cd henry-house
+npm install
+node tools/render/serve.mjs          # http://127.0.0.1:8099
+open http://127.0.0.1:8099/web/walk.html</pre>
+<p style="color:var(--mid)">The walkthrough imports the model files directly — the 3D model <em>is</em> the drawing
+model — so it needs to be served rather than opened from disk. Everything else on this page works as static files.</p>
+
+<div class="banner">
+  <b>TWO THINGS THIS PACKAGE CANNOT CLAIM</b><br><br>
+  <b>1 · No code was verified.</b> Produced with no outbound web access — every primary source
+  (<code>ncosfm.gov</code>, <code>codes.iccsafe.org</code>, <code>wataugacounty.org</code>, the ASCE Hazard Tool, NOAA)
+  returned HTTP 403. No code text was read. Design loads — ground snow, wind exposure, seismic, frost depth,
+  rainfall intensity — are <b>not established</b>, and those are the numbers that size the structure and the drainage.
+  Nothing here may be relied on for permitting.<br><br>
+  <b>2 · There is no site information.</b> Four facts are known; everything else is assumed and traceable in
+  <a href="docs/01-site-facts-register.md">the site facts register</a>.
+  <b>Commission the wastewater soil evaluation before anything else</b> — on steep NC mountain land it is the
+  commonest reason a house cannot be built where the owner wants it.
+</div>
+
+<h2>THE DESIGN IN ONE PARAGRAPH</h2>
+<p>A long, narrow bar laid <b>along</b> the contour rather than across it — the move that minimises cut and fill on
+steep ground. Glass and terraces face downhill to the south-southeast, where the view and the winter sun arrive from
+the same direction; the uphill wall is nearly solid and holds an 11′-0″ <b>service spine</b> carrying every wet room,
+every chase and all mechanical distribution. Three levels step with the hill: a walkout lower level the slope gives
+you almost for free, a main level with everything essential on one floor, and a sleeping level under a 3:12 shed.
+A reinforced concrete <b>spine wall</b> retains the cut, carries the structure, resists lateral load and stores heat —
+one element doing four jobs, where the conventional alternative builds a retaining wall <em>and</em> a frame in front
+of it and pays twice. The roofs fall <b>downhill</b>, so no roof water is ever delivered to the uphill side where the
+cut and the groundwater problem already are. A 4′-0″ drained <b>drain gap</b> runs the length of the uphill wall so the
+house never touches the cut face. The garage is <b>detached</b>, joined by a conditioned mudroom link and a 9′-0″
+covered breezeway, which removes garage-to-house fire separation and CO migration at the source.</p>
+
+<h2>SYSTEMS — 232 ROUTED RUNS</h2>
+<p style="color:var(--mid)">Generated from the fixture schedule and routed orthogonally through the service spine and
+two vertical chases. Every run answers: where does it come from, where does it go, what happens when it fails.</p>
+<div class="scroll"><table>
+<tr><th>System</th><th>Body</th><th>The move that matters</th><th>On failure</th></tr>
+<tr><td><span class="sw" style="background:#2f8fd0"></span>WATER</td><td>Arterial</td>
+    <td>One pump, home-run branches from a single manifold in The Heart.</td>
+    <td><b>A gravity branch bypasses the pump entirely</b> — ~9.5 psi static from the cistern, so power out still gives you a tap and a WC.</td></tr>
+<tr><td><span class="sw" style="background:#6b4a2f"></span>WASTE</td><td>Venous</td>
+    <td>Gravity, converging, never crossing the supply side. Water in at the top, waste out at the bottom.</td>
+    <td>The pressure main to the field often runs <b>uphill</b> on steep ground, so a pump failure backs sewage up — the high-water float is hardwired and audible, not an app notification.</td></tr>
+<tr><td><span class="sw" style="background:#2f8f6b"></span>AIR</td><td>Airway</td>
+    <td>Ventilation ducted <b>independently</b> of heating — supply to bedrooms, exhaust from wet rooms, continuous and low-volume.</td>
+    <td>You never re-breathe through the furnace, and ventilation does not stop when the heat is satisfied.</td></tr>
+<tr><td><span class="sw" style="background:#e0a03a"></span>POWER</td><td>Nerves</td>
+    <td>Home runs to one brain in The Heart; battery then generator behind a critical-loads panel.</td>
+    <td><b>Reflex arcs</b> (shown red) run without the brain: leak sensor → motorised shutoff, freeze stat, septic float. Any safety function that needs the internet is not a safety function.</td></tr>
+</table></div>
+
+<h2>DRAWINGS</h2>
+<div class="grid">
+  <div class="card"><a href="out/png/A-101-main-level-plan.png"><img src="out/png/A-101-main-level-plan.png" alt="A-101"></a>
+    <div class="meta"><div class="t">A-101 · MAIN LEVEL PLAN</div>
+    <div class="d">Service spine, two entries, drain gap, snow retention, fixtures and clearances.</div></div></div>
+  <div class="card"><a href="out/png/A-102-lower-upper-plans.png"><img src="out/png/A-102-lower-upper-plans.png" alt="A-102"></a>
+    <div class="meta"><div class="t">A-102 · LOWER + UPPER PLANS</div>
+    <div class="d">3/8″=1′-0″. The walkout level and the sleeping level.</div></div></div>
+  <div class="card"><a href="out/png/A-201-section-aa.png"><img src="out/png/A-201-section-aa.png" alt="A-201"></a>
+    <div class="meta"><div class="t">A-201 · SECTION A—A</div>
+    <div class="d">The governing drawing on a steep site.</div></div></div>
+</div>
+
+<h2>RENDERS</h2>
+<div class="grid">
+  <div class="card"><a href="out/renders/ext-sse-air.png"><img src="out/renders/ext-sse-air.png" alt=""></a>
+    <div class="meta"><div class="t">THE DOWNHILL FACE</div><div class="d">View and winter sun from the same side.</div></div></div>
+  <div class="card"><a href="out/renders/ext-arrival.png"><img src="out/renders/ext-arrival.png" alt=""></a>
+    <div class="meta"><div class="t">ARRIVAL</div><div class="d">Motor court, entry bridge, breezeway, garage.</div></div></div>
+  <div class="card"><a href="out/renders/ext-east.png"><img src="out/renders/ext-east.png" alt=""></a>
+    <div class="meta"><div class="t">THE STEPPED SECTION</div><div class="d">Three levels stepping with the hill.</div></div></div>
+  <div class="card"><a href="out/renders/ext-sse-terrace.png"><img src="out/renders/ext-sse-terrace.png" alt=""></a>
+    <div class="meta"><div class="t">FROM THE LOWER TERRACE</div><div class="d">Walkout level and the terrace stair.</div></div></div>
+  <div class="card"><a href="out/renders/int-great.png"><img src="out/renders/int-great.png" alt=""></a>
+    <div class="meta"><div class="t">GREAT ROOM</div><div class="d">Ceiling falls 16′-4″ to 9′-10″ toward the glass.</div></div></div>
+  <div class="card"><a href="out/renders/site-aerial.png"><img src="out/renders/site-aerial.png" alt=""></a>
+    <div class="meta"><div class="t">THE HOUSE ON THE HILL</div><div class="d">Along the contour, not across it.</div></div></div>
+</div>
+
+<h2>IT IS TESTED</h2>
+<pre>node tools/check/clash.mjs     →  14 passed, 1 warning, 0 failed</pre>
+<p style="color:var(--mid)">The checker interrogates the model rather than the drawing. On its first run it found
+<b>16 failures</b>, several structural: bedroom 3 was reachable only <em>through</em> bath 2; the mechanical room's
+only door opened into bath 3; bedroom 2's door sat inside the room rather than on a wall; the linen closet had no
+door; the electrical panel had no NEC working space; five door swings landed on fixtures; bath 2 needed 82″ of depth
+in a 76″ room. A later run caught the terrace stair standing in front of the guest bedroom's <b>escape window</b>,
+which is a life-safety fault rather than a clash and now has its own check.</p>
+
+<h2>STILL OPEN</h2>
+<div class="scroll"><table>
+<tr><th>Gap</th><th>Why it matters</th></tr>
+<tr><td><span class="tag t-bad">NO SITE PLAN</span></td><td>The largest hole. Access, driveway grade, cut and fill balance, the septic field, the water source and where stormwater actually goes all live on a drawing that does not exist yet.</td></tr>
+<tr><td><span class="tag t-bad">RENDER FIDELITY</span></td><td>Canopies read stylised rather than photographic. Closing it needs alpha leaf-cards and real furniture geometry — asset work this environment cannot fetch.</td></tr>
+<tr><td><span class="tag t-bad">NOT LIVED IN</span></td><td>Fixtures are coordinated, but there are no lamps, books, art or blinds. No evidence of a life.</td></tr>
+<tr><td><span class="tag t-warn">SWING QUALITY</span></td><td>The checker proves door swings do not <em>hit</em> anything. It never asks whether the swing is the sensible one to use.</td></tr>
+</table></div>
+
+<h2>DOCUMENTS</h2>
+<ul>
+  <li><a href="docs/01-site-facts-register.md">01 — Site facts register</a> · four knowns, every assumption traced to the model constant it drives</li>
+  <li><a href="docs/02-code-basis.md">02 — Code basis and verification status</a> · every reference marked with how strongly it is held</li>
+  <li><a href="docs/03-body-diagram.md">03 — The body diagram</a> · where the analogy produced better architecture, and where it failed or nearly caused a mistake</li>
+  <li><a href="docs/04-professional-scope.md">04 — What requires a licensed professional</a></li>
+  <li><a href="README.md">README</a></li>
+</ul>
+
+<footer>
+  One model, three files — <code>model/geometry.mjs</code>, <code>model/openings.mjs</code>,
+  <code>model/fixtures.mjs</code> — plus <code>model/systems.mjs</code> for the routed networks. Every plan,
+  section, render and check derives from them, so a drawing and a render cannot disagree about where a toilet is.<br>
+  <code>node tools/build.mjs &amp;&amp; node tools/render/raster.mjs &amp;&amp; node tools/check/clash.mjs</code><br><br>
+  Produced by an AI system without site access, without verified code text, and without engineering analysis.
+  A design proposition and coordination study — not a construction document, not an engineered design, and not
+  evidence of code compliance.
+</footer>
+
+</div>
+</body>
+</html>

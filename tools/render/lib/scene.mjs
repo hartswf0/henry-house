@@ -18,6 +18,7 @@ import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
 import { FIXTURES } from '/model/fixtures.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
+import { buildSystems } from './systems3d.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -695,6 +696,11 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false,
   }));
   scene.add(buildRidges());
 
+  // SYSTEMS — hidden by default; the walkthrough toggles them on for the x-ray.
+  const systems = buildSystems();
+  systems.group.visible = false;
+  scene.add(systems.group);
+
   // ── LIGHT RIG ─────────────────────────────────────────────────────────────
   const focus = new THREE.Vector3(F(ft(36)), F(ft(14)), -F(ft(13)));
 
@@ -724,7 +730,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false,
   scene.add(new THREE.HemisphereLight(0x9fb6cf, 0x51492f, 0.13 * exposureBoost));
 
   return {
-    scene, materials: M,
+    scene, materials: M, systems,
     rig: {
       sun: sunLight, skyLight, focus,
       sunDir: sun.dir.clone(), sunSpread: 0.035, sunDistance: 900, skyDistance: 700,

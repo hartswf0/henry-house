@@ -53,6 +53,14 @@
   <h2>SHOW</h2>
   <div id="layers"></div>
 
+  <h2>X-RAY THE HOUSE</h2>
+  <div class="row" style="margin-bottom:6px">
+    <button id="xrayOn">SYSTEMS ON</button>
+    <button id="xrayGhost">GHOST SHELL</button>
+  </div>
+  <div id="systems"></div>
+  <div id="legend" style="margin-top:8px;font-size:10px;line-height:1.7;color:var(--mid)"></div>
+
   <h2>SUN</h2>
   <label>Time of day — <span id="hourLabel">14:00</span></label>
   <input type="range" id="hour" min="7" max="19" step="0.25" value="14">
@@ -130,6 +138,8 @@ const VIEWS = {
   'Primary suite':             { p: [10, 15.4, -8], t: [4, 14.6, -12] },
   'Upper hall + bedrooms':     { p: [56, 25.4, -18],t: [70, 25, -14] },
   'Site aerial':               { p: [-70, 150, 250],t: [58, 12, -20] },
+  'X-ray — The Heart':         { p: [22, 12, 6],    t: [8, 6, -22] },
+  'X-ray — spine + chases':    { p: [-24, 34, 46],  t: [50, 12, -22] },
 };
 const viewsEl = document.getElementById('views');
 for (const [name, v] of Object.entries(VIEWS)) {
@@ -163,6 +173,37 @@ const roofMeshes = [];
 scene.traverse(o => { if (o.material === built.materials.roof) roofMeshes.push(o); });
 roofBtn.onclick = () => { roofsOn = !roofsOn; roofMeshes.forEach(m => m.visible = roofsOn); roofBtn.className = roofsOn ? 'on' : ''; };
 layersEl.appendChild(roofBtn);
+
+// ── x-ray: systems ──────────────────────────────────────────────────────────
+const sysEl = document.getElementById('systems');
+const sys = built.systems;
+sys.group.visible = false;
+const SYS_DESC = {
+  WATER: 'Arterial. One pump, home-run branches. The pale branch bypasses the pump entirely — gravity from the cistern, so power out still gives you a tap and a WC.',
+  WASTE: 'Venous. Gravity, converging, never crossing the supply side. The pressure main to the field often runs UPHILL on steep ground.',
+  AIR:   'Airway. Ventilation is ducted independently of heating — you never re-breathe through the furnace.',
+  POWER: 'Nerves. Home runs to one brain, plus reflex arcs (red) that work with the network down.',
+};
+Object.entries(sys.byGroup).forEach(([name, g]) => {
+  g.visible = true;
+  const b = document.createElement('button');
+  b.textContent = name; b.className = 'on';
+  b.onclick = () => { g.visible = !g.visible; b.className = g.visible ? 'on' : ''; };
+  sysEl.appendChild(b);
+});
+document.getElementById('legend').innerHTML = Object.entries(SYS_DESC)
+  .map(([k, v]) => `<b style="color:var(--ink)">${k}</b> — ${v}`).join('<br>');
+
+let xray = false, ghost = false;
+const shellMats = new Set();
+scene.traverse(o => { if (o.isMesh && o.material && !o.material.transparent) shellMats.add(o.material); });
+const xrayBtn = document.getElementById('xrayOn'), ghostBtn = document.getElementById('xrayGhost');
+xrayBtn.onclick = () => { xray = !xray; sys.group.visible = xray; xrayBtn.className = xray ? 'on' : ''; };
+ghostBtn.onclick = () => {
+  ghost = !ghost;
+  shellMats.forEach(m => { m.transparent = ghost; m.opacity = ghost ? 0.16 : 1; m.depthWrite = !ghost; m.needsUpdate = true; });
+  ghostBtn.className = ghost ? 'on' : '';
+};
 
 // ── sun controls ────────────────────────────────────────────────────────────
 const hourEl = document.getElementById('hour'), doyEl = document.getElementById('doy');
