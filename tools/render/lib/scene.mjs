@@ -14,7 +14,7 @@ import G, {
   LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
   STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS,
 } from '/model/geometry.mjs';
-import { OPENINGS, GARAGE_OPENINGS } from '/model/openings.mjs';
+import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
 import * as MAT from './textures.mjs';
 
 const F = (inches) => inches / 12;
@@ -131,7 +131,7 @@ function wallRun({ axis, bandLo, bandHi, from, to, zBot, zTop, ffe, mat, glass, 
     const sill = ffe + o.sill, head = ffe + o.head;
     seg(s, s + o.len, zBot, Math.max(zBot, sill), mat);      // below the opening
     seg(s, s + o.len, Math.min(zTop, head), zTop, mat);      // above it
-    if (head > sill) {
+    if (head > sill && glass) {
       const gm = axis === 'H'
         ? mbox(s, s + o.len, bandLo + 3, bandHi - 3, sill, head, glass, { cast: false })
         : mbox(bandLo + 3, bandHi - 3, s, s + o.len, sill, head, glass, { cast: false });
@@ -246,6 +246,99 @@ function buildHouse(M) {
   return g;
 }
 
+/** Thin frames and mullions at every opening — cheap, and the single biggest
+ *  step from "massing study" to "building". */
+function buildFrames(M) {
+  const g = new THREE.Group();
+  const FR = 2.5;
+  const all = [...OPENINGS.filter(o => o.level !== 'L2' || true)];
+  for (const o of all) {
+    if (o.type === 'opening' || o.type === 'garage') continue;
+    const lvl = LEVELS.find(l => l.id === o.level);
+    const sill = lvl.ffe + o.sill, head = lvl.ffe + o.head;
+    if (head - sill < 6) continue;
+    const H = o.orient === 'H';
+    const a0 = H ? o.x : o.y, a1 = a0 + o.len;
+    const bLo = (H ? o.y : o.x) + 1, bHi = bLo + o.wallT - 2;
+    const put = (p0, p1, z0, z1) => g.add(H
+      ? mbox(p0, p1, bLo, bHi, z0, z1, M.frame, { cast: false })
+      : mbox(bLo, bHi, p0, p1, z0, z1, M.frame, { cast: false }));
+    put(a0, a1, sill, sill + FR);
+    put(a0, a1, head - FR, head);
+    put(a0, a0 + FR, sill, head);
+    put(a1 - FR, a1, sill, head);
+    const panes = Math.max(1, Math.round(o.len / 54));
+    for (let i = 1; i < panes; i++) {
+      const p = a0 + (o.len * i) / panes;
+      put(p - FR / 2, p + FR / 2, sill, head);
+    }
+  }
+  return g;
+}
+
+/** Interior fit-out: floors, plaster, ceiling boards, and furniture massing.
+ *  Without this the interior views read as an open pavilion. */
+function buildInterior(M) {
+  const g = new THREE.Group();
+  const T = BAR.extWall;
+  for (const lvlId of ['L0', 'L1', 'L2']) {
+    const fp = FOOTPRINTS[lvlId];
+    const lvl = LEVELS.find(l => l.id === lvlId);
+    // floor
+    g.add(mbox(fp.x0 + T, fp.x1 - T, fp.y0 + T, fp.y1 - T, lvl.ffe, lvl.ffe + 1, M.floor, { cast: false }));
+    // Interior face of the exterior wall — split by the SAME openings, or it
+    // simply walls up the view (which is exactly what the first version did).
+    const top = lvl.ffe + lvl.clear;
+    const ops = OPENINGS.filter(o => o.level === lvlId);
+    const liner = (axis, bandLo, from, to) => wallRun({
+      axis, bandLo, bandHi: bandLo + 1.5, from, to,
+      zBot: lvl.ffe, zTop: top + 80, ffe: lvl.ffe,
+      mat: M.plaster, glass: null, group: g, openings: ops,
+    });
+    liner('H', T, fp.x0 + T, fp.x1 - T);
+    liner('H', fp.y1 - T - 1.5, fp.x0 + T, fp.x1 - T);
+    liner('V', T, fp.y0 + T, fp.y1 - T);
+    liner('V', fp.x1 - T - 1.5, fp.y0 + T, fp.y1 - T);
+
+    // partitions from the room rectangles, honouring the open edges
+    for (const r of (ROOMS[lvlId] ?? [])) {
+      if (r.link) continue;
+      const open = OPEN_EDGES[r.id] ?? [];
+      if (!open.includes('N') && r.y + r.h < fp.y1 - T - 2)
+        g.add(mbox(r.x, r.x + r.w, r.y + r.h, r.y + r.h + 4, lvl.ffe, lvl.ffe + lvl.clear, M.plaster));
+      if (!open.includes('E') && r.x + r.w < fp.x1 - T - 2)
+        g.add(mbox(r.x + r.w, r.x + r.w + 4, r.y, r.y + r.h, lvl.ffe, lvl.ffe + lvl.clear, M.plaster));
+    }
+  }
+  // ceiling boards under the sloping roof of the great room
+  const RA = ROOFS[0];
+  g.add(prismYZ([[10, RA.topAtY0 - ROOF_ASSEMBLY - 2], [302, RA.topAtY1 - ROOF_ASSEMBLY - 2],
+                 [302, RA.topAtY1 - ROOF_ASSEMBLY], [10, RA.topAtY0 - ROOF_ASSEMBLY]],
+                 ft(0) + 10, ft(48), M.ceilWood, { cast: false }));
+
+  // ---- FURNITURE MASSING -------------------------------------------------
+  const L1f = L1.ffe;
+  const sofa = (x, y, w, d) => {
+    g.add(mbox(x, x + w, y, y + d, L1f, L1f + 16, M.fabric));
+    g.add(mbox(x, x + w, y + d - 8, y + d, L1f, L1f + 30, M.fabric));
+  };
+  sofa(330, 40, 108, 38);                                   // great room
+  g.add(mbox(300, 372, 92, 128, L1f, L1f + 16, M.wood));    // coffee table
+  g.add(mbox(600, 690, 60, 96, L1f + 27, L1f + 30, M.wood));// dining top
+  for (const [tx, ty] of [[606, 66], [678, 66], [606, 84], [678, 84]])
+    g.add(mbox(tx, tx + 4, ty, ty + 4, L1f, L1f + 27, M.wood));
+  for (let i = 0; i < 4; i++) g.add(mbox(604 + i * 22, 622 + i * 22, 40, 58, L1f, L1f + 34, M.fabric));
+  g.add(mbox(748, 840, 60, 96, L1f, L1f + 36, M.stoneTop)); // kitchen island
+  g.add(mbox(752, 850, 190, 216, L1f, L1f + 36, M.wood));   // kitchen run
+  g.add(mbox(40, 120, 40, 116, L1f, L1f + 26, M.fabric));   // primary bed
+  // lower level + upper beds
+  g.add(mbox(40, 150, 40, 90, L0.ffe, L0.ffe + 16, M.fabric));
+  g.add(mbox(600, 680, 40, 116, L2.ffe, L2.ffe + 26, M.fabric));
+  // wood stove at the masonry mass
+  g.add(mbox(ft(23) - 12, ft(23) + 12, 134, 158, L1f, L1f + 34, M.steel));
+  return g;
+}
+
 // ── ENTOURAGE: trees, distant ridges, driveway ──────────────────────────────
 function buildTrees(count = 240) {
   const r = rng(1234);
@@ -317,24 +410,28 @@ function mergeCones(list) {
 /** Layered Blue Ridge silhouettes — atmospheric depth is what sells a mountain view. */
 function buildRidges() {
   const g = new THREE.Group();
+  // Layered Blue Ridge silhouettes. Low amplitude and many segments: real
+  // ridgelines are long and soft, not a row of triangles.
   const layers = [
-    { z: 900, h: 210, base: -260, c: 0x51637a, seed: 3 },
-    { z: 1500, h: 300, base: -300, c: 0x66788d, seed: 9 },
-    { z: 2300, h: 420, base: -340, c: 0x8496a8, seed: 21 },
+    { z: 1100, h: 120, base: -210, c: 0x7d90a6, seed: 3,  o: 0.95 },
+    { z: 1900, h: 175, base: -250, c: 0x91a3b6, seed: 9,  o: 0.85 },
+    { z: 2900, h: 250, base: -300, c: 0xa6b5c5, seed: 21, o: 0.72 },
   ];
   for (const L of layers) {
     const r = rng(L.seed);
+    const W = 5200, N = 220;
     const pts = [];
-    const W = 4200, N = 60;
+    let h = 0.5;
     for (let i = 0; i <= N; i++) {
       const t = i / N;
-      const y = L.base + L.h * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 9 + r() * 2)) * (0.6 + 0.6 * r()));
-      pts.push(new THREE.Vector2(-W / 2 + t * W, y));
+      h = h * 0.86 + r() * 0.14;                                  // correlated walk
+      const swell = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(t * 4.1 + L.seed));
+      pts.push(new THREE.Vector2(-W / 2 + t * W, L.base + L.h * (0.55 + h * 1.4) * swell));
     }
     const shape = new THREE.Shape(pts);
-    shape.lineTo(W / 2, L.base - 400); shape.lineTo(-W / 2, L.base - 400); shape.closePath();
+    shape.lineTo(W / 2, L.base - 700); shape.lineTo(-W / 2, L.base - 700); shape.closePath();
     const m = new THREE.Mesh(new THREE.ShapeGeometry(shape),
-      new THREE.MeshBasicMaterial({ color: L.c, fog: true }));
+      new THREE.MeshBasicMaterial({ color: L.c, fog: true, transparent: true, opacity: L.o }));
     m.position.set(F(ft(36)), 0, L.z);
     m.rotation.y = Math.PI;
     g.add(m);
@@ -392,6 +489,13 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     garageDoor: MAT.simple(0x2a2e33, 0.6),
     deck: MAT.simple(0x2f2823, 0.88),
     steel: MAT.simple(0x14171a, 0.55, 0.35),
+    frame: MAT.simple(0x191c20, 0.45, 0.25),
+    floor: MAT.floorMaterial(),
+    plaster: MAT.plasterMaterial(),
+    ceilWood: MAT.ceilingWoodMaterial(),
+    fabric: MAT.simple(0x6d6a63, 0.95),
+    wood: MAT.simple(0x6b4f33, 0.7),
+    stoneTop: MAT.simple(0xb9b3a8, 0.42),
   };
 
   buildSky(renderer, scene, sun.dir);
@@ -399,6 +503,8 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
 
   scene.add(buildTerrain());
   scene.add(buildHouse(M));
+  scene.add(buildInterior(M));
+  scene.add(buildFrames(M));
   scene.add(buildDrive(M));
   scene.add(buildTrees());
   scene.add(buildRidges());

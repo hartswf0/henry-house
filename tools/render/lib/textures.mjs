@@ -280,3 +280,70 @@ export function glassMaterial({ opacity = 0.16, tint = 0x0f1a20 } = {}) {
 
 export const simple = (color, roughness = 0.8, metalness = 0) =>
   new THREE.MeshStandardMaterial({ color, roughness, metalness });
+
+// ── INTERIOR FINISHES ───────────────────────────────────────────────────────
+export function floorMaterial({ size = 1024, boards = 9 } = {}) {
+  const { c: hc, x: hx } = canvas(size, size);
+  hx.putImageData(fbm(0, hx, size, size, 41, 6, 0.04, 0.55), 0, 0);
+  const bh = size / boards;
+  const rnd = R(13);
+  hx.globalCompositeOperation = 'multiply';
+  for (let i = 0; i < boards; i++) {
+    const v = 0.70 + rnd() * 0.28;
+    hx.fillStyle = `rgb(${v*255|0},${v*255|0},${v*255|0})`;
+    hx.fillRect(0, i * bh + 1.5, size, bh - 3);
+    hx.fillStyle = '#0d0d0d'; hx.fillRect(0, i * bh - 1, size, 2);
+  }
+  hx.globalCompositeOperation = 'source-over';
+  hx.globalAlpha = 0.13;
+  for (let i = 0; i < 700; i++) {
+    const y0 = rnd() * size, x0 = rnd() * size;
+    hx.strokeStyle = rnd() > 0.5 ? '#fff' : '#000';
+    hx.lineWidth = 0.6 + rnd() * 1.4;
+    hx.beginPath(); hx.moveTo(x0, y0); hx.lineTo(x0 + 90 + rnd() * 300, y0 + (rnd() - 0.5) * 3); hx.stroke();
+  }
+  hx.globalAlpha = 1;
+  const { c: cc, x: cx } = canvas(size, size);
+  cx.fillStyle = '#8d6b48'; cx.fillRect(0, 0, size, size);
+  cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.72; cx.drawImage(hc, 0, 0);
+  return new THREE.MeshStandardMaterial({
+    map: tex(cc, [5, 5], true),
+    normalMap: tex(normalFromHeight(hc, 1.3), [5, 5]),
+    roughness: 0.55, metalness: 0, envMapIntensity: 0.4,
+  });
+}
+
+export function plasterMaterial({ size = 512 } = {}) {
+  const { c: hc, x: hx } = canvas(size, size);
+  hx.putImageData(fbm(0, hx, size, size, 61, 5, 0.05, 0.5), 0, 0);
+  const { c: cc, x: cx } = canvas(size, size);
+  cx.fillStyle = '#b8b0a3'; cx.fillRect(0, 0, size, size);
+  cx.globalAlpha = 0.10; cx.drawImage(hc, 0, 0);
+  return new THREE.MeshStandardMaterial({
+    map: tex(cc, [3, 3], true),
+    normalMap: tex(normalFromHeight(hc, 0.6), [3, 3]),
+    roughness: 0.94, metalness: 0, envMapIntensity: 0.5,
+  });
+}
+
+export function ceilingWoodMaterial({ size = 512, boards = 14 } = {}) {
+  const { c: hc, x: hx } = canvas(size, size);
+  hx.putImageData(fbm(0, hx, size, size, 71, 5, 0.05, 0.5), 0, 0);
+  const bh = size / boards;
+  hx.globalCompositeOperation = 'multiply';
+  const rnd = R(23);
+  for (let i = 0; i < boards; i++) {
+    const v = 0.74 + rnd() * 0.24;
+    hx.fillStyle = `rgb(${v*255|0},${v*255|0},${v*255|0})`;
+    hx.fillRect(0, i * bh + 1, size, bh - 2);
+    hx.fillStyle = '#111'; hx.fillRect(0, i * bh - 0.8, size, 1.6);
+  }
+  const { c: cc, x: cx } = canvas(size, size);
+  cx.fillStyle = '#7d6042'; cx.fillRect(0, 0, size, size);
+  cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.66; cx.drawImage(hc, 0, 0);
+  return new THREE.MeshStandardMaterial({
+    map: tex(cc, [4, 2], true),
+    normalMap: tex(normalFromHeight(hc, 1.0), [4, 2]),
+    roughness: 0.72, metalness: 0, envMapIntensity: 0.4,
+  });
+}
