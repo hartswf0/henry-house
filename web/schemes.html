@@ -46,8 +46,13 @@ window.setupScheme = function (id, w, h, viewId) {
     accum.reset();
     state = { cam, accum, ...built };
     // exposed so tools/check/plan3d.mjs can walk the built graph and prove the
-    // model contains the same fixtures, at the same coordinates, as the plan
+    // model contains the same fixtures, at the same coordinates, as the plan.
+    // __building is the house without terrain or vegetation and __ground is
+    // the finished grade under it, so tools/check/envelope.mjs can ask what a
+    // mesh IS and how far it sits above the dirt instead of inferring both.
     window.__scene = built.scene;
+    window.__building = built.building;
+    window.__ground = built.heightAt;
     return { ok: true, name: built.scheme.name, metrics: built.metrics, view: V.id, w: V.w, h: V.h };
   } catch (e) { window.__error = e.message + '\n' + e.stack; return { ok: false, error: e.message }; }
 };

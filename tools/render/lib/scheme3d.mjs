@@ -202,6 +202,9 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
 
   return {
     scene, scheme: s, metrics: metrics(s),
+    // the building alone, and the finished ground under it — tools/check reads
+    // both, so a check never has to infer which meshes are the house
+    building: g, heightAt: groundFn,
     rig: { sun: sunLight, skyLight, focus,
            sunDir: sun.dir.clone(), sunSpread: 0.035, sunDistance: 900, skyDistance: 700 },
   };

@@ -1,7 +1,9 @@
 # 08 — THE 3D NEEDS A REBUILD, NOT ANOTHER FIX
 
-**Status: the drawings are sound, the 3D is not.** This is the handoff note for
-that rebuild. Read it before touching `tools/render/lib/build3d.mjs`.
+**Status: done. `npm test` is 14/14 including the loop below.** Sections A–E are
+the handoff note as it was written before the rebuild; section F is what the
+rebuild actually found and did, including where this note's own target was
+wrong. Read the whole thing before touching `tools/render/lib/build3d.mjs`.
 
 ---
 
@@ -110,3 +112,113 @@ nothing.
   cover: it matches fixtures only. **It never checked a wall.** That gap is
   precisely where the slop lives.
 - **The mobile gallery and the repository index**, both verified at 390 × 844.
+
+---
+
+## F. WHAT THE REBUILD FOUND
+
+### F.1 The check was broken, not the band filter
+
+Section D blamed OUTLINE's band filter for reporting "nothing built at this
+level" against a house with a hundred walls in it. That was wrong, and it is
+worth recording why, because the wrong diagnosis would have had me tuning
+thresholds forever.
+
+**A mesh's `matrixWorld` is identity until something renders the scene.** The
+check read bounding boxes straight after `setupScheme`, so it measured every
+piece of every house stacked on top of every other at the origin. One line —
+`updateMatrixWorld(true)` — and OUTLINE went from 0/11 to 11/11 with no change
+to any filter. The same bug made the first run of the new SOLID check report
+239,660 interpenetrating pairs; the real number was 560.
+
+The deeper fix is that these checks no longer infer what a mesh is from its
+dimensions. `build3d.mjs` tags every mesh — `wall`, `partition`, `glass`,
+`floor`, `stair`, `fixture`, `furniture`, `post`, `footing`, `pier`, `deck`,
+`guard`, `roof`, `fascia`, `plinth` — and the checks read the tag. A check that
+has to guess what it is looking at cannot be trusted when it passes either.
+
+### F.2 The roof was 6.7 ft clear of the wall
+
+`roofBase()` takes its height from `scheme.volumes` (ffe + 120 × storeys) while
+the walls now come from the plan (ffe + 106). On the Armature that put the roof
+underside 14 in above the wall at the downhill face — and because the plane
+slopes, **80 in above it at the uphill face.** A flat-topped wall cannot meet a
+sloping plane at more than one line, so no amount of adjusting the base would
+have closed it.
+
+Two changes, both removals of a second source:
+
+- the roof base is derived from **the plan's top plate**, projected back down
+  its own slope to the roof's low edge, so the underside meets the wall exactly
+  where the wall is;
+- a wall's top **follows the roof**, via a box whose four top corners move
+  (`slab()`). It is one mesh, every face stays planar, the UVs survive. So
+  these are now real shed sections — high on the cut side, low at the eave —
+  and the alternative (a second system of gable infill pieces) never had to
+  exist.
+
+### F.3 The four checks caught eleven real defects
+
+SOLID and SUPPORT went in as new members of the loop. Between them they found,
+in order of how much they mattered:
+
+| Found | Where it was fixed |
+|---|---|
+| A WC placed **inside the shower** in six schemes, and inside the tub in the Spine — in the DRAWINGS as well as the model | `layoutBath` gives the end wall to the wet fixture first |
+| A 30 in washer in a laundry with 21 in of clear depth, coming out through the front of the building | `alongWall` now tests depth, which it never did |
+| Fixtures and stair treads placed to the wall LINE, so they sat partly inside the walls beside them | a room's rect is now its CLEAR rect, inside its walls |
+| Stairs buried in the floor above — no stairwell opening anywhere | floor plates are cut around any flight that arrives |
+| The Narrow's porch drawn 2 ft clear of the house: the front door opened onto a gap, and the porch was structurally detached | a deck within reach is extended to meet the wall it serves |
+| Every deck post stopping 10 in short of the decking it carried | post runs to the underside |
+| Every pier stopping 3 in short of the floor it carried, and some rising THROUGH a deck into its guard rail | a pier stops under the lowest thing over it, tested against its own radius |
+| Guard rails standing inside the wall on uphill terraces | the guard goes on the open edge |
+| Two posts in one place where a deck post and a roof post coincided | one shared register of where a post already stands |
+| Corner doubles, and partitions buried in the exterior walls they ran into | runs stop at the face of what they meet |
+| A plinth rising through the slab above it | capped under the lowest floor |
+
+That is the honest reason the walkthrough looked the way it did. None of it was
+visible in a passing test suite, because nothing was testing it.
+
+### F.4 On the 120-mesh target in section C — it was the wrong test
+
+Section C says "under 120 meshes for a 616 sf house; if it is over 200, two
+systems are still running." The Armature builds **203**. Two things about that:
+
+**The denominator was wrong.** 616 sf is the Armature's PHASE 1 conditioned
+area, from its phasing table. The plan that gets built is the mature house:
+1,540 sf, 22 rooms, 24 doorways. Twenty-two rooms need at least twenty-two
+partitions before a single door splits a run into pieces. 203 is 78 partitions,
+28 exterior wall pieces, 8 glass, 29 fixtures and furniture, and 43 pieces of
+pier, footing, post and guard.
+
+**More importantly, the count was only ever a proxy.** What it was trying to
+detect is "two systems are building the same thing," and SOLID now measures
+exactly that, directly, by volume of interpenetration. It found and killed the
+last instance (the doubled post) that a mesh count would only have hinted at.
+A number that stands in for a property is worth keeping only until you can
+measure the property.
+
+So the target is retired, not met. The count is still worth watching — it fell
+from 305 to 203 on the Armature while the house gained stairwells, sloping wall
+heads and a porch that reaches the building — but SOLID is the test.
+
+### F.5 The loop
+
+`npm test` now runs it. Four checks, all passing:
+
+```
+OUTLINE   11/11 · the built envelope matches the checked plan on every level
+SOLID     no two solids occupy the same space in any scheme
+SUPPORT   every solid reaches the ground through solids
+DAYLIGHT  the interior sees out
+```
+
+SUPPORT is worth understanding before trusting it: it does **not** ask "is
+something underneath this." It seeds with every solid resting on the finished
+grade and floods outward through contact, so a piece is supported only if there
+is a chain of touching solids from it to the ground. A floating box resting on
+another floating box passes the naive test and fails this one.
+
+What none of them say: that the house is engineered, code-compliant or
+buildable. They say the model is the same building as the drawing, that it
+stands up, and that its windows are windows.

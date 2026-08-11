@@ -23,9 +23,47 @@ import { SIZES } from './fixtures.mjs';
 const S = SIZES;
 const FT = 12;
 
-/** Room rect in inches. +y is UPHILL (service side); -y is DOWNHILL (the view). */
-const box = (r) => ({ x0: r.x0 * FT, y0: r.y0 * FT, x1: (r.x0 + r.w) * FT, y1: (r.y0 + r.d) * FT,
-                      w: r.w * FT, d: r.d * FT });
+// Wall thicknesses, matching tools/render/lib/build3d.mjs. A room rectangle in
+// the plan is to the wall LINE; the room you can actually stand in is inside
+// the walls that sit on those lines.
+const EXT = 10, INT = 5;
+
+/**
+ * A room's CLEAR rect in inches — inside its walls, which is where a toilet
+ * actually goes. +y is UPHILL (service side); -y is DOWNHILL (the view).
+ *
+ * Taking the rect to the wall line instead put fixtures and stair treads
+ * partly inside the walls beside them: the SOLID check found a lavatory 56%
+ * buried in the Armature's plumbing wall and a Bridge stair tread two thirds
+ * inside a partition. Because both the drawing and the model read this one
+ * generator, correcting it here moves the toilet in the plan and the toilet in
+ * the 3D together, and they cannot drift apart.
+ *
+ * The insets are not symmetric, because the walls are not. build3d puts a
+ * partition on a room's WEST and UPHILL faces — the room to the east or uphill
+ * of the line owns that wall — so those two faces lose a partition's thickness
+ * and the other two lose nothing, except where the face is the outside of the
+ * building and loses the exterior wall instead.
+ */
+const box = (r, E) => {
+  const x0 = r.x0 * FT, y0 = r.y0 * FT, x1 = (r.x0 + r.w) * FT, y1 = (r.y0 + r.d) * FT;
+  const on = (a, b) => Math.abs(a - b) < 2;
+  const cx0 = x0 + (E && on(x0, E.x0) ? EXT : INT);
+  const cy1 = y1 - (E && on(y1, E.y1) ? EXT : INT);
+  const cx1 = x1 - (E && on(x1, E.x1) ? EXT : 0);
+  const cy0 = y0 + (E && on(y0, E.y0) ? EXT : 0);
+  return { x0: cx0, y0: cy0, x1: cx1, y1: cy1, w: cx1 - cx0, d: cy1 - cy0 };
+};
+
+/** The level's outline in inches — the outside face of the building. */
+const outlineOf = (lv) => {
+  const rs = lv.rooms ?? [];
+  if (!rs.length) return null;
+  return {
+    x0: Math.min(...rs.map(r => r.x0)) * FT, x1: Math.max(...rs.map(r => r.x0 + r.w)) * FT,
+    y0: Math.min(...rs.map(r => r.y0)) * FT, y1: Math.max(...rs.map(r => r.y0 + r.d)) * FT,
+  };
+};
 
 let seq = 0;
 const F = (level, type, x, y, w, d, face, opts = {}) =>
@@ -38,15 +76,21 @@ const F = (level, type, x, y, w, d, face, opts = {}) =>
  * bath too small for its fixtures should show as a bath missing a fixture,
  * which is a finding, not as fixtures drawn through a wall, which is a lie.
  */
-function alongWall(out, level, b, wall, items, { inset = 4, gap = 3 } = {}) {
+function alongWall(out, level, b, wall, items, { inset = 4, gap = 3, from } = {}) {
   const horizontal = wall === 'N' || wall === 'S';
-  let cursor = (horizontal ? b.x0 : b.y0) + inset;
+  let cursor = from ?? ((horizontal ? b.x0 : b.y0) + inset);
   const limit = (horizontal ? b.x1 : b.y1) - inset;
   for (const [type, opts = {}] of items) {
     const sz = S[type] ?? { w: 24, d: 24, h: 34 };
     const w = opts.w ?? sz.w, dpt = opts.d ?? sz.d;
     const run = horizontal ? w : dpt, depth = horizontal ? dpt : w;
     if (cursor + run > limit) continue;                 // does not fit — omit it
+    // …and it has to fit ACROSS the wall as well as along it. Only the run was
+    // ever tested, so a 30" deep washer went into a laundry with 21" of clear
+    // depth and came out the front of the building. The rule this file states
+    // for length applies to depth for the same reason: a room too shallow for
+    // its appliance is a finding, and an appliance through a wall is a lie.
+    if (depth > (horizontal ? b.d : b.w)) continue;
     let x, y, face;
     if (wall === 'N') { x = cursor; y = b.y1 - depth; face = 'S'; }
     else if (wall === 'S') { x = cursor; y = b.y0; face = 'N'; }
@@ -64,14 +108,27 @@ function layoutBath(out, level, r, b) {
   // Everything hangs on the UPHILL wall, which is the plumbing wall. The tub
   // goes on an end wall because a 60" tub rarely fits the same run as a WC
   // and a lavatory.
+  //
+  // The wet fixture claims the end wall FIRST, and the plumbing wall then
+  // starts clear of it. Running both from the same west corner put the WC
+  // inside the shower — 48% inside it in five schemes, 66% in two more, and a
+  // WC inside the tub in the Spine. That was in the DRAWINGS as well as the
+  // model, because both read this generator, which is exactly why it is worth
+  // having one: fixing it here fixes the plan and the 3D in the same edit.
   const wide = b.w >= 96;
+  const area = (b.w / 12) * (b.d / 12);
+  const wet = (b.w >= 84 && area >= 70) ? ['tub', 'TUB']
+            : b.w >= 52 ? ['shower36', 'SHOWER'] : null;
+  let taken = 0;
+  if (wet) {
+    const before = out.length;
+    alongWall(out, level, b, 'W', [[wet[0], { label: wet[1] }]]);
+    if (out.length > before) taken = out[out.length - 1].w;   // its reach along x
+  }
   alongWall(out, level, b, 'N', [
     ['wc', { label: 'WC' }],
     [wide ? 'lav2' : 'lav', { label: wide ? 'DOUBLE VANITY' : 'LAV' }],
-  ]);
-  const area = (b.w / 12) * (b.d / 12);
-  if (b.w >= 84 && area >= 70) alongWall(out, level, b, 'W', [['tub', { label: 'TUB' }]]);
-  else if (b.w >= 52) alongWall(out, level, b, 'W', [['shower36', { label: 'SHOWER' }]]);
+  ], taken ? { from: b.x0 + taken + 3 } : {});
 }
 
 function layoutKitchen(out, level, r, b) {
@@ -173,9 +230,10 @@ export function stairsFor(plan) {
   const ffes = plan.levels.map(l => l.ffe).sort((a, b) => a - b);
   for (const lv of plan.levels) {
     const above = ffes.find(z => z > lv.ffe + 0.5);
+    const E = outlineOf(lv);
     for (const r of lv.rooms ?? []) {
       if (r.use !== 'circ' || !/stair/i.test(r.name)) continue;
-      const b = box(r);
+      const b = box(r, E);
       const rise = above != null ? (above - lv.ffe) * 12 : 120;
       const risers = Math.max(2, Math.round(rise / 7.4));
       const run = b.d >= b.w ? 'Y' : 'X';
@@ -196,10 +254,11 @@ export function furnish(plan) {
   seq = 0;
   const out = [];
   for (const lv of plan.levels ?? []) {
+    const E = outlineOf(lv);
     for (const r of lv.rooms ?? []) {
       const fn = LAYOUT[r.use];
       if (!fn) continue;
-      fn(out, lv.ffe, r, box(r));
+      fn(out, lv.ffe, r, box(r, E));
     }
   }
   return out;
