@@ -1,0 +1,268 @@
+{
+  "id": "S1-ARMATURE",
+  "levels": [
+    {
+      "ffe": 4,
+      "name": "MAIN",
+      "rooms": [
+        {
+          "name": "BED 2 WEST",
+          "use": "bed",
+          "x0": 0,
+          "y0": 2,
+          "w": 14,
+          "d": 10,
+          "phase": 2
+        },
+        {
+          "name": "WOOD + GEAR STORE",
+          "use": "store",
+          "x0": 0,
+          "y0": 12,
+          "w": 10,
+          "d": 8,
+          "phase": 2
+        },
+        {
+          "name": "ANTE 1",
+          "use": "circ",
+          "x0": 10,
+          "y0": 12,
+          "w": 4,
+          "d": 8,
+          "phase": 2
+        },
+        {
+          "name": "GALLERY 1",
+          "use": "circ",
+          "x0": 0,
+          "y0": 20,
+          "w": 14,
+          "d": 4,
+          "phase": 2
+        },
+        {
+          "name": "BED 1 PRIMARY",
+          "use": "bed",
+          "x0": 14,
+          "y0": 2,
+          "w": 14,
+          "d": 10,
+          "phase": 1
+        },
+        {
+          "name": "LIVING",
+          "use": "living",
+          "x0": 14,
+          "y0": 12,
+          "w": 14,
+          "d": 8,
+          "phase": 1
+        },
+        {
+          "name": "GALLERY 2",
+          "use": "circ",
+          "x0": 14,
+          "y0": 20,
+          "w": 14,
+          "d": 4,
+          "phase": 1
+        },
+        {
+          "name": "DINING",
+          "use": "dining",
+          "x0": 28,
+          "y0": 2,
+          "w": 7,
+          "d": 9,
+          "phase": 1
+        },
+        {
+          "name": "KITCHEN",
+          "use": "kitchen",
+          "x0": 28,
+          "y0": 11,
+          "w": 7,
+          "d": 7,
+          "phase": 1
+        },
+        {
+          "name": "ENTRY AIRLOCK",
+          "use": "entry",
+          "x0": 28,
+          "y0": 18,
+          "w": 7,
+          "d": 6,
+          "phase": 1
+        },
+        {
+          "name": "BATH 2",
+          "use": "bath",
+          "x0": 35,
+          "y0": 2,
+          "w": 7,
+          "d": 7,
+          "phase": 2
+        },
+        {
+          "name": "UTILITY",
+          "use": "mech",
+          "x0": 35,
+          "y0": 9,
+          "w": 7,
+          "d": 6,
+          "phase": 1
+        },
+        {
+          "name": "BATH 1",
+          "use": "bath",
+          "x0": 35,
+          "y0": 15,
+          "w": 7,
+          "d": 5,
+          "phase": 1
+        },
+        {
+          "name": "GALLERY 3",
+          "use": "circ",
+          "x0": 35,
+          "y0": 20,
+          "w": 7,
+          "d": 4,
+          "phase": 1
+        },
+        {
+          "name": "BED 3",
+          "use": "bed",
+          "x0": 42,
+          "y0": 2,
+          "w": 14,
+          "d": 10,
+          "phase": 2
+        },
+        {
+          "name": "ANTE 4",
+          "use": "circ",
+          "x0": 42,
+          "y0": 12,
+          "w": 4,
+          "d": 8,
+          "phase": 2
+        },
+        {
+          "name": "STUDY",
+          "use": "work",
+          "x0": 46,
+          "y0": 12,
+          "w": 10,
+          "d": 8,
+          "phase": 2
+        },
+        {
+          "name": "GALLERY 4",
+          "use": "circ",
+          "x0": 42,
+          "y0": 20,
+          "w": 14,
+          "d": 4,
+          "phase": 2
+        },
+        {
+          "name": "BED 4 EAST",
+          "use": "bed",
+          "x0": 56,
+          "y0": 2,
+          "w": 14,
+          "d": 10,
+          "phase": 3
+        },
+        {
+          "name": "ANTE 5",
+          "use": "circ",
+          "x0": 56,
+          "y0": 12,
+          "w": 4,
+          "d": 8,
+          "phase": 3
+        },
+        {
+          "name": "STUDIO",
+          "use": "work",
+          "x0": 60,
+          "y0": 12,
+          "w": 10,
+          "d": 8,
+          "phase": 3
+        },
+        {
+          "name": "GALLERY 5",
+          "use": "circ",
+          "x0": 56,
+          "y0": 20,
+          "w": 14,
+          "d": 4,
+          "phase": 3
+        }
+      ]
+    }
+  ],
+  "doors": [
+    {
+      "x": 31.5,
+      "y": 24,
+      "face": "N",
+      "kind": "entry",
+      "ffe": 4
+    },
+    {
+      "x": 31.5,
+      "y": 2,
+      "face": "S",
+      "kind": "porch",
+      "ffe": 4
+    },
+    {
+      "x": 21,
+      "y": 2,
+      "face": "S",
+      "kind": "porch",
+      "ffe": 4
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "face": "S",
+      "kind": "porch",
+      "ffe": 4
+    },
+    {
+      "x": 49,
+      "y": 2,
+      "face": "S",
+      "kind": "porch",
+      "ffe": 4
+    },
+    {
+      "x": 63,
+      "y": 2,
+      "face": "S",
+      "kind": "porch",
+      "ffe": 4
+    },
+    {
+      "x": 0,
+      "y": 22,
+      "face": "W",
+      "kind": "exit",
+      "ffe": 4
+    },
+    {
+      "x": 70,
+      "y": 22,
+      "face": "E",
+      "kind": "exit",
+      "ffe": 4
+    }
+  ],
+  "notes": "The massing showed five bays and one roof; only the plan shows the two lines that make the phasing real. First, the GALLERY: a 4 ft spine pinned to the cold uphill wall, running the full 70 ft, drawn and paid for at 252 sf plus three 32 sf antes. It is why bays 1, 4 and 5 become rooms without cutting the roof or the wet wall - each future bay is the identical tile (bed 14x10 on the downhill glass, a 10x8 dry room behind it, 4 ft of gallery at the cut face), and the only site work in phase 2 or 3 is infill between existing posts. Second, the ARTERY: one wall at x=35 running y2 to y24, 22 ft, inboard on both faces in every phase, so the two temporary phase-1 exterior walls at x=14 and x=42 carry no pipe. Every fixture in the mature house hangs on it - kitchen and utility on the west and east at mid-run, BATH 1 above, BATH 2 below - and the future bays are entirely DRY: phase 2 and phase 3 add four rooms and not one foot of new plumbing. BATH 2's drain, vent and supply are stubbed and capped in phase 1 while the wall is open; phase 2 sets fixtures only. The wall is opened once, ever. Worst compromise: the phase-1 LIVING room is landlocked. Bay 2 is 14 ft wide and 22 ft deep, the bedroom must have the downhill glass and 10 ft of depth, and the gallery takes 4 - which leaves the living room a 14x8 interior box with no exterior wall, lit by a rooflight in the one roof and by borrowed light through the 6 ft opening to the kitchen. I accepted that because at 3,400 ft the real living room is the 70 ft porch on the downhill side, and because the alternative was a bedroom with no egress. The second-worst: bays 1 and 5 walk the gallery to BATH 1, up to 30 ft. That walk is the price of a single artery, and I would rather walk it than pipe it."
+}

@@ -37,6 +37,9 @@ window.setupScheme = function (id, w, h) {
     const accum = new Accumulator(renderer, w, h);
     accum.reset();
     state = { cam, accum, ...built };
+    // exposed so tools/check/plan3d.mjs can walk the built graph and prove the
+    // model contains the same fixtures, at the same coordinates, as the plan
+    window.__scene = built.scene;
     return { ok: true, name: built.scheme.name, metrics: built.metrics };
   } catch (e) { window.__error = e.message + '\n' + e.stack; return { ok: false, error: e.message }; }
 };

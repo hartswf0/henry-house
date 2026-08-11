@@ -13,8 +13,9 @@
     "check": "node tools/check/run-checks.mjs",
     "check:model": "node tools/check/clash.mjs",
     "check:pages": "node tools/render/walkcheck.mjs",
-    "test": "node tools/check/run-checks.mjs",
-    "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/check/run-checks.mjs"
+    "test": "node tools/check/run-checks.mjs && node tools/check/plan3d.mjs",
+    "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/check/run-checks.mjs",
+    "check:plan3d": "node tools/check/plan3d.mjs"
   },
   "dependencies": {
     "playwright": "^1.49.0",

@@ -17,6 +17,8 @@
 
 import * as THREE from 'three';
 import { roofBase } from '../../../model/schemes.mjs';
+import { planFor } from '../../../model/scheme-plans.mjs';
+import { furnish, stairsFor } from '../../../model/scheme-furnish.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -186,6 +188,57 @@ function stairIn(g, v, zBot, zTop, mat) {
 }
 
 // ── the builder ─────────────────────────────────────────────────────────────
+/**
+ * Interior partitions, fixtures, furniture and stairs — all of it read from
+ * model/scheme-furnish.mjs, THE SAME generator tools/draw/scheme-plan.mjs
+ * draws from. That is the whole mechanism behind "the plans map perfectly to
+ * the 3D": there is one list of toilets in this project, at one set of
+ * coordinates, and both the drawing and the model consume it. Nothing here
+ * invents a position, so nothing here can drift out of step with the plan.
+ */
+function buildInterior(g, scheme, mats) {
+  const plan = planFor(scheme.id);
+  if (!plan) return 0;
+  const { wall, trim, conc, steel } = mats;
+  let placed = 0;
+
+  // partitions, at the same 5 in the plan poches them at
+  for (const lv of plan.levels) {
+    const z0 = ft(lv.ffe), z1 = z0 + STOREY - 14;
+    for (const r of lv.rooms ?? []) {
+      const x0 = ft(r.x0), x1 = ft(r.x0 + r.w), y0 = ft(r.y0), y1 = ft(r.y0 + r.d);
+      g.add(box(x0, x0 + 5, y0, y1, z0, z1, trim, { cast: false }));
+      g.add(box(x0, x1, y1 - 5, y1, z0, z1, trim, { cast: false }));
+    }
+  }
+
+  // fixtures and furniture, each a solid at the generator's own x, y, w, d and
+  // the height that fixture actually is
+  for (const f of furnish(plan)) {
+    const z0 = ft(f.level) + 1;
+    const m = f.type === 'panel' || f.type === 'ahu' || f.type === 'hpwh' || f.type === 'tank' ? steel
+            : f.type === 'rug' ? conc : trim;
+    g.add(box(f.x, f.x + f.w, f.y, f.y + f.d, z0, z0 + (f.h ?? 30), m, { cast: true }));
+    placed++;
+  }
+
+  // stairs, with the riser count the plan prints under its up arrow
+  for (const t of stairsFor(plan)) {
+    const z0 = ft(t.level);
+    for (let i = 0; i < t.risers; i++) {
+      const z = z0 + t.riser * (i + 1);
+      if (t.run === 'Y') {
+        const y = t.y + (t.d / t.risers) * i;
+        g.add(box(t.x + 3, t.x + t.w - 3, y, y + t.d / t.risers, z - t.riser, z, conc, { cast: true }));
+      } else {
+        const x = t.x + (t.w / t.risers) * i;
+        g.add(box(x, x + t.w / t.risers, t.y + 3, t.y + t.d - 3, z - t.riser, z, conc, { cast: true }));
+      }
+    }
+  }
+  return placed;
+}
+
 export function buildScheme(scheme, mats, groundFn) {
   const g = new THREE.Group();
   const { wall, roof, trim, glass, conc, steel, deck } = mats;
@@ -264,5 +317,6 @@ export function buildScheme(scheme, mats, groundFn) {
     g.add(box(G.x0 - 8, G.x1 + 8, G.y1 - 10, G.y1 + 2, zPad - 26, zPad + 34, conc));
   }
 
+  buildInterior(g, scheme, mats);
   return g;
 }
