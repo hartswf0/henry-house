@@ -24,7 +24,7 @@ export const VIEWS = {
     // Stand ON the apron, east of the garage doors, where the drive actually
     // arrives. The old camera sat at the far west end of the court looking down
     // a blank wall — an arrival view with no garage, no apron and no way in.
-    pos: [146, 15.2, -17], target: [86, 13.5, -26], focal: 28, shift: 0.26,
+    pos: [170, 17.5, -4], target: [98, 13.5, -20], focal: 30, shift: 0.24,
     sun: { dayOfYear: 172, hour: 9.6 }, exposure: 1.05, w: 1700, h: 1062,
   },
   'ext-east': {
