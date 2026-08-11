@@ -117,10 +117,8 @@ export function sidingMaterial({ boards = 16, size = 1024 } = {}) {
   hx.globalAlpha = 1;
 
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#241f1c'; cx.fillRect(0, 0, size, size);
-  cx.globalAlpha = 0.5; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
-  cx.globalCompositeOperation = 'multiply';
-  cx.fillStyle = '#4a4038'; cx.fillRect(0, 0, size, size);
+  cx.fillStyle = '#2c3a30'; cx.fillRect(0, 0, size, size);   // dark green, real albedo
+  cx.globalAlpha = 0.42; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
 
   return new THREE.MeshStandardMaterial({
     map: tex(cc, [1, 1], true),
@@ -147,14 +145,14 @@ export function roofMaterial({ pans = 22, size = 1024 } = {}) {
   hx.globalAlpha = 0.14; hx.drawImage(tmp.c, 0, 0); hx.globalAlpha = 1;
 
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#15181c'; cx.fillRect(0, 0, size, size);
-  cx.globalAlpha = 0.17; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
+  cx.fillStyle = '#22262a'; cx.fillRect(0, 0, size, size);
+  cx.globalAlpha = 0.35; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
 
   return new THREE.MeshStandardMaterial({
     map: tex(cc, [1, 1], true),
     normalMap: tex(normalFromHeight(hc, 3.4)),
     normalScale: new THREE.Vector2(1.3, 0.5),
-    roughness: 0.60, metalness: 0.16, color: 0xffffff, envMapIntensity: 0.22,
+    roughness: 0.72, metalness: 0.05, color: 0xffffff, envMapIntensity: 0.10,
   });
 }
 
@@ -271,9 +269,9 @@ export function gravelMaterial({ size = 512 } = {}) {
 // correctly at these angles and costs nothing.
 export function glassMaterial({ opacity = 0.16, tint = 0x0f1a20 } = {}) {
   return new THREE.MeshPhysicalMaterial({
-    color: tint, metalness: 0, roughness: 0.04,
-    transparent: true, opacity,
-    envMapIntensity: 2.1, clearcoat: 1, clearcoatRoughness: 0.03,
+    color: tint, metalness: 0.9, roughness: 0.06,
+    transparent: true, opacity: Math.min(0.85, opacity + 0.34),
+    envMapIntensity: 2.6, clearcoat: 1, clearcoatRoughness: 0.03,
     side: THREE.DoubleSide, depthWrite: false,
   });
 }

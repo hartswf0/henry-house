@@ -405,9 +405,9 @@ function buildInterior(M) {
       if (r.link) continue;
       const open = OPEN_EDGES[r.id] ?? [];
       if (!open.includes('N') && r.y + r.h < fp.y1 - T - 2)
-        g.add(mbox(r.x, r.x + r.w, r.y + r.h, r.y + r.h + 4, lvl.ffe, lvl.ffe + lvl.clear, M.plaster));
+        g.add(mbox(r.x, r.x + r.w, r.y + r.h, r.y + r.h + 4, lvl.ffe, Math.min(lvl.ffe + lvl.clear, (roofTopAt(r.x + r.w / 2, r.y + r.h) ?? 1e5) - ROOF_ASSEMBLY - 2), M.plaster));
       if (!open.includes('E') && r.x + r.w < fp.x1 - T - 2)
-        g.add(mbox(r.x + r.w, r.x + r.w + 4, r.y, r.y + r.h, lvl.ffe, lvl.ffe + lvl.clear, M.plaster));
+        g.add(mbox(r.x + r.w, r.x + r.w + 4, r.y, r.y + r.h, lvl.ffe, Math.min(lvl.ffe + lvl.clear, (roofTopAt(r.x + r.w, r.y + r.h / 2) ?? 1e5) - ROOF_ASSEMBLY - 2), M.plaster));
     }
   }
   // ceiling boards under the sloping roof of the great room
@@ -651,11 +651,11 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false,
     gravel: MAT.gravelMaterial(),
     glass: MAT.glassMaterial({ opacity: interior ? 0.05 : 0.17 }),
     garageDoor: MAT.simple(0x2a2e33, 0.6),
-    deck: MAT.simple(0x2f2823, 0.88),
+    deck: MAT.simple(0x37302a, 0.88),
     steel: MAT.simple(0x14171a, 0.55, 0.35),
     fascia: MAT.simple(0x121519, 0.72, 0),
     gutter: MAT.simple(0x101317, 0.6, 0.1),
-    timber: MAT.simple(0x6b5236, 0.8),
+    timber: MAT.simple(0x403324, 0.9),
     paver: MAT.simple(0x6e6a63, 0.9),
     frame: MAT.simple(0x191c20, 0.45, 0.25),
     floor: MAT.floorMaterial(),
