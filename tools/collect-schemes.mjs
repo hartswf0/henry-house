@@ -111,6 +111,16 @@ if (!journals.length) {
 // rather than hard-coded, so adding an eighth by hand does not silently
 // produce two schemes called S7.
 const { BUILT_SCHEMES } = await import('../model/schemes.mjs');
+// A scheme's own critic outranks this file's geometry checks. Structural
+// validity is necessary and not sufficient: a proposal can pass every check
+// here and still fail to embody the operation it was built to test, and the
+// critic is the only reader that can say so. Verdicts live in the repo so the
+// decision is auditable rather than a judgement made once in a chat window.
+let VERDICTS = {};
+try {
+  const vp = resolve(ROOT, 'refs/workflow-verdicts.json');
+  if (existsSync(vp)) VERDICTS = JSON.parse(readFileSync(vp, 'utf8')).verdicts ?? {};
+} catch { /* absent is fine — then nothing is vetoed */ }
 const BUILT_COUNT = BUILT_SCHEMES.length;
 const seen = new Set();
 const kept = [];
@@ -131,6 +141,14 @@ for (const j of journals) {
     // on the way in — keeping the agent's own stem, which is the part that
     // carries meaning — rather than letting the last one to arrive silently
     // overwrite the first.
+    const originalId = p.id;
+    const veto = VERDICTS[originalId];
+    if (veto && veto.verdict === 'REJECT') {
+      dropped.push({ id: originalId, name: p.name, errs: ['critic REJECT'] });
+      console.log(`  ✗ ${String(originalId).padEnd(16)} REJECTED BY ITS CRITIC — not adopted`);
+      console.log(`      · ${(veto.critic || '').split('\n')[0].slice(0, 150)}`);
+      continue;
+    }
     const stem = (String(p.id || '').split('-').slice(1).join('-')
       || String(p.name || '').toUpperCase().replace(/[^A-Z]+/g, ''))
       .slice(0, 10) || 'ALT';
