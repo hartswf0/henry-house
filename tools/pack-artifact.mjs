@@ -45,6 +45,7 @@ const SHEETS = [
   ['G-001-viable-system-and-cost.png', 'G-001', 'The house as a system, and what it costs', 'What the house does before the weather does it — and the first price in the package.'],
   ['X-101-seven-schemes.png', 'X-101', 'Seven schemes, one scale', 'Six alternatives against the current design, drawn at the same scale over the same hill.'],
   ['R-101-reference-bar.png', 'R-101', 'The reference set, as a bar', 'Six real houses with published numbers — turned into figures every scheme has to beat.'],
+  ['X-102-proposed-schemes.png', 'X-102', 'Proposed schemes', 'What a parallel fan-out proposed, drawn and measured by the same code as X-101.'],
 ];
 /** The alternatives, rendered from ONE fixed camera so this is a comparison. */
 const SCHEME_SHOTS = [
@@ -55,6 +56,8 @@ const SCHEME_SHOTS = [
   ['S4-CORE.png',     'The Core',     'Every expensive, fixed thing in one permanent core. Everything around it is re-plannable.'],
   ['S5-PERCH.png',    'The Perch',    'Refuses the horizontal — small footprint, lifted clear, stacked, one enormous opening downhill.'],
   ['S6-TOWER.png',    'The Tower',    'If the buildable shelf is small, vertical growth is cheaper than long foundations.'],
+  ['S7-DATUM.png',    'The Datum',    'One enormous plane, sized for a far larger building. Four square feet of permanently dry hillside for every one heated.'],
+  ['S8-WATER.png',    'The Catch',    'The roof is sized in gallons, not rooms — one unbroken plane falling away from the cut to a single tank.'],
 ];
 /** Re-encode a PNG to a JPEG data URI at a target width, through the browser. */
 async function jpeg(page, absPath, width, quality) {
@@ -83,6 +86,8 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
 /** "THE SPINE" -> "The Spine". The model shouts; the page for Henry should not. */
 const titleCase = (s) => String(s).toLowerCase().replace(/(^|\s)(\S)/g, (_, sp, c) => sp + c.toUpperCase());
+const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const spell = (n) => WORDS[n] ? WORDS[n][0].toUpperCase() + WORDS[n].slice(1) : String(n);
 // ── build ───────────────────────────────────────────────────────────────────
 const browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox'] });
 const page = await browser.newPage();
@@ -130,6 +135,39 @@ if (Buffer.byteLength(html) > 15.5 * 1024 * 1024) console.log('  ! over the 16 M
 // ── the page ────────────────────────────────────────────────────────────────
 function renderPage({ renders, sheets, shots, gaunt, walk, est, drive, totals, A }) {
   const hero = renders[0];
+  // Written from the gauntlet rather than typed, so the copy cannot claim
+  // "six other houses" once a ninth lands, or claim a clean sweep once one of
+  // them stops beating the opponent.
+  const rivals = gaunt.ranked.length - 1;
+  const beatenByAll = gaunt.ranked.every(r => !r.ab || r.ab.verdict === 'WIN');
+  const others = gaunt.ranked.filter(r => r.scheme.id !== gaunt.opponent.scheme.id);
+  const cheapest = others.reduce((a, r) => (r.cost.total < a.cost.total ? r : a));
+  // Which critic the set is WORST at, found rather than named. This paragraph
+  // used to assert that phasing was the one almost nothing passed. It was true
+  // of the original seven and stopped being true the moment two schemes built
+  // around phasing arrived — so the page now reads the answer off the results.
+  const CRITIC_NOTE = {
+    PHASING: ['One reference house dimensions its rear porch so that it can later become a bedroom.',
+      'Does Henry need all of it on day one, or does he need the part he builds first to be the part that never has to be undone?'],
+    SCALE: ['The largest house in the reference product line holds three bedrooms and two baths in 1,364 sf.',
+      'Does Henry need 3,747 sf at all? That is a question for Henry, not for the model, and everything else here is downstream of it.'],
+    SITE: ['Every cubic yard cut here has to go somewhere, on a site already carrying 5,845 with nowhere designed to put them.',
+      'Is it worth choosing the house that barely touches the hill, before a soils report tells you what the hill will tolerate?'],
+    MAINTENANCE: ['Every roof junction is flashing, snow, ice and a future leak.',
+      'At 3,400 ft, how many junctions is a view worth?'],
+    ENVELOPE: ['Exterior wall is envelope, insulation, cladding, flashing and heat loss — forever.',
+      'How square can Henry stand to be, given every foot of wall is paid for twice: once to build and again every winter?'],
+    SYSTEMS: ['Concentrated plumbing is the single largest transferable lesson in the reference set.',
+      'Is there a version of this house where every pipe lives in one wall you could point at?'],
+    GENEROSITY: ['A small house still has to be generous rather than merely small.',
+      'Which rooms are actually big enough to be worth building, and which are only on the plan because plans have them?'],
+    SHELTER: ['Roofed outdoor room is the cheapest square footage on the site.',
+      'How much of what Henry wants could be roofed and open rather than heated and enclosed?'],
+  };
+  const hardest = Object.keys(gaunt.ranked[0].verdicts)
+    .map(k => ({ name: k, wins: gaunt.ranked.filter(r => r.verdicts[k].verdict === 'WIN').length,
+                 line: CRITIC_NOTE[k]?.[0] ?? '', ask: CRITIC_NOTE[k]?.[1] ?? '' }))
+    .sort((a, b) => a.wins - b.wins)[0];
   const decisions = [
     ['The driveway is 1% too steep for a fire truck',
      `It holds <b>11%</b> over 655 ft with five switchbacks. Fire apparatus access provisions commonly cap grade at <b>10%</b> and ask for 20 ft of width. Flattening it to 10% makes the drive about 720 ft and costs more earthwork. The alternative is a sprinkler system and a variance from the fire marshal.`,
@@ -367,7 +405,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
 <section>
   <div class="head">
     <div class="sheetno">The alternatives</div>
-    <h2>Six other houses, and the one above losing to all of them</h2>
+    <h2>${spell(rivals)} other ${rivals === 1 ? 'house' : 'houses'}, and the one above ${beatenByAll ? 'losing to all of them' : 'measured against them'}</h2>
     <p class="lede">The house you have been looking at is <b>${gaunt.opponent.m.conditionedSf.toLocaleString()} sf</b>. Before defending that, it is worth seeing it beaten. Each of these was built in the same model, on the same hill, and photographed from the same camera — so this is a comparison, not a beauty contest between whichever one got the better light.</p>
   </div>
   <div class="shots">
@@ -393,8 +431,8 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
   </div>
   <div class="stack col" style="margin-top:28px">
     <p>Eight critics score every scheme, and none of them reads a word of argument — each is a function of a measured quantity. The figures they judge against are not opinions either: they are computed from six real houses with published numbers, on sheet <b>R-101</b>. The best envelope efficiency in that set belongs to a 1,364 sf three-bedroom house.</p>
-    <p>The current design wins two critics, and both are worth keeping: it has the second-cheapest envelope of the seven, and by far the most room per bedroom. Six critics say the same thing back — it is a large house, and largeness is what it is paying for. It costs <b>${money(gaunt.opponent.cost.total)}</b> against <b>${money(Math.min(...gaunt.ranked.map(r => r.cost.total)))}</b> for the cheapest alternative, at a competitive <b>${money(gaunt.opponent.cost.perSf)} per square foot</b> — it is not badly built, it is big.</p>
-    <p><b>The critic almost nothing passes is phasing.</b> One reference house dimensions its rear porch so that it can later become a bedroom; only two of these seven have anything equivalent. That is the question worth putting to you before any of this is drawn further: does Henry need all of it on day one, or does he need the part he will build first to be the part that never has to be undone?</p>
+    <p>The current design wins ${WORDS[gaunt.opponent.wins] ?? gaunt.opponent.wins} of them, and both are worth keeping: a very cheap envelope for its size, and by far the most room per bedroom. The other ${WORDS[8 - gaunt.opponent.wins] ?? (8 - gaunt.opponent.wins)} say the same thing back — it is a large house, and largeness is what it is paying for. It costs <b>${money(gaunt.opponent.cost.total)}</b> against <b>${money(cheapest.cost.total)}</b> for ${esc(titleCase(cheapest.scheme.name))}, at a competitive <b>${money(gaunt.opponent.cost.perSf)} per square foot</b> — it is not badly built, it is big.</p>
+    <p><b>The critic fewest schemes pass is ${esc(hardest.name.toLowerCase())} — ${WORDS[hardest.wins] ?? hardest.wins} of ${WORDS[gaunt.ranked.length] ?? gaunt.ranked.length}.</b> ${hardest.line} That is the question worth putting to you before any of this is drawn further: ${esc(hardest.ask)}</p>
     <p style="font-size:.9rem;color:var(--mid)">Cost here is the <b>building only</b> — no drive, motor court, septic, water, standby power, mechanical or soft costs, because every scheme carries the same ones. The rates are placeholders. <b>The ranking is the output, not the totals.</b></p>
   </div>
 </section>

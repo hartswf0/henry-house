@@ -24,6 +24,7 @@
 
 import { ft } from './units.mjs';
 import { SITE_SLOPE } from './geometry.mjs';
+import { PROPOSED } from './schemes-proposed.mjs';
 
 const natural = (x, y) => SITE_SLOPE.grade(x, y);
 
@@ -57,7 +58,12 @@ const bench = (x0, y0, w, d) => ({ kind: 'bench', x0: ft(x0), y0: ft(y0), x1: ft
 const plinth = (x0, y0, w, d) => ({ kind: 'plinth', x0: ft(x0), y0: ft(y0), x1: ft(x0 + w), y1: ft(y0 + d) });
 
 // ── THE SCHEMES ─────────────────────────────────────────────────────────────
-export const SCHEMES = [
+// BUILT = the seven written by hand. PROPOSED = whatever a fan-out of agents
+// has produced since, collected by tools/collect-schemes.mjs. They are
+// concatenated deliberately: a proposal that cannot be expressed in this
+// vocabulary does not get in, and one that can is measured, priced, judged and
+// drawn by exactly the same code as the opponent. There is no second-class tier.
+const BUILT = [
 
   {
     id: 'S0-SPINE', name: 'THE SPINE', tag: 'CONTROL — the current design',
@@ -226,6 +232,34 @@ export const SCHEMES = [
     phases: [{ n: 1, label: 'Two lower levels', condSf: 648 }, { n: 2, label: 'Two upper levels', condSf: 1296 }],
   },
 ];
+
+/**
+ * A collected proposal, rebuilt through the SAME builders as the hand-written
+ * schemes. Nothing here trusts the proposal's own arithmetic: the only things
+ * carried across are the declarations — where the volumes are, what kind they
+ * are, where the roof planes are, how it meets the ground. Every number the
+ * package quotes about it is computed downstream from those declarations.
+ */
+function adopt(p) {
+  const g = p.ground ?? {};
+  const ground =
+    g.kind === 'piers'  ? piers(g.pts, g.diaFt ?? 2) :
+    g.kind === 'plinth' ? plinth(g.x0, g.y0, g.w, g.d) :
+                          bench(g.x0, g.y0, g.w, g.d);
+  return {
+    ...p,
+    volumes: p.volumes.map(v => V(v.id, v.kind, v.x0, v.y0, v.w, v.d, v)),
+    roofs: p.roofs.map(r => R(r.id, r.x0, r.y0, r.w, r.d, r)),
+    ground,
+    proposed: true,
+  };
+}
+
+export const SCHEMES = [...BUILT, ...PROPOSED.map(adopt)];
+/** The seven written by hand — X-101's set, kept stable as proposals arrive. */
+export const BUILT_SCHEMES = BUILT;
+/** Everything a fan-out proposed, already in the common vocabulary. */
+export const PROPOSED_SCHEMES = SCHEMES.filter(s => s.proposed);
 
 export const schemeById = (id) => SCHEMES.find(s => s.id === id);
 
@@ -396,6 +430,6 @@ function unionArea(rects) {
   return n;
 }
 
-export function allMetrics() { return SCHEMES.map(metrics); }
+export function allMetrics(list = SCHEMES) { return list.map(metrics); }
 
 export default { SCHEMES, schemeById, metrics, allMetrics, groundMetrics, roofBase };

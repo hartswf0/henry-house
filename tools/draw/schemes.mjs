@@ -134,7 +134,15 @@ const ROWS = [
   ['GROWTH WITHOUT DEMOLITION', m => (m.futureCapacityPct ? '+' + m.futureCapacityPct + '%' : '—'), '', 'hi'],
 ];
 
-export function drawSchemeTable(s, sx, sy, w, all) {
+/**
+ * `all` is the metrics list; `list` is the schemes it came from.
+ *
+ * These used to be one argument, with the tags read out of the global SCHEMES
+ * by position. That is fine for the whole set and silently WRONG for any
+ * subset — every column would carry the right numbers under the wrong
+ * scheme's tag. Pass both, and default to the full set for the whole-set case.
+ */
+export function drawSchemeTable(s, sx, sy, w, all, list = SCHEMES) {
   const nCol = all.length;
   const labelW = 300;
   const colW = (w - labelW) / nCol;
@@ -148,7 +156,7 @@ export function drawSchemeTable(s, sx, sy, w, all) {
   all.forEach((m, i) => {
     s.stext(sx + labelW + colW * (i + 0.5), y, m.name.replace('THE ', ''),
       { size: 12, weight: 700, anchor: 'middle', spacing: 1 });
-    s.stext(sx + labelW + colW * (i + 0.5), y + 14, SCHEMES[i].tag.slice(0, 26),
+    s.stext(sx + labelW + colW * (i + 0.5), y + 14, String(list[i]?.tag ?? '').slice(0, 26),
       { size: 8.5, color: INK.mid, anchor: 'middle' });
   });
   y += 26;
@@ -178,13 +186,13 @@ export function drawSchemeTable(s, sx, sy, w, all) {
 }
 
 /** Provenance: what each scheme borrowed, and what it refused to borrow. */
-export function drawProvenance(s, sx, sy, w, cols = 4) {
+export function drawProvenance(s, sx, sy, w, cols = 4, list = SCHEMES) {
   s.stext(sx, sy, 'WHERE EACH SCHEME COMES FROM', { size: 16, weight: 700, spacing: 1.6 });
   s.stext(sx, sy + 20, 'Every scheme names ONE transferable operation and ONE thing it must not copy. The references are other people\'s built work: the operation travels, the form does not.',
     { size: 11, color: INK.mid });
   const colW = w / cols;
   let y = sy + 52;
-  SCHEMES.forEach((sc, i) => {
+  list.forEach((sc, i) => {
     const cx = sx + colW * (i % cols);
     const cy = y + Math.floor(i / cols) * 260;
     s.stext(cx, cy, sc.name, { size: 13, weight: 700, spacing: 1.2 });
@@ -197,5 +205,5 @@ export function drawProvenance(s, sx, sy, w, cols = 4) {
     k += 5;
     if (sc.doNotCopy) for (const ln of wrap('DO NOT COPY — ' + sc.doNotCopy, W)) { s.stext(cx, k, ln, { size: 9.5, color: INK.fire }); k += 12; }
   });
-  return y + Math.ceil(SCHEMES.length / cols) * 250;
+  return y + Math.ceil(list.length / cols) * 250;
 }

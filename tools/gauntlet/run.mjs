@@ -155,7 +155,13 @@ const CRITICS = {
   SCALE: (m) => {
     // Not an aesthetic judgement: a claim about how much house the reference
     // set thinks a family needs.
-    const win = m.conditionedSf <= B.SCALE.value;
+    // STRICTLY under, like ENVELOPE and PORCH. This read `<=`, which awarded a
+    // win for landing exactly on the bar — and the first scheme to do it had
+    // aimed at 1,364 sf deliberately, saying so. The blind A/B in this same
+    // file counts a tie as a loss; a critic measured against the same
+    // reference set has to count it the same way, or "beat the bar" quietly
+    // means two different things on one sheet.
+    const win = m.conditionedSf < B.SCALE.value;
     return {
       verdict: win ? 'WIN' : 'LOSS',
       score: Math.max(0, Math.min(1, B.SCALE.value / m.conditionedSf)),

@@ -391,13 +391,74 @@ import { drawVSM, drawS4Schedule, drawCost, drawGaps } from './draw/vsm.mjs';
 
 // ── X-101  THE SEVEN SCHEMES ────────────────────────────────────────────────
 import { drawSchemePlan, drawSchemeSection, drawSchemeTable, drawProvenance } from './draw/schemes.mjs';
-import { SCHEMES as ALT_SCHEMES, allMetrics } from '../model/schemes.mjs';
-{
+import { SCHEMES as ALT_SCHEMES, BUILT_SCHEMES, PROPOSED_SCHEMES, allMetrics } from '../model/schemes.mjs';
+
+/**
+ * One comparison sheet, for ANY set of schemes.
+ *
+ * The layout used to be hard-coded for seven: four plan columns, sections at a
+ * fixed 320 apart, a seven-column table. A fan-out that proposes six more would
+ * have drawn them off the edge of the paper. Everything that depended on the
+ * number seven is computed from the list instead.
+ */
+function schemeSheet({ number, title, subtitle, schemes, notes, extra }) {
+  const n = schemes.length;
   const scaleName = '1/32"=1\'-0"';
   const s = new Sheet({
     size: 'ARCH_D', scale: SCALES[scaleName],
+    number, title, subtitle,
+    notes,
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+
+  const COLS = n <= 4 ? Math.max(1, n) : (n <= 8 ? 4 : 5);
+  const rows = Math.ceil(n / COLS);
+  const CW = 2280 / COLS, RH = 320, X0 = 300, PLAN_Y = 520;
+  s.stext(300, 300, `PLANS — ALL AT ${scaleName.replace('"=1\'-0"', '" = 1\'-0"')}`, { size: 15, weight: 700, spacing: 1.6 });
+  schemes.forEach((sc, i) => {
+    const cx = X0 + (i % COLS) * CW, cy = PLAN_Y + Math.floor(i / COLS) * RH;
+    s.ox = cx; s.oy = cy;
+    const m = drawSchemePlan(s, sc);
+    // labels clear of the plan, which extends BELOW the origin wherever a
+    // scheme has a porch or deck on its downhill side
+    s.stext(cx, cy + 96, sc.name, { size: 13, weight: 700, spacing: 1.1 });
+    s.stext(cx, cy + 112, `${m.conditionedSf.toLocaleString()} sf conditioned  ·  ${m.perimeterLf} lf perimeter`,
+      { size: 10, color: INK.mid });
+    s.stext(cx, cy + 126, `${m.cutCY.toLocaleString()} CY of earth  ·  ${m.groundNote}`, { size: 10, color: '#8a6508' });
+  });
+
+  const SEC_HEAD = PLAN_Y + (rows - 1) * RH + 200;
+  const SEC_Y = SEC_HEAD + 200;
+  const SEC_DX = Math.min(320, 2240 / Math.max(1, n));
+  s.stext(300, SEC_HEAD, 'SECTIONS — ONE SCALE, ONE HILL, CUT AT THE MIDDLE OF EACH PLAN', { size: 15, weight: 700, spacing: 1.6 });
+  schemes.forEach((sc, i) => {
+    s.ox = 330 + i * SEC_DX; s.oy = SEC_Y;
+    drawSchemeSection(s, sc);
+    s.stext(330 + i * SEC_DX - 60, SEC_Y + 40, sc.name.replace('THE ', ''), { size: 11, weight: 700, spacing: 1 });
+  });
+
+  const TABLE_Y = SEC_Y + 120;
+  drawSchemeTable(s, 300, TABLE_Y, 2240, allMetrics(schemes), schemes);
+  drawProvenance(s, 300, TABLE_Y + 470, 2240, Math.min(n, 7), schemes);
+
+  s.scaleBar(2280, 340, { scaleName, feetTicks: [0, 32, 64] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra });
+  return s;
+}
+
+{
+  const s = schemeSheet({
     number: 'X-101', title: 'SEVEN SCHEMES',
     subtitle: 'ALTERNATIVES DRIVEN BY THE REFERENCE PACK · ALL AT ONE SCALE, ON ONE HILL',
+    schemes: BUILT_SCHEMES,
+    extra: [
+      'Seven schemes from model/schemes.mjs.',
+      'Areas, perimeters, wet-wall runs, roof',
+      'junctions and earthwork are COMPUTED',
+      'from the same declarations that build',
+      'the 3D — not estimated per scheme.',
+    ],
     notes: [
       'THE REFERENCE TEST, quoted from the blueprint wall: "Do not ask whether HENRY resembles these houses. Put HENRY\'s plan and section beside them at the same scale. Compare conditioned area, sheltered area, perimeter, wet-wall length, foundations, roof intersections, ground contacts, rooms served, future capacity, and cost." This sheet is that test.',
       'NOTHING IS SCALED TO FIT ITS OWN BOX. Every plan and every section is at the same scale, over the same 30% hill, cut at the middle of its own plan. The Tower looks small because it is small.',
@@ -410,42 +471,37 @@ import { SCHEMES as ALT_SCHEMES, allMetrics } from '../model/schemes.mjs';
       UNVERIFIED,
     ],
   });
-  s.border();
-  s.sheetTitle(300, 150);
-
-  const COLS = 4, CW = 570, RH = 320, X0 = 300;
-  s.stext(300, 300, 'PLANS — ALL AT 1/32" = 1\'-0"', { size: 15, weight: 700, spacing: 1.6 });
-  ALT_SCHEMES.forEach((sc, i) => {
-    const cx = X0 + (i % COLS) * CW, cy = 520 + Math.floor(i / COLS) * RH;
-    s.ox = cx; s.oy = cy;
-    const m = drawSchemePlan(s, sc);
-    // labels clear of the plan, which extends BELOW the origin wherever a
-    // scheme has a porch or deck on its downhill side
-    s.stext(cx, cy + 96, sc.name, { size: 13, weight: 700, spacing: 1.1 });
-    s.stext(cx, cy + 112, `${m.conditionedSf.toLocaleString()} sf conditioned  ·  ${m.perimeterLf} lf perimeter`,
-      { size: 10, color: INK.mid });
-    s.stext(cx, cy + 126, `${m.cutCY.toLocaleString()} CY of earth  ·  ${m.groundNote}`, { size: 10, color: '#8a6508' });
-  });
-
-  s.stext(300, 1200, 'SECTIONS — ONE SCALE, ONE HILL, CUT AT THE MIDDLE OF EACH PLAN', { size: 15, weight: 700, spacing: 1.6 });
-  ALT_SCHEMES.forEach((sc, i) => {
-    s.ox = 330 + i * 320; s.oy = 1400;
-    drawSchemeSection(s, sc);
-    s.stext(330 + i * 320 - 60, 1440, sc.name.replace('THE ', ''), { size: 11, weight: 700, spacing: 1 });
-  });
-
-  drawSchemeTable(s, 300, 1520, 2240, allMetrics());
-  drawProvenance(s, 300, 1990, 2240, 7);
-
-  s.scaleBar(2280, 340, { scaleName, feetTicks: [0, 32, 64] });
-  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
-    'Seven schemes from model/schemes.mjs.',
-    'Areas, perimeters, wet-wall runs, roof',
-    'junctions and earthwork are COMPUTED',
-    'from the same declarations that build',
-    'the 3D — not estimated per scheme.',
-  ] });
   write('X-101-seven-schemes.svg', s.toString());
+}
+
+// ── X-102  WHAT THE FAN-OUT PROPOSED ────────────────────────────────────────
+// Only drawn when there is something to draw. The proposals are held on their
+// own sheet rather than crowded onto X-101 because the seven are a settled
+// comparison and these are candidates — but they are drawn by the same
+// function, at the same scale, over the same hill, and measured by the same
+// table. Being new buys a proposal no allowances.
+if (PROPOSED_SCHEMES.length) {
+  const withOpponent = [ALT_SCHEMES[0], ...PROPOSED_SCHEMES];
+  const s = schemeSheet({
+    number: 'X-102', title: 'PROPOSED SCHEMES',
+    subtitle: 'GENERATED ALTERNATIVES · SAME SCALE, SAME HILL, SAME TABLE AS X-101',
+    schemes: withOpponent,
+    extra: [
+      `${PROPOSED_SCHEMES.length} proposals from a parallel`,
+      'fan-out, collected by tools/collect-',
+      'schemes.mjs and validated on the way',
+      'in. Drawn and measured by the same',
+      'code as X-101. S0 repeats as control.',
+    ],
+    notes: [
+      'THESE ARE CANDIDATES, NOT DECISIONS. Each was proposed by a separate agent working from the same reference packs, the same site model and the same brief, and each was validated before it was allowed onto this sheet — geometry present and well-formed, ground defined, phases stated, and its claimed area checked against the area its own volumes actually enclose. A proposal that failed was dropped and reported, never repaired.',
+      'BEING NEW BUYS NOTHING. Every number in the table below is computed from the same declarations by the same code that produced X-101, and the same eight critics score these as score the seven. S0 THE SPINE is repeated here as the control so the two sheets can be read against each other.',
+      'THE PROPOSALS ARE MASSING, exactly as the seven are. Undetailed and unfurnished by intent: at this stage detail would flatter whichever scheme got detailed first.',
+      'WHAT AN AGENT CANNOT DO IS CHECK ITS OWN WORK. The validator catches malformed geometry and area claims that contradict the geometry. It does not catch a scheme that is well-formed and bad. That is what the critics, the sections and your eye are for.',
+      UNVERIFIED,
+    ],
+  });
+  write('X-102-proposed-schemes.svg', s.toString());
 }
 
 // ── R-101  THE REFERENCE SET AS A BAR ───────────────────────────────────────
