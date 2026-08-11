@@ -1,0 +1,33 @@
+{"id":"S10-SQUARE",
+ "levels":[
+  {"ffe":2.5,"name":"UNDER","rooms":[
+   {"name":"LOWER STAIR","use":"circ","x0":46,"y0":1,"w":6,"d":11,"phase":2},
+   {"name":"SHOP","use":"work","x0":34,"y0":0,"w":11.67,"d":12,"phase":2},
+   {"name":"DRY STORE","use":"store","x0":26,"y0":0,"w":7.67,"d":12,"phase":2}]},
+  {"ffe":11,"name":"MAIN","rooms":[
+   {"name":"BOOT ROOM","use":"entry","x0":38,"y0":22,"w":14,"d":4,"phase":1},
+   {"name":"STAIR","use":"circ","x0":47,"y0":6,"w":5,"d":15.67,"phase":1},
+   {"name":"GREAT ROOM","use":"living","x0":26,"y0":0,"w":20.67,"d":12.17,"phase":1},
+   {"name":"KITCHEN","use":"kitchen","x0":26,"y0":12.5,"w":9.67,"d":9.17,"phase":1},
+   {"name":"BATH 1","use":"bath","x0":36,"y0":12.5,"w":5.67,"d":9.17,"phase":1},
+   {"name":"PLANT","use":"mech","x0":42,"y0":12.5,"w":4.67,"d":9.17,"phase":1},
+   {"name":"PANTRY","use":"store","x0":26,"y0":22,"w":11.67,"d":4,"phase":1},
+   {"name":"WOOD STORE","use":"store","x0":47,"y0":0,"w":5,"d":5.67,"phase":1}]},
+  {"ffe":21,"name":"SLEEPING","rooms":[
+   {"name":"STAIR","use":"circ","x0":47,"y0":6,"w":5,"d":15.67,"phase":1},
+   {"name":"HALL","use":"circ","x0":32,"y0":12,"w":14.67,"d":3.67,"phase":1},
+   {"name":"PRIMARY","use":"bed","x0":26,"y0":0,"w":10.67,"d":11.67,"phase":1},
+   {"name":"BED 2","use":"bed","x0":37,"y0":0,"w":9.67,"d":11.67,"phase":1},
+   {"name":"BED 3","use":"bed","x0":26,"y0":16,"w":9.67,"d":10,"phase":1},
+   {"name":"BATH 2","use":"bath","x0":36,"y0":16,"w":5.67,"d":5.67,"phase":1},
+   {"name":"LAUNDRY","use":"laundry","x0":42,"y0":16,"w":4.67,"d":5.67,"phase":1},
+   {"name":"W.I.C.","use":"store","x0":26,"y0":12,"w":5.67,"d":3.67,"phase":1},
+   {"name":"LINEN","use":"store","x0":47,"y0":0,"w":5,"d":5.67,"phase":1},
+   {"name":"ATTIC STORE","use":"store","x0":36,"y0":22,"w":16,"d":4,"phase":1}]}],
+ "doors":[
+  {"x":48,"y":26,"face":"N","kind":"entry","ffe":11},
+  {"x":36,"y":0,"face":"S","kind":"slider","ffe":11},
+  {"x":30,"y":0,"face":"S","kind":"deck","ffe":21},
+  {"x":42,"y":0,"face":"S","kind":"deck","ffe":21},
+  {"x":40,"y":0,"face":"S","kind":"service","ffe":2.5}],
+ "notes":"CIRCULATION: 12.2% main, 20.7% upper, 16.4% conditioned overall - FIVE TIMES the scheme's claimed 3.1%. A square kills corridor on the living floor only; three bedrooms round one corner stair need a 15 ft hall, and a central stair is impossible (9 ft flanks fit no bedroom). The freeze rule broke the scheme's own service band: its 12 ft depth backs fixtures onto the cut wall. I pulled the wet band to y=22 and paid 104 sf for a dry buffer - pantry and boot room - along the uphill face. Bath 2 stacks on bath 1, laundry on plant. ffe 2.5 lies under the downhill half - no wet stack reaches it. Worst compromise: no en-suite; the primary crosses the hall."}
