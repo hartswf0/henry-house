@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Henry House — the houses</title>
+<!--
+  THE GALLERY. Built for a phone held in one hand.
+
+  web/walk-schemes.html put every scheme, every jump-to point and every layer
+  toggle in one scrolling column. On a desktop that is a control panel; on a
+  phone it is a wall between you and the house, and it made the blueprints for
+  the other schemes effectively unreachable.
+
+  So this page has three controls and no menu:
+
+    NEXT / PREV   one house at a time, or swipe
+    BLUEPRINT     that house's own drawing, full screen, pinch to zoom
+    WALK          hand off to the full walkthrough if you want it
+
+  Everything else — the room lists, the layer toggles, the modes — is gone.
+  They are still in walk-schemes.html for anyone at a desk.
+-->
+<style>
+  :root{ --ink:#e9edf2; --mid:#93a0ae; --line:#2c333d; --accent:#e08056;
+         --panel:rgba(13,16,20,.92); --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#0d1014;color:var(--ink);
+    font-family:var(--mono);-webkit-text-size-adjust:100%;overscroll-behavior:none}
+  canvas{display:block;touch-action:none}
+
+  /* top: which house this is, and how far through you are */
+  #top{position:fixed;top:0;left:0;right:0;z-index:20;padding:14px 16px calc(14px + env(safe-area-inset-top));
+    background:linear-gradient(to bottom,rgba(13,16,20,.85),transparent);pointer-events:none}
+  #name{font-size:19px;letter-spacing:.02em;font-weight:600}
+  #tag{font-size:11.5px;color:var(--mid);margin-top:3px;line-height:1.4;max-width:30ch}
+  #stat{font-size:11px;color:var(--mid);margin-top:7px}
+  #dots{display:flex;gap:5px;margin-top:10px}
+  #dots i{width:16px;height:3px;border-radius:2px;background:#2c333d;display:block}
+  #dots i.on{background:var(--accent);width:26px}
+
+  /* bottom: the only three things you can do */
+  #bar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;
+    padding:12px 12px calc(12px + env(safe-area-inset-bottom));background:var(--panel);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  #bar button,#bar a{flex:1;min-height:54px;display:flex;align-items:center;justify-content:center;
+    background:#1b2127;color:var(--ink);border:1px solid var(--line);border-radius:10px;
+    font:inherit;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+    cursor:pointer;-webkit-tap-highlight-color:transparent}
+  #bar button:active,#bar a:active{border-color:var(--accent);color:var(--accent)}
+  #prev,#next{flex:0 0 62px;font-size:20px;letter-spacing:0}
+  #blue{flex:2;background:#23303a;border-color:#31404c}
+
+  /* the blueprint, full screen */
+  #sheet{position:fixed;inset:0;z-index:40;background:#0d1014;display:none;touch-action:none}
+  #sheet.on{display:block}
+  #sheet img{position:absolute;transform-origin:0 0;max-width:none}
+  #sbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;gap:8px;
+    padding:12px 12px calc(12px + env(safe-area-inset-bottom));background:var(--panel);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line);align-items:center}
+  #sheet.on ~ #sbar{display:flex}
+  #sbar button{min-height:50px;padding:0 20px;background:#1b2127;color:var(--ink);
+    border:1px solid var(--line);border-radius:10px;font:inherit;font-size:13px;text-transform:uppercase}
+  #sname{flex:1;font-size:11px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #noplan{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:40px;color:var(--mid);font-size:13px;line-height:1.7}
+
+  #load{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--mid);font-size:12px;z-index:15;pointer-events:none;letter-spacing:.14em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="load">Building…</div>
+<div id="top">
+  <div id="name"></div>
+  <div id="tag"></div>
+  <div id="stat"></div>
+  <div id="dots"></div>
+</div>
+<div id="bar">
+  <button id="prev" type="button" aria-label="Previous house">‹</button>
+  <button id="blue" type="button">Blueprint</button>
+  <a id="walk" href="walk-schemes.html">Walk</a>
+  <button id="next" type="button" aria-label="Next house">›</button>
+</div>
+
+<div id="sheet"><img id="simg" alt=""><div id="noplan" hidden></div></div>
+<div id="sbar">
+  <button id="sclose" type="button">Close</button>
+  <span id="sname"></span>
+  <button id="sfit" type="button">Fit</button>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { buildSchemeScene } from '../tools/render/lib/scheme3d.mjs';
+import { sunDirection } from '../tools/render/lib/render.mjs';
+import { SCHEMES, metrics } from '../model/schemes.mjs';
+import { planFor } from '../model/scheme-plans.mjs';
+
+window.__loaded = false; window.__error = null;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const sun = sunDirection({ dayOfYear: 288, hour: 14 });
+const camera = new THREE.PerspectiveCamera(56, innerWidth / innerHeight, 0.25, 9000);
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true; orbit.dampingFactor = 0.08;
+orbit.maxPolarAngle = Math.PI * 0.495;
+orbit.enablePan = false;                       // one less thing to do by accident
+
+// The sheet for each scheme is X-(201 + its index) — the same numbering
+// tools/build.mjs uses, which is taken from the scheme's position and does
+// not move when a plan is added or dropped.
+const SHEET = SCHEMES.map((s, i) => `../out/png/X-${201 + i}-${s.id.toLowerCase()}-plans.png`);
+
+let scene = null, i = 0;
+const dots = document.getElementById('dots');
+SCHEMES.forEach(() => dots.appendChild(document.createElement('i')));
+
+function show(k) {
+  i = (k + SCHEMES.length) % SCHEMES.length;
+  const s = SCHEMES[i];
+  try {
+    if (scene) scene.traverse(o => o.geometry?.dispose?.());
+    const built = buildSchemeScene(renderer, { schemeId: s.id, sun, realtime: true });
+    scene = built.scene;
+    const rig = built.rig;
+    rig.sun.position.copy(sun.dir).multiplyScalar(900).add(rig.focus);
+    rig.sun.target.position.copy(rig.focus);
+    rig.skyLight.position.set(rig.focus.x + 200, rig.focus.y + 700, rig.focus.z + 150);
+    rig.skyLight.target.position.copy(rig.focus);
+
+    const m = metrics(s), plan = planFor(s.id);
+    document.getElementById('name').textContent = s.name.replace('THE ', 'The ');
+    document.getElementById('tag').textContent = s.tag ?? '';
+    document.getElementById('stat').textContent =
+      `${m.conditionedSf.toLocaleString()} sf · ${m.perimeterLf} lf wall · ${m.cutCY.toLocaleString()} CY earth` +
+      (plan ? '' : ' · no blueprint yet');
+    [...dots.children].forEach((d, k) => d.className = k === i ? 'on' : '');
+
+    // park the camera to suit THIS house's size, not the last one's
+    const cond = s.volumes.filter(v => v.kind !== 'shelt');
+    const cx = (Math.min(...cond.map(v => v.x0)) + Math.max(...cond.map(v => v.x1))) / 24;
+    const by0 = Math.min(...cond.map(v => v.y0)) / 12;
+    const top = Math.max(...cond.map(v => v.ffe + 10 * (v.storeys ?? 1)));
+    const size = Math.max(...cond.map(v => v.wFt), ...cond.map(v => v.dFt), top);
+    const d = size * 1.9 + 44;
+    camera.position.set(cx - d * 0.3, top * 0.85 + 14, -(by0 - d));
+    orbit.target.set(cx, top * 0.45, -(by0 + 8));
+    orbit.update();
+    document.getElementById('load').style.display = 'none';
+    window.__loaded = true;
+  } catch (e) {
+    window.__error = e.message;
+    document.getElementById('load').textContent = 'Could not build: ' + e.message;
+  }
+}
+
+document.getElementById('next').onclick = () => show(i + 1);
+document.getElementById('prev').onclick = () => show(i - 1);
+
+// swipe anywhere on the model, because that is what a thumb does first
+let sx = null, sy = null;
+renderer.domElement.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; });
+renderer.domElement.addEventListener('pointerup', e => {
+  if (sx === null) return;
+  const dx = e.clientX - sx, dy = e.clientY - sy;
+  if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 2) show(i + (dx < 0 ? 1 : -1));
+  sx = null;
+});
+addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') show(i + 1);
+  if (e.key === 'ArrowLeft') show(i - 1);
+});
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+// ── the blueprint ───────────────────────────────────────────────────────────
+const sheet = document.getElementById('sheet'), simg = document.getElementById('simg');
+const noplan = document.getElementById('noplan');
+let ss = 1, stx = 0, sty = 0, sfitS = 1;
+const applyS = () => { simg.style.transform = `translate(${stx}px,${sty}px) scale(${ss})`; };
+function fitSheet() {
+  const iw = simg.naturalWidth || 1, ih = simg.naturalHeight || 1;
+  sfitS = Math.min(innerWidth / iw, (innerHeight - 76) / ih);
+  ss = sfitS;
+  stx = (innerWidth - iw * ss) / 2; sty = (innerHeight - 76 - ih * ss) / 2;
+  applyS();
+}
+/**
+ * Open ON THE DRAWING, not on the whole sheet.
+ *
+ * Fitting a 36 x 24 sheet to a phone puts the plan at about a tenth of size
+ * and the reader's first act is always to pinch. The drawing lives in the
+ * left two-thirds — the right third is the title block and notes — so this
+ * opens at 2.6x fit, framed on that area. Fit is still one tap away.
+ */
+function openOnPlan() {
+  const iw = simg.naturalWidth || 1, ih = simg.naturalHeight || 1;
+  sfitS = Math.min(innerWidth / iw, (innerHeight - 76) / ih);
+  ss = sfitS * 2.6;
+  stx = -(iw * 0.06) * ss;
+  sty = (innerHeight - 76) / 2 - (ih * 0.30) * ss;
+  applyS();
+}
+document.getElementById('blue').onclick = () => {
+  const s = SCHEMES[i];
+  document.getElementById('sname').textContent = s.name.replace('THE ', '') + ' — schematic plans';
+  sheet.classList.add('on');
+  if (!planFor(s.id)) {
+    simg.hidden = true; noplan.hidden = false;
+    noplan.innerHTML = `<div><b style="color:#e0a06a">No blueprint for ${s.name.replace('THE ', 'the ')} yet.</b><br><br>` +
+      `Its rooms have not been laid out and checked, so there is nothing to draw. ` +
+      `The 3D behind this is massing only — the shape, not the house.</div>`;
+    return;
+  }
+  simg.hidden = false; noplan.hidden = true;
+  simg.src = SHEET[i];
+  if (simg.complete) openOnPlan(); else simg.onload = openOnPlan;
+};
+document.getElementById('sclose').onclick = () => sheet.classList.remove('on');
+document.getElementById('sfit').onclick = fitSheet;
+
+// one finger drags, two pinch, double tap toggles 100%
+const pts = new Map(); let last = null, lastTap = 0;
+sheet.addEventListener('pointerdown', e => { sheet.setPointerCapture(e.pointerId); pts.set(e.pointerId, e); last = null; });
+sheet.addEventListener('pointerup', e => {
+  pts.delete(e.pointerId); last = null;
+  const now = Date.now();
+  if (now - lastTap < 300 && !simg.hidden) {
+    const to = Math.abs(ss - sfitS) < 1e-4 ? 1 : sfitS;
+    stx -= (e.clientX - stx) * (to / ss - 1); sty -= (e.clientY - sty) * (to / ss - 1);
+    ss = to; applyS();
+  }
+  lastTap = now;
+});
+sheet.addEventListener('pointermove', e => {
+  if (!pts.has(e.pointerId)) return;
+  pts.set(e.pointerId, e);
+  const a = [...pts.values()];
+  if (a.length === 1) {
+    if (last) { stx += e.clientX - last.x; sty += e.clientY - last.y; applyS(); }
+    last = { x: e.clientX, y: e.clientY };
+  } else if (a.length === 2) {
+    const dd = Math.hypot(a[0].clientX - a[1].clientX, a[0].clientY - a[1].clientY);
+    const cx = (a[0].clientX + a[1].clientX) / 2, cy = (a[0].clientY + a[1].clientY) / 2;
+    if (last && last.d) { const k = dd / last.d; ss *= k; stx = cx - (cx - stx) * k; sty = cy - (cy - sty) * k; applyS(); }
+    last = { d: dd };
+  }
+});
+
+const clock = new THREE.Clock();
+(function tick() {
+  requestAnimationFrame(tick);
+  clock.getDelta();
+  orbit.update();
+  if (scene) renderer.render(scene, camera);
+})();
+show(0);
+</script>
+</body>
+</html>
