@@ -558,9 +558,14 @@ function wrapTo(str, n) {
   if (l) out.push(l); return out;
 }
 
-PLANS.forEach((plan, idx) => {
+PLANS.forEach((plan) => {
   const scheme = ALT_SCHEMES.find(s => s.id === plan.id);
   if (!scheme) return;
+  // Numbered off the SCHEME's position, not the plan's. Numbering by plan
+  // index renumbered every sheet whenever a new plan landed, so X-202 was
+  // the Perch one hour and the Narrow the next, and the stale file stayed
+  // on disk looking current.
+  const idx = ALT_SCHEMES.indexOf(scheme);
   const m = schemeMetrics(scheme);
   const crit = CRITIQUES.find(c => c.id === plan.id) ?? null;
   // 3/16" rather than 1/8": at 1/8" the plans used a third of the sheet and

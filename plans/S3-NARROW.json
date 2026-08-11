@@ -1,0 +1,55 @@
+{
+  "id": "S3-NARROW",
+  "levels": [
+    {
+      "ffe": 0,
+      "name": "WEST LOWER",
+      "rooms": [
+        {"name": "STUDIO / SHOP", "use": "work", "x0": 0, "y0": 2, "w": 11, "d": 15},
+        {"name": "STAIR", "use": "circ", "x0": 11, "y0": 2, "w": 4, "d": 15},
+        {"name": "DEN / BUNK ROOM", "use": "living", "x0": 15, "y0": 2, "w": 11, "d": 15},
+        {"name": "COLD STORE", "use": "store", "x0": 0, "y0": 17, "w": 10, "d": 7},
+        {"name": "BENCH ALCOVE", "use": "work", "x0": 10, "y0": 17, "w": 8, "d": 7},
+        {"name": "GEAR / FIREWOOD", "use": "store", "x0": 18, "y0": 17, "w": 8, "d": 7}
+      ]
+    },
+    {
+      "ffe": 10,
+      "name": "WEST UPPER",
+      "rooms": [
+        {"name": "BED 1 PRIMARY", "use": "bed", "x0": 0, "y0": 2, "w": 11, "d": 15},
+        {"name": "STAIR HALL", "use": "circ", "x0": 11, "y0": 2, "w": 4, "d": 15},
+        {"name": "BED 2", "use": "bed", "x0": 15, "y0": 2, "w": 11, "d": 15},
+        {"name": "CLOSET / LINEN", "use": "store", "x0": 0, "y0": 17, "w": 8, "d": 7},
+        {"name": "BATH 1", "use": "bath", "x0": 8, "y0": 17, "w": 7, "d": 7},
+        {"name": "LAUNDRY", "use": "laundry", "x0": 15, "y0": 17, "w": 5, "d": 7},
+        {"name": "MECH WEST", "use": "mech", "x0": 20, "y0": 17, "w": 6, "d": 7}
+      ]
+    },
+    {
+      "ffe": 8,
+      "name": "EAST MAIN",
+      "rooms": [
+        {"name": "LIVING", "use": "living", "x0": 36, "y0": 2, "w": 14, "d": 8},
+        {"name": "DINING", "use": "dining", "x0": 36, "y0": 10, "w": 14, "d": 7},
+        {"name": "BED 3 GUEST", "use": "bed", "x0": 50, "y0": 2, "w": 12, "d": 15},
+        {"name": "KITCHEN", "use": "kitchen", "x0": 36, "y0": 17, "w": 11, "d": 7},
+        {"name": "BATH 2", "use": "bath", "x0": 47, "y0": 17, "w": 7, "d": 7},
+        {"name": "MECH EAST", "use": "mech", "x0": 54, "y0": 17, "w": 4, "d": 7},
+        {"name": "CLOSET", "use": "store", "x0": 58, "y0": 17, "w": 4, "d": 7}
+      ]
+    }
+  ],
+  "doors": [
+    {"x": 36, "y": 6, "face": "W", "kind": "entry", "ffe": 8},
+    {"x": 43, "y": 2, "face": "S", "kind": "exterior", "ffe": 8},
+    {"x": 36, "y": 21, "face": "W", "kind": "service", "ffe": 8},
+    {"x": 56, "y": 24, "face": "N", "kind": "service", "ffe": 8},
+    {"x": 56, "y": 2, "face": "S", "kind": "exterior", "ffe": 8},
+    {"x": 13, "y": 2, "face": "S", "kind": "entry", "ffe": 10},
+    {"x": 26, "y": 21, "face": "E", "kind": "service", "ffe": 10},
+    {"x": 6, "y": 2, "face": "S", "kind": "exterior", "ffe": 0},
+    {"x": 20, "y": 2, "face": "S", "kind": "exterior", "ffe": 0}
+  ],
+  "notes": "The massing showed two boxes and a slot; the plan shows the slot is load-bearing on the argument. The dogtrot meets grade at its uphill end (ground ~el.8 at y=24, so ffe 8 is a flat arrival from the drive) and empties onto the 62 ft porch, so THE PORCH IS THE HALL - every east-body room opens off the porch, the dogtrot, or the room beside it, and the west body is entered from the porch up three risers into its stair hall. The plan also fixes one line the massing could not: a single wet wall at y=17, 26 ft west plus 26 ft east = 52 ft, carrying every fixture on all three levels; kitchen sink and DW sit on the y=17 peninsula, range and fridge take the cold uphill wall at y=24, and the buried lower level is left entirely dry - no pipe anywhere near an exterior or bermed wall. Worst compromise: the dogtrot severs the house into two buildings and no service may cross an open slot, so each body carries its own mechanical room and water heater (MECH WEST x20-26 ffe 10, MECH EAST x54-58 ffe 8) - a duplicated plant in a 1,716 sf house. Second, honestly: the west body's two storeys force a 4x15 stair hall on each of its levels, 120 sf of named and paid-for circulation. No room in the house is reached by a passage, so the no-corridor claim holds, but the stricter 'no circulation' reading of it does not. Third, the 22 ft body makes the east living/dining/kitchen stack front-to-back, which is what delivers the through-breeze but leaves the living room only 8 ft deep. Buildability note: the lower level needs a terrace cut to about el.-0.5 in front of y=2 to walk out under the porch."
+}

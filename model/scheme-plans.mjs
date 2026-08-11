@@ -6,7 +6,7 @@
 // wall and a bed wall, wet rooms grouped or stacked, stairs landing on the
 // stair below. A plan that failed was reported and dropped, not repaired.
 //
-// 2 plans.
+// 3 plans.
 
 export const PLANS = [
   {
@@ -385,6 +385,324 @@ export const PLANS = [
       }
     ],
     "notes": "The massing read as three stacked bars; the plan shows they are really one corridor. A 5 ft spine hall sits at y=14-19 and runs the whole 87 ft from the west gable at x=0 to the breezeway door at x=87, broken only by the two stair halls, which are pass-through landings rather than rooms you enter, and which stack exactly (A at x26-36, B at x62-72). That fixes the freeze rule in plan rather than in principle: the wet wall is the y=19 partition, an interior wall, and every wet room - mech and bath 3 below, primary bath, kitchen, powder and laundry on the main, bath 2 above - sits in the 7 ft band uphill of it with fixtures hung on that partition, so the buried y=26 wall carries no pipe. Bath 1 lands over bath 3 at x8-16, and bath 2 lands over the kitchen at x54-62, giving two clean vertical stacks. Everything that wants light - all four bedrooms, living, dining, office, loft, rec - is on the y=0 downhill face, with the lower level's dead uphill band given to mech and storage because it is buried roughly 8 ft. Worst compromise: with a single through-route there is no back way around the kitchen. The walk from the garage to the primary suite is the full 87 ft, and for 14 ft of it the cook's aisle and the house's only corridor are the same 5 ft of floor in front of a kitchen that is only 7 ft deep - the price of putting every fixture on one interior wall."
+  },
+  {
+    "id": "S3-NARROW",
+    "levels": [
+      {
+        "ffe": 0,
+        "name": "WEST LOWER",
+        "rooms": [
+          {
+            "name": "STUDIO / SHOP",
+            "use": "work",
+            "x0": 0,
+            "y0": 2,
+            "w": 11,
+            "d": 15
+          },
+          {
+            "name": "STAIR",
+            "use": "circ",
+            "x0": 11,
+            "y0": 2,
+            "w": 4,
+            "d": 15
+          },
+          {
+            "name": "DEN / BUNK ROOM",
+            "use": "living",
+            "x0": 15,
+            "y0": 2,
+            "w": 11,
+            "d": 15
+          },
+          {
+            "name": "COLD STORE",
+            "use": "store",
+            "x0": 0,
+            "y0": 17,
+            "w": 10,
+            "d": 7
+          },
+          {
+            "name": "BENCH ALCOVE",
+            "use": "work",
+            "x0": 10,
+            "y0": 17,
+            "w": 8,
+            "d": 7
+          },
+          {
+            "name": "GEAR / FIREWOOD",
+            "use": "store",
+            "x0": 18,
+            "y0": 17,
+            "w": 8,
+            "d": 7
+          }
+        ],
+        "doors": [
+          {
+            "x": 6,
+            "y": 2,
+            "face": "S",
+            "kind": "exterior",
+            "ffe": 0
+          },
+          {
+            "x": 20,
+            "y": 2,
+            "face": "S",
+            "kind": "exterior",
+            "ffe": 0
+          }
+        ]
+      },
+      {
+        "ffe": 10,
+        "name": "WEST UPPER",
+        "rooms": [
+          {
+            "name": "BED 1 PRIMARY",
+            "use": "bed",
+            "x0": 0,
+            "y0": 2,
+            "w": 11,
+            "d": 15
+          },
+          {
+            "name": "STAIR HALL",
+            "use": "circ",
+            "x0": 11,
+            "y0": 2,
+            "w": 4,
+            "d": 15
+          },
+          {
+            "name": "BED 2",
+            "use": "bed",
+            "x0": 15,
+            "y0": 2,
+            "w": 11,
+            "d": 15
+          },
+          {
+            "name": "CLOSET / LINEN",
+            "use": "store",
+            "x0": 0,
+            "y0": 17,
+            "w": 8,
+            "d": 7
+          },
+          {
+            "name": "BATH 1",
+            "use": "bath",
+            "x0": 8,
+            "y0": 17,
+            "w": 7,
+            "d": 7
+          },
+          {
+            "name": "LAUNDRY",
+            "use": "laundry",
+            "x0": 15,
+            "y0": 17,
+            "w": 5,
+            "d": 7
+          },
+          {
+            "name": "MECH WEST",
+            "use": "mech",
+            "x0": 20,
+            "y0": 17,
+            "w": 6,
+            "d": 7
+          }
+        ],
+        "doors": [
+          {
+            "x": 13,
+            "y": 2,
+            "face": "S",
+            "kind": "entry",
+            "ffe": 10
+          },
+          {
+            "x": 26,
+            "y": 21,
+            "face": "E",
+            "kind": "service",
+            "ffe": 10
+          }
+        ]
+      },
+      {
+        "ffe": 8,
+        "name": "EAST MAIN",
+        "rooms": [
+          {
+            "name": "LIVING",
+            "use": "living",
+            "x0": 36,
+            "y0": 2,
+            "w": 14,
+            "d": 8
+          },
+          {
+            "name": "DINING",
+            "use": "dining",
+            "x0": 36,
+            "y0": 10,
+            "w": 14,
+            "d": 7
+          },
+          {
+            "name": "BED 3 GUEST",
+            "use": "bed",
+            "x0": 50,
+            "y0": 2,
+            "w": 12,
+            "d": 15
+          },
+          {
+            "name": "KITCHEN",
+            "use": "kitchen",
+            "x0": 36,
+            "y0": 17,
+            "w": 11,
+            "d": 7
+          },
+          {
+            "name": "BATH 2",
+            "use": "bath",
+            "x0": 47,
+            "y0": 17,
+            "w": 7,
+            "d": 7
+          },
+          {
+            "name": "MECH EAST",
+            "use": "mech",
+            "x0": 54,
+            "y0": 17,
+            "w": 4,
+            "d": 7
+          },
+          {
+            "name": "CLOSET",
+            "use": "store",
+            "x0": 58,
+            "y0": 17,
+            "w": 4,
+            "d": 7
+          }
+        ],
+        "doors": [
+          {
+            "x": 36,
+            "y": 6,
+            "face": "W",
+            "kind": "entry",
+            "ffe": 8
+          },
+          {
+            "x": 43,
+            "y": 2,
+            "face": "S",
+            "kind": "exterior",
+            "ffe": 8
+          },
+          {
+            "x": 36,
+            "y": 21,
+            "face": "W",
+            "kind": "service",
+            "ffe": 8
+          },
+          {
+            "x": 56,
+            "y": 24,
+            "face": "N",
+            "kind": "service",
+            "ffe": 8
+          },
+          {
+            "x": 56,
+            "y": 2,
+            "face": "S",
+            "kind": "exterior",
+            "ffe": 8
+          }
+        ]
+      }
+    ],
+    "doors": [
+      {
+        "x": 36,
+        "y": 6,
+        "face": "W",
+        "kind": "entry",
+        "ffe": 8
+      },
+      {
+        "x": 43,
+        "y": 2,
+        "face": "S",
+        "kind": "exterior",
+        "ffe": 8
+      },
+      {
+        "x": 36,
+        "y": 21,
+        "face": "W",
+        "kind": "service",
+        "ffe": 8
+      },
+      {
+        "x": 56,
+        "y": 24,
+        "face": "N",
+        "kind": "service",
+        "ffe": 8
+      },
+      {
+        "x": 56,
+        "y": 2,
+        "face": "S",
+        "kind": "exterior",
+        "ffe": 8
+      },
+      {
+        "x": 13,
+        "y": 2,
+        "face": "S",
+        "kind": "entry",
+        "ffe": 10
+      },
+      {
+        "x": 26,
+        "y": 21,
+        "face": "E",
+        "kind": "service",
+        "ffe": 10
+      },
+      {
+        "x": 6,
+        "y": 2,
+        "face": "S",
+        "kind": "exterior",
+        "ffe": 0
+      },
+      {
+        "x": 20,
+        "y": 2,
+        "face": "S",
+        "kind": "exterior",
+        "ffe": 0
+      }
+    ],
+    "notes": "The massing showed two boxes and a slot; the plan shows the slot is load-bearing on the argument. The dogtrot meets grade at its uphill end (ground ~el.8 at y=24, so ffe 8 is a flat arrival from the drive) and empties onto the 62 ft porch, so THE PORCH IS THE HALL - every east-body room opens off the porch, the dogtrot, or the room beside it, and the west body is entered from the porch up three risers into its stair hall. The plan also fixes one line the massing could not: a single wet wall at y=17, 26 ft west plus 26 ft east = 52 ft, carrying every fixture on all three levels; kitchen sink and DW sit on the y=17 peninsula, range and fridge take the cold uphill wall at y=24, and the buried lower level is left entirely dry - no pipe anywhere near an exterior or bermed wall. Worst compromise: the dogtrot severs the house into two buildings and no service may cross an open slot, so each body carries its own mechanical room and water heater (MECH WEST x20-26 ffe 10, MECH EAST x54-58 ffe 8) - a duplicated plant in a 1,716 sf house. Second, honestly: the west body's two storeys force a 4x15 stair hall on each of its levels, 120 sf of named and paid-for circulation. No room in the house is reached by a passage, so the no-corridor claim holds, but the stricter 'no circulation' reading of it does not. Third, the 22 ft body makes the east living/dining/kitchen stack front-to-back, which is what delivers the through-breeze but leaves the living room only 8 ft deep. Buildability note: the lower level needs a terrace cut to about el.-0.5 in front of y=2 to walk out under the porch."
   },
   {
     "id": "S5-PERCH",
