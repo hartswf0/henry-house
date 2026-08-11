@@ -16,7 +16,13 @@ const CHUNK = +(argv.find(a => a.startsWith('--chunk='))?.split('=')[1] ?? 8);
 // Each view carries its own size now, at the main house's standard — 1700 x
 // 1062 exterior, 1620 x 1110 interior. The old 1400 x 900 at 20 samples was
 // why these read as massing studies beside the house's own renders.
-const VIEWS = (argv.find(a => a.startsWith('--views='))?.split('=')[1] ?? 'compare,hero,interior').split(',');
+// INTERIOR IS NOT IN THE DEFAULT SET. The camera is correct — it stands in
+// the room the plan says is the largest, at eye height, aimed downhill — but
+// the scheme scene's glazing is an opaque dark surface, so the render is a
+// photograph of the glass rather than a view through it. Until that material
+// is transmissive an interior view is worse than no interior view, because it
+// looks like a mistake nobody caught. Ask for it with --views=interior.
+const VIEWS = (argv.find(a => a.startsWith('--views='))?.split('=')[1] ?? 'compare,hero').split(',');
 const only = argv.filter(a => !a.startsWith('--'));
 const list = SCHEMES.map(s => s.id).filter(id => !only.length || only.some(o => id.includes(o)));
 
