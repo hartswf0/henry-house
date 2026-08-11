@@ -15,6 +15,7 @@ import G, {
   STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS,
 } from '/model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
+import { FIXTURES } from '/model/fixtures.mjs';
 import * as MAT from './textures.mjs';
 
 const F = (inches) => inches / 12;
@@ -316,28 +317,50 @@ function buildInterior(M) {
                  [302, RA.topAtY1 - ROOF_ASSEMBLY], [10, RA.topAtY0 - ROOF_ASSEMBLY]],
                  ft(0) + 10, ft(48), M.ceilWood, { cast: false }));
 
-  // ---- FURNITURE MASSING -------------------------------------------------
-  const L1f = L1.ffe;
-  const sofa = (x, y, w, d) => {
-    g.add(mbox(x, x + w, y, y + d, L1f, L1f + 16, M.fabric));
-    g.add(mbox(x, x + w, y + d - 8, y + d, L1f, L1f + 30, M.fabric));
+  // ---- FIXTURES, CASEWORK AND FURNITURE ----------------------------------
+  // Placed from model/fixtures.mjs — the SAME schedule the plans draw and the
+  // clearance checks verify. If a toilet moves in plan it moves here.
+  const matFor = (t) => {
+    if (['wc', 'lav', 'lav2', 'tub', 'shower36', 'shower42', 'sink'].includes(t)) return M.porcelain;
+    if (['base', 'island', 'tall', 'shelf', 'desk', 'table-d', 'table-c', 'nightstand', 'rod'].includes(t)) return M.wood;
+    if (['sofa', 'chair', 'bench', 'bedK', 'bedQ'].includes(t)) return M.fabric;
+    if (['range', 'fridge', 'dw', 'washer'].includes(t)) return M.appliance;
+    if (['stove'].includes(t)) return M.steel;
+    if (['rug'].includes(t)) return M.rug;
+    return M.equip;
   };
-  sofa(330, 40, 108, 38);                                   // great room
-  g.add(mbox(300, 372, 92, 128, L1f, L1f + 16, M.wood));    // coffee table
-  g.add(mbox(600, 690, 60, 96, L1f + 27, L1f + 30, M.wood));// dining top
-  for (const [tx, ty] of [[606, 66], [678, 66], [606, 84], [678, 84]])
-    g.add(mbox(tx, tx + 4, ty, ty + 4, L1f, L1f + 27, M.wood));
-  for (let i = 0; i < 4; i++) g.add(mbox(604 + i * 22, 622 + i * 22, 40, 58, L1f, L1f + 34, M.fabric));
-  g.add(mbox(748, 840, 60, 96, L1f, L1f + 36, M.stoneTop)); // kitchen island
-  g.add(mbox(752, 850, 190, 216, L1f, L1f + 36, M.wood));   // kitchen run
-  g.add(mbox(40, 120, 40, 116, L1f, L1f + 26, M.fabric));   // primary bed
-  // lower level + upper beds
-  g.add(mbox(40, 150, 40, 90, L0.ffe, L0.ffe + 16, M.fabric));
-  g.add(mbox(600, 680, 40, 116, L2.ffe, L2.ffe + 26, M.fabric));
-  // wood stove at the masonry mass
-  g.add(mbox(ft(23) - 12, ft(23) + 12, 134, 158, L1f, L1f + 34, M.steel));
+  for (const f of FIXTURES) {
+    const lvl = LEVELS.find(l => l.id === f.level);
+    if (!lvl) continue;
+    const z0 = lvl.ffe + (f.type === 'panel' || f.type === 'rod' ? 30 : 0);
+    const h = f.h ?? 34;
+    const mat = matFor(f.type);
+    const cast = !['rug'].includes(f.type);
+    g.add(mbox(f.x, f.x + f.w, f.y, f.y + f.d, z0, z0 + h, mat, { cast }));
+    // a few types read badly as a single box
+    if (f.type === 'bedK' || f.type === 'bedQ') {
+      const head = f.face === 'S' ? f.y + f.d - 4 : f.y;
+      g.add(mbox(f.x, f.x + f.w, head, head + 4, lvl.ffe, lvl.ffe + 44, M.wood));       // headboard
+      g.add(mbox(f.x + 4, f.x + f.w - 4, f.y + (f.face === 'S' ? f.d - 22 : 4), f.y + (f.face === 'S' ? f.d - 6 : 20),
+        lvl.ffe + h, lvl.ffe + h + 5, M.linen));                                        // pillows
+    }
+    if (f.type === 'sofa') {
+      const back = f.face === 'S' ? f.y + f.d - 7 : f.y;
+      g.add(mbox(f.x, f.x + f.w, back, back + 7, lvl.ffe, lvl.ffe + 30, M.fabric));
+    }
+    if (f.type === 'island' || f.type === 'base') {
+      g.add(mbox(f.x - 1, f.x + f.w + 1, f.y - 1, f.y + f.d + 1, z0 + h, z0 + h + 1.5, M.stoneTop));
+    }
+    if (f.type === 'tub') {
+      g.add(mbox(f.x + 3, f.x + f.w - 3, f.y + 3, f.y + f.d - 3, z0 + 4, z0 + h, M.porcelain, { cast: false }));
+    }
+    if (f.type === 'shower36' || f.type === 'shower42') {
+      g.add(mbox(f.x, f.x + f.w, f.y, f.y + f.d, z0 + 4, z0 + 78, M.glass, { cast: false }));
+    }
+  }
   return g;
 }
+
 
 // ── ENTOURAGE: trees, distant ridges, driveway ──────────────────────────────
 function buildTrees(count = 240) {
@@ -493,9 +516,14 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     floor: MAT.floorMaterial(),
     plaster: MAT.plasterMaterial(),
     ceilWood: MAT.ceilingWoodMaterial(),
-    fabric: MAT.simple(0x6d6a63, 0.95),
-    wood: MAT.simple(0x6b4f33, 0.7),
-    stoneTop: MAT.simple(0xb9b3a8, 0.42),
+    fabric: MAT.simple(0x5f5c58, 0.96),
+    linen: MAT.simple(0xbfb8ac, 0.95),
+    wood: MAT.simple(0x5d4530, 0.72),
+    stoneTop: MAT.simple(0x8e887d, 0.42),
+    porcelain: MAT.simple(0xe8e6e1, 0.22),
+    appliance: MAT.simple(0x8f959b, 0.32, 0.7),
+    equip: MAT.simple(0x6a7076, 0.6, 0.3),
+    rug: MAT.simple(0x6a6f63, 0.98),
   };
 
   buildSky(renderer, scene, sun.dir);

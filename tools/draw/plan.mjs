@@ -9,6 +9,7 @@ import G, {
   DECKS, DRAIN_GAP, SNOW, CLERESTORY,
 } from '../../model/geometry.mjs';
 import { openingsFor, OPEN_EDGES, GARAGE_OPENINGS } from '../../model/openings.mjs';
+import { drawFixtures } from './fixtures.mjs';
 
 const EPS = 1.0;
 
@@ -207,6 +208,9 @@ export function drawPlan(s, levelId, opts = {}) {
   }
 
   partitions(s, levelId);
+  // Fixtures BEFORE openings so a door swing arc reads over the room, and
+  // before the room tags so the tags stay legible on top.
+  drawFixtures(s, levelId, { showClearances: opts.clearances, link: opts.link ? null : false });
   openings(s, levelId);
   for (const st of STAIRS) {
     const inLevel = (st.from === levelId || st.to === levelId);

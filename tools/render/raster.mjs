@@ -25,16 +25,15 @@ for (const f of files) {
   const svg = readFileSync(DRAW + f, 'utf8');
   const m = svg.match(/width="(\d+)" height="(\d+)"/);
   const w = m ? +m[1] : 3600, h = m ? +m[2] : 2400;
-  await page.setViewportSize({ width: Math.round(w / 2), height: Math.round(h / 2) });
+  await page.setViewportSize({ width: w, height: h });
   await page.setContent(
     `<html><body style="margin:0;background:#fff">
-     <div style="width:${w / 2}px;height:${h / 2}px;overflow:hidden">
-     <div style="transform:scale(0.5);transform-origin:0 0;width:${w}px;height:${h}px">${svg}</div>
-     </div></body></html>`,
+     <div style="width:${w}px;height:${h}px;overflow:hidden">${svg}</div>
+     </body></html>`,
     { waitUntil: 'load' });
   const out = PNG + f.replace(/\.svg$/, '.png');
-  await page.screenshot({ path: out, clip: { x: 0, y: 0, width: w / 2, height: h / 2 } });
-  console.log(`  ✓ ${out.split('/').pop()}  ${w / 2}x${h / 2} @${scale}x`);
+  await page.screenshot({ path: out, clip: { x: 0, y: 0, width: w, height: h } });
+  console.log(`  ✓ ${out.split('/').pop()}  ${w}x${h} @${scale}x`);
 }
 
 await browser.close();

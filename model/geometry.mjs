@@ -152,9 +152,12 @@ export const ROOMS = {
   L2: [
     R('L2-bed2',    'BEDROOM 2',         581,  10, 139, 170, { use: 'sleeping', egress: true }),
     R('L2-bed3',    'BEDROOM 3',         725,  10, 129, 170, { use: 'sleeping', egress: true }),
-    R('L2-stairU',  'STAIR / HALL',      581, 185, 119, 117, { use: 'circ', stair: 'S1' }),
-    R('L2-bath2',   'BATH 2',            705, 185,  95, 117, { use: 'wet' }),
-    R('L2-mech2',   'AIR HANDLER / LINEN', 805, 185, 49, 117, { use: 'mech' }),
+    R('L2-stairU',  'STAIR',             581, 185, 119, 117, { use: 'circ', stair: 'S1' }),
+    // A corridor east of the stair. Without it BEDROOM 3 could only be entered
+    // through BATH 2 — caught by tools/check/clash.mjs, not by looking.
+    R('L2-hall',    'HALL',              705, 185, 149,  36, { use: 'circ' }),
+    R('L2-bath2',   'BATH 2',            705, 226, 105,  76, { use: 'wet' }),
+    R('L2-linen',   'LINEN / AIR HANDLER', 815, 226, 39, 76, { use: 'mech' }),
   ],
 };
 

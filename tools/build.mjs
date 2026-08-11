@@ -40,7 +40,7 @@ function sheetA101() {
   s.border();
   s.sheetTitle(300, 150);
   drawPlan(s, 'L1', {
-    site: true, link: true, garage: true,
+    site: true, link: true, garage: true, clearances: true,
     ghostAbove: 'L2',
     caption: 'Great room ceiling rises 9\'-10" at the glass to 16\'-4" at the spine — compression at the view, release at the back.',
     dimOffsetY: -190,
@@ -82,10 +82,10 @@ function sheetA102() {
   s.sheetTitle(300, 150);
 
   s.ox = 470; s.oy = 1150;
-  drawPlan(s, 'L0', { ghostAbove: 'L1', caption: 'Walks out at grade to the SSE. Second means of egress.', dimOffsetY: -160 });
+  drawPlan(s, 'L0', { clearances: true, ghostAbove: 'L1', caption: 'Walks out at grade to the SSE. Second means of egress.', dimOffsetY: -160 });
 
   s.ox = 1560 - 576 * s.scale; s.oy = 1150;
-  drawPlan(s, 'L2', { ghostBelow: 'L1', caption: 'Sleeping level under the shed. Interior overlook into the great room.', dimOffsetY: -160 });
+  drawPlan(s, 'L2', { clearances: true, ghostBelow: 'L1', caption: 'Sleeping level under the shed. Interior overlook into the great room.', dimOffsetY: -160 });
 
   s.scaleBar(2380, 2180, { scaleName, feetTicks: [0, 4, 8, 16] });
   s.northArrow(2620, 480, 46, G.ORIENTATION.longAxisAzimuth);
