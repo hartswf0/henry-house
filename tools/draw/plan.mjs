@@ -78,7 +78,8 @@ function stair(s, st, { levelId }) {
   const runLen = (st.runsPerFlight - 1) * st.treadDepth;
   const cw = st.clearWidth;
   const x = st.x + 3, y = st.y + 3;
-  const isDown = st.from === levelId;   // travelling down from this level
+  // If this level is the stair's TOP, you travel down from here.
+  const isDown = st.to === levelId;
   const label = isDown ? 'DN' : 'UP';
 
   // Run A (travelling +Y), Run B (returning -Y)
@@ -119,9 +120,12 @@ function roomTags(s, levelId) {
   for (const r of ROOMS[levelId] ?? []) {
     const cx = r.x + r.w / 2, cy = r.y + r.h / 2;
     if (r.stair) continue;
-    const nm = r.name.length > 20 ? r.name.replace(' — ', '\n') : r.name;
-    s.roomTag(cx, cy, nm.split('\n')[0], r.area);
-    if (nm.includes('\n')) s.text(cx, cy, nm.split('\n')[1], { size: 15, anchor: 'middle', color: INK.accent, dy: -18 });
+    const [head, tail] = r.name.includes(' — ') ? r.name.split(' — ') : [r.name, null];
+    // Shrink the tag until it fits inside the room, so labels never collide.
+    const availW = s.L(r.w) - 14;
+    const size = Math.max(9, Math.min(20, (availW / Math.max(head.length, 1)) * 1.72));
+    s.roomTag(cx, cy, head, r.area, { size });
+    if (tail) s.text(cx, cy, tail, { size: size - 5, anchor: 'middle', color: INK.accent, dy: -size - 4 });
   }
 }
 
@@ -153,11 +157,16 @@ function siteElements(s) {
   for (let x = d1.x0 + 6; x < d1.x1; x += 6) s.line(x, d1.y0, x, d1.y1, { w: 0.5, color: INK.faint });
   s.text((d1.x0 + d1.x1) / 2, d1.y0 + 34, 'MAIN DECK', { size: 19, anchor: 'middle', weight: 700, color: INK.mid });
 
-  // snow apron
+  // snow: free-shed apron (only where nothing is below) + retention over decks
   const ap = SNOW.apron;
   const dots = s.dotDef('snowap', { spacing: 8, r: 1.3, color: INK.light });
-  s.rect(GRID.x[0].v, ap.y0, GRID.x[6].v - GRID.x[0].v, ap.y1 - ap.y0, { fill: dots, color: INK.light, w: LW.hair, dash: '8 6' });
-  s.text((GRID.x[0].v + GRID.x[6].v) / 2, ap.y0 + 24, 'SNOW-SHED APRON — RIVER COBBLE. NO WALKING SURFACE, NO EQUIPMENT.', { size: 14, anchor: 'middle', color: INK.mid });
+  s.rect(ap.x0, ap.y0, ap.x1 - ap.x0, ap.y1 - ap.y0, { fill: dots, color: INK.light, w: LW.hair, dash: '8 6' });
+  s.text((ap.x0 + ap.x1) / 2, ap.y0 - 22, 'FREE-SHED APRON — COBBLE', { size: 13, anchor: 'middle', color: INK.mid });
+  for (const z of SNOW.retentionZones.filter(z => z.roof === 'RA' || z.roof === 'RB')) {
+    s.line(z.x0 + 4, -30, z.x1 - 4, -30, { w: LW.heavy, color: INK.fire });
+    for (let x = z.x0 + 12; x < z.x1; x += 24) s.line(x, -36, x, -24, { w: LW.thin, color: INK.fire });
+  }
+  s.text((ft(24) + ft(72)) / 2, -30, 'SNOW RETENTION AT EAVE — DECK BELOW, SNOW MUST NOT RELEASE', { size: 13, anchor: 'middle', color: INK.fire, dy: -14 });
 
   // entry bridge
   const br = DECKS[2];
@@ -223,11 +232,10 @@ export function drawPlan(s, levelId, opts = {}) {
     bubbleBelow: fp.y0 + dy - 78, bubbleLeft: fp.x0 - 230,
   });
 
-  // level tag
-  s.text(fp.x0, fp.y1 + (opts.titleOffset ?? 150), `${lvl.name}   ·   FF ${dim(lvl.ffe + 1200)}`, {
-    size: 26, weight: 700, spacing: 1.6,
-  });
-  s.text(fp.x0, fp.y1 + (opts.titleOffset ?? 150), opts.caption ?? '', { size: 15, color: INK.mid, dy: 24 });
+  // level tag — placed BELOW the plan and below the dimension strings
+  const ty = fp.y0 + dy - (opts.titleDrop ?? 150);
+  s.text(fp.x0, ty, `${lvl.name}   ·   FF ${dim(lvl.ffe + 1200)}`, { size: 26, weight: 700, spacing: 1.6 });
+  s.text(fp.x0, ty, opts.caption ?? '', { size: 15, color: INK.mid, dy: 26 });
   return s;
 }
 

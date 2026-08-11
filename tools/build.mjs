@@ -24,7 +24,7 @@ function sheetA101() {
     size: 'ARCH_D', scale: SCALES[scaleName],
     number: 'A-101', title: 'MAIN LEVEL PLAN',
     subtitle: 'ARRIVAL LEVEL · THE PUBLIC HOUSE · EVERYTHING ESSENTIAL ON ONE FLOOR',
-    originX: 460, originY: 1450,
+    originX: 560, originY: 1180,
     notes: [
       '1. THE SPINE. All wet rooms, all vertical chases and all mechanical distribution sit in the 11\'-0" service band along the uphill wall (grid 2 to grid 3). Plumbing stacks align on all three levels. No plumbing occurs in an exterior wall — at this elevation that is a freeze rule, not a preference.',
       '2. TWO ENTRIES, TWO PURPOSES. The everyday route is GARAGE > MUDROOM AIRLOCK > KITCHEN. The guest route is MOTOR COURT > ENTRY BRIDGE > ENTRY. Dirty arrival never crosses the clean house.',
@@ -43,12 +43,12 @@ function sheetA101() {
     site: true, link: true, garage: true,
     ghostAbove: 'L2',
     caption: 'Great room ceiling rises 9\'-10" at the glass to 16\'-4" at the spine — compression at the view, release at the back.',
-    titleOffset: 470,
+    dimOffsetY: -190,
   });
   s.northArrow(2620, 500, 52, G.ORIENTATION.longAxisAzimuth);
   s.scaleBar(2380, 2180, { scaleName, feetTicks: [0, 4, 8, 16, 32] });
   s.sectionMark(300, -60, 300, 400, 'A');
-  s.sectionMark(-90, 220, 1120, 220, 'B');
+  s.sectionMark(-40, 250, 1120, 250, 'B');
   s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
     'DRAWN FROM A SINGLE PARAMETRIC MODEL:',
     'model/geometry.mjs is the source of truth.',
@@ -66,7 +66,7 @@ function sheetA102() {
     size: 'ARCH_D', scale: SCALES[scaleName],
     number: 'A-102', title: 'LOWER + UPPER LEVEL PLANS',
     subtitle: 'THE WALKOUT LEVEL AND THE SLEEPING LEVEL',
-    originX: 470, originY: 1360,
+    originX: 470, originY: 1150,
     notes: [
       '1. THE LOWER LEVEL IS FREE FLOOR AREA. The hill already removed the earth; enclosing it costs a wall that had to exist anyway as a retaining structure. This is the single largest reason the house steps rather than sitting on a pad.',
       '2. "THE HEART" is a real mechanical room, not a closet: pressure tank, filtration, heat-pump water heater, ERV, electrical, battery and the plumbing manifold all live in one conditioned space with a 36" door so equipment can be replaced without demolition.',
@@ -81,11 +81,11 @@ function sheetA102() {
   s.border();
   s.sheetTitle(300, 150);
 
-  s.ox = 470; s.oy = 1360;
-  drawPlan(s, 'L0', { ghostAbove: 'L1', caption: 'Walks out at grade to the SSE. Second means of egress.', titleOffset: 300 });
+  s.ox = 470; s.oy = 1150;
+  drawPlan(s, 'L0', { ghostAbove: 'L1', caption: 'Walks out at grade to the SSE. Second means of egress.', dimOffsetY: -160 });
 
-  s.ox = 1560 - 576 * s.scale; s.oy = 1360;
-  drawPlan(s, 'L2', { ghostBelow: 'L1', caption: 'Sleeping level under the shed. Interior overlook into the great room.', titleOffset: 300 });
+  s.ox = 1560 - 576 * s.scale; s.oy = 1150;
+  drawPlan(s, 'L2', { ghostBelow: 'L1', caption: 'Sleeping level under the shed. Interior overlook into the great room.', dimOffsetY: -160 });
 
   s.scaleBar(2380, 2180, { scaleName, feetTicks: [0, 4, 8, 16] });
   s.northArrow(2620, 480, 46, G.ORIENTATION.longAxisAzimuth);

@@ -352,20 +352,36 @@ export const DRAIN_GAP = {
 // ── SNOW ─────────────────────────────────────────────────────────────────────
 // Standing seam metal at 3:12 releases snow in slabs. Where it lands is a
 // design decision, not an accident.
+// COORDINATION NOTE — this block was rewritten after the main level plan was
+// drawn and looked at. The first version sent shed snow to a cobble apron at
+// y = -6'-0" to -0'-0". But the MAIN DECK occupies y = -12'-0" to 0'-0". The
+// apron was underneath the deck: the roof would have shed snow onto the deck
+// and against the glass doors. A 4'-0" overhang cannot throw snow past a
+// 12'-0" deck, so "shed it clear" is not available here.
+//
+// The resolution is the one real mountain buildings use: RETAIN the snow on the
+// roof wherever an occupied surface is below, and let it melt off. Free
+// shedding is only allowed where nothing is underneath.
 export const SNOW = {
   shedDirection: '-Y (downhill / SSE)',
   slideZoneFactor: 1.5,        // × overhang projection, measured from the drip line
-  apron: {
-    y0: ft(-6), y1: ft(0),
-    material: '18-24" river cobble over filter fabric and a drainage trench',
-    note: 'The usable deck edge and guard are held INSIDE the slide zone.',
-  },
-  retention: [
-    'Continuous two-pipe snow fence over every downhill door and the deck stair',
-    'Snow fence over the LINK roof — it discharges directly at the everyday entry',
-    'No snow retention elsewhere: the roof is meant to shed to the apron',
+  strategy: 'RETAIN over occupied surfaces; SHED only where nothing is below.',
+  retentionZones: [
+    { roof: 'RA', x0: ft(24), x1: ft(48), reason: 'MAIN DECK below — continuous two-pipe snow fence at the eave, second row upslope' },
+    { roof: 'RB', x0: ft(48), x1: ft(72), reason: 'MAIN DECK and dining/kitchen doors below' },
+    { roof: 'RL', x0: LINK.x0, x1: LINK.x1, reason: 'discharges directly at the everyday entry and the breezeway' },
+    { roof: 'RG', x0: GARAGE.x0, x1: GARAGE.x1, reason: 'garage doors and the motor court apron below' },
   ],
-  prohibited: 'No mechanical equipment, meter, vent terminal, condenser, or walking surface within the slide zone.',
+  freeShedZones: [
+    { roof: 'RA', x0: ft(0), x1: ft(24), reason: 'no deck west of grid C — sheds to the cobble apron below' },
+  ],
+  apron: {
+    y0: ft(-6), y1: ft(0), x0: ft(0), x1: ft(24),
+    material: '18-24" river cobble over filter fabric and a drainage trench',
+    note: 'Applies ONLY at bays A–C, west of the main deck, and along the lower terrace edge.',
+  },
+  prohibited: 'No mechanical equipment, meter, vent terminal, condenser, hose bib or walking surface within a free-shed slide zone.',
+  verifyWithEngineer: 'Snow retention must be sized for the governing ground snow load, which is UNVERIFIED — Watauga County may be a case-study ("CS") snow area requiring an AHJ-set value. See docs/02-code-basis.md.',
 };
 
 // ── DERIVED SUMMARIES ────────────────────────────────────────────────────────
