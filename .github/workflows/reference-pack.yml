@@ -1,0 +1,86 @@
+name: Build Henry House Reference Pack
+on:
+  push:
+    branches:
+      - artifact/reference-pack-20260811
+jobs:
+  build-reference-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official reference assets
+        shell: bash
+        run: |
+          set -u
+          ROOT="reference-assets"
+          mkdir -p "$ROOT"/{RURAL_STUDIO/{REV_WALKER,DAVE,MACARTHUR,SYLVIA,JOANNE,MYERS,GERALDINE,REE,BRIDGE,TRUSS,LUCY,BUTTERFLY,BREATHING_WALL},OLSON_KUNDIG/{LONGBRANCH,SOL_DUC,VERMONT_CABIN,KNOB_HILL}}
+          : > "$ROOT/DOWNLOAD_FAILURES.txt"
+          fetch(){ url="$1"; out="$2"; echo "FETCH $url"; if ! curl -fL --retry 3 --retry-delay 2 -A 'Mozilla/5.0' "$url" -o "$out"; then echo "$url -> $out" >> "$ROOT/DOWNLOAD_FAILURES.txt"; rm -f "$out"; fi; }
+
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/03/Walker_Batterboards_1.jpg' "$ROOT/RURAL_STUDIO/REV_WALKER/Walker_Batterboards_Plan.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/04/Walker_Render1_Opt.jpg' "$ROOT/RURAL_STUDIO/REV_WALKER/Walker_Render.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/REV-WALKER-HURSLEY-HEADER-scaled.jpg' "$ROOT/RURAL_STUDIO/REV_WALKER/Rev_Walker_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/07/Walker_AdditionDiagram_Edited.jpg' "$ROOT/RURAL_STUDIO/REV_WALKER/Walker_Addition_Diagram.jpg"
+
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Floorplan.png' "$ROOT/RURAL_STUDIO/DAVE/Dave_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Sections.png' "$ROOT/RURAL_STUDIO/DAVE/Dave_Sections.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Model-Roof2.png' "$ROOT/RURAL_STUDIO/DAVE/Dave_Roof_Axon.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Dave_Model-Perspective.png' "$ROOT/RURAL_STUDIO/DAVE/Dave_Perspective.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv08_Dave_Floorplan_MF.pdf' "$ROOT/RURAL_STUDIO/DAVE/Dave_Official_Base_Plan.pdf"
+
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Mac_Floorplan.png' "$ROOT/RURAL_STUDIO/MACARTHUR/MacArthur_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/MacArthur_Sections.png' "$ROOT/RURAL_STUDIO/MACARTHUR/MacArthur_Sections.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/MacArthur_Model-Axon-Roof.png' "$ROOT/RURAL_STUDIO/MACARTHUR/MacArthur_Roof_Axon.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv09_Mac_Floorplan_MF.pdf' "$ROOT/RURAL_STUDIO/MACARTHUR/MacArthur_Official_Base_Plan.pdf"
+
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia-2-1_Floorplan-Final.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-1_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia-2-1_Section.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-1_Section.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Sylvia2-1_Model-Axon-Roof-b.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-1_Roof_Axon.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/Sylvia-2-1_Floorplan.pdf' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-1_Official_Base_Plan.pdf"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia-2-2_Floorplan-1.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-2_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia2-2_Sections.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-2_Sections.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/03/Sylvia-2-2_Floorplan.pdf' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_2-2_Official_Base_Plan.pdf"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/Sylvia-3-2_Floorplan-slider.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_3-2_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/02/CAM01-Axon-Model-copy.png' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_3-2_Axon.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2024/03/Sylvia-3-2_Floorplan.pdf' "$ROOT/RURAL_STUDIO/SYLVIA/Sylvia_3-2_Official_Base_Plan.pdf"
+
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Joanne_Floorplan.png' "$ROOT/RURAL_STUDIO/JOANNE/Joanne_Floorplan.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2022/08/Joanne_Sections.png' "$ROOT/RURAL_STUDIO/JOANNE/Joanne_Sections.png"
+          fetch 'https://frontporch.ruralstudio.org/wp-content/uploads/2023/06/20Kv10_Joanne_Floorplan_MF.pdf' "$ROOT/RURAL_STUDIO/JOANNE/Joanne_Official_Base_Plan.pdf"
+
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/02/myers_2-plans-1024x512.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Plan_Options.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/02/Myers_split-flex-diagram-1024x663.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Core_Flex_Diagram.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/02/Myers_flexplans-1024x512.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Flex_Plans.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/02/Myers_attic-plans-1024x345.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Attic_Plans.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2021/02/myers_attic-truss-1024x883.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Attic_Truss.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/HURSLEY-HEADER-REDUCED.jpg' "$ROOT/RURAL_STUDIO/MYERS/Myers_Built.jpg"
+
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/Geraldines-home-featured.jpg' "$ROOT/RURAL_STUDIO/GERALDINE/Geraldine_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/Geraldines-home-floorplan-copy.png' "$ROOT/RURAL_STUDIO/GERALDINE/Geraldine_Floorplan.png"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/rees-home-feature.jpg' "$ROOT/RURAL_STUDIO/REE/Rees_Home_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/bridgehouse-featured.jpg' "$ROOT/RURAL_STUDIO/BRIDGE/Bridge_Home_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/truss-featured.jpg' "$ROOT/RURAL_STUDIO/TRUSS/Truss_Home_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/truss-plan.png' "$ROOT/RURAL_STUDIO/TRUSS/Truss_Home_Plan.png"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/lucy-featured.jpg' "$ROOT/RURAL_STUDIO/LUCY/Lucys_House_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/Harris-Butterfly-header-image.jpg' "$ROOT/RURAL_STUDIO/BUTTERFLY/Harris_Butterfly_Built.jpg"
+          fetch 'https://ruralstudio.org/wp-content/uploads/2019/06/BREATHING-WALL-HURSLEY-HEADER-scaled.jpg' "$ROOT/RURAL_STUDIO/BREATHING_WALL/Breathing_Wall.jpg"
+
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2015/03/02006_00_Olson_Cabin_N3-720x403.jpg' "$ROOT/OLSON_KUNDIG/LONGBRANCH/Longbranch_01.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2015/03/Longbranch_02006_00_N26_medium_1-720x567.jpg' "$ROOT/OLSON_KUNDIG/LONGBRANCH/Longbranch_02.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2015/04/10018_00_Sol_Duc_Cabin_BB_N2-600x720.jpg' "$ROOT/OLSON_KUNDIG/SOL_DUC/Sol_Duc_01.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2015/04/10018_00_Sol_Duc_Cabin_BB_N3-720x540.jpg' "$ROOT/OLSON_KUNDIG/SOL_DUC/Sol_Duc_02.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2015/04/10018_00_Sol_Duc_Cabin_BB_N9-720x540.jpg' "$ROOT/OLSON_KUNDIG/SOL_DUC/Sol_Duc_03.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2020/03/14092_00_N105_ppt-scaled-720x516.jpg' "$ROOT/OLSON_KUNDIG/VERMONT_CABIN/Vermont_01.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2020/03/14092_00_N91_ppt-scaled-720x478.jpg' "$ROOT/OLSON_KUNDIG/VERMONT_CABIN/Vermont_02.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2020/03/14092_00_N94_ppt-scaled-720x473.jpg' "$ROOT/OLSON_KUNDIG/VERMONT_CABIN/Vermont_03.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2020/07/12011_00_N80_web-540x720.jpg' "$ROOT/OLSON_KUNDIG/KNOB_HILL/Knob_Hill_01.jpg"
+          fetch 'https://olsonkundig.b-cdn.net/wp-content/uploads/2020/07/12011_00_N83_web-720x540.jpg' "$ROOT/OLSON_KUNDIG/KNOB_HILL/Knob_Hill_02.jpg"
+
+          find "$ROOT" -type f -maxdepth 5 -print | sort > "$ROOT/FILE_INDEX.txt"
+          echo "Downloaded $(find "$ROOT" -type f ! -name 'FILE_INDEX.txt' ! -name 'DOWNLOAD_FAILURES.txt' | wc -l) reference files."
+      - uses: actions/upload-artifact@v4
+        with:
+          name: henry-house-reference-assets
+          path: reference-assets
+          if-no-files-found: error
+          compression-level: 6
