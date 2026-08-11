@@ -535,3 +535,125 @@ import { drawReferenceSheet } from './draw/refs.mjs';
   ] });
   write('R-101-reference-bar.svg', s.toString());
 }
+
+// ── X-2xx  ONE DOSSIER SHEET PER SCHEME ─────────────────────────────────────
+// The complaint that produced this: the alternatives were massing boxes with
+// no schematics, so they could not be criticised and could not be wrong.
+// A footprint is the right drawing for comparing perimeter and earthwork and
+// the wrong drawing for everything else.
+//
+// One sheet per scheme, at 1/8" = 1'-0", with every level drawn as a real
+// plan: walls with thickness, rooms named and measured, circulation drawn and
+// paid for, glass on the downhill face, the plumbing wall called out. The
+// rooms come from model/scheme-plans.mjs, which is generated and CHECKED —
+// nothing reaches this sheet without surviving tools/build-plans.mjs.
+import { drawSchemeLevel, labelLevel, drawPlanLegend } from './draw/scheme-plan.mjs';
+import { PLANS } from '../model/scheme-plans.mjs';
+import { metrics as schemeMetrics } from '../model/schemes.mjs';
+import { CRITIQUES } from '../model/scheme-critiques.mjs';
+
+function wrapTo(str, n) {
+  const w = String(str ?? '').split(/\s+/); const out = []; let l = '';
+  for (const x of w) { if ((l + ' ' + x).trim().length > n) { out.push(l); l = x; } else l = (l ? l + ' ' : '') + x; }
+  if (l) out.push(l); return out;
+}
+
+PLANS.forEach((plan, idx) => {
+  const scheme = ALT_SCHEMES.find(s => s.id === plan.id);
+  if (!scheme) return;
+  const m = schemeMetrics(scheme);
+  const crit = CRITIQUES.find(c => c.id === plan.id) ?? null;
+  const scaleName = '1/8"=1\'-0"';
+  const num = `X-${201 + idx}`;
+
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: num, title: scheme.name.replace('THE ', '') + ' — SCHEMATIC PLANS',
+    subtitle: (scheme.tag ?? '').toUpperCase(),
+    notes: [
+      `OPERATION — ${scheme.operation}`,
+      scheme.doNotCopy ? `DO NOT COPY — ${scheme.doNotCopy}` : 'THIS SCHEME IS THE OPPONENT. It is not borrowed from anything; it is the thing to be beaten.',
+      'ROOMS ARE CHECKED, NOT DRAWN BY HAND. Every room on this sheet passed tools/build-plans.mjs: inside the scheme\'s own floor, no overlap with another room, the floor plate accounted for within 12%, every bedroom with an exterior wall and an egress window and at least 10 ft in its short dimension, every wet room touching another wet room or stacking over one, and every stair landing on the stair below.',
+      'CIRCULATION IS DRAWN AND PAID FOR. Corridors and stairs are rooms with areas here, because a scheme that hides its circulation is claiming floor area it does not have. The percentage under each plan is the honest number.',
+      'GLASS IS SHOWN ROOM BY ROOM on the downhill face rather than as one ribbon, so the drawing shows which rooms actually got the view and which were given the cold side.',
+      'THE HEAVY BLUE LINE is the plumbing wall. No pipe may run in an exterior wall — at 3,400 ft that is a freeze rule, not a preference.',
+      'THIS IS SCHEMATIC. No structure is engineered, no fixture is selected, no clearance is code-checked, and no room here has been tested against a real survey.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+
+  // levels across the sheet, each in its own column, all at ONE scale
+  let cx = 380;
+  const rowY = 900;
+  for (const lv of plan.levels) {
+    s.ox = cx; s.oy = rowY;
+    const B = drawSchemeLevel(s, scheme, lv);
+    if (!B) continue;
+    labelLevel(s, scheme, lv, cx - 40, rowY + 260);
+    cx += Math.max(360, (B.x1 - B.x0) * 12 * SCALES[scaleName] + 180);
+  }
+
+  s.northArrow(3180, 380);
+  s.scaleBar(2780, 380, { scaleName, feetTicks: [0, 8, 16, 32] });
+
+  // the numbers this scheme actually has, beside the plans that produce them
+  const bx = 300, by = 1500;
+  s.stext(bx, by, 'WHAT THIS SCHEME IS, MEASURED', { size: 15, weight: 700, spacing: 1.5 });
+  const rows = [
+    ['CONDITIONED', `${m.conditionedSf.toLocaleString()} sf`],
+    ['SHELTERED', `${m.shelteredSf.toLocaleString()} sf`],
+    ['PERIMETER', `${m.perimeterLf} lf  (${m.perimeterPerSf.toFixed(3)} per sf)`],
+    ['WET-WALL RUN', `${m.wetWallLf} lf`],
+    ['ROOF PLANES / JUNCTIONS', `${m.roofPlanes} / ${m.roofJunctions}`],
+    ['EARTH MOVED', `${m.cutCY.toLocaleString()} CY, deepest cut ${m.maxCutFt} ft`],
+    ['GROUND', m.groundNote],
+    ['PHASE 1 → MATURE', `${m.phase1Sf.toLocaleString()} → ${m.matureSf.toLocaleString()} sf`],
+  ];
+  rows.forEach(([k, v], i) => {
+    const y = by + 30 + i * 24;
+    s.stext(bx, y, k, { size: 11, color: INK.mid, spacing: .4 });
+    s.stext(bx + 330, y, v, { size: 12, family: 'ui-monospace, Menlo, monospace' });
+  });
+
+  drawPlanLegend(s, bx + 700, by);
+
+  // the builder's own account of the compromise, kept separate from the critic
+  if (plan.notes) {
+    s.stext(bx + 1250, by, 'THE BUILDER\'S NOTE', { size: 13, weight: 700, spacing: 1.3 });
+    s.stext(bx + 1250, by + 18, 'What the massing could not show, in the builder\'s words. The builder does not grade itself.',
+      { size: 9.5, color: INK.mid });
+    wrapTo(plan.notes, 74).slice(0, 9).forEach((ln, i) =>
+      s.stext(bx + 1250, by + 44 + i * 14, ln, { size: 10, color: INK.line }));
+  }
+
+  // the critic, with fresh context, per the gauntlet template's fan-out rule
+  if (crit) {
+    const kx = bx + 1250, ky = by + 210;
+    s.stext(kx, ky, `THE CRITIC — ${crit.verdict}`, { size: 13, weight: 700, spacing: 1.3,
+      color: crit.verdict === 'WIN' ? '#2f7d54' : INK.fire });
+    s.stext(kx, ky + 18, 'A separate agent, fresh context, which did not draw this plan and cannot see the builder\'s note.',
+      { size: 9.5, color: INK.mid });
+    let ly = ky + 44;
+    for (const f of (crit.findings ?? []).slice(0, 5)) {
+      wrapTo(`${f.severity === 'FATAL' ? '!!' : f.severity === 'MAJOR' ? '!' : '·'} ${f.finding}`, 74)
+        .forEach(ln => { s.stext(kx, ly, ln, { size: 10, color: f.severity === 'FATAL' ? INK.fire : INK.line }); ly += 14; });
+      ly += 4;
+    }
+    if (crit.biggestGap) {
+      ly += 6;
+      wrapTo(`BIGGEST GAP — ${crit.biggestGap}`, 74)
+        .forEach(ln => { s.stext(kx, ly, ln, { size: 10, color: INK.accent }); ly += 14; });
+    }
+  }
+
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    `${scheme.name}.`,
+    'Rooms from model/scheme-plans.mjs,',
+    'generated and checked. Metrics computed',
+    'from the same declarations that build',
+    'the 3D. Critic is a separate agent.',
+  ] });
+  write(`${num}-${plan.id.toLowerCase()}-plans.svg`, s.toString());
+});
