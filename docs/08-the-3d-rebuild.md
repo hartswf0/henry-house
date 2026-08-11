@@ -179,7 +179,31 @@ in order of how much they mattered:
 That is the honest reason the walkthrough looked the way it did. None of it was
 visible in a passing test suite, because nothing was testing it.
 
-### F.4 On the 120-mesh target in section C — it was the wrong test
+### F.4 The rebuild reintroduced the fault, in the other direction
+
+Worth recording because it happened ten commits into a rebuild whose entire
+purpose was to remove second sources.
+
+Putting the roof on the plan's plate fixed the model — and the new arithmetic
+was written **inside `build3d.mjs`**, where the old volume-based `roofBase()`
+in `model/schemes.mjs` was simply no longer imported. But `roofBase()` has two
+consumers. The other one is the comparison SECTION on X-101. So for ten commits
+the model drew the roof at the plan height and the section went on drawing it
+at the volume height, and nothing failed, because no check compares a drawing's
+roof to the model's.
+
+The fix was to move the arithmetic into the model and have both consumers read
+it. Two more disagreements surfaced once the section was looked at properly:
+its volume boxes were flat-topped where the model's walls follow the roof, and
+its roof build-up hung *below* the base line, putting the covering inside the
+rooms it covers.
+
+The lesson is not "check the drawings too." It is that **a height, a thickness
+or a coordinate computed inside a consumer is a second source by construction**,
+however correct it is on the day it is written. The rule the rebuild states —
+one source — has to be applied to the fix as well as to the thing being fixed.
+
+### F.5 On the 120-mesh target in section C — it was the wrong test
 
 Section C says "under 120 meshes for a 616 sf house; if it is over 200, two
 systems are still running." The Armature builds **203**. Two things about that:
@@ -202,7 +226,7 @@ So the target is retired, not met. The count is still worth watching — it fell
 from 305 to 203 on the Armature while the house gained stairwells, sloping wall
 heads and a porch that reaches the building — but SOLID is the test.
 
-### F.5 The loop
+### F.6 The loop
 
 `npm test` now runs it. Four checks, all passing:
 
