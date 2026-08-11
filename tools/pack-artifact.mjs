@@ -186,7 +186,12 @@ function renderPage({ renders, sheets, shots, gaunt, walk, est, drive, totals, A
     ['No code text was read', 'This container has no internet. Every code reference in the package is marked with how strongly it is held. Nothing here may be relied on for permitting.'],
     ['Nothing is engineered', 'Members are sized, not designed. A licensed structural engineer, and an MEP engineer, must redo all of it.'],
   ];
-  return `<title>Henry House — Watauga County, North Carolina</title>
+  // The artifact host supplies <head>, but this file is also meant to be
+  // downloaded and double-clicked — and without a viewport tag a phone lays it
+  // out at 980px and shrinks it, which is exactly the "unusable on mobile"
+  // failure. Browsers honour a viewport meta found in the body, so it goes here.
+  return `<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Henry House — Watauga County, North Carolina</title>
 <style>
 :root{
   --paper:#eceeec; --surface:#ffffff; --sunken:#e2e5e3;
@@ -320,7 +325,34 @@ dialog .close{position:fixed;top:18px;right:20px;font-family:var(--mono);font-si
   letter-spacing:.12em;background:#fff;color:#111;border:0;padding:10px 16px;border-radius:2px;cursor:pointer}
 footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);font-size:.9rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media (max-width:640px){body{font-size:16px}.wrap{padding:0 20px}.hero .inner{padding:0 20px 40px}section{padding:56px 0}}
+/* ── the index ────────────────────────────────────────────────────── */
+#toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.tocinner{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:10px;padding-bottom:10px}
+.tocinner::-webkit-scrollbar{display:none}
+#toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mid);text-decoration:none;padding:9px 13px;border-radius:999px;border:1px solid transparent;
+  white-space:nowrap;min-height:38px;display:flex;align-items:center}
+#toc a:hover,#toc a:focus-visible{color:var(--accent);border-color:var(--rule);outline:none}
+section{scroll-margin-top:58px}
+/* ── phone ────────────────────────────────────────────────────────── */
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .hero{min-height:min(74vh,560px)}
+  .hero .inner{padding:0 18px 32px}
+  section{padding:44px 0}
+  .renders,.sheets,.shots{grid-template-columns:1fr;gap:16px}
+  .figures{grid-template-columns:1fr 1fr}
+  .unknowns{grid-template-columns:1fr}
+  .decision{padding:20px 18px}
+  /* the 3D needs the screen, not a letterbox */
+  #walkwrap iframe{height:min(72vh,600px)}
+  .cta{padding:15px 22px;min-height:48px}
+  table.rank{font-size:.86rem;min-width:520px}
+  table.rank th,table.rank td{padding:10px 12px}
+}
+@media (max-width:400px){ .figures{grid-template-columns:1fr} }
 </style>
 <div class="hero">
   <img src="${hero.uri}" alt="Henry House seen from below the downhill face">
@@ -333,12 +365,19 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     <button class="cta" id="go">Walk through the house →</button>
   </div>
 </div>
+<nav id="toc" aria-label="Contents">
+  <div class="wrap tocinner">
+    <a href="#walk">Walk</a><a href="#idea">Why</a><a href="#renders">Renders</a>
+    <a href="#sheets">Drawings</a><a href="#numbers">Numbers</a><a href="#alts">Alternatives</a>
+    <a href="#calls">Your call</a><a href="#unknown">Unknowns</a>
+  </div>
+</nav>
 <div class="wrap">
 <section id="walk">
   <div class="head">
     <div class="sheetno">Live 3D</div>
     <h2>Walk through it</h2>
-    <p class="lede">Drag to turn, scroll to zoom. Or switch to <b>Walk</b> and use W A S D to move through the rooms. The jump-to buttons on the left put you in a specific place; the X-ray views strip the walls off and show the plumbing, ducts and wiring running through the house.</p>
+    <p class="lede">Drag to turn, pinch to zoom. On a computer you can switch to <b>Walk</b> and use W A S D to move through the rooms. <b>On a phone the menu is behind the button at the bottom left</b> &mdash; it holds the jump-to places and the X-ray views, which strip the walls off and show the plumbing, ducts and wiring running through the house.</p>
   </div>
   <div id="walkwrap">
     <div class="placeholder" id="ph">
@@ -347,7 +386,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     </div>
   </div>
 </section>
-<section>
+<section id="idea">
   <div class="head">
     <div class="sheetno">The idea</div>
     <h2>Why it is shaped like this</h2>
@@ -358,7 +397,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     <p>All the glass is on the downhill wall, because the view and the winter sun arrive from the same side. The uphill wall is nearly solid — it is the cold side, the cut side and the service side. Every bathroom, every pipe, every duct and both vertical chases live in an 11 ft band along that wall, so nothing wet ever runs in an exterior wall. At this elevation that is a freeze rule, not a preference.</p>
   </div>
 </section>
-<section>
+<section id="renders">
   <div class="head">
     <div class="sheetno">Renders</div>
     <h2>What it looks like</h2>
@@ -371,7 +410,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     </figure>`).join('\n    ')}
   </div>
 </section>
-<section>
+<section id="sheets">
   <div class="head">
     <div class="sheetno">The set</div>
     <h2>The drawings</h2>
@@ -384,7 +423,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     </button>`).join('\n    ')}
   </div>
 </section>
-<section>
+<section id="numbers">
   <div class="head">
     <div class="sheetno">The numbers</div>
     <h2>What it is, and what it costs</h2>
@@ -402,7 +441,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     <p class="d" style="color:var(--mid);margin-top:8px;max-width:64ch">Construction, plus 15% contingency, plus 12% for design, engineering, survey, geotechnical work and permits. That is <b>${money(est.perSf.lo)}–${money(est.perSf.hi)} per square foot</b>. Earthwork, spoil, driveway and erosion control alone account for about a fifth of construction cost before a single wall is framed — on steep land the site is a wing of the house you cannot see.</p>
   </div>
 </section>
-<section>
+<section id="alts">
   <div class="head">
     <div class="sheetno">The alternatives</div>
     <h2>${spell(rivals)} other ${rivals === 1 ? 'house' : 'houses'}, and the one above ${beatenByAll ? 'losing to all of them' : 'measured against them'}</h2>
@@ -436,7 +475,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     <p style="font-size:.9rem;color:var(--mid)">Cost here is the <b>building only</b> — no drive, motor court, septic, water, standby power, mechanical or soft costs, because every scheme carries the same ones. The rates are placeholders. <b>The ranking is the output, not the totals.</b></p>
   </div>
 </section>
-<section>
+<section id="calls">
   <div class="head">
     <div class="sheetno">Yours to call</div>
     <h2>Three things only you can decide</h2>
@@ -450,7 +489,7 @@ footer{padding:56px 0 72px;border-top:1px solid var(--rule);color:var(--mid);fon
     </div>`).join('\n    ')}
   </div>
 </section>
-<section>
+<section id="unknown">
   <div class="head">
     <div class="sheetno">Honestly</div>
     <h2>What is not known</h2>
