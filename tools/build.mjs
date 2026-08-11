@@ -124,7 +124,7 @@ function sheetA201() {
     originX: 700, originY: 1500,
     notes: [
       '1. THIS IS THE GOVERNING DRAWING. On a steep site the section, not the plan, decides whether the house is buildable, what it costs, and whether it stays dry.',
-      '2. BUILD ALONG THE CONTOUR. The bar runs with the slope, not across it, so the cut is one consistent depth instead of a wedge. Cut and fill are roughly balanced on site — hauling spoil off a mountain driveway is one of the largest avoidable costs on this kind of project.',
+      '2. BUILD ALONG THE CONTOUR. The bar runs with the slope, not across it, so the cut is one consistent depth instead of a wedge. THIS NOTE PREVIOUSLY CLAIMED CUT AND FILL WERE ROUGHLY BALANCED. The site model disproves it: see C-101. The pad and drive together cut far more than they fill, and hauling spoil off a mountain driveway is one of the largest avoidable costs on this kind of project. Where that spoil goes is an unanswered geotechnical question.',
       '3. THE LOWER LEVEL IS ALMOST FREE. The hill already removed the earth. The wall holding that earth back had to exist anyway; enclosing it buys a whole floor for the cost of finishing it.',
       '4. ONE ELEMENT, FOUR JOBS. The concrete spine retains the cut, carries the uphill end of every rib, resists lateral load and stores heat. The conventional alternative builds a retaining wall AND a separate frame in front of it, paying twice.',
       '5. WATER MOVES BY GRAVITY WHEREVER IT CAN. Footing drains daylight at both ends of the building. No sump, no float, no pump. A pump that fails during an ice storm is a flooded lower level.',
@@ -149,6 +149,59 @@ function sheetA201() {
   return s.toString();
 }
 write('A-201-section-aa.svg', sheetA201());
+
+// ── C-101  SITE, GRADING AND ACCESS ─────────────────────────────────────────
+import { drawSite, siteData, siteLegend, driveProfileStrip, typicalSection } from './draw/site.mjs';
+function sheetC101() {
+  const scaleName = '1"=30\'';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: 'C-101', title: 'SITE, GRADING AND ACCESS',
+    subtitle: 'THE GROUND · THE DRIVE · THE EARTH THAT HAS TO MOVE',
+    originX: 480, originY: 1330,
+    notes: [
+      '1. THE DRIVE IS THE FIRST THING THAT CAN KILL THIS PROJECT, so it is designed here rather than sketched. A hand-drawn alignment measured 64% maximum grade. The alignment shown is GENERATED: it holds a constant design grade and traverses the slope, and the switchback count falls out of the arithmetic instead of being chosen for looks.',
+      '2. TWO GRADES, NOT ONE. The pavement holds one grade; the heading is chosen so the ground rises MORE SLOWLY, so the drive climbs out of the motor court cut and daylights at the road. A drive that follows the terrain exactly stays in a trench for its whole length. That was the second version of this file, and it was wrong.',
+      '3. THE MOTOR COURT IS AN "L". The garage doors face east; the court previously stopped two feet past them. The APRON limb is what lets a vehicle back clear of the door, and because it sits far downhill of the main bench, it is also the shallowest place on the site to bring the drive in.',
+      '4. DASHED CONTOURS ARE ASSUMED NATURAL GRADE on a 30% cross / 8% longitudinal plane. SOLID CONTOURS are finished. Where they separate, earth moves. THERE IS NO SURVEY. The method is real; the ground is a proposition. See docs/01-site-facts-register.md A-01.',
+      '5. THE CUT FACE behind the court is laid back at 1.5H:1V to daylight rather than retained. Whether that slope stands is a geotechnical question with no answer yet; a retaining structure may be required instead, and that is a large cost swing.',
+      '6. ALL ROOF AND PAVEMENT WATER GOES DOWNHILL, away from the cut. Nothing is discharged onto the uphill face, where the groundwater problem already is. Outfall energy dissipation and a level spreader are REQUIRED and NOT DESIGNED.',
+      '7. SPRING, CISTERN, TANKS AND FIELD ARE PLACED, NOT SITED. No yield test, no water quality test, no soil evaluation, no confirmed legal right to the spring. The separation dimension shown is a prompt to verify, not a compliance statement.',
+      '8. NUMBERS ON THIS SHEET ARE COMPUTED FROM model/site.mjs — contours, stations, grades, cut/fill and disturbed area all derive from one terrain function. Change the assumed slope and every number here changes with it.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  const r = drawSite(s);
+  s.northArrow(1560, 480, 54, G.ORIENTATION.longAxisAzimuth);
+  s.scaleBar(200, 1650, { scaleName, feetTicks: [0, 30, 60, 120] });
+  siteLegend(s, 200, 1750);
+  driveProfileStrip(s, 760, 1830, 1080, 280, r);
+  siteData(s, 2020, 470, r);
+  s.stext(1988, 1440, 'TYPICAL DRIVE SECTIONS', { size: 15, weight: 700, spacing: 1.8 });
+  s.stext(1988, 1462, 'THE DRIVE IS TWO DIFFERENT ROADS', { size: 11, color: INK.mid });
+  typicalSection(s, 2200, 1640, {
+    u: 4.6, cutFt: -r.drive.pts[0].cutFillFt, station: '0+00 — LEAVING THE APRON',
+    title: 'FULL BENCH IN CUT',
+    note: 'The excavation is four times the width of the road it buys. That is the argument for meeting the site at the apron rather than the back of the motor court, and for a retained edge if the drive ever has to start deeper.',
+  });
+  typicalSection(s, 2200, 2000, {
+    u: 4.6, cutFt: 1.3, station: '5+45 — APPROACHING THE ROAD',
+    title: 'BALANCED SIDE-HILL BENCH',
+    note: 'Cut on the uphill half, fill on the downhill half, corridor barely wider than the pavement. This is the condition the drive is designed to reach as fast as the arithmetic allows.',
+  });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    `DRIVE  ${r.drive.lengthFt} FT @ ${r.drive.maxGradePct}% MAX`,
+    `SPOIL  ${r.totals.netCY} CY NET OFF SITE`,
+    `DISTURBED  ${r.totals.disturbedAcres} AC`,
+    '',
+    'Generated from model/site.mjs. The',
+    'alignment is solved, not sketched.',
+  ] });
+  return s.toString();
+}
+write('C-101-site-grading-access.svg', sheetC101());
 
 // ── SYSTEMS SHEETS ──────────────────────────────────────────────────────────
 import { drawSystemPlan, systemLegend, FAILURE_NOTES } from './draw/systems.mjs';

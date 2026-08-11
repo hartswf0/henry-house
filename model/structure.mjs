@@ -165,7 +165,15 @@ export function retainingWall({ retainedFt, efp = LOADS.SOIL_EFP.v, surchargePsf
 }
 
 export const SPINE_WALL = retainingWall({ retainedFt: 7.4 });
-export const COURT_WALL = retainingWall({ retainedFt: 9.8, surchargePsf: 100 });
+
+// The court cut is 16.4 ft at its deepest — model/site.mjs earthwork(), not a
+// recollection. The design lays that face back at 1.5H:1V instead of retaining
+// it, which is why no wall this tall appears in the drawings. This member is
+// the ALTERNATIVE: what it costs if the geotechnical report says the slope will
+// not stand. A 16 ft cantilever wall with vehicle surcharge is a different
+// project, and that is exactly why the number is written down.
+export const COURT_WALL = retainingWall({ retainedFt: 16.4, surchargePsf: 100 });
+COURT_WALL.role = 'ALTERNATIVE TO THE LAID-BACK CUT — see C-101 note 5';
 
 // ── LATERAL ─────────────────────────────────────────────────────────────────
 export const LATERAL = {

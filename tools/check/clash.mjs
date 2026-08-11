@@ -295,6 +295,41 @@ for (const R of ROOFS.slice(0, 2)) {
   warn('STRUCTURE', `Governing load is GROUND SNOW at ${S.LOADS.SNOW_GROUND.v} psf — ${S.LOADS.SNOW_GROUND.status}. Every member above resizes if this number changes.`);
 }
 
+// ── 12. THE GROUND — access, grade, earth ───────────────────────────────────
+// The building was checked to the inch while the drive to reach it was never
+// checked at all. These are the tests that would have caught a 64% driveway and
+// a garage with two feet of pavement in front of its doors.
+{
+  const SITE = await import('../../model/site.mjs');
+  const { GARAGE } = await import('../../model/geometry.mjs');
+  const d = SITE.driveProfile();
+  const t = SITE.siteTotals();
+  const L = SITE.DRIVE_LIMITS;
+
+  if (d.maxGradePct > L.maxPct) fail('DRIVE-GRADE', `Maximum grade ${d.maxGradePct}% exceeds the ${L.maxPct}% absolute limit — unbuildable as drawn.`);
+  else if (d.maxGradePct > L.sustainedPct) fail('DRIVE-GRADE', `Maximum grade ${d.maxGradePct}% exceeds the ${L.sustainedPct}% sustained limit for a drive that must be used in snow.`);
+  else ok('DRIVE-GRADE', `${d.lengthFt} ft at ${d.maxGradePct}% max, ${d.switchbacks} switchbacks — within the ${L.sustainedPct}% sustained limit.`);
+
+  if (d.maxGradePct > L.fireApparatusPct) {
+    warn('FIRE-ACCESS', `Drive holds ${d.maxGradePct}%; fire apparatus access commonly caps grade at ${L.fireApparatusPct}% and width at ${L.fireWidthFt} ft. At ${L.fireApparatusPct}% the drive becomes ~${Math.round(d.totalRiseFt / (L.fireApparatusPct / 100))} ft. A decision, not a detail. ${L.status}`);
+  } else ok('FIRE-ACCESS', `Grade ${d.maxGradePct}% is within the ${L.fireApparatusPct}% commonly required for fire apparatus.`);
+
+  if (!d.daylightsAtRoad) fail('DRIVE-PROFILE', `The drive is ${Math.abs(d.pts[d.pts.length - 1].cutFillFt)} ft off natural grade where it meets the road — it never daylights, so it is a trench, not a drive.`);
+  else ok('DRIVE-PROFILE', `Cut tapers ${d.maxCutFt} ft at the apron to 0 at the road — the drive climbs out of its own excavation.`);
+
+  // A garage door needs pavement in front of it or it is a wall.
+  const apronFt = (SITE.COURT.apron.x1 - GARAGE.x1) / 12;
+  const MIN_BACKING_FT = 24;
+  if (apronFt < MIN_BACKING_FT) fail('GARAGE-ACCESS', `Only ${apronFt.toFixed(0)} ft of pavement in front of the garage doors — a vehicle cannot back clear. Needs at least ${MIN_BACKING_FT} ft.`);
+  else ok('GARAGE-ACCESS', `${apronFt.toFixed(0)} ft of apron in front of the doors — a vehicle can back clear.`);
+
+  if (t.overErosionThreshold) warn('EROSION', `${t.disturbedAcres} ac disturbed (pad ${t.pad.disturbedAcres} + drive ${t.drive.disturbedAcres}) exceeds the ${SITE.EROSION.ncThresholdAcres} ac threshold. ${SITE.EROSION.status}`);
+  else ok('EROSION', `${t.disturbedAcres} ac disturbed — under the ${SITE.EROSION.ncThresholdAcres} ac threshold.`);
+
+  if (!t.pad.balanced || t.netCY > 500) warn('EARTHWORK', `${t.cutCY} CY cut against ${t.fillCY} CY fill: ${t.netCY} CY net spoil, roughly ${t.truckloads} tandem loads off a mountain road. No designed place to put any of it.`);
+  else ok('EARTHWORK', `Cut and fill balance within 25% — ${t.netCY} CY net.`);
+}
+
 // ── report ──────────────────────────────────────────────────────────────────
 const counts = fixtureCounts();
 const fails = results.filter(r => r.level === 'fail');

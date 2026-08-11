@@ -31,9 +31,15 @@ for (const f of files) {
      <div style="width:${w}px;height:${h}px;overflow:hidden">${svg}</div>
      </body></html>`,
     { waitUntil: 'load' });
-  const out = PNG + f.replace(/\.svg$/, '.png');
-  await page.screenshot({ path: out, clip: { x: 0, y: 0, width: w, height: h } });
-  console.log(`  ✓ ${out.split('/').pop()}  ${w}x${h} @${scale}x`);
+  // --crop=x,y,w,h lets me inspect a detail at full resolution instead of
+  // squinting at a 3600px sheet scaled down to 2000 and guessing.
+  const cropArg = (process.argv.find(a => a.startsWith('--crop=')) || '').split('=')[1];
+  const crop = cropArg ? cropArg.split(',').map(Number) : null;
+  const clip = crop ? { x: crop[0], y: crop[1], width: crop[2], height: crop[3] }
+                    : { x: 0, y: 0, width: w, height: h };
+  const out = PNG + f.replace(/\.svg$/, crop ? '-crop.png' : '.png');
+  await page.screenshot({ path: out, clip });
+  console.log(`  ✓ ${out.split('/').pop()}  ${clip.width}x${clip.height} @${scale}x`);
 }
 
 await browser.close();
