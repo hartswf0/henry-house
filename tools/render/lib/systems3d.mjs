@@ -35,7 +35,7 @@ export function buildSystems() {
       mats[sys] = new THREE.MeshStandardMaterial({
         color: SYSTEM_COLOURS[sys] ?? 0x888888,
         roughness: 0.42, metalness: 0.25,
-        emissive: SYSTEM_COLOURS[sys] ?? 0x888888, emissiveIntensity: 0.28,
+        emissive: SYSTEM_COLOURS[sys] ?? 0x888888, emissiveIntensity: 0.55,
       });
     }
     return mats[sys];
@@ -55,7 +55,7 @@ export function buildSystems() {
   const joints = new Set();
   for (const r of allRuns()) {
     // pipe diameters are inches; draw slightly fat so they read at building scale
-    const rad = Math.max(0.055, F(r.dia) * 0.75);
+    const rad = Math.max(0.16, F(r.dia) * 1.5);
     const t = tube(r.a, r.b, rad, matFor(r.sys));
     if (t) groupOf(r.sys).add(t);
     for (const p of [r.a, r.b]) joints.add(`${r.sys}|${p[0]}|${p[1]}|${p[2]}|${rad.toFixed(3)}`);

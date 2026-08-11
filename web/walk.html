@@ -154,7 +154,7 @@ for (const [name, v] of Object.entries(VIEWS)) {
 }
 
 // ── layer toggles ───────────────────────────────────────────────────────────
-const groups = scene.children.filter(c => c.type === 'Group');
+const groups = scene.children.filter(c => c.type === 'Group' && c.name !== 'SYSTEMS');
 const NAMES = ['House + interior', 'Frames', 'Drive + court', 'Vegetation', 'Distant ridges'];
 const layersEl = document.getElementById('layers');
 groups.forEach((g, i) => {
@@ -196,14 +196,24 @@ document.getElementById('legend').innerHTML = Object.entries(SYS_DESC)
 
 let xray = false, ghost = false;
 const shellMats = new Set();
-scene.traverse(o => { if (o.isMesh && o.material && !o.material.transparent) shellMats.add(o.material); });
+const sysMats = new Set();
+sys.group.traverse(o => { if (o.material) sysMats.add(o.material); });
+scene.traverse(o => {
+  if (!o.isMesh || !o.material || o.material.transparent) return;
+  if (sysMats.has(o.material)) return;          // never ghost the systems themselves
+  shellMats.add(o.material);
+});
 const xrayBtn = document.getElementById('xrayOn'), ghostBtn = document.getElementById('xrayGhost');
-xrayBtn.onclick = () => { xray = !xray; sys.group.visible = xray; xrayBtn.className = xray ? 'on' : ''; };
-ghostBtn.onclick = () => {
-  ghost = !ghost;
-  shellMats.forEach(m => { m.transparent = ghost; m.opacity = ghost ? 0.16 : 1; m.depthWrite = !ghost; m.needsUpdate = true; });
-  ghostBtn.className = ghost ? 'on' : '';
+function setGhost(on) {
+  ghost = on;
+  shellMats.forEach(m => { m.transparent = on; m.opacity = on ? 0.13 : 1; m.depthWrite = !on; m.needsUpdate = true; });
+  ghostBtn.className = on ? 'on' : '';
+}
+xrayBtn.onclick = () => {
+  xray = !xray; sys.group.visible = xray; xrayBtn.className = xray ? 'on' : '';
+  setGhost(xray);                                // x-ray implies a ghosted shell
 };
+ghostBtn.onclick = () => setGhost(!ghost);
 
 // ── sun controls ────────────────────────────────────────────────────────────
 const hourEl = document.getElementById('hour'), doyEl = document.getElementById('doy');
