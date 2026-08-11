@@ -79,6 +79,8 @@ export const SCHEMES = [
             R('RL', 72, 2, 15, 26, { pitch: 1 }), R('RG', 96, 3, 24, 28, { pitch: 4 })],
     ground: bench(-2, -2, 76, 32),
     wetWallFt: 87, wetNote: '72 ft service band along the uphill wall, plus 15 ft in the link',
+    growthTouchesRoof: false,
+    growthNote: 'no phasing claimed',
     phases: [{ n: 1, label: 'Built at once', condSf: 3747 }],
   },
 
@@ -101,6 +103,8 @@ export const SCHEMES = [
     wetWallFt: 22, wetNote: 'one artery through bay 3',
     ground: piers([[2, 4], [2, 22], [16, 4], [16, 22], [30, 4], [30, 22],
                    [44, 4], [44, 22], [58, 4], [58, 22], [68, 4], [68, 22]]),
+    growthTouchesRoof: false,
+    growthNote: 'bays infill under the roof that is already there — the whole point of the reference',
     phases: [
       { n: 1, label: 'Two bays enclosed, five bays roofed', condSf: 616 },
       { n: 2, label: 'Bays 1 and 4 infilled', condSf: 1232 },
@@ -124,6 +128,8 @@ export const SCHEMES = [
     roofs: [R('R1', -12, -1, 88, 26, { pitch: 2, zLow: 24 })],
     wetWallFt: 20, wetNote: 'a utility core inside the span',
     ground: piers([[2, 4], [2, 20], [30, 4], [30, 20], [58, 4], [58, 20]], 3),
+    growthTouchesRoof: false,
+    growthNote: 'the undercroft is enclosed BELOW the span; nothing above is touched',
     phases: [
       { n: 1, label: 'The span and the long room', condSf: 1200 },
       { n: 2, label: 'Undercroft enclosed beneath it', condSf: 1680 },
@@ -146,6 +152,8 @@ export const SCHEMES = [
     roofs: [R('R1', -2, -10, 66, 36, { pitch: 4, zLow: 11 })],
     wetWallFt: 52, wetNote: 'a service bar down the uphill edge of both bodies',
     ground: bench(-2, 0, 66, 26),
+    growthTouchesRoof: false,
+    growthNote: 'the single roof plane already covers the second body',
     phases: [
       { n: 1, label: 'West body + dogtrot', condSf: 1144 },
       { n: 2, label: 'East body across the dogtrot', condSf: 1716 },
@@ -170,6 +178,8 @@ export const SCHEMES = [
     roofs: [R('R1', 2, -8, 56, 36, { pitch: 3, zLow: 13 }), R('R2', 20, 26, 20, 18, { pitch: 3, zLow: 15 })],
     wetWallFt: 36, wetNote: 'everything wet inside the 16 x 20 core',
     ground: bench(2, 4, 56, 40),
+    growthTouchesRoof: false,
+    growthNote: 'the north bay is already roofed by R2',
     phases: [
       { n: 1, label: 'Core + two wings', condSf: 1184 },
       { n: 2, label: 'North bay enclosed', condSf: 1408 },
@@ -191,6 +201,8 @@ export const SCHEMES = [
     roofs: [R('R1', 17, 2, 30, 32, { pitch: 2, zLow: 34 })],
     wetWallFt: 26, wetNote: 'one stack, three floors',
     ground: plinth(24, 12, 16, 14),
+    growthTouchesRoof: false,
+    growthNote: 'no phasing claimed',
     phases: [{ n: 1, label: 'Built at once — it is too small to phase', condSf: 1872 }],
   },
 
@@ -209,6 +221,8 @@ export const SCHEMES = [
     roofs: [R('R1', 23, 5, 24, 24, { pitch: 2, zLow: 44 }), R('R2', 44, 6, 16, 22, { pitch: 3, zLow: 12 })],
     wetWallFt: 18, wetNote: 'one stack, four floors',
     ground: bench(24, 6, 22, 22),
+    growthTouchesRoof: true,
+    growthNote: 'adding levels means lifting and re-setting the roof. Vertical growth is cheap in foundation and expensive in roof, and the reference set is explicit that growth must not cut into work already done',
     phases: [{ n: 1, label: 'Two lower levels', condSf: 648 }, { n: 2, label: 'Two upper levels', condSf: 1296 }],
   },
 ];
@@ -351,6 +365,7 @@ export function metrics(s) {
     phases: s.phases.length,
     phase1Sf: phase1, matureSf: mature,
     futureCapacityPct: +(((mature - phase1) / Math.max(1, phase1)) * 100).toFixed(0),
+    growthTouchesRoof: !!s.growthTouchesRoof, growthNote: s.growthNote ?? '',
   };
 }
 
