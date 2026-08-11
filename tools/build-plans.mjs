@@ -149,14 +149,15 @@ export function checkPlan(scheme, plan) {
     // THE FREEZE RULE. A wet room whose plumbing wall IS the exterior wall.
     // The Perch passed every geometric check with its entire wet band backed
     // onto the uphill exterior face; a critic found it, this now finds it.
+    // Only the wall the FIXTURES actually land on counts. model/scheme-furnish
+    // hangs every wet fixture on the room's uphill (+y) face, so that is the
+    // plumbing wall; a bath that merely happens to touch the east gable is not
+    // a freeze-rule violation. The first version flagged all four faces and
+    // produced so much noise that a real violation would have been lost in it.
     for (const r of lv.rooms.filter(x => WET.has(x.use))) {
-      const onExt = [
-        Math.abs((r.y0 + r.d) - ext.y1) < 0.6 && 'uphill',
-        Math.abs(r.y0 - ext.y0) < 0.6 && 'downhill',
-        Math.abs(r.x0 - ext.x0) < 0.6 && 'west',
-        Math.abs((r.x0 + r.w) - ext.x1) < 0.6 && 'east',
-      ].filter(Boolean);
-      if (onExt.length) flags.push(`FREEZE RULE — "${r.name}" (${label}) backs onto the ${onExt.join(' and ')} exterior wall. No plumbing may run there at this elevation.`);
+      if (Math.abs((r.y0 + r.d) - ext.y1) < 0.6) {
+        flags.push(`FREEZE RULE — "${r.name}" (${label}) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.`);
+      }
     }
 
     // A kitchen with no exterior wall has no daylight and no direct vent.

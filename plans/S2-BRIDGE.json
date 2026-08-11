@@ -1,0 +1,36 @@
+{
+  "id": "S2-BRIDGE",
+  "levels": [
+    {"ffe": 13, "name": "BRIDGE", "rooms": [
+      {"name": "GREAT ROOM", "use": "living", "x0": 0, "y0": 2, "w": 16, "d": 12, "phase": 1},
+      {"name": "ENTRY / BOOT ROOM", "use": "entry", "x0": 0, "y0": 14, "w": 8, "d": 8, "phase": 1},
+      {"name": "STAIR HALL", "use": "circ", "x0": 8, "y0": 14, "w": 8, "d": 8, "phase": 1},
+      {"name": "KITCHEN", "use": "kitchen", "x0": 16, "y0": 2, "w": 7, "d": 10, "phase": 1},
+      {"name": "LAUNDRY", "use": "laundry", "x0": 16, "y0": 12, "w": 7, "d": 5, "phase": 1},
+      {"name": "BATH 2 ENSUITE", "use": "bath", "x0": 23, "y0": 2, "w": 7, "d": 7, "phase": 1},
+      {"name": "BATH 1 HALL", "use": "bath", "x0": 23, "y0": 9, "w": 7, "d": 8, "phase": 1},
+      {"name": "SPINE", "use": "circ", "x0": 16, "y0": 17, "w": 44, "d": 5, "phase": 1},
+      {"name": "BED 1 PRIMARY", "use": "bed", "x0": 30, "y0": 2, "w": 10, "d": 15, "phase": 1},
+      {"name": "BED 2", "use": "bed", "x0": 40, "y0": 2, "w": 10, "d": 15, "phase": 1},
+      {"name": "BED 3", "use": "bed", "x0": 50, "y0": 2, "w": 10, "d": 15, "phase": 1}
+    ]},
+    {"ffe": 0, "name": "UNDERCROFT", "rooms": [
+      {"name": "WORK ROOM", "use": "work", "x0": 8, "y0": 2, "w": 15, "d": 12, "phase": 2},
+      {"name": "DEN", "use": "living", "x0": 23, "y0": 2, "w": 9, "d": 12, "phase": 2},
+      {"name": "STAIR", "use": "circ", "x0": 8, "y0": 14, "w": 8, "d": 8, "phase": 1},
+      {"name": "BATH 3", "use": "bath", "x0": 16, "y0": 14, "w": 7, "d": 8, "phase": 2},
+      {"name": "PLANT ROOM", "use": "mech", "x0": 23, "y0": 14, "w": 9, "d": 8, "phase": 1}
+    ]}
+  ],
+  "doors": [
+    {"x": 4, "y": 22, "face": "N", "kind": "entry", "ffe": 13},
+    {"x": 0, "y": 8, "face": "W", "kind": "deck", "ffe": 13},
+    {"x": 60, "y": 19, "face": "E", "kind": "deck", "ffe": 13},
+    {"x": 60, "y": 9, "face": "E", "kind": "deck", "ffe": 13},
+    {"x": 15, "y": 2, "face": "S", "kind": "entry", "ffe": 0},
+    {"x": 28, "y": 2, "face": "S", "kind": "entry", "ffe": 0},
+    {"x": 8, "y": 8, "face": "W", "kind": "service", "ffe": 0},
+    {"x": 32, "y": 18, "face": "E", "kind": "service", "ffe": 0}
+  ],
+  "notes": "The massing shows a 60 ft bar; the plan shows the bar has exactly one wet line in it. Every fixture in the house hangs on the single 20 ft wall at x=23 running y2 to y22: kitchen and laundry on its west face, ensuite and hall bath on its east face, 40 ft of fixture wall out of a 20 ft run, and nothing within 7 ft of an exterior wall. The undercroft repeats that wall, so the phase-2 bath and the phase-1 plant room drop straight down it - one stack, one vent, one heated chase. Because the plant lives below the floor, the bridge spends NONE of its 1,200 sf on mechanical, and the phase-1 stair plus stack is what makes the later level genuinely cheap. The plan also shows what the massing hid: the west half has no corridor at all - entry, great room and kitchen are one 23 ft room along the downhill glass, and the stair hall is the pivot that lets you arrive and reach a bedroom without crossing the living room. Worst compromise: the 5 ft spine plus stair hall costs 284 sf, roughly a quarter of the bridge, and it buys the three bedrooms nothing but a door. I put it on the uphill wall so it at least earns its keep as the cold-side buffer, the closet wall, and the route to the east deck - but on a single-loaded 60 x 20 there is no cheaper way to reach the third bedroom, and the alternatives (rooms entered off one another, or a gallery on the view side) were worse."
+}

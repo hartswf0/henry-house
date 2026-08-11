@@ -1,0 +1,552 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs></defs>
+<rect x="0" y="0" width="3600" height="2400" fill="#ffffff"/>
+<rect x="40" y="40" width="3520" height="2320" rx="0" fill="none" stroke="#111418" stroke-width="2.2"/>
+<rect x="52" y="52" width="3496" height="2296" rx="0" fill="none" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="300" y="150" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="46" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2.5">BRIDGE — SCHEMATIC PLANS</text>
+<text x="300" y="184" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.4">SPAN THE HILL INSTEAD OF CUTTING IT</text>
+<line x1="300" y1="206" x2="2880" y2="206" stroke="#111418" stroke-width="2.2"/>
+<polygon points="360,968.594 660,968.594 660,976.406 360,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="360,743.594 660,743.594 660,751.406 360,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="356.094,972.5 356.094,747.5 363.906,747.5 363.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="656.094,972.5 656.094,747.5 663.906,747.5 663.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="360,743.594 510,743.594 510,751.406 360,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="360,593.594 510,593.594 510,601.406 360,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="356.094,747.5 356.094,597.5 363.906,597.5 363.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="506.094,747.5 506.094,597.5 513.906,597.5 513.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="510,743.594 660,743.594 660,751.406 510,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="510,593.594 660,593.594 660,601.406 510,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="506.094,747.5 506.094,597.5 513.906,597.5 513.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="656.094,747.5 656.094,597.5 663.906,597.5 663.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,968.594 791.25,968.594 791.25,976.406 660,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,781.094 791.25,781.094 791.25,788.906 660,788.906" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="656.094,972.5 656.094,785 663.906,785 663.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="787.344,972.5 787.344,785 795.156,785 795.156,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,781.094 791.25,781.094 791.25,788.906 660,788.906" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,687.344 791.25,687.344 791.25,695.156 660,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="656.094,785 656.094,691.25 663.906,691.25 663.906,785" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="787.344,785 787.344,691.25 795.156,691.25 795.156,785" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="791.25,968.594 922.5,968.594 922.5,976.406 791.25,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="791.25,837.344 922.5,837.344 922.5,845.156 791.25,845.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="787.344,972.5 787.344,841.25 795.156,841.25 795.156,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="918.594,972.5 918.594,841.25 926.406,841.25 926.406,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="791.25,837.344 922.5,837.344 922.5,845.156 791.25,845.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="791.25,687.344 922.5,687.344 922.5,695.156 791.25,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="787.344,841.25 787.344,691.25 795.156,691.25 795.156,841.25" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="918.594,841.25 918.594,691.25 926.406,691.25 926.406,841.25" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,687.344 1485,687.344 1485,695.156 660,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="660,593.594 1485,593.594 1485,601.406 660,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="656.094,691.25 656.094,597.5 663.906,597.5 663.906,691.25" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1481.094,691.25 1481.094,597.5 1488.906,597.5 1488.906,691.25" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="922.5,968.594 1110,968.594 1110,976.406 922.5,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="922.5,687.344 1110,687.344 1110,695.156 922.5,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="918.594,972.5 918.594,691.25 926.406,691.25 926.406,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1106.094,972.5 1106.094,691.25 1113.906,691.25 1113.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1110,968.594 1297.5,968.594 1297.5,976.406 1110,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1110,687.344 1297.5,687.344 1297.5,695.156 1110,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1106.094,972.5 1106.094,691.25 1113.906,691.25 1113.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1293.594,972.5 1293.594,691.25 1301.406,691.25 1301.406,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1297.5,968.594 1485,968.594 1485,976.406 1297.5,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1297.5,687.344 1485,687.344 1485,695.156 1297.5,695.156" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1293.594,972.5 1293.594,691.25 1301.406,691.25 1301.406,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1481.094,972.5 1481.094,691.25 1488.906,691.25 1488.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="363.906,968.594 656.094,968.594 656.094,751.406 363.906,751.406" fill="#f6f7f5" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="446.2" y="842" width="127.6" height="37.8" fill="#ffffff" opacity="0.82"/>
+<text x="510" y="860" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">GREAT ROOM</text>
+<text x="510" y="882" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">192 SF</text>
+<polygon points="363.906,743.594 506.094,743.594 506.094,601.406 363.906,601.406" fill="#e7e9e6" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="405.3" y="658.5" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="435" y="672.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">ENTRY</text>
+<text x="435" y="690.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">64 SF</text>
+<polygon points="513.906,743.594 656.094,743.594 656.094,601.406 513.906,601.406" fill="#e7e9e6" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="555.3" y="658.5" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="585" y="672.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">STAIR</text>
+<text x="585" y="690.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">64 SF</text>
+<polygon points="663.906,968.594 787.344,968.594 787.344,788.906 663.906,788.906" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="687.245" y="864.75" width="76.76" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="725.625" y="878.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">KITCHEN</text>
+<text x="725.625" y="896.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">70 SF</text>
+<line x1="669.375" y1="795.938" x2="781.875" y2="795.938" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="663.906,781.094 787.344,781.094 787.344,695.156 663.906,695.156" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<text x="725.625" y="742.125" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">LAUNDRY</text>
+<line x1="669.375" y1="702.188" x2="781.875" y2="702.188" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="795.156,968.594 918.594,968.594 918.594,845.156 795.156,845.156" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="822.835" y="892.875" width="68.08" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="856.875" y="906.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BATH 2</text>
+<text x="856.875" y="924.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">49 SF</text>
+<line x1="800.625" y1="852.188" x2="913.125" y2="852.188" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="795.156,837.344 918.594,837.344 918.594,695.156 795.156,695.156" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="822.835" y="752.25" width="68.08" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="856.875" y="766.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BATH 1</text>
+<text x="856.875" y="784.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">56 SF</text>
+<line x1="800.625" y1="702.188" x2="913.125" y2="702.188" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="663.906,687.344 1481.094,687.344 1481.094,601.406 663.906,601.406" fill="#e7e9e6" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<text x="1072.5" y="648.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">SPINE</text>
+<polygon points="926.406,968.594 1106.094,968.594 1106.094,695.156 926.406,695.156" fill="#eef1ee" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="986.55" y="817.875" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="1016.25" y="831.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 1</text>
+<text x="1016.25" y="849.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">150 SF</text>
+<polygon points="1113.906,968.594 1293.594,968.594 1293.594,695.156 1113.906,695.156" fill="#eef1ee" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1174.05" y="817.875" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="1203.75" y="831.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 2</text>
+<text x="1203.75" y="849.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">150 SF</text>
+<polygon points="1301.406,968.594 1481.094,968.594 1481.094,695.156 1301.406,695.156" fill="#eef1ee" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1361.55" y="817.875" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="1391.25" y="831.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 3</text>
+<text x="1391.25" y="849.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">150 SF</text>
+<polygon points="406.875,752.969 463.125,752.969 463.125,742.031 406.875,742.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="406.875" y1="751.406" x2="406.875" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="463.125" y1="751.406" x2="463.125" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="556.875,752.969 613.125,752.969 613.125,742.031 556.875,742.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="556.875" y1="751.406" x2="556.875" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="613.125" y1="751.406" x2="613.125" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="654.531,672.5 665.469,672.5 665.469,616.25 654.531,616.25" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="656.094" y1="672.5" x2="663.906" y2="672.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="656.094" y1="616.25" x2="663.906" y2="616.25" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="697.5,696.719 753.75,696.719 753.75,685.781 697.5,685.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="697.5" y1="695.156" x2="697.5" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="753.75" y1="695.156" x2="753.75" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="725.625,687.344 781.875,687.344 781.875,695.156 725.625,695.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="725.625" y1="691.25" x2="725.625" y2="635" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 725.625 635 A 56.25 56.25 0 0 1 781.875 691.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="828.75,696.719 885,696.719 885,685.781 828.75,685.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="828.75" y1="695.156" x2="828.75" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="885" y1="695.156" x2="885" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="856.875,687.344 913.125,687.344 913.125,695.156 856.875,695.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="856.875" y1="691.25" x2="856.875" y2="635" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 856.875 635 A 56.25 56.25 0 0 1 913.125 691.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="960,696.719 1016.25,696.719 1016.25,685.781 960,685.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="960" y1="695.156" x2="960" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1016.25" y1="695.156" x2="1016.25" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="988.125,687.344 1044.375,687.344 1044.375,695.156 988.125,695.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="988.125" y1="691.25" x2="988.125" y2="635" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 988.125 635 A 56.25 56.25 0 0 1 1044.375 691.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1147.5,696.719 1203.75,696.719 1203.75,685.781 1147.5,685.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1147.5" y1="695.156" x2="1147.5" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1203.75" y1="695.156" x2="1203.75" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1175.625,687.344 1231.875,687.344 1231.875,695.156 1175.625,695.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1175.625" y1="691.25" x2="1175.625" y2="635" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1175.625 635 A 56.25 56.25 0 0 1 1231.875 691.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1335,696.719 1391.25,696.719 1391.25,685.781 1335,685.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1335" y1="695.156" x2="1335" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1391.25" y1="695.156" x2="1391.25" y2="687.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1363.125,687.344 1419.375,687.344 1419.375,695.156 1363.125,695.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1363.125" y1="691.25" x2="1363.125" y2="635" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1363.125 635 A 56.25 56.25 0 0 1 1419.375 691.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="654.531,963.125 665.469,963.125 665.469,850.625 654.531,850.625" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="656.094" y1="963.125" x2="663.906" y2="963.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="656.094" y1="850.625" x2="663.906" y2="850.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="785.781,935 796.719,935 796.719,878.75 785.781,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="787.344" y1="935" x2="795.156" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="787.344" y1="878.75" x2="795.156" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="787.344,906.875 787.344,850.625 795.156,850.625 795.156,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="791.25" y1="906.875" x2="735" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 735 906.875 A 56.25 56.25 0 0 1 791.25 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="504.531,700.625 515.469,700.625 515.469,644.375 504.531,644.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="506.094" y1="700.625" x2="513.906" y2="700.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="506.094" y1="644.375" x2="513.906" y2="644.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="731.094" x2="653.75" y2="731.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="714.688" x2="653.75" y2="714.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="698.281" x2="653.75" y2="698.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="681.875" x2="653.75" y2="681.875" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="665.469" x2="653.75" y2="665.469" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="649.063" x2="653.75" y2="649.063" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="632.656" x2="653.75" y2="632.656" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="516.25" y1="616.25" x2="653.75" y2="616.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="585" y1="735" x2="585" y2="610" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<polygon points="577.188,622.5 585,606.875 592.813,622.5" fill="#111418" stroke="#111418" stroke-width="0.6" stroke-linejoin="miter"/>
+<text x="585" y="731.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">UP 16R</text>
+<polygon points="425.625,925.625 594.375,925.625 594.375,794.375 425.625,794.375" fill="none" stroke="#c6cfd8" stroke-width="1" stroke-dasharray="14 8" stroke-linejoin="miter"/>
+<rect x="444.375" y="775.625" width="131.25" height="53.125" rx="6.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="444.375,786.563 575.625,786.563 575.625,775.625 444.375,775.625" fill="none" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="510" y1="825.625" x2="510" y2="778.75" stroke="#98a2ab" stroke-width="0.6" stroke-linecap="butt"/>
+<rect x="375.625" y="836.5625" width="46.875" height="46.875" rx="6.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<rect x="597.5" y="836.5625" width="46.875" height="46.875" rx="6.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="588.125,819.375 650.625,819.375 650.625,760 588.125,760" fill="none" stroke="#7a5a2a" stroke-width="0.6" stroke-dasharray="8 5" stroke-linejoin="miter"/>
+<polygon points="597.5,810 641.25,810 641.25,769.375 597.5,769.375" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<circle cx="619.375" cy="789.688" r="12.188" fill="none" stroke="#2b3138" stroke-width="1"/>
+<polygon points="366.25,625.625 460,625.625 460,597.5 366.25,597.5" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="360,741.25 394.375,741.25 394.375,666.25 360,666.25" fill="none" stroke="#7d868f" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="360" y1="722.5" x2="394.375" y2="722.5" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="360" y1="703.75" x2="394.375" y2="703.75" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="360" y1="685" x2="394.375" y2="685" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="666.25,819.375 717.813,819.375 717.813,785 666.25,785" fill="#ffffff" stroke="#7d868f" stroke-width="1.4" stroke-linejoin="miter"/>
+<rect x="670.890625" y="791.875" width="16.5" height="20.625" rx="3.125" fill="none" stroke="#2b3138" stroke-width="1.4"/>
+<rect x="696.671875" y="791.875" width="16.5" height="20.625" rx="3.125" fill="none" stroke="#2b3138" stroke-width="1.4"/>
+<circle cx="692.031" cy="789.688" r="2.344" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<polygon points="722.5,822.5 760,822.5 760,785 722.5,785" fill="none" stroke="#7d868f" stroke-width="1" stroke-dasharray="6 4" stroke-linejoin="miter"/>
+<text x="741.25" y="797.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#7d868f" text-anchor="middle" letter-spacing="0">DW</text>
+<polygon points="666.25,738.125 708.438,738.125 708.438,691.25 666.25,691.25" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<circle cx="687.344" cy="714.688" r="11.813" fill="none" stroke="#2b3138" stroke-width="1"/>
+<polygon points="713.125,738.125 755.313,738.125 755.313,691.25 713.125,691.25" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<circle cx="734.219" cy="714.688" r="11.813" fill="none" stroke="#2b3138" stroke-width="1"/>
+<polygon points="797.5,853.75 828.75,853.75 828.75,841.25 797.5,841.25" fill="#ffffff" stroke="#2b3138" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="813.125" cy="870.15625" rx="13.750000000000002" ry="16.40625" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<polygon points="833.438,874.063 870.938,874.063 870.938,841.25 833.438,841.25" fill="#ffffff" stroke="#7d868f" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="852.1875" cy="857.65625" rx="12" ry="9.84375" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<circle cx="852.188" cy="845.938" r="2.344" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<polygon points="791.25,966.25 847.5,966.25 847.5,910 791.25,910" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<line x1="791.25" y1="966.25" x2="847.5" y2="910" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="847.5" y1="966.25" x2="791.25" y2="910" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<circle cx="819.375" cy="938.125" r="2.813" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<polygon points="797.5,703.75 828.75,703.75 828.75,691.25 797.5,691.25" fill="#ffffff" stroke="#2b3138" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="813.125" cy="720.15625" rx="13.750000000000002" ry="16.40625" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<polygon points="833.438,724.063 870.938,724.063 870.938,691.25 833.438,691.25" fill="#ffffff" stroke="#7d868f" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="852.1875" cy="707.65625" rx="12" ry="9.84375" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<circle cx="852.188" cy="695.938" r="2.344" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<polygon points="791.25,835 847.5,835 847.5,778.75 791.25,778.75" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<line x1="791.25" y1="835" x2="847.5" y2="778.75" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="847.5" y1="835" x2="791.25" y2="778.75" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<circle cx="819.375" cy="806.875" r="2.813" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<rect x="969.375" y="713.125" width="93.75" height="125" rx="4.6875" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="974.063,738.125 1013.906,738.125 1013.906,717.813 974.063,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<polygon points="1018.594,738.125 1058.438,738.125 1058.438,717.813 1018.594,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<line x1="969.375" y1="803.75" x2="1063.125" y2="803.75" stroke="#98a2ab" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="935,744.375 963.125,744.375 963.125,716.25 935,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1069.375,744.375 1097.5,744.375 1097.5,716.25 1069.375,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="922.5,966.25 960,966.25 960,872.5 922.5,872.5" fill="none" stroke="#7d868f" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="922.5" y1="947.5" x2="960" y2="947.5" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="922.5" y1="928.75" x2="960" y2="928.75" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="922.5" y1="910" x2="960" y2="910" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="922.5" y1="891.25" x2="960" y2="891.25" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<rect x="1156.875" y="713.125" width="93.75" height="125" rx="4.6875" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="1161.563,738.125 1201.406,738.125 1201.406,717.813 1161.563,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<polygon points="1206.094,738.125 1245.938,738.125 1245.938,717.813 1206.094,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<line x1="1156.875" y1="803.75" x2="1250.625" y2="803.75" stroke="#98a2ab" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1122.5,744.375 1150.625,744.375 1150.625,716.25 1122.5,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1256.875,744.375 1285,744.375 1285,716.25 1256.875,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1110,966.25 1147.5,966.25 1147.5,872.5 1110,872.5" fill="none" stroke="#7d868f" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1110" y1="947.5" x2="1147.5" y2="947.5" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1110" y1="928.75" x2="1147.5" y2="928.75" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1110" y1="910" x2="1147.5" y2="910" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1110" y1="891.25" x2="1147.5" y2="891.25" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<rect x="1344.375" y="713.125" width="93.75" height="125" rx="4.6875" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="1349.063,738.125 1388.906,738.125 1388.906,717.813 1349.063,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<polygon points="1393.594,738.125 1433.438,738.125 1433.438,717.813 1393.594,717.813" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
+<line x1="1344.375" y1="803.75" x2="1438.125" y2="803.75" stroke="#98a2ab" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1310,744.375 1338.125,744.375 1338.125,716.25 1310,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1444.375,744.375 1472.5,744.375 1472.5,716.25 1444.375,716.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<polygon points="1297.5,966.25 1335,966.25 1335,872.5 1297.5,872.5" fill="none" stroke="#7d868f" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1297.5" y1="947.5" x2="1335" y2="947.5" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1297.5" y1="928.75" x2="1335" y2="928.75" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1297.5" y1="910" x2="1335" y2="910" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1297.5" y1="891.25" x2="1335" y2="891.25" stroke="#7d868f" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="360,964.688 1485,964.688 1485,980.313 360,980.313" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="360,589.688 1485,589.688 1485,605.313 360,605.313" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="352.188,972.5 352.188,597.5 367.813,597.5 367.813,972.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1477.188,972.5 1477.188,597.5 1492.813,597.5 1492.813,972.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="510,964.688 726,964.688 726,980.313 510,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="510" y1="975" x2="726" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="510" y1="970" x2="726" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="510" y1="972.5" x2="726" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="725.625,964.688 800.625,964.688 800.625,980.313 725.625,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="725.625" y1="975" x2="800.625" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="725.625" y1="970" x2="800.625" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="725.625" y1="972.5" x2="800.625" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1016.25,964.688 1147.5,964.688 1147.5,980.313 1016.25,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1016.25" y1="975" x2="1147.5" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1016.25" y1="970" x2="1147.5" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1016.25" y1="972.5" x2="1147.5" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1203.75,964.688 1335,964.688 1335,980.313 1203.75,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1203.75" y1="975" x2="1335" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1203.75" y1="970" x2="1335" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1203.75" y1="972.5" x2="1335" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1391.25,964.688 1522.5,964.688 1522.5,980.313 1391.25,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1391.25" y1="975" x2="1522.5" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1391.25" y1="970" x2="1522.5" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1391.25" y1="972.5" x2="1522.5" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="435,589.688 491.25,589.688 491.25,605.313 435,605.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="435" y1="597.5" x2="435" y2="541.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 435 541.25 A 56.25 56.25 0 0 1 491.25 597.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="356.094,860 356.094,803.75 363.906,803.75 363.906,860" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="360" y1="860" x2="303.75" y2="860" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 303.75 860 A 56.25 56.25 0 0 1 360 803.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1481.094,653.75 1481.094,597.5 1488.906,597.5 1488.906,653.75" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1485" y1="653.75" x2="1428.75" y2="653.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1428.75 653.75 A 56.25 56.25 0 0 1 1485 597.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1481.094,841.25 1481.094,785 1488.906,785 1488.906,841.25" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1485" y1="841.25" x2="1428.75" y2="841.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1428.75 841.25 A 56.25 56.25 0 0 1 1485 785" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<line x1="360" y1="1044.375" x2="1485" y2="1044.375" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="352" y1="1052.375" x2="368" y2="1036.375" stroke="#111418" stroke-width="2.2"/>
+<line x1="360" y1="1058.375" x2="360" y2="1038.375" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1477" y1="1052.375" x2="1493" y2="1036.375" stroke="#111418" stroke-width="2.2"/>
+<line x1="1485" y1="1058.375" x2="1485" y2="1038.375" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="922.5" y="1071.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">60'-0"</text>
+<line x1="1556.875" y1="972.5" x2="1556.875" y2="597.5" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="1548.875" y1="980.5" x2="1564.875" y2="964.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="1542.875" y1="972.5" x2="1562.875" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1548.875" y1="605.5" x2="1564.875" y2="589.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="1542.875" y1="597.5" x2="1562.875" y2="597.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="1568.875" y="785" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0" transform="rotate(-90 1568.875 785)">20'-0"</text>
+<text x="360" y="1140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.2">BRIDGE — FFE 13'</text>
+<text x="360" y="1156" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">1,200 SF  ·  3 BED  ·  284 SF CIRCULATION  (24%)</text>
+<polygon points="1635,968.594 1916.25,968.594 1916.25,976.406 1635,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1635,743.594 1916.25,743.594 1916.25,751.406 1635,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1631.094,972.5 1631.094,747.5 1638.906,747.5 1638.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1912.344,972.5 1912.344,747.5 1920.156,747.5 1920.156,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1916.25,968.594 2085,968.594 2085,976.406 1916.25,976.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1916.25,743.594 2085,743.594 2085,751.406 1916.25,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1912.344,972.5 1912.344,747.5 1920.156,747.5 1920.156,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="2081.094,972.5 2081.094,747.5 2088.906,747.5 2088.906,972.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1635,743.594 1785,743.594 1785,751.406 1635,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1635,593.594 1785,593.594 1785,601.406 1635,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1631.094,747.5 1631.094,597.5 1638.906,597.5 1638.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1781.094,747.5 1781.094,597.5 1788.906,597.5 1788.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1785,743.594 1916.25,743.594 1916.25,751.406 1785,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1785,593.594 1916.25,593.594 1916.25,601.406 1785,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1781.094,747.5 1781.094,597.5 1788.906,597.5 1788.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1912.344,747.5 1912.344,597.5 1920.156,597.5 1920.156,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1916.25,743.594 2085,743.594 2085,751.406 1916.25,751.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1916.25,593.594 2085,593.594 2085,601.406 1916.25,601.406" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1912.344,747.5 1912.344,597.5 1920.156,597.5 1920.156,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="2081.094,747.5 2081.094,597.5 2088.906,597.5 2088.906,747.5" fill="#1b2026" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<polygon points="1638.906,968.594 1912.344,968.594 1912.344,751.406 1638.906,751.406" fill="#f1f0ea" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1717.405" y="842" width="116.44" height="37.8" fill="#ffffff" opacity="0.82"/>
+<text x="1775.625" y="860" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">WORK ROOM</text>
+<text x="1775.625" y="882" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">180 SF</text>
+<polygon points="1920.156,968.594 2081.094,968.594 2081.094,751.406 1920.156,751.406" fill="#f6f7f5" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1979.605" y="846" width="42.04" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="2000.625" y="860" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">DEN</text>
+<text x="2000.625" y="878" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">108 SF</text>
+<polygon points="1638.906,743.594 1781.094,743.594 1781.094,601.406 1638.906,601.406" fill="#e7e9e6" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1680.3" y="658.5" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="1710" y="672.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">STAIR</text>
+<text x="1710" y="690.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">64 SF</text>
+<polygon points="1788.906,743.594 1912.344,743.594 1912.344,601.406 1788.906,601.406" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1816.585" y="658.5" width="68.08" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="1850.625" y="672.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BATH 3</text>
+<text x="1850.625" y="690.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">56 SF</text>
+<line x1="1794.375" y1="608.438" x2="1906.875" y2="608.438" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="1920.156,743.594 2081.094,743.594 2081.094,601.406 1920.156,601.406" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<rect x="1949.225" y="658.5" width="102.8" height="29.4" fill="#ffffff" opacity="0.82"/>
+<text x="2000.625" y="672.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">PLANT ROOM</text>
+<text x="2000.625" y="690.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">72 SF</text>
+<line x1="1925.625" y1="608.438" x2="2075.625" y2="608.438" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="1681.875,752.969 1738.125,752.969 1738.125,742.031 1681.875,742.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1681.875" y1="751.406" x2="1681.875" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1738.125" y1="751.406" x2="1738.125" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1710,743.594 1766.25,743.594 1766.25,751.406 1710,751.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1710" y1="747.5" x2="1710" y2="691.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1710 691.25 A 56.25 56.25 0 0 1 1766.25 747.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1779.531,700.625 1790.469,700.625 1790.469,644.375 1779.531,644.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1781.094" y1="700.625" x2="1788.906" y2="700.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1781.094" y1="644.375" x2="1788.906" y2="644.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1781.094,672.5 1781.094,616.25 1788.906,616.25 1788.906,672.5" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1785" y1="672.5" x2="1728.75" y2="672.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1728.75 672.5 A 56.25 56.25 0 0 1 1785 616.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1910.781,935 1921.719,935 1921.719,878.75 1910.781,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1912.344" y1="935" x2="1920.156" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1912.344" y1="878.75" x2="1920.156" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1912.344,906.875 1912.344,850.625 1920.156,850.625 1920.156,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1916.25" y1="906.875" x2="1860" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1860 906.875 A 56.25 56.25 0 0 1 1916.25 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1953.75,752.969 2010,752.969 2010,742.031 1953.75,742.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1953.75" y1="751.406" x2="1953.75" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2010" y1="751.406" x2="2010" y2="743.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1981.875,743.594 2038.125,743.594 2038.125,751.406 1981.875,751.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1981.875" y1="747.5" x2="1981.875" y2="691.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1981.875 691.25 A 56.25 56.25 0 0 1 2038.125 747.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<line x1="1641.25" y1="731.094" x2="1778.75" y2="731.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="714.688" x2="1778.75" y2="714.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="698.281" x2="1778.75" y2="698.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="681.875" x2="1778.75" y2="681.875" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="665.469" x2="1778.75" y2="665.469" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="649.063" x2="1778.75" y2="649.063" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="632.656" x2="1778.75" y2="632.656" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1641.25" y1="616.25" x2="1778.75" y2="616.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1710" y1="735" x2="1710" y2="610" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<polygon points="1702.188,622.5 1710,606.875 1717.813,622.5" fill="#111418" stroke="#111418" stroke-width="0.6" stroke-linejoin="miter"/>
+<text x="1710" y="731.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">UP 21R</text>
+<polygon points="1641.25,788.125 1735,788.125 1735,747.5 1641.25,747.5" fill="#ffffff" stroke="#98a2ab" stroke-width="1" stroke-linejoin="miter"/>
+<rect x="1761.5625" y="816.25" width="28.125" height="28.125" rx="6.25" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
+<polygon points="1791.25,610 1822.5,610 1822.5,597.5 1791.25,597.5" fill="#ffffff" stroke="#2b3138" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="1806.875" cy="626.40625" rx="13.750000000000002" ry="16.40625" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<polygon points="1827.188,630.313 1864.688,630.313 1864.688,597.5 1827.188,597.5" fill="#ffffff" stroke="#7d868f" stroke-width="1.4" stroke-linejoin="miter"/>
+<ellipse cx="1845.9375" cy="613.90625" rx="12" ry="9.84375" fill="#ffffff" stroke="#2b3138" stroke-width="1.4"/>
+<circle cx="1845.938" cy="602.188" r="2.344" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<polygon points="1785,741.25 1841.25,741.25 1841.25,685 1785,685" fill="#ffffff" stroke="#2b3138" stroke-width="2.2" stroke-linejoin="miter"/>
+<line x1="1785" y1="741.25" x2="1841.25" y2="685" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1841.25" y1="741.25" x2="1785" y2="685" stroke="#2b3138" stroke-width="0.6" stroke-linecap="butt"/>
+<circle cx="1813.125" cy="713.125" r="2.813" fill="#2b3138" stroke="#2b3138" stroke-width="1"/>
+<circle cx="1942.813" cy="617.813" r="20.313" fill="#ffffff" stroke="#7a5a2a" stroke-width="2.2"/>
+<circle cx="1986.563" cy="616.25" r="18.75" fill="#ffffff" stroke="#7a5a2a" stroke-width="2.2"/>
+<polygon points="2010,644.375 2047.5,644.375 2047.5,597.5 2010,597.5" fill="#ffffff" stroke="#7a5a2a" stroke-width="2.2" stroke-linejoin="miter"/>
+<line x1="2010" y1="644.375" x2="2047.5" y2="597.5" stroke="#7a5a2a" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2047.5" y1="644.375" x2="2010" y2="597.5" stroke="#7a5a2a" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1916.25,731.875 1928.75,731.875 1928.75,685 1916.25,685" fill="#ffffff" stroke="#7a5a2a" stroke-width="3.4" stroke-linejoin="miter"/>
+<line x1="1916.25" y1="731.875" x2="1928.75" y2="685" stroke="#7a5a2a" stroke-width="1" stroke-linecap="butt"/>
+<polygon points="1635,964.688 2085,964.688 2085,980.313 1635,980.313" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1635,589.688 2085,589.688 2085,605.313 1635,605.313" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1627.188,972.5 1627.188,597.5 1642.813,597.5 1642.813,972.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="2077.188,972.5 2077.188,597.5 2092.813,597.5 2092.813,972.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1775.625,964.688 1978.125,964.688 1978.125,980.313 1775.625,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1775.625" y1="975" x2="1978.125" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1775.625" y1="970" x2="1978.125" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="1775.625" y1="972.5" x2="1978.125" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2000.625,964.688 2113.125,964.688 2113.125,980.313 2000.625,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2000.625" y1="975" x2="2113.125" y2="975" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="2000.625" y1="970" x2="2113.125" y2="970" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<line x1="2000.625" y1="972.5" x2="2113.125" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1766.25,964.688 1822.5,964.688 1822.5,980.313 1766.25,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1766.25" y1="972.5" x2="1766.25" y2="916.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1766.25 916.25 A 56.25 56.25 0 0 1 1822.5 972.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2010,964.688 2066.25,964.688 2066.25,980.313 2010,980.313" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2010" y1="972.5" x2="2010" y2="916.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2010 916.25 A 56.25 56.25 0 0 1 2066.25 972.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1631.094,860 1631.094,803.75 1638.906,803.75 1638.906,860" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1635" y1="860" x2="1578.75" y2="860" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1578.75 860 A 56.25 56.25 0 0 1 1635 803.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2081.094,672.5 2081.094,616.25 2088.906,616.25 2088.906,672.5" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2085" y1="672.5" x2="2028.75" y2="672.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2028.75 672.5 A 56.25 56.25 0 0 1 2085 616.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<line x1="1635" y1="1044.375" x2="2085" y2="1044.375" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="1627" y1="1052.375" x2="1643" y2="1036.375" stroke="#111418" stroke-width="2.2"/>
+<line x1="1635" y1="1058.375" x2="1635" y2="1038.375" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2077" y1="1052.375" x2="2093" y2="1036.375" stroke="#111418" stroke-width="2.2"/>
+<line x1="2085" y1="1058.375" x2="2085" y2="1038.375" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="1860" y="1071.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">24'-0"</text>
+<line x1="2156.875" y1="972.5" x2="2156.875" y2="597.5" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="2148.875" y1="980.5" x2="2164.875" y2="964.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="2142.875" y1="972.5" x2="2162.875" y2="972.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2148.875" y1="605.5" x2="2164.875" y2="589.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="2142.875" y1="597.5" x2="2162.875" y2="597.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="2168.875" y="785" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0" transform="rotate(-90 2168.875 785)">20'-0"</text>
+<text x="1635" y="1140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.2">UNDERCROFT — FFE 0'</text>
+<text x="1635" y="1156" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">480 SF  ·  0 BED  ·  64 SF CIRCULATION  (13%)</text>
+<g transform="translate(3180,380) rotate(-20)"><circle cx="0" cy="0" r="52" fill="none" stroke="#4a5560" stroke-width="1"/><path d="M 0 -64 L 17.68 26 L 0 8.32 L -17.68 26 Z" fill="#111418"/></g>
+<text x="3180" y="472" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="1.5">TRUE NORTH</text>
+<rect x="2780" y="380" width="150" height="12" fill="#111418" stroke="#111418" stroke-width="1"/>
+<text x="2780" y="372" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">0</text>
+<rect x="2930" y="380" width="150" height="12" fill="#ffffff" stroke="#111418" stroke-width="1"/>
+<text x="2930" y="372" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">8</text>
+<rect x="3080" y="380" width="300" height="12" fill="#111418" stroke="#111418" stroke-width="1"/>
+<text x="3080" y="372" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">16</text>
+<text x="3380" y="372" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">32</text>
+<text x="3396" y="392" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">FT</text>
+<text x="2780" y="418" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="1">SCALE: 3/16"=1'-0"</text>
+<text x="300" y="1250" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.5">WHAT THIS SCHEME IS, MEASURED</text>
+<text x="300" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">CONDITIONED</text>
+<text x="630" y="1280" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">1,200 sf</text>
+<text x="300" y="1304" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">SHELTERED</text>
+<text x="630" y="1304" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">480 sf</text>
+<text x="300" y="1328" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">PERIMETER</text>
+<text x="630" y="1328" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">160 lf  (0.133 per sf)</text>
+<text x="300" y="1352" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">WET-WALL RUN</text>
+<text x="630" y="1352" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">20 lf</text>
+<text x="300" y="1376" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">ROOF PLANES / JUNCTIONS</text>
+<text x="630" y="1376" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">1 / 0</text>
+<text x="300" y="1400" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">EARTH MOVED</text>
+<text x="630" y="1400" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">9 CY, deepest cut 6 ft</text>
+<text x="300" y="1424" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">GROUND</text>
+<text x="630" y="1424" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">6 piers</text>
+<text x="300" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">PHASE 1 → MATURE</text>
+<text x="630" y="1448" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">1,200 → 1,680 sf</text>
+<text x="1000" y="1250" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.3">ROOM USE</text>
+<rect x="1000" y="1260" width="26" height="13" rx="0" fill="#eef1ee" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1270" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">BEDROOM</text>
+<rect x="1000" y="1280" width="26" height="13" rx="0" fill="#f6f7f5" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1290" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">LIVING / DINING</text>
+<rect x="1000" y="1300" width="26" height="13" rx="0" fill="#e4eef2" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1310" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WET — BATH, KITCHEN, LAUNDRY, MECHANICAL</text>
+<rect x="1000" y="1320" width="26" height="13" rx="0" fill="#e7e9e6" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1330" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CIRCULATION — DRAWN AND PAID FOR</text>
+<rect x="1000" y="1340" width="26" height="13" rx="0" fill="#f1f0ea" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1350" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WORK</text>
+<rect x="1000" y="1360" width="26" height="13" rx="0" fill="#eceeea" stroke="#111418" stroke-width="0.6"/>
+<text x="1034" y="1370" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STORE</text>
+<line x1="1000" y1="1400" x2="1026" y2="1400" stroke="#1d6fa5" stroke-width="3.4"/>
+<text x="1034" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">PLUMBING WALL</text>
+<text x="1550" y="1250" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.3">THE BUILDER'S NOTE</text>
+<text x="1550" y="1268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">What the massing could not show, in the builder's words. The builder does not grade itself.</text>
+<text x="1550" y="1294" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">The massing shows a 60 ft bar; the plan shows the bar has exactly one wet</text>
+<text x="1550" y="1308" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">line in it. Every fixture in the house hangs on the single 20 ft wall at</text>
+<text x="1550" y="1322" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">x=23 running y2 to y22: kitchen and laundry on its west face, ensuite and</text>
+<text x="1550" y="1336" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">hall bath on its east face, 40 ft of fixture wall out of a 20 ft run, and</text>
+<text x="1550" y="1350" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">nothing within 7 ft of an exterior wall. The undercroft repeats that wall,</text>
+<text x="1550" y="1364" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">so the phase-2 bath and the phase-1 plant room drop straight down it - one</text>
+<text x="1550" y="1378" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">stack, one vent, one heated chase. Because the plant lives below the</text>
+<text x="1550" y="1392" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floor, the bridge spends NONE of its 1,200 sf on mechanical, and the</text>
+<text x="1550" y="1406" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">phase-1 stair plus stack is what makes the later level genuinely cheap.</text>
+<text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 6</text>
+<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT</text>
+<text x="1000" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the scheme, each first caught by a critic reading a drawing and</text>
+<text x="1000" y="1482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">since made automatic.</text>
+<text x="1000" y="1496" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once</text>
+<text x="1000" y="1509" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
+<text x="1000" y="1525" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on BRIDGE @ffe 13 sum to 100.0% of the</text>
+<text x="1000" y="1538" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floor plate, so every dimension shown is an ideal clear dimension</text>
+<text x="1000" y="1551" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1567" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 3" (UNDERCROFT @ffe 0) hangs its fixtures on</text>
+<text x="1000" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the uphill EXTERIOR wall. No plumbing may run there at this</text>
+<text x="1000" y="1593" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
+<text x="1000" y="1609" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "PLANT ROOM" (UNDERCROFT @ffe 0) hangs its</text>
+<text x="1000" y="1622" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">fixtures on the uphill EXTERIOR wall. No plumbing may run there at</text>
+<text x="1000" y="1635" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">this elevation.</text>
+<text x="1000" y="1651" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on UNDERCROFT @ffe 0 sum to 100.0% of</text>
+<text x="1000" y="1664" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
+<text x="1000" y="1677" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1693" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· ONE WAY DOWN — 3 sleeping rooms more than a storey above the</text>
+<text x="1000" y="1706" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">entry (BED 1 PRIMARY at ffe 13, BED 2 at ffe 13, BED 3 at ffe 13)</text>
+<text x="1000" y="1719" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">served by a single stair. Second means of escape not drawn.</text>
+<rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
+<text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>
+<line x1="2960" y1="158" x2="3540" y2="158" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="1.8">THE HOUSE WORKS LIKE A BODY</text>
+<text x="2966" y="214" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STRUCTURE = SKELETON   WATER = CIRCULATION</text>
+<text x="2966" y="230" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WASTE = DIGESTION      HVAC  = RESPIRATION</text>
+<text x="2966" y="246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">POWER = NERVOUS SYS.   SKIN  = ENVELOPE</text>
+<line x1="2960" y1="274" x2="3540" y2="274" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="304" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">SHEET NOTES</text>
+<text x="2966" y="324" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">OPERATION — Let the structure span so the building touches the</text>
+<text x="2966" y="339" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ground in a handful of places instead of along a continuous</text>
+<text x="2966" y="354" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">wall. Utility core inside a rational skeleton; structure sets</text>
+<text x="2966" y="369" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the dimensions.</text>
+<text x="2966" y="388" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">DO NOT COPY — The 20K cost model. This is a mountain house</text>
+<text x="2966" y="403" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">with mountain loads — the borrowed idea is the span logic, not</text>
+<text x="2966" y="418" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the budget.</text>
+<text x="2966" y="437" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ROOMS ARE CHECKED, NOT DRAWN BY HAND. Every room on this sheet</text>
+<text x="2966" y="452" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">passed tools/build-plans.mjs: inside the scheme's own floor,</text>
+<text x="2966" y="467" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">no overlap with another room, the floor plate accounted for</text>
+<text x="2966" y="482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">within 12%, every bedroom with an exterior wall and an egress</text>
+<text x="2966" y="497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">window and at least 10 ft in its short dimension, every wet</text>
+<text x="2966" y="512" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">room touching another wet room or stacking over one, and every</text>
+<text x="2966" y="527" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">stair landing on the stair below.</text>
+<text x="2966" y="546" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CIRCULATION IS DRAWN AND PAID FOR. Corridors and stairs are</text>
+<text x="2966" y="561" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">rooms with areas here, because a scheme that hides its</text>
+<text x="2966" y="576" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">circulation is claiming floor area it does not have. The</text>
+<text x="2966" y="591" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">percentage under each plan is the honest number.</text>
+<text x="2966" y="610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">GLASS IS SHOWN ROOM BY ROOM on the downhill face rather than</text>
+<text x="2966" y="625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">as one ribbon, so the drawing shows which rooms actually got</text>
+<text x="2966" y="640" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the view and which were given the cold side.</text>
+<text x="2966" y="659" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE HEAVY BLUE LINE is the plumbing wall. No pipe may run in</text>
+<text x="2966" y="674" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">an exterior wall — at 3,400 ft that is a freeze rule, not a</text>
+<text x="2966" y="689" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">preference.</text>
+<text x="2966" y="708" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THIS IS SCHEMATIC. No structure is engineered, no fixture is</text>
+<text x="2966" y="723" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">selected, no clearance is code-checked, and no room here has</text>
+<text x="2966" y="738" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">been tested against a real survey.</text>
+<text x="2966" y="757" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CODE VALUES ON THIS SET ARE UNVERIFIED. This container has no</text>
+<text x="2966" y="772" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">outbound web access, so no code text was read from a primary</text>
+<text x="2966" y="787" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">source. Every code reference is marked in</text>
+<text x="2966" y="802" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">docs/02-code-basis.md with its verification status. Nothing</text>
+<text x="2966" y="817" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">here may be relied on for permitting.</text>
+<line x1="2960" y1="2110" x2="3540" y2="2110" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">PHASE</text>
+<text x="2966" y="2160" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">SCHEMATIC DESIGN — NOT FOR CONSTRUCTION</text>
+<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE BRIDGE.</text>
+<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Rooms from model/scheme-plans.mjs,</text>
+<text x="2966" y="2220" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">generated and checked. Metrics computed</text>
+<text x="2966" y="2236" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">from the same declarations that build</text>
+<text x="2966" y="2252" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the 3D. Critic is a separate agent.</text>
+<line x1="2960" y1="2230" x2="3540" y2="2230" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">SCALE</text>
+<text x="2966" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">3/16"=1'-0"</text>
+<text x="3190" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">ISSUED</text>
+<text x="3190" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">2026-08-11</text>
+<text x="3370" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">REV</text>
+<text x="3370" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">—</text>
+<line x1="2960" y1="2292" x2="3540" y2="2292" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="44" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2">X-203</text>
+<text x="3534" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#8d99a6" text-anchor="end" letter-spacing="0">ARCH D 36x24</text>
+</svg>
