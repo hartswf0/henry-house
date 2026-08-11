@@ -12,7 +12,7 @@ import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import G, {
   LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
-  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR,
+  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR, roofTopAt,
 } from '/model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
 import { FIXTURES } from '/model/fixtures.mjs';
