@@ -561,8 +561,10 @@ function buildDrive(M) {
   const g = new THREE.Group();
   // MOTOR COURT — two limbs. The apron is what lets a car back clear of the
   // garage doors; without it the arrival sequence does not work at all.
+  // Paving sits 2" PROUD of finished grade. Flush with it, the terrain mesh
+  // wins the depth test and a motor court renders as a lawn.
   for (const r of [COURT.main, COURT.apron]) {
-    g.add(mbox(r.x0, r.x1, r.y0, r.y1, COURT.z - 6, COURT.z, M.gravel, { cast: false }));
+    g.add(mbox(r.x0, r.x1, r.y0, r.y1, COURT.z - 6, COURT.z + 2, M.gravel, { cast: false }));
   }
   // THE DRIVE — the solved alignment from model/site.mjs, not 22 guessed boxes.
   const d = driveProfile();
@@ -581,7 +583,7 @@ function buildDrive(M) {
       const pad = Math.abs(dx) > Math.abs(dy) ? [0, halfW] : [halfW, 0];
       g.add(mbox(Math.min(x0, x1) - pad[0], Math.max(x0, x1) + pad[0],
                  Math.min(y0, y1) - pad[1], Math.max(y0, y1) + pad[1],
-                 z - 8, z, M.gravel, { cast: false }));
+                 z - 8, z + 2, M.gravel, { cast: false }));
     }
   }
   return g;

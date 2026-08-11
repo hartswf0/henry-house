@@ -20,8 +20,11 @@ export const VIEWS = {
   },
   'ext-arrival': {
     title: 'ARRIVAL — THE UPHILL SIDE',
-    caption: 'Motor court, entry bridge over the drain gap, detached garage. The cold side is nearly solid.',
-    pos: [-8, 15.5, -52], target: [72, 15.5, -18], focal: 30, shift: 0.30,
+    caption: 'You arrive on the apron east of the garage. Doors, breezeway, entry bridge and the cut face beyond. The cold side is nearly solid.',
+    // Stand ON the apron, east of the garage doors, where the drive actually
+    // arrives. The old camera sat at the far west end of the court looking down
+    // a blank wall — an arrival view with no garage, no apron and no way in.
+    pos: [146, 15.2, -17], target: [86, 13.5, -26], focal: 28, shift: 0.26,
     sun: { dayOfYear: 172, hour: 9.6 }, exposure: 1.05, w: 1700, h: 1062,
   },
   'ext-east': {
