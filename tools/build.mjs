@@ -447,3 +447,35 @@ import { SCHEMES as ALT_SCHEMES, allMetrics } from '../model/schemes.mjs';
   ] });
   write('X-101-seven-schemes.svg', s.toString());
 }
+
+// ── R-101  THE REFERENCE SET AS A BAR ───────────────────────────────────────
+import { drawReferenceSheet } from './draw/refs.mjs';
+{
+  const scaleName = '1/32"=1\'-0"';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: 'R-101', title: 'THE REFERENCE SET, AS A BAR',
+    subtitle: 'WHAT THE PRECEDENTS MEASURE · AND WHERE EACH SCHEME STANDS AGAINST THEM',
+    notes: [
+      'A REFERENCE THAT CANNOT BE LOST TO IS A MOOD BOARD. The Front Porch product line publishes areas, footprints, porch areas and perimeters for six built houses, so those figures become bars a scheme either beats or does not.',
+      'THE PLANS HERE ARE FOOTPRINTS AT THE PUBLISHED DIMENSIONS, drawn at the same scale as the schemes on X-101. They are not Rural Studio drawings and do not pretend to be; the schematic cards in the client packs label themselves studies, and the porch is shown as its published AREA against the short end rather than in its real position.',
+      'SYLVIA 2/1 IS THE ONE THAT MATTERS MOST. It is a product-line house actually adapted to a narrow, steeply sloped site in Madison County, North Carolina — two counties from Watauga, the same mountains, the same problem — at 856 sf.',
+      'THE VISUAL BAR CARRIES NO DIMENSIONS in these packs, so it appears as operations and states rather than measurements, and is never scored. Its areas are widely-cited figures marked ASSUMED.',
+      'NOTHING ON THIS SHEET WAS FETCHED. This container has no outbound network access; every figure shipped inside the client packs as CSV or on a study card. Before any of it justifies a design decision, check it against the official product pages and plan PDFs listed in refs/manifests/.',
+      'ALL REFERENCE IMAGERY AND DRAWINGS remain the property of Rural Studio / Auburn University and Olson Kundig. None is reproduced here.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  drawReferenceSheet(s);
+  s.scaleBar(2280, 340, { scaleName, feetTicks: [0, 32, 64] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    'model/references.mjs — the measurable',
+    'part of the client reference packs.',
+    'Bars are DERIVED from the product line,',
+    'not chosen. tools/gauntlet/run.mjs scores',
+    'every scheme against them, tie = loss.',
+  ] });
+  write('R-101-reference-bar.svg', s.toString());
+}

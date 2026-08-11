@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs></defs>
+<rect x="0" y="0" width="3600" height="2400" fill="#ffffff"/>
+<rect x="40" y="40" width="3520" height="2320" rx="0" fill="none" stroke="#111418" stroke-width="2.2"/>
+<rect x="52" y="52" width="3496" height="2296" rx="0" fill="none" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="300" y="150" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="46" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2.5">THE REFERENCE SET, AS A BAR</text>
+<text x="300" y="184" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.4">WHAT THE PRECEDENTS MEASURE · AND WHERE EACH SCHEME STANDS AGAINST THEM</text>
+<line x1="300" y1="206" x2="2880" y2="206" stroke="#111418" stroke-width="2.2"/>
+<text x="300" y="300" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.5">THE BUILD-INTELLIGENCE BAR — FRONT PORCH, DRAWN AT THE SAME SCALE AS THE SCHEMES</text>
+<text x="300" y="320" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Published areas, footprints, porch areas and perimeters. These are real houses with real numbers, which is exactly why they can be lost to.</text>
+<polygon points="300,560 343.75,560 343.75,422.5 300,422.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="300,588.571 343.75,588.571 343.75,560 300,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="321.875" y="577.286" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="321.875" y="496.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">1BR</text>
+<text x="300" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Dave's House</text>
+<text x="300" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">504 sf  ·  14 x 44 ft  ·  100 lf</text>
+<text x="300" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.198 lf per sf</text>
+<text x="300" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Narrow shotgun body; pier-and-beam</text>
+<text x="300" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">option; simple spans; screened porch.</text>
+<polygon points="660,560 716.25,560 716.25,441.25 660,441.25" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="660,577.361 716.25,577.361 716.25,560 660,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="688.125" y="571.681" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="688.125" y="505.625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">1BR</text>
+<text x="660" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">MacArthur's House</text>
+<text x="660" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">536 sf  ·  18 x 38 ft  ·  120 lf</text>
+<text x="660" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.224 lf per sf</text>
+<text x="660" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Dogtrot logic; day/night rooms; rear</text>
+<text x="660" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">porch intentionally sized for future</text>
+<text x="660" y="742" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">bedroom enclosure.</text>
+<polygon points="1020,560 1101.25,560 1101.25,469.375 1020,469.375" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1020,584.519 1101.25,584.519 1101.25,560 1020,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="1060.625" y="575.26" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="1060.625" y="519.688" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">1BR</text>
+<text x="1020" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Joanne's House</text>
+<text x="1020" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">529 sf  ·  26 x 29 ft  ·  104 lf</text>
+<text x="1020" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.197 lf per sf</text>
+<text x="1020" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A compact square maximises area against</text>
+<text x="1020" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">perimeter and kills corridor space.</text>
+<polygon points="1380,560 1448.75,560 1448.75,410 1380,410" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1380,589.261 1448.75,589.261 1448.75,560 1380,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="1414.375" y="577.631" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="1414.375" y="490" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">2BR</text>
+<text x="1380" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Sylvia's House 2/1</text>
+<text x="1380" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">856 sf  ·  22 x 48 ft  ·  140 lf</text>
+<text x="1380" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.164 lf per sf</text>
+<text x="1380" y="698" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">BUILT ON A STEEP NC SITE</text>
+<text x="1380" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Narrow two-bedroom; two shifted program</text>
+<text x="1380" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">volumes create end porches and remove</text>
+<text x="1380" y="742" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the corridor.</text>
+<polygon points="1740,560 1815,560 1815,397.5 1740,397.5" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1740,589.167 1815,589.167 1815,560 1740,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="1777.5" y="577.583" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="1777.5" y="483.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">2BR</text>
+<text x="1740" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Sylvia's House 2/2</text>
+<text x="1740" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">1024 sf  ·  24 x 52 ft  ·  152 lf</text>
+<text x="1740" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.148 lf per sf</text>
+<text x="1740" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A larger state of the same grammar: one</text>
+<text x="1740" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">more bathroom inside the same structural</text>
+<text x="1740" y="742" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and service logic.</text>
+<polygon points="2100,560 2187.5,560 2187.5,378.75 2100,378.75" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="2100,588.571 2187.5,588.571 2187.5,560 2100,560" fill="none" stroke="#4a5560" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<text x="2143.75" y="577.286" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">PORCH</text>
+<text x="2143.75" y="474.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0">3BR</text>
+<text x="2100" y="652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Sylvia's House 3/2</text>
+<text x="2100" y="668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">1364 sf  ·  28 x 58 ft  ·  172 lf</text>
+<text x="2100" y="682" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="0">0.126 lf per sf</text>
+<text x="2100" y="718" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">The mature state. Three bedrooms, two</text>
+<text x="2100" y="730" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">baths, still one bar, still one roof.</text>
+<text x="300" y="900" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">THE BARS, AND WHERE EACH SCHEME STANDS</text>
+<text x="300" y="920" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Computed from the product line, not chosen. A scheme must BEAT a bar, not match it — the gauntlet counts a tie as a loss.</text>
+<line x1="300" y1="940" x2="2540" y2="940" stroke="#111418" stroke-width="2.2"/>
+<text x="859.286" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">SPINE</text>
+<text x="1117.857" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">ARMATURE</text>
+<text x="1376.429" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">BRIDGE</text>
+<text x="1635" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">NARROW</text>
+<text x="1893.571" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">CORE</text>
+<text x="2152.143" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">PERCH</text>
+<text x="2410.714" y="956" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1">TOWER</text>
+<line x1="300" y1="978" x2="2540" y2="978" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="300" y="1000" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">ENVELOPE  lf per sf</text>
+<text x="300" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">bar 0.126  —  Sylvia's House 3/2</text>
+<rect x="736" y="987" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="859.286" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.06</text>
+<text x="859.286" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<text x="1117.857" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">0.299</text>
+<text x="1117.857" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<text x="1376.429" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">0.133</text>
+<text x="1376.429" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<rect x="1511.714" y="987" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1635" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.112</text>
+<text x="1635" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="1770.286" y="987" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1893.571" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.12</text>
+<text x="1893.571" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="2028.857" y="987" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="2152.143" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.053</text>
+<text x="2152.143" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="2287.429" y="987" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="2410.714" y="1000" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.056</text>
+<text x="2410.714" y="1014" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<text x="300" y="1046" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">SHELTER  sheltered per sf</text>
+<text x="300" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">bar 0.386  —  Joanne's House</text>
+<text x="859.286" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">0.358</text>
+<text x="859.286" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<rect x="994.571" y="1033" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1117.857" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">2.636</text>
+<text x="1117.857" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="1253.143" y="1033" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1376.429" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.8</text>
+<text x="1376.429" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="1511.714" y="1033" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1635" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.417</text>
+<text x="1635" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="1770.286" y="1033" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1893.571" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.564</text>
+<text x="1893.571" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="2028.857" y="1033" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="2152.143" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">0.538</text>
+<text x="2152.143" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<text x="2410.714" y="1046" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">0.361</text>
+<text x="2410.714" y="1060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<text x="300" y="1092" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">SCALE  conditioned sf</text>
+<text x="300" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">bar 1364  —  Sylvia's House 3/2</text>
+<text x="859.286" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">3,747</text>
+<text x="859.286" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<rect x="994.571" y="1079" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1117.857" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">616</text>
+<text x="1117.857" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<rect x="1253.143" y="1079" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="1376.429" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">1,200</text>
+<text x="1376.429" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<text x="1635" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">1,716</text>
+<text x="1635" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<text x="1893.571" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">1,504</text>
+<text x="1893.571" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<text x="2152.143" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">1,872</text>
+<text x="2152.143" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">loses</text>
+<rect x="2287.429" y="1079" width="246.571" height="20" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="2410.714" y="1092" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">1,296</text>
+<text x="2410.714" y="1106" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#2f7d54" text-anchor="middle" letter-spacing="0">BEATS</text>
+<line x1="300" y1="1126" x2="2540" y2="1126" stroke="#111418" stroke-width="2.2"/>
+<text x="300" y="1172" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.5">THE VISUAL AND SECTIONAL BAR — NO DIMENSIONS ARE PUBLISHED IN THESE PACKS</text>
+<text x="300" y="1192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">So these are operations and states, not measurements. The areas shown are widely-cited figures, marked ASSUMED, and are never scored.</text>
+<text x="300" y="1222" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Sol Duc Cabin</text>
+<text x="300" y="1237" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">~350 sf — ASSUMED</text>
+<text x="300" y="1256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">OPERATION — Lift the house clear of the</text>
+<text x="300" y="1268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">ground, make the opening enormous, and let</text>
+<text x="300" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">one roof and one frame do the work.</text>
+<text x="300" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STATE — Closes completely. Resilience is an</text>
+<text x="300" y="1309" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">architectural STATE, not equipment hidden in</text>
+<text x="300" y="1321" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">a closet.</text>
+<text x="300" y="1338" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">DO NOT COPY — The steel-plate palette and</text>
+<text x="300" y="1350" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">the hand-crank theatre.</text>
+<text x="860" y="1222" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Vermont Cabin</text>
+<text x="860" y="1237" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">~750 sf — ASSUMED</text>
+<text x="860" y="1256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">OPERATION — A small vertical object in a</text>
+<text x="860" y="1268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">mountain forest can still read as monumental</text>
+<text x="860" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and complete.</text>
+<text x="860" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STATE — One open upper room, exposed timber,</text>
+<text x="860" y="1309" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">raw concrete, landscape on three sides.</text>
+<text x="860" y="1326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">DO NOT COPY — The specific material palette.</text>
+<text x="860" y="1338" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">Copy the compactness and the single great</text>
+<text x="860" y="1350" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">room.</text>
+<text x="1420" y="1222" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Cabin at Longbranch</text>
+<text x="1420" y="1237" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">no area cited</text>
+<text x="1420" y="1256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">OPERATION — A house that literally grew over</text>
+<text x="1420" y="1268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">decades while preserving and revealing its</text>
+<text x="1420" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">earlier phases.</text>
+<text x="1420" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STATE — Cheap-looking components do not</text>
+<text x="1420" y="1309" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">require cheap architecture; repetition and</text>
+<text x="1420" y="1321" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">age do the work.</text>
+<text x="1420" y="1338" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">DO NOT COPY — Nothing formal — this is the</text>
+<text x="1420" y="1350" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">phasing conscience of the visual bar.</text>
+<text x="1980" y="1222" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">Knob Hill</text>
+<text x="1980" y="1237" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">no area cited</text>
+<text x="1980" y="1256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">OPERATION — Concrete rooted into the slope</text>
+<text x="1980" y="1268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">carrying a lightweight inhabited volume</text>
+<text x="1980" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">above.</text>
+<text x="1980" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STATE — Judged against snow, topography and</text>
+<text x="1980" y="1309" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">distance rather than a street elevation.</text>
+<text x="1980" y="1326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">DO NOT COPY — Use as a SECTIONAL bar, not a</text>
+<text x="1980" y="1338" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">size bar.</text>
+<rect x="300" y="1436" width="2240" height="74" rx="3" fill="#f6efef" stroke="#b03535" stroke-width="1.4"/>
+<text x="312" y="1454" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">PROVENANCE — NOTHING ON THIS SHEET WAS FETCHED</text>
+<text x="312" y="1472" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">No reference page, PDF or photograph was retrieved. This container has no outbound network access. Every Front Porch figure here shipped inside the client packs as CSV</text>
+<text x="312" y="1485" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">or on a schematic card that labels itself a study rather than an original drawing. Olson Kundig areas are widely-cited and marked ASSUMED; they are never scored.</text>
+<text x="312" y="1498" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Before any of this is used to justify a design decision, check the figures against the official Front Porch product pages and plan PDFs listed in refs/manifests/.</text>
+<rect x="2280" y="340" width="100" height="12" fill="#111418" stroke="#111418" stroke-width="1"/>
+<text x="2280" y="332" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">0</text>
+<rect x="2380" y="340" width="100" height="12" fill="#ffffff" stroke="#111418" stroke-width="1"/>
+<text x="2380" y="332" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">32</text>
+<text x="2480" y="332" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">64</text>
+<text x="2496" y="352" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">FT</text>
+<text x="2280" y="378" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="1">SCALE: 1/32"=1'-0"</text>
+<rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
+<text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>
+<line x1="2960" y1="158" x2="3540" y2="158" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="1.8">THE HOUSE WORKS LIKE A BODY</text>
+<text x="2966" y="214" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STRUCTURE = SKELETON   WATER = CIRCULATION</text>
+<text x="2966" y="230" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WASTE = DIGESTION      HVAC  = RESPIRATION</text>
+<text x="2966" y="246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">POWER = NERVOUS SYS.   SKIN  = ENVELOPE</text>
+<line x1="2960" y1="274" x2="3540" y2="274" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="304" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">SHEET NOTES</text>
+<text x="2966" y="324" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A REFERENCE THAT CANNOT BE LOST TO IS A MOOD BOARD. The Front</text>
+<text x="2966" y="339" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Porch product line publishes areas, footprints, porch areas</text>
+<text x="2966" y="354" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">and perimeters for six built houses, so those figures become</text>
+<text x="2966" y="369" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">bars a scheme either beats or does not.</text>
+<text x="2966" y="388" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE PLANS HERE ARE FOOTPRINTS AT THE PUBLISHED DIMENSIONS,</text>
+<text x="2966" y="403" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">drawn at the same scale as the schemes on X-101. They are not</text>
+<text x="2966" y="418" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Rural Studio drawings and do not pretend to be; the schematic</text>
+<text x="2966" y="433" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">cards in the client packs label themselves studies, and the</text>
+<text x="2966" y="448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">porch is shown as its published AREA against the short end</text>
+<text x="2966" y="463" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">rather than in its real position.</text>
+<text x="2966" y="482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">SYLVIA 2/1 IS THE ONE THAT MATTERS MOST. It is a product-line</text>
+<text x="2966" y="497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">house actually adapted to a narrow, steeply sloped site in</text>
+<text x="2966" y="512" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Madison County, North Carolina — two counties from Watauga,</text>
+<text x="2966" y="527" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the same mountains, the same problem — at 856 sf.</text>
+<text x="2966" y="546" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE VISUAL BAR CARRIES NO DIMENSIONS in these packs, so it</text>
+<text x="2966" y="561" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">appears as operations and states rather than measurements, and</text>
+<text x="2966" y="576" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">is never scored. Its areas are widely-cited figures marked</text>
+<text x="2966" y="591" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ASSUMED.</text>
+<text x="2966" y="610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">NOTHING ON THIS SHEET WAS FETCHED. This container has no</text>
+<text x="2966" y="625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">outbound network access; every figure shipped inside the</text>
+<text x="2966" y="640" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">client packs as CSV or on a study card. Before any of it</text>
+<text x="2966" y="655" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">justifies a design decision, check it against the official</text>
+<text x="2966" y="670" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">product pages and plan PDFs listed in refs/manifests/.</text>
+<text x="2966" y="689" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ALL REFERENCE IMAGERY AND DRAWINGS remain the property of</text>
+<text x="2966" y="704" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Rural Studio / Auburn University and Olson Kundig. None is</text>
+<text x="2966" y="719" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">reproduced here.</text>
+<text x="2966" y="738" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CODE VALUES ON THIS SET ARE UNVERIFIED. This container has no</text>
+<text x="2966" y="753" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">outbound web access, so no code text was read from a primary</text>
+<text x="2966" y="768" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">source. Every code reference is marked in</text>
+<text x="2966" y="783" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">docs/02-code-basis.md with its verification status. Nothing</text>
+<text x="2966" y="798" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">here may be relied on for permitting.</text>
+<line x1="2960" y1="2110" x2="3540" y2="2110" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">PHASE</text>
+<text x="2966" y="2160" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">SCHEMATIC DESIGN — NOT FOR CONSTRUCTION</text>
+<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">model/references.mjs — the measurable</text>
+<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">part of the client reference packs.</text>
+<text x="2966" y="2220" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Bars are DERIVED from the product line,</text>
+<text x="2966" y="2236" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">not chosen. tools/gauntlet/run.mjs scores</text>
+<text x="2966" y="2252" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">every scheme against them, tie = loss.</text>
+<line x1="2960" y1="2230" x2="3540" y2="2230" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">SCALE</text>
+<text x="2966" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">1/32"=1'-0"</text>
+<text x="3190" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">ISSUED</text>
+<text x="3190" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">2026-08-11</text>
+<text x="3370" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">REV</text>
+<text x="3370" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">—</text>
+<line x1="2960" y1="2292" x2="3540" y2="2292" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="44" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2">R-101</text>
+<text x="3534" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#8d99a6" text-anchor="end" letter-spacing="0">ARCH D 36x24</text>
+</svg>

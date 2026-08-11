@@ -241,7 +241,14 @@ export function roofBase(scheme, r) {
   const covered = scheme.volumes.filter(v => v.kind !== 'shelt' &&
     v.x0 < r.x1 && v.x1 > r.x0 && v.y0 < r.y1 && v.y1 > r.y0);
   if (!covered.length) return r.zLow;
-  return Math.max(r.zLow, ...covered.map(v => ft(v.ffe) + 120 * (v.storeys ?? 1)));
+  // The base is the height of the roof AT ITS LOW EDGE, which on a deep
+  // overhang sits well downhill of the wall it covers. Setting it equal to the
+  // wall top left the plane four feet clear of the wall where they actually
+  // meet — a floating canopy instead of a roof. Back the slope off from each
+  // wall's downhill face to the eave, and take the governing case.
+  const slope = r.pitch / 12;
+  return Math.max(r.zLow, ...covered.map(v =>
+    ft(v.ffe) + 120 * (v.storeys ?? 1) - slope * (v.y0 - r.y0)));
 }
 
 // ── METRICS — the reference test, computed ──────────────────────────────────
