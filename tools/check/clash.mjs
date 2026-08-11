@@ -330,6 +330,32 @@ for (const R of ROOFS.slice(0, 2)) {
   else ok('EARTHWORK', `Cut and fill balance within 25% — ${t.netCY} CY net.`);
 }
 
+// ── 13. THE MASONRY MASS — one object, one position ─────────────────────────
+// This check exists because the 3D model carried a stone chimney that no plan,
+// section, elevation, schedule or check knew about, three feet from the wood
+// stove the plans did show. Two representations of one object, disagreeing.
+{
+  const { MASONRY } = await import('../../model/geometry.mjs');
+  const stove = FIXTURES.find(f => (f.label || '').includes('WOOD STOVE'));
+  if (!stove) {
+    fail('MASONRY', 'MASONRY MASS is declared but no WOOD STOVE fixture exists to justify it.');
+  } else {
+    const inside = stove.x >= MASONRY.x0 - 12 && stove.x + stove.w <= MASONRY.x1 + 12 &&
+                   stove.y >= MASONRY.y0 - 12 && stove.y + stove.d <= MASONRY.y1 + 12;
+    if (!inside) {
+      fail('MASONRY', `${stove.id} sits at (${stove.x}, ${stove.y}) but the masonry mass runs ${MASONRY.x0}-${MASONRY.x1} x ${MASONRY.y0}-${MASONRY.y1}. The appliance and its mass must be the same object.`);
+    } else {
+      ok('MASONRY', `${stove.id} sits within ${MASONRY.name} — plan, section, elevation and 3D all read one declaration.`);
+    }
+    // hearth extension must be clear of furniture
+    const hz = { x: MASONRY.x0, y: MASONRY.y0 - MASONRY.hearthFront, w: MASONRY.x1 - MASONRY.x0, h: MASONRY.hearthFront };
+    const hits = FIXTURES.filter(f => f.level === 'L1' && f !== stove &&
+      f.x < hz.x + hz.w && f.x + f.w > hz.x && f.y < hz.y + hz.h && f.y + f.d > hz.y);
+    if (hits.length) fail('MASONRY', `Hearth extension is occupied by ${hits.map(f => f.id).join(', ')} — combustibles in front of an appliance.`);
+    else ok('MASONRY', `${MASONRY.hearthFront}" hearth extension is clear. ${MASONRY.status}`);
+  }
+}
+
 // ── report ──────────────────────────────────────────────────────────────────
 const counts = fixtureCounts();
 const fails = results.filter(r => r.level === 'fail');

@@ -9,6 +9,8 @@
 <polygon points="430,1560 3130,1560 3130,585 430,585" fill="none" stroke="#8d99a6" stroke-width="1.4" stroke-dasharray="22 10" stroke-linejoin="miter"/>
 <text x="492.5" y="666.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="0">OUTLINE OF LEVEL ABOVE</text>
 <path d="M 430 1560 L 1780 1560 L 1780 585 L 430 585 L 430 1560 Z M 461.25 1528.75 L 1748.75 1528.75 L 1748.75 616.25 L 461.25 616.25 L 461.25 1528.75 Z" fill="#1b2026" fill-rule="evenodd" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1305,1260 1480,1260 1480,1085 1305,1085" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<circle cx="1392.5" cy="1172.5" r="25" fill="#ffffff" stroke="#111418" stroke-width="1.4"/>
 <polygon points="461.25,997.5 930,997.5 930,981.875 461.25,981.875" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="930,1528.75 945.625,1528.75 945.625,997.5 930,997.5" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="945.625,997.5 1758.125,997.5 1758.125,981.875 945.625,981.875" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>

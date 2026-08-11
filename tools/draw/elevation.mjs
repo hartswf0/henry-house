@@ -22,7 +22,7 @@ import { LW, INK } from '../svg.mjs';
 import { dim, ft, el } from '../../model/units.mjs';
 import G, {
   LEVELS, FOOTPRINTS, BAR, GRID, LINK, GARAGE, DECKS, ROOFS, ROOF_ASSEMBLY,
-  CLERESTORY, SNOW, EXT_STAIR, ORIENTATION,
+  CLERESTORY, SNOW, EXT_STAIR, ORIENTATION, MASONRY, roofTopAt,
 } from '../../model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS } from '../../model/openings.mjs';
 import { natural, finished } from '../../model/site.mjs';
@@ -247,6 +247,26 @@ export function drawElevation(s, faceId, { annotate = true, alignLeft = null } =
       s.leader(U(F, CLERESTORY.x - 9, 0), zB - 62, -180, -68,
         'THE ONE OPENING FACING THE WRONG WAY. Fins at 24" o.c.');
     }
+  }
+
+  // ── THE FLUE ─────────────────────────────────────────────────────────────
+  // Drawn from the roof line AS THIS FACE SHOWS IT, not from the true roof
+  // elevation at the flue: on an X-axis face the roof reads as a horizontal
+  // eave line, so a flue starting at its real height floats above the roof.
+  {
+    const M = MASONRY;
+    const cx = (M.x0 + M.x1) / 2, cy = (M.y0 + M.y1) / 2;
+    const host = ROOFS.find(r => cx >= r.x0 && cx < r.x1 && cy >= r.y0 && cy <= r.y1) ?? roofById('RA');
+    const base = F.axis === 'X' ? roofSilhouette(F, host).z0 - ROOF_ASSEMBLY : roofEdgeZ(host, cy) - ROOF_ASSEMBLY;
+    const top = roofTopAt(cx, cy) + M.capAboveRoof;
+    const u0 = F.axis === 'X' ? U(F, M.x0, 0) : U(F, 0, M.y0);
+    const u1 = F.axis === 'X' ? U(F, M.x1, 0) : U(F, 0, M.y1);
+    s.rect(Math.min(u0, u1), base, Math.abs(u1 - u0), top - base,
+      { fill: INK.pocheConc, color: INK.line, w: LW.cut });
+    const lx = Math.max(u0, u1) + 14;
+    s.text(lx, top - 8, 'MASONRY FLUE', { size: 10, color: INK.mid, weight: 700 });
+    s.text(lx, top - 8, `${dim(M.capAboveRoof)} ABOVE ROOF — HEIGHT NOT VERIFIED`,
+      { size: 9, color: INK.fire, dy: 12 });
   }
 
   // ── DECKS, TERRACE, STAIR ────────────────────────────────────────────────

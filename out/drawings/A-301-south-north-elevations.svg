@@ -23,6 +23,9 @@
 <path d="M 965.625 478.958 L 785.625 410.958 L 759.625 410.958" fill="none" stroke="#111418" stroke-width="0.6"/>
 <circle cx="965.625" cy="478.958" r="3.4" fill="#111418"/>
 <text x="753.625" y="416.958" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">THE ONE OPENING FACING THE WRONG WAY. Fins at 24" o.c.</text>
+<polygon points="666.667,544.583 725,544.583 725,378.958 666.667,378.958" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<text x="739.583" y="387.292" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#4a5560" text-anchor="start" letter-spacing="0">MASONRY FLUE</text>
+<text x="739.583" y="399.292" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">8'-0" ABOVE ROOF — HEIGHT NOT VERIFIED</text>
 <polygon points="675,677.917 1275,677.917 1275,663.333 675,663.333" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="746.875,786.25 753.125,786.25 753.125,677.917 746.875,677.917" fill="#5c6670" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
 <polygon points="896.875,786.25 903.125,786.25 903.125,677.917 896.875,677.917" fill="#5c6670" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
@@ -165,6 +168,9 @@
 <polygon points="950,1095.208 1293.75,1095.208 1293.75,1074.375 950,1074.375" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
 <polygon points="787.5,1280.625 975,1280.625 975,1259.792 787.5,1259.792" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
 <polygon points="350,1200.417 700,1200.417 700,1179.583 350,1179.583" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1525,1204.583 1583.333,1204.583 1583.333,1138.958 1525,1138.958" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<text x="1597.917" y="1147.292" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#4a5560" text-anchor="start" letter-spacing="0">MASONRY FLUE</text>
+<text x="1597.917" y="1159.292" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">8'-0" ABOVE ROOF — HEIGHT NOT VERIFIED</text>
 <polygon points="1776.042,1352.5 1817.708,1352.5 1817.708,1315 1776.042,1315" fill="#dfe9ef" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="1322.917,1377.5 1385.417,1377.5 1385.417,1315 1322.917,1315" fill="#dfe9ef" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="1077.083,1415 1114.583,1415 1114.583,1315 1077.083,1315" fill="#ffffff" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>

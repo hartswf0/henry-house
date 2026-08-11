@@ -159,6 +159,11 @@
 <path d="M 2303.75 1023.75 A 56.25 56.25 0 0 1 2360 967.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <polygon points="2191.25,1023.75 2360,1023.75 2360,805 2191.25,805" fill="none" stroke="#8d99a6" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
 <text x="2275.625" y="789.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">COVERED</text>
+<polygon points="997.5,1030 1085,1030 1085,942.5 997.5,942.5" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<circle cx="1041.25" cy="986.25" r="12.5" fill="#ffffff" stroke="#111418" stroke-width="1.4"/>
+<polygon points="997.5,1055 1085,1055 1085,1030 997.5,1030" fill="none" stroke="#b03535" stroke-width="1.4" stroke-dasharray="8 6" stroke-linejoin="miter"/>
+<text x="1041.25" y="1080" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#4a5560" text-anchor="middle" letter-spacing="0">MASONRY MASS + FLUE</text>
+<text x="1041.25" y="1101.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">HEARTH EXTENSION DASHED</text>
 <polygon points="575.625,898.75 872.5,898.75 872.5,890.938 575.625,890.938" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="872.5,1164.375 880.313,1164.375 880.313,898.75 872.5,898.75" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
 <polygon points="575.625,901.875 778.75,901.875 778.75,890.938 575.625,890.938" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>

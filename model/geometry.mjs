@@ -117,6 +117,41 @@ export const GARAGE = {
   note: 'Detached, joined by a 9\'-0" covered breezeway to the LINK. 2 bays + shop.',
 };
 
+// ── MASONRY MASS ─────────────────────────────────────────────────────────────
+//
+// It existed in the 3D model and nowhere else.
+//
+// The render carried a hardcoded stone chimney at a position no plan, section,
+// elevation, schedule or check knew about — while the plans carried a WOOD
+// STOVE fixture 3'-0" away from it. Two representations of the same object,
+// disagreeing, in a package whose whole argument is that this cannot happen.
+//
+// It is now declared once, here, and the checker asserts the stove fixture sits
+// inside it. Move either and the build fails.
+//
+// WHY IT IS WORTH KEEPING: it is the only heat source in the house that needs
+// no electricity, no fuel delivery and no controller. In VSM terms it is S1
+// SHELTER's fallback when POWER and its whole supply chain are gone — the one
+// piece of the design that still works after every anticipatory policy on
+// G-001 has run out of things to anticipate with.
+export const MASONRY = {
+  id: 'MSNRY-1', name: 'MASONRY MASS + FLUE',
+  x0: 280, x1: 336,            // 4'-8" wide, aligned on the wood stove
+  y0: 96,  y1: 152,            // 4'-8" deep
+  zBot: -30,                   // footing below the lower slab — it is a load, not a finish
+  capAboveRoof: 96,            // 8'-0" of flue above the roof plane it passes through
+  flue: { x: 308, y: 124, dia: 16 },
+  hearthFront: 16,             // ASSUMED hearth extension in front of the appliance
+  clearToCombustible: 36,      // ASSUMED. Listed appliance clearances govern, not this file.
+  serves: 'FF-110 WOOD STOVE, great room',
+  // It straddles the Gallery / great room line on purpose: the mass radiates
+  // into both, and the Gallery is the acoustic and thermal buffer in front of
+  // the primary suite. Heat arriving there on a night with no power is heat
+  // arriving where somebody is trying to sleep.
+  position: 'built into the partition between THE GALLERY and the GREAT ROOM',
+  status: 'CLEARANCES AND HEARTH EXTENSION ARE ASSUMED — the appliance listing and the governing code set them. Chimney height above the roof and to nearby ridges is NOT verified.',
+};
+
 // ── ROOMS ────────────────────────────────────────────────────────────────────
 // Rectangles are INSIDE FACE OF FINISH. [x, y, w, h] in inches.
 const R = (id, name, x, y, w, h, opts = {}) => ({

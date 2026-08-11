@@ -6,7 +6,7 @@ import { Sheet, SCALES, LW, INK } from '../svg.mjs';
 import { dim, ft } from '../../model/units.mjs';
 import G, {
   ROOMS, LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, STAIRS,
-  DECKS, DRAIN_GAP, SNOW, CLERESTORY,
+  DECKS, DRAIN_GAP, SNOW, CLERESTORY, MASONRY,
 } from '../../model/geometry.mjs';
 import { openingsFor, OPEN_EDGES, GARAGE_OPENINGS } from '../../model/openings.mjs';
 import { drawFixtures } from './fixtures.mjs';
@@ -207,6 +207,23 @@ export function drawPlan(s, levelId, opts = {}) {
     // breezeway
     s.rect(LINK.x1, 100, GARAGE.x0 - LINK.x1, 140, { fill: 'none', color: INK.light, w: LW.light, dash: '10 6' });
     s.text((LINK.x1 + GARAGE.x0) / 2, 250, 'COVERED', { size: 13, anchor: 'middle', color: INK.mid });
+  }
+
+  // MASONRY MASS — passes through every level it crosses, so it is drawn on
+  // each of them, poched as the structure it is rather than as furniture.
+  if (levelId !== 'L2') {
+    const M = MASONRY;
+    s.rect(M.x0, M.y0, M.x1 - M.x0, M.y1 - M.y0,
+      { fill: INK.pocheConc, color: INK.line, w: LW.cut });
+    s.circle(M.flue.x, M.flue.y, M.flue.dia / 2, { fill: INK.paper, color: INK.line, w: LW.light });
+    if (levelId === 'L1') {
+      s.rect(M.x0, M.y0 - M.hearthFront, M.x1 - M.x0, M.hearthFront,
+        { fill: 'none', color: INK.fire, w: LW.light, dash: '8 6' });
+      s.text((M.x0 + M.x1) / 2, M.y0 - M.hearthFront - 16, 'MASONRY MASS + FLUE',
+        { size: 10.5, anchor: 'middle', weight: 700, color: INK.mid });
+      s.text((M.x0 + M.x1) / 2, M.y0 - M.hearthFront - 30, 'HEARTH EXTENSION DASHED',
+        { size: 9, anchor: 'middle', color: INK.fire });
+    }
   }
 
   partitions(s, levelId);

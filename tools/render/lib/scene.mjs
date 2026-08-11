@@ -12,7 +12,7 @@ import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import G, {
   LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
-  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR, roofTopAt,
+  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR, MASONRY, roofTopAt,
 } from '../../../model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '../../../model/openings.mjs';
 import { finished as siteFinished, COURT, driveProfile, DRIVE_SECTION } from '../../../model/site.mjs';
@@ -233,7 +233,11 @@ function buildHouse(M) {
   }
 
   // ---- MASONRY MASS — wood stove flue + thermal battery ------------------
-  g.add(mbox(ft(23) - 26, ft(23) + 26, 30, 132, -30, RA.topAtY0 + 96, M.stone));
+  // From model/geometry.mjs. This used to be four hardcoded numbers that agreed
+  // with no drawing and sat 3 ft from the wood stove the plans actually show.
+  g.add(mbox(MASONRY.x0, MASONRY.x1, MASONRY.y0, MASONRY.y1, MASONRY.zBot,
+             roofTopAt((MASONRY.x0 + MASONRY.x1) / 2, (MASONRY.y0 + MASONRY.y1) / 2) + MASONRY.capAboveRoof,
+             M.stone));
 
   // ---- LINK (mudroom airlock) --------------------------------------------
   const lk = LINK;
