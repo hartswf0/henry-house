@@ -1,0 +1,92 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>HENRY HOUSE — 3D</title>
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">
+{"imports":{
+  "three":"/node_modules/three/build/three.module.js",
+  "three/addons/":"/node_modules/three/examples/jsm/"
+}}
+</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { buildScene } from '/tools/render/lib/scene.mjs';
+import { makeShiftCamera, applyShift, Accumulator, sunDirection } from '/tools/render/lib/render.mjs';
+import { VIEWS } from '/tools/render/lib/views.mjs';
+
+let renderer, state = null;
+window.__ready = false;
+window.__error = null;
+
+function initRenderer(w, h) {
+  if (renderer) { renderer.dispose(); renderer.domElement.remove(); }
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  document.body.appendChild(canvas);
+  renderer = new THREE.WebGLRenderer({
+    canvas, antialias: false, preserveDrawingBuffer: true,
+    powerPreference: 'high-performance',
+  });
+  renderer.setPixelRatio(1);
+  renderer.setSize(w, h, false);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.toneMapping = THREE.NoToneMapping;      // we tone-map after averaging
+  renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+  return renderer;
+}
+
+window.setupView = function (name) {
+  try {
+    const V = VIEWS[name];
+    if (!V) throw new Error('unknown view ' + name);
+    const w = V.w ?? 1800, h = V.h ?? 1150;
+    initRenderer(w, h);
+
+    const sun = sunDirection({ dayOfYear: V.sun.dayOfYear, hour: V.sun.hour });
+    const built = buildScene(renderer, {
+      sun, interior: !!V.interior,
+      exposureBoost: V.interior ? 1.25 : 1,
+    });
+
+    const pos = new THREE.Vector3(...V.pos);
+    const tgt = new THREE.Vector3(...V.target);
+    let cam;
+    if (V.pitch) {
+      const vfov = 2 * Math.atan(24 / (2 * V.focal)) * 180 / Math.PI;
+      cam = new THREE.PerspectiveCamera(vfov, w / h, 0.5, 8000);
+      cam.position.copy(pos); cam.lookAt(tgt);
+      cam.userData.shift = 0;
+      cam.updateProjectionMatrix();
+    } else {
+      cam = makeShiftCamera({ focalMm: V.focal, aspect: w / h, position: pos, target: tgt, shift: V.shift ?? 0 });
+    }
+
+    const accum = new Accumulator(renderer, w, h);
+    accum.reset();
+    state = { V, cam, accum, ...built, sun };
+    window.__sunInfo = { altDeg: sun.altDeg.toFixed(1), azDeg: sun.azDeg.toFixed(1) };
+    window.__ready = true;
+    return { ok: true, w, h, sun: window.__sunInfo };
+  } catch (e) {
+    window.__error = e.message + '\n' + e.stack;
+    return { ok: false, error: e.message };
+  }
+};
+
+window.renderPasses = function (n) {
+  if (!state) return { ok: false, error: 'no state' };
+  try {
+    for (let i = 0; i < n; i++) state.accum.pass(state.scene, state.cam, state.rig);
+    state.accum.present({ exposure: state.V.exposure ?? 1 });
+    return { ok: true, samples: state.accum.samples };
+  } catch (e) {
+    window.__error = e.message + '\n' + e.stack;
+    return { ok: false, error: e.message };
+  }
+};
+
+window.grab = function () { return renderer.domElement.toDataURL('image/png'); };
+window.__loaded = true;
+</script>
+</body></html>

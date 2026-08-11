@@ -1,0 +1,441 @@
+// HENRY HOUSE — 3D scene, built from model/geometry.mjs.
+//
+// This is not a separate "render model". The browser imports the SAME file the
+// plans and sections are generated from, including the wall openings. If a
+// window moves on A-101 it moves in the render, because there is only one of it.
+//
+// Model units are INCHES. Three.js works in FEET here:
+//    three.x =  X/12      three.y = Z/12 (up)      three.z = -Y/12
+// so +three.z is DOWNHILL / the view direction, and -three.z is the cut.
+
+import * as THREE from 'three';
+import { Sky } from 'three/addons/objects/Sky.js';
+import G, {
+  LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
+  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS,
+} from '/model/geometry.mjs';
+import { OPENINGS, GARAGE_OPENINGS } from '/model/openings.mjs';
+import * as MAT from './textures.mjs';
+
+const F = (inches) => inches / 12;
+const ft = (n) => n * 12;
+const [L0, L1, L2] = LEVELS;
+
+const rng = (seed) => { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; };
+const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+// ── TERRAIN ─────────────────────────────────────────────────────────────────
+const GAP_OUT = DRAIN_GAP.y1;
+const COURT_BACK = GAP_OUT + ft(26);
+const COURT_Z = L1.ffe - 8;
+
+/** Lateral influence of the cut bench: 1 across the built area, 0 away from it. */
+function benchInfluence(X) {
+  const a = ft(-22), b = ft(122), fade = ft(34);
+  return smoothstep(a - fade, a, X) * (1 - smoothstep(b, b + fade, X));
+}
+
+/** Finished site elevation (inches above datum) at a model point.
+ *
+ * Rule that matters: INSIDE the building footprint the ground must stay BELOW
+ * the lowest slab. The first version ramped it up to 90" under the house, which
+ * buried the entire walkout level and made a three-storey house read as one.
+ * The step back up to the drain gap happens behind the spine wall, which hides it.
+ */
+export function siteZ(X, Y) {
+  const nat = SITE_SLOPE.grade(X, Y);
+  const lat = benchInfluence(X);
+  if (lat < 0.002) return nat;
+
+  const overLower = X < FOOTPRINTS.L0.x1 + 24;     // the walkout half of the bar
+  const underFloor = overLower ? -12 : Math.min(nat, L1.ffe - 46);
+  let bench;
+
+  if (Y <= DECKS[1].y0) {
+    bench = nat;                                            // below the terrace, untouched
+  } else if (Y <= 0) {
+    bench = overLower ? -6 : underFloor;                    // lower terrace
+  } else if (Y < DRAIN_GAP.y0) {
+    bench = underFloor;                                     // under the building — never pokes through
+  } else if (Y < GAP_OUT) {
+    bench = DRAIN_GAP.invert;                               // the drain gap
+  } else if (Y < COURT_BACK) {
+    bench = COURT_Z;                                        // motor court
+  } else {
+    bench = Math.min(nat, COURT_Z + (Y - COURT_BACK) / 1.5); // cut face 1.5H:1V
+  }
+  return nat + (bench - nat) * lat;
+}
+
+function buildTerrain() {
+  const W = 620, D = 640, SEG = 190;               // feet
+  const g = new THREE.PlaneGeometry(W, D, SEG, SEG);
+  g.rotateX(-Math.PI / 2);
+  const cx = F(ft(50)), cz = 40;
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const tx = p.getX(i) + cx, tz = p.getZ(i) + cz;
+    p.setX(i, tx); p.setZ(i, tz);
+    p.setY(i, F(siteZ(tx * 12, -tz * 12)));
+  }
+  g.computeVertexNormals();
+  const m = new THREE.Mesh(g, MAT.groundMaterial());
+  m.receiveShadow = true; m.castShadow = false;
+  return m;
+}
+
+// ── GEOMETRY HELPERS ────────────────────────────────────────────────────────
+function mbox(x0, x1, y0, y1, z0, z1, mat, { cast = true, receive = true } = {}) {
+  const g = new THREE.BoxGeometry(F(x1 - x0), F(z1 - z0), F(y1 - y0));
+  const m = new THREE.Mesh(g, mat);
+  m.position.set(F((x0 + x1) / 2), F((z0 + z1) / 2), -F((y0 + y1) / 2));
+  m.castShadow = cast; m.receiveShadow = receive;
+  return m;
+}
+
+/** Polygon in the (Y,Z) plane, extruded along X. pts = [[Yin, Zin], ...] */
+function prismYZ(pts, x0, x1, mat, { cast = true, receive = true } = {}) {
+  const shape = new THREE.Shape();
+  pts.forEach(([y, z], i) => i ? shape.lineTo(F(y), F(z)) : shape.moveTo(F(y), F(z)));
+  shape.closePath();
+  const g = new THREE.ExtrudeGeometry(shape, { depth: F(x1 - x0), bevelEnabled: false });
+  g.rotateY(Math.PI / 2);
+  const m = new THREE.Mesh(g, mat);
+  m.position.x = F(x0);
+  m.castShadow = cast; m.receiveShadow = receive;
+  return m;
+}
+
+/**
+ * A wall run, split by the openings that actually pierce it.
+ * axis 'H' runs along X at a fixed Y band; 'V' runs along Y at a fixed X band.
+ */
+function wallRun({ axis, bandLo, bandHi, from, to, zBot, zTop, ffe, mat, glass, group, openings }) {
+  const hits = openings
+    .filter(o => (axis === 'H' ? o.orient === 'H' : o.orient === 'V'))
+    .filter(o => Math.abs((axis === 'H' ? o.y : o.x) - bandLo) < 14)
+    .filter(o => (axis === 'H' ? o.x : o.y) >= from - 1 && (axis === 'H' ? o.x : o.y) + o.len <= to + 1)
+    .sort((a, b) => (axis === 'H' ? a.x - b.x : a.y - b.y));
+
+  const seg = (a, b, z0, z1, m) => {
+    if (b - a < 1 || z1 - z0 < 1) return;
+    group.add(axis === 'H'
+      ? mbox(a, b, bandLo, bandHi, z0, z1, m)
+      : mbox(bandLo, bandHi, a, b, z0, z1, m));
+  };
+
+  let cursor = from;
+  for (const o of hits) {
+    const s = axis === 'H' ? o.x : o.y;
+    seg(cursor, s, zBot, zTop, mat);                         // pier between openings
+    const sill = ffe + o.sill, head = ffe + o.head;
+    seg(s, s + o.len, zBot, Math.max(zBot, sill), mat);      // below the opening
+    seg(s, s + o.len, Math.min(zTop, head), zTop, mat);      // above it
+    if (head > sill) {
+      const gm = axis === 'H'
+        ? mbox(s, s + o.len, bandLo + 3, bandHi - 3, sill, head, glass, { cast: false })
+        : mbox(bandLo + 3, bandHi - 3, s, s + o.len, sill, head, glass, { cast: false });
+      group.add(gm);
+    }
+    cursor = s + o.len;
+  }
+  seg(cursor, to, zBot, zTop, mat);
+}
+
+// ── THE BUILDING ────────────────────────────────────────────────────────────
+function buildHouse(M) {
+  const g = new THREE.Group();
+  const RA = ROOFS[0], RB = ROOFS[1], RL = ROOFS[2], RG = ROOFS[3];
+  const capA = { s: RA.topAtY0 - ROOF_ASSEMBLY, n: RA.topAtY1 - ROOF_ASSEMBLY };
+  const capB = { s: RB.topAtY0 - ROOF_ASSEMBLY, n: RB.topAtY1 - ROOF_ASSEMBLY };
+  const fp0 = FOOTPRINTS.L0, fp1 = FOOTPRINTS.L1;
+  const T = BAR.extWall;
+
+  // ---- LOWER LEVEL: concrete below, walkout glazing downhill -------------
+  g.add(mbox(fp0.x0, fp0.x1, 302, 312, STRUCTURE.spine.zBot, L1.ffe, M.concrete));   // spine wall
+  g.add(mbox(fp0.x0, fp0.x0 + T, 0, 312, -30, L1.ffe, M.concrete));
+  g.add(mbox(fp0.x1 - T, fp0.x1, 0, 312, -30, L1.ffe, M.concrete));
+  wallRun({
+    axis: 'H', bandLo: 0, bandHi: T, from: fp0.x0, to: fp0.x1,
+    zBot: L0.ffe, zTop: L1.ffe - L0.floorAssembly, ffe: L0.ffe,
+    mat: M.concrete, glass: M.glass, group: g, openings: OPENINGS.filter(o => o.level === 'L0'),
+  });
+  g.add(mbox(fp0.x0, fp0.x1, 0, 312, -6, 0, M.concrete, { cast: false }));           // slab
+
+  // continue the spine wall east under the crawl
+  g.add(mbox(fp0.x1, fp1.x1, 302, 312, STRUCTURE.spine.zBot, L1.ffe, M.concrete));
+  g.add(mbox(fp0.x1, fp1.x1, 0, 312, L1.ffe - 40, L1.ffe - L1.floorAssembly, M.concrete));
+  g.add(mbox(fp1.x1 - T, fp1.x1, 0, 312, L1.ffe - 40, L1.ffe, M.concrete));
+
+  // ---- MAIN LEVEL --------------------------------------------------------
+  const mainOps = OPENINGS.filter(o => o.level === 'L1');
+  // downhill wall, split at the roof step (grid E)
+  wallRun({ axis: 'H', bandLo: 0, bandHi: T, from: fp1.x0, to: ft(48),
+    zBot: L1.ffe, zTop: capA.s, ffe: L1.ffe, mat: M.siding, glass: M.glass, group: g, openings: mainOps });
+  wallRun({ axis: 'H', bandLo: 0, bandHi: T, from: ft(48), to: fp1.x1,
+    zBot: L1.ffe, zTop: capB.s, ffe: L1.ffe, mat: M.siding, glass: M.glass, group: g, openings: mainOps });
+  // uphill wall — nearly solid, the cold side
+  wallRun({ axis: 'H', bandLo: 302, bandHi: 312, from: fp1.x0, to: ft(48),
+    zBot: L1.ffe, zTop: capA.n, ffe: L1.ffe, mat: M.siding, glass: M.glass, group: g, openings: mainOps });
+  wallRun({ axis: 'H', bandLo: 302, bandHi: 312, from: ft(48), to: fp1.x1,
+    zBot: L1.ffe, zTop: capB.n, ffe: L1.ffe, mat: M.siding, glass: M.glass, group: g, openings: mainOps });
+
+  // raking end walls follow the shed
+  g.add(prismYZ([[0, L1.ffe], [312, L1.ffe], [312, capA.n], [0, capA.s]], fp1.x0, fp1.x0 + T, M.siding));
+  g.add(prismYZ([[0, L0.ffe], [312, L0.ffe], [312, capB.n], [0, capB.s]], fp1.x1 - T, fp1.x1, M.siding));
+  // the roof step: solid cheek above Roof A, glazed clerestory over the great room
+  g.add(prismYZ([[0, capA.s], [312, capA.n], [312, capB.n], [0, capB.s]], ft(48) - 8, ft(48), M.siding));
+  g.add(mbox(ft(48) - 5, ft(48) - 1, CLERESTORY.y0, CLERESTORY.y1,
+    CLERESTORY.zBotAtY0, CLERESTORY.zTopAtY0 + 30, M.glass, { cast: false }));
+
+  // floor plates
+  g.add(mbox(fp1.x0, fp1.x1, 0, 312, L1.ffe - L1.floorAssembly, L1.ffe, M.deck, { cast: false }));
+  g.add(mbox(ft(48), fp1.x1, 0, 312, L2.ffe - L2.floorAssembly, L2.ffe, M.deck, { cast: false }));
+
+  // ---- ROOFS -------------------------------------------------------------
+  for (const R of [RA, RB]) {
+    const oS = R.overhang.south, oN = R.overhang.north;
+    const zS = R.topAtY0 - (R.pitch / 12) * oS, zN = R.topAtY1 + (R.pitch / 12) * oN;
+    g.add(prismYZ(
+      [[-oS, zS - ROOF_ASSEMBLY], [312 + oN, zN - ROOF_ASSEMBLY], [312 + oN, zN], [-oS, zS]],
+      R.x0 - R.overhang.west, R.x1 + R.overhang.east, M.roof));
+  }
+
+  // ---- MASONRY MASS — wood stove flue + thermal battery ------------------
+  g.add(mbox(ft(23) - 26, ft(23) + 26, 30, 132, -30, RA.topAtY0 + 96, M.stone));
+
+  // ---- LINK (mudroom airlock) --------------------------------------------
+  const lk = LINK;
+  g.add(mbox(lk.x0, lk.x1, lk.y0, lk.y1, L1.ffe - 40, L1.ffe, M.concrete, { cast: false }));
+  for (const [a, b, c, d] of [[lk.x0, lk.x1, lk.y0, lk.y0 + 10], [lk.x0, lk.x1, lk.y1 - 10, lk.y1],
+                              [lk.x0, lk.x0 + 10, lk.y0, lk.y1], [lk.x1 - 10, lk.x1, lk.y0, lk.y1]]) {
+    g.add(mbox(a, b, c, d, L1.ffe, RL.topAtY0 - 14, M.siding));
+  }
+  g.add(prismYZ([[lk.y0 - RL.overhang.south, RL.topAtY0 - 14], [lk.y1 + RL.overhang.north, RL.topAtY1 - 14],
+                 [lk.y1 + RL.overhang.north, RL.topAtY1], [lk.y0 - RL.overhang.south, RL.topAtY0]],
+                 lk.x0 - 10, lk.x1 + 10, M.roof));
+
+  // ---- GARAGE (detached) --------------------------------------------------
+  const ga = GARAGE;
+  g.add(mbox(ga.x0, ga.x1, ga.y0, ga.y1, ga.ffe - 40, ga.ffe, M.concrete, { cast: false }));
+  wallRun({ axis: 'H', bandLo: ga.y0, bandHi: ga.y0 + 10, from: ga.x0, to: ga.x1,
+    zBot: ga.ffe, zTop: RG.topAtY0 - 14, ffe: ga.ffe, mat: M.siding, glass: M.garageDoor,
+    group: g, openings: GARAGE_OPENINGS.map(o => ({ ...o, y: ga.y0 })) });
+  g.add(mbox(ga.x0, ga.x1, ga.y1 - 10, ga.y1, ga.ffe, RG.topAtY1 - 14, M.siding));
+  g.add(prismYZ([[ga.y0, ga.ffe], [ga.y1, ga.ffe], [ga.y1, RG.topAtY1 - 14], [ga.y0, RG.topAtY0 - 14]],
+    ga.x0, ga.x0 + 10, M.siding));
+  g.add(prismYZ([[ga.y0, ga.ffe], [ga.y1, ga.ffe], [ga.y1, RG.topAtY1 - 14], [ga.y0, RG.topAtY0 - 14]],
+    ga.x1 - 10, ga.x1, M.siding));
+  g.add(prismYZ([[ga.y0 - RG.overhang.south, RG.topAtY0 - 14], [ga.y1 + RG.overhang.north, RG.topAtY1 - 14],
+                 [ga.y1 + RG.overhang.north, RG.topAtY1], [ga.y0 - RG.overhang.south, RG.topAtY0]],
+                 ga.x0 - 24, ga.x1 + 24, M.roof));
+
+  // ---- DECKS, TERRACE, GUARDS --------------------------------------------
+  const d1 = DECKS[0], d2 = DECKS[1];
+  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y1, d1.top - 14, d1.top, M.deck));
+  for (let x = d1.x0 + 48; x < d1.x1; x += 96) g.add(mbox(x - 3, x + 3, d1.y0 + 6, d1.y0 + 12, d2.top, d1.top - 14, M.steel));
+  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y0 + 3, d1.top, d1.top + 42, M.steel, { cast: false }));   // guard rail
+  for (let x = d1.x0; x <= d1.x1; x += 60) g.add(mbox(x - 2, x + 2, d1.y0, d1.y0 + 3, d1.top, d1.top + 42, M.steel, { cast: false }));
+  g.add(mbox(d2.x0, d2.x1, d2.y0, d2.y1, d2.top - 8, d2.top, M.gravel, { cast: false }));
+  g.add(mbox(d2.x0, d2.x1, d2.y0 - 10, d2.y0, F(-58) * 12, d2.top, M.stone));                   // terrace wall
+
+  // entry bridge over the drain gap
+  const br = DECKS[2];
+  g.add(mbox(br.x0, br.x1, br.y0 - 6, br.y1, br.top - 10, br.top, M.steel));
+
+  return g;
+}
+
+// ── ENTOURAGE: trees, distant ridges, driveway ──────────────────────────────
+function buildTrees(count = 340) {
+  const r = rng(1234);
+  const trunk = new THREE.CylinderGeometry(0.28, 0.42, 7, 5);
+  trunk.translate(0, 3.5, 0);
+  const foliage = [];
+  for (let i = 0; i < 3; i++) {
+    const c = new THREE.ConeGeometry(7.5 - i * 1.9, 15 - i * 2.5, 8);
+    c.translate(0, 8 + i * 7.5, 0);
+    foliage.push(c);
+  }
+  const mkFoliage = new THREE.InstancedMesh(
+    mergeCones(foliage), MAT.simple(0x2c3d2a, 0.95), count);
+  const mkTrunk = new THREE.InstancedMesh(trunk, MAT.simple(0x3a2f26, 0.95), count);
+  mkFoliage.castShadow = mkTrunk.castShadow = true;
+  mkFoliage.receiveShadow = true;
+
+  const dummy = new THREE.Object3D();
+  const col = new THREE.Color();
+  let n = 0, guard = 0;
+  while (n < count && guard++ < count * 60) {
+    const X = (r() * 700 - 220) * 12;
+    const Y = (r() * 620 - 400) * 12;
+    // keep clear of the house, motor court, drive and the downhill view cone
+    if (X > ft(-40) && X < ft(130) && Y > ft(-32) && Y < ft(64)) continue;
+    if (Y > ft(-140) && Y < ft(6) && X > ft(-10) && X < ft(90)) continue;
+    const z = siteZ(X, Y);
+    if (Math.abs(z - SITE_SLOPE.grade(X, Y)) > 8) continue;      // not on disturbed ground
+    const s = 0.55 + r() * 1.15;
+    dummy.position.set(F(X), F(z) - 0.6, -F(Y));
+    dummy.rotation.y = r() * 7;
+    dummy.scale.set(s * (0.8 + r() * 0.4), s, s * (0.8 + r() * 0.4));
+    dummy.updateMatrix();
+    mkFoliage.setMatrixAt(n, dummy.matrix);
+    mkTrunk.setMatrixAt(n, dummy.matrix);
+    const t = r();
+    col.setHSL(0.26 - t * 0.06, 0.20 + t * 0.16, 0.11 + t * 0.10);
+    mkFoliage.setColorAt(n, col);
+    n++;
+  }
+  mkFoliage.count = mkTrunk.count = n;
+  mkFoliage.instanceMatrix.needsUpdate = mkTrunk.instanceMatrix.needsUpdate = true;
+  if (mkFoliage.instanceColor) mkFoliage.instanceColor.needsUpdate = true;
+  const g = new THREE.Group(); g.add(mkFoliage, mkTrunk);
+  return g;
+}
+
+function mergeCones(list) {
+  const total = list.reduce((a, g) => a + g.attributes.position.count, 0);
+  const pos = new Float32Array(total * 3), nor = new Float32Array(total * 3);
+  const idx = []; let off = 0;
+  for (const g of list) {
+    const p = g.attributes.position, nn = g.attributes.normal;
+    for (let i = 0; i < p.count; i++) {
+      pos[(off + i) * 3] = p.getX(i); pos[(off + i) * 3 + 1] = p.getY(i); pos[(off + i) * 3 + 2] = p.getZ(i);
+      nor[(off + i) * 3] = nn.getX(i); nor[(off + i) * 3 + 1] = nn.getY(i); nor[(off + i) * 3 + 2] = nn.getZ(i);
+    }
+    const gi = g.index;
+    for (let i = 0; i < gi.count; i++) idx.push(gi.getX(i) + off);
+    off += p.count;
+  }
+  const out = new THREE.BufferGeometry();
+  out.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  out.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+  out.setIndex(idx);
+  return out;
+}
+
+/** Layered Blue Ridge silhouettes — atmospheric depth is what sells a mountain view. */
+function buildRidges() {
+  const g = new THREE.Group();
+  const layers = [
+    { z: 900, h: 210, base: -260, c: 0x51637a, seed: 3 },
+    { z: 1500, h: 300, base: -300, c: 0x66788d, seed: 9 },
+    { z: 2300, h: 420, base: -340, c: 0x8496a8, seed: 21 },
+  ];
+  for (const L of layers) {
+    const r = rng(L.seed);
+    const pts = [];
+    const W = 4200, N = 60;
+    for (let i = 0; i <= N; i++) {
+      const t = i / N;
+      const y = L.base + L.h * (0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 9 + r() * 2)) * (0.6 + 0.6 * r()));
+      pts.push(new THREE.Vector2(-W / 2 + t * W, y));
+    }
+    const shape = new THREE.Shape(pts);
+    shape.lineTo(W / 2, L.base - 400); shape.lineTo(-W / 2, L.base - 400); shape.closePath();
+    const m = new THREE.Mesh(new THREE.ShapeGeometry(shape),
+      new THREE.MeshBasicMaterial({ color: L.c, fog: true }));
+    m.position.set(F(ft(36)), 0, L.z);
+    m.rotation.y = Math.PI;
+    g.add(m);
+  }
+  return g;
+}
+
+function buildDrive(M) {
+  const g = new THREE.Group();
+  const r = rng(77);
+  // motor court apron
+  g.add(mbox(ft(-14), ft(122), GAP_OUT, COURT_BACK, COURT_Z - 6, COURT_Z, M.gravel, { cast: false }));
+  // drive running off to the east, following the bench then falling away
+  let X = ft(122);
+  for (let i = 0; i < 22; i++) {
+    const x1 = X + ft(16);
+    const z = COURT_Z + i * 9;
+    g.add(mbox(X, x1, GAP_OUT + ft(2) + i * 14, GAP_OUT + ft(16) + i * 14, z - 6, z, M.gravel, { cast: false }));
+    X = x1;
+  }
+  return g;
+}
+
+// ── SKY + ENVIRONMENT ───────────────────────────────────────────────────────
+function buildSky(renderer, scene, sunDir, turbidity = 3.2) {
+  const sky = new Sky();
+  sky.scale.setScalar(45000);
+  const u = sky.material.uniforms;
+  u.turbidity.value = turbidity;
+  u.rayleigh.value = 1.4;
+  u.mieCoefficient.value = 0.006;
+  u.mieDirectionalG.value = 0.82;
+  u.sunPosition.value.copy(sunDir).multiplyScalar(10000);
+  scene.add(sky);
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+  const env = pmrem.fromScene(new THREE.Scene().add(sky.clone()), 0.04);
+  scene.environment = env.texture;
+  pmrem.dispose();
+  return sky;
+}
+
+// ── PUBLIC ──────────────────────────────────────────────────────────────────
+export function buildScene(renderer, { sun, exposureBoost = 1, interior = false } = {}) {
+  const scene = new THREE.Scene();
+
+  const M = {
+    siding: MAT.sidingMaterial(),
+    roof: MAT.roofMaterial(),
+    stone: MAT.stoneMaterial(),
+    concrete: MAT.concreteMaterial(),
+    gravel: MAT.gravelMaterial(),
+    glass: MAT.glassMaterial({ opacity: interior ? 0.05 : 0.17 }),
+    garageDoor: MAT.simple(0x2a2e33, 0.6),
+    deck: MAT.simple(0x2f2823, 0.88),
+    steel: MAT.simple(0x14171a, 0.55, 0.35),
+  };
+
+  buildSky(renderer, scene, sun.dir);
+  scene.fog = new THREE.FogExp2(0xa9bcd0, 0.00042);
+
+  scene.add(buildTerrain());
+  scene.add(buildHouse(M));
+  scene.add(buildDrive(M));
+  scene.add(buildTrees());
+  scene.add(buildRidges());
+
+  // ── LIGHT RIG ─────────────────────────────────────────────────────────────
+  const focus = new THREE.Vector3(F(ft(36)), F(ft(14)), -F(ft(13)));
+
+  const sunLight = new THREE.DirectionalLight(0xfff1dc, 4.6 * exposureBoost);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.set(2048, 2048);
+  // Tight shadow frustum: at 2048 over 240ft a texel is ~0.12ft, so the bias
+  // needed to kill acne is small enough to keep contact shadows alive.
+  const S = 120;
+  Object.assign(sunLight.shadow.camera, { left: -S, right: S, top: S, bottom: -S, near: 1, far: 2000 });
+  sunLight.shadow.bias = -0.00018;
+  sunLight.shadow.normalBias = 0.09;
+  sunLight.shadow.camera.updateProjectionMatrix();
+  scene.add(sunLight, sunLight.target);
+
+  // one stochastic sky sample per pass -> soft skylight + contact shadows
+  const skyLight = new THREE.DirectionalLight(0xa8c4e4, 0.85 * exposureBoost);
+  skyLight.castShadow = true;
+  skyLight.shadow.mapSize.set(1024, 1024);
+  Object.assign(skyLight.shadow.camera, { left: -S, right: S, top: S, bottom: -S, near: 1, far: 2000 });
+  skyLight.shadow.bias = -0.0004;
+  skyLight.shadow.normalBias = 0.16;
+  skyLight.shadow.camera.updateProjectionMatrix();
+  scene.add(skyLight, skyLight.target);
+
+  // bounce off the ground, never zero so shadows keep colour
+  scene.add(new THREE.HemisphereLight(0x9fb6cf, 0x51492f, 0.13 * exposureBoost));
+
+  return {
+    scene, materials: M,
+    rig: {
+      sun: sunLight, skyLight, focus,
+      sunDir: sun.dir.clone(), sunSpread: 0.035, sunDistance: 900, skyDistance: 700,
+    },
+  };
+}
