@@ -2,230 +2,443 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HENRY HOUSE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Henry House — the whole package</title>
 <style>
-  :root{
-    --bg:#fbfaf8; --panel:#fff; --ink:#15191e; --mid:#5a6672; --line:#e4e7ea;
-    --accent:#b8562f; --ok:#2f7d5a; --warn:#b8860b; --bad:#a8322f;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  }
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --line:#272d36;
-    --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d; }}
-  :root[data-theme="dark"]{
-    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --line:#272d36;
-    --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d; }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--mono);
-       font-size:14px;line-height:1.62;padding:0 0 90px}
-  .wrap{max-width:1260px;margin:0 auto;padding:0 22px}
-  header{border-bottom:1px solid var(--line);padding:52px 0 28px;margin-bottom:8px}
-  h1{font-size:42px;margin:0 0 8px;letter-spacing:3px}
-  .sub{color:var(--mid);font-size:13px;letter-spacing:1.5px}
-  .body-line{color:var(--accent);font-size:12px;letter-spacing:1.6px;margin-top:16px}
-  h2{font-size:15px;letter-spacing:2px;margin:48px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-  a{color:var(--accent)}
-  .tiles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin:24px 0}
-  .tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:5px;
-        padding:18px 20px;text-decoration:none;color:inherit}
-  .tile:hover{border-color:var(--accent)}
-  .tile .t{font-size:15px;letter-spacing:1.6px;font-weight:700;margin-bottom:5px}
-  .tile .d{color:var(--mid);font-size:11.5px;line-height:1.55}
-  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-  .card img{width:100%;display:block;background:#fff;border-bottom:1px solid var(--line)}
-  .card .meta{padding:11px 13px}
-  .card .t{font-weight:700;letter-spacing:1.1px;font-size:12.5px}
-  .card .d{color:var(--mid);font-size:11.5px;margin-top:3px}
-  table{width:100%;border-collapse:collapse;font-size:12.5px}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--mid);font-weight:400;letter-spacing:1.2px;font-size:11px;text-transform:uppercase}
-  .tag{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10.5px;letter-spacing:1px}
-  .t-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
-  .t-warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
-  .t-bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
-  .scroll{overflow-x:auto}
-  .banner{border:1px solid var(--bad);border-left:4px solid var(--bad);border-radius:3px;
-          background:color-mix(in srgb,var(--bad) 7%,transparent);padding:16px 18px;margin:26px 0}
-  .banner b{color:var(--bad);letter-spacing:1.2px}
-  code{background:color-mix(in srgb,var(--mid) 12%,transparent);padding:1px 5px;border-radius:3px;font-size:12px}
-  pre{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:13px 15px;
-      overflow-x:auto;font-size:11.5px;line-height:1.6}
-  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-  ul{padding-left:20px} li{margin:5px 0}
-  footer{color:var(--mid);font-size:11.5px;margin-top:60px;padding-top:18px;border-top:1px solid var(--line)}
+:root{
+  --paper:#eceeec; --surface:#fff; --ink:#141a1e; --mid:#59656d; --faint:#94a0a6;
+  --rule:#cfd6d5; --accent:#b8562f; --good:#2f7d54;
+  --serif:ui-serif,"Iowan Old Style",Palatino,Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#11161a; --surface:#181f24; --ink:#e7edea; --mid:#94a3ab; --faint:#63727a;
+  --rule:#2a343a; --accent:#d0713f; --good:#6ec191;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+  font-size:17px;line-height:1.6;-webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+h1{font-size:clamp(1.9rem,7vw,3.2rem);line-height:1.08;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:clamp(1.25rem,4.4vw,1.7rem);margin:0 0 4px;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}
+header{padding:34px 0 18px;border-bottom:1px solid var(--rule)}
+.lede{color:var(--mid);max-width:62ch;margin:10px 0 0}
+nav#toc{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.tocin{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px 18px;max-width:1080px;margin:0 auto}
+.tocin::-webkit-scrollbar{display:none}
+#toc a{flex:0 0 auto;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--mid);padding:9px 12px;border-radius:999px;white-space:nowrap;min-height:38px;
+  display:flex;align-items:center}
+section{padding:30px 0;border-top:1px solid var(--rule);scroll-margin-top:56px}
+.count{font-family:var(--mono);font-size:12px;color:var(--good)}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  text-decoration:none;color:inherit;display:block}
+.card img{background:#fff;aspect-ratio:3/2;object-fit:cover;object-position:top left}
+.card .m{padding:11px 13px 13px}
+.card .no{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.1em}
+.card h3{font-size:1rem;margin:3px 0 2px;font-weight:600}
+.card p{margin:0;font-size:.82rem;color:var(--faint);font-family:var(--mono)}
+.note{color:var(--mid);font-size:.92rem;max-width:60ch}
+.big{display:block;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:4px;padding:17px 18px;text-decoration:none;color:inherit;margin-top:12px;min-height:56px}
+.big b{display:block;font-size:1.05rem}
+.big span{color:var(--mid);font-size:.88rem}
+footer{padding:34px 0 60px;border-top:1px solid var(--rule);color:var(--mid);font-size:.88rem}
+/* ── the viewer: the only way a 3600 px sheet is readable on a phone ── */
+#v{position:fixed;inset:0;background:#0d1014;z-index:100;display:none;touch-action:none}
+#v.on{display:block}
+#v img{position:absolute;transform-origin:0 0;max-width:none}
+#vbar{position:fixed;left:0;right:0;bottom:0;z-index:101;display:none;gap:8px;padding:12px;
+  background:rgba(13,16,20,.9);backdrop-filter:blur(8px);align-items:center;justify-content:space-between}
+#v.on ~ #vbar{display:flex}
+#vbar button,#vbar a{background:#1b2127;color:#e9edf2;border:1px solid #2c333d;border-radius:999px;
+  padding:11px 16px;font:inherit;font-family:var(--mono);font-size:12px;min-height:44px;text-decoration:none;
+  display:flex;align-items:center}
+#vname{color:#93a0ae;font-family:var(--mono);font-size:11px;flex:1;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;padding-left:4px}
 </style>
 </head>
 <body>
+<header><div class="wrap">
+  <div class="eyebrow">Schematic design · not for construction</div>
+  <h1>Henry House</h1>
+  <div class="eyebrow">Watauga County, North Carolina · 30% slope · 3,400 ft</div>
+  <p class="lede">Everything in the package, in one index. <b>23 drawing sheets</b>,
+  7 renders of the house, 15 scheme renders and 7 written documents.
+  Tap any sheet to open it full screen — pinch to zoom, double-tap for 100%. A 36 × 24 inch sheet
+  shrunk to a phone is not a drawing you can read, so it opens in a viewer instead.</p>
+</div></header>
+<nav id="toc"><div class="tocin">
+  <a href="#walk">Walk</a><a href="#gA">The house</a><a href="#gC">The site</a><a href="#gP">Water and waste</a><a href="#gM">Air</a><a href="#gE">Power</a><a href="#gG">The house as a system</a><a href="#gR">The reference bar</a><a href="#gX">The alternatives</a><a href="#renders">Renders</a><a href="#schemes">Schemes</a><a href="#docs">Written</a>
+</div></nav>
 <div class="wrap">
 
-<header>
-  <h1>HENRY HOUSE</h1>
-  <div class="sub">A HOUSE FOR STEEP MOUNTAIN LAND · WATAUGA COUNTY, NORTH CAROLINA · SCHEMATIC DESIGN</div>
-  <div class="body-line">STRUCTURE IS SKELETON · WATER IS CIRCULATION · WASTE IS DIGESTION · HVAC IS RESPIRATION ·
-    POWER AND DATA ARE THE NERVOUS SYSTEM · THE ENVELOPE IS SKIN · STORAGE, BACKUP AND CONTROLS ARE HOMEOSTASIS</div>
-</header>
+<section id="walk">
+  <div class="eyebrow">Live 3D</div>
+  <h2>Walk through it</h2>
+  <p class="note">Drag to turn, pinch to zoom. The menu is behind the button at the bottom left on a phone.</p>
+  <a class="big" href="web/walk.html"><b>The house →</b><span>The current design, with X-ray views of the plumbing, ducts and wiring.</span></a>
+  <a class="big" href="web/walk-schemes.html"><b>The alternatives →</b><span>Eleven schemes, each with jump-to points taken from its own checked plan.</span></a>
+</section>
 
-<div class="tiles">
-  <a class="tile" href="web/walk.html">
-    <div class="t">→ WALK THROUGH IT</div>
-    <div class="d">Real-time model. Orbit or walk in first person, hide the roofs to read the plan from
-      above, move the sun through the day and the year. <b>Needs the local server</b> — see below.</div>
-  </a>
-  <a class="tile" href="web/walk.html">
-    <div class="t">→ X-RAY IT</div>
-    <div class="d">Ghost the shell and switch on WATER, WASTE, AIR and POWER as real routed runs —
-      232 of them, generated from the actual fixture positions, not drawn by hand.</div>
-  </a>
-  <a class="tile" href="web/index.html">
-    <div class="t">→ INSPECT IT</div>
-    <div class="d">Drawings and renders at full size, coordination results, open problems,
-      unresolved site facts, and the documents.</div>
-  </a>
+<section id="gA">
+  <div class="eyebrow">A sheets <span class="count">6</span></div>
+  <h2>The house — plans, sections, elevations</h2>
+  <p class="note">The current design. Everything essential on one floor, three levels stepping down with the ground.</p>
+  <div class="grid">
+    <a class="card" href="out/png/A-101-main-level-plan.png" data-full="out/png/A-101-main-level-plan-crop.png" data-name="A-101 Main level plan">
+  <img src="out/png/A-101-main-level-plan-crop.png" alt="Main level plan" loading="lazy">
+  <span class="m"><span class="no">A-101</span><h3>Main level plan</h3><p>435 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/A-102-lower-upper-plans.png" data-full="out/png/A-102-lower-upper-plans.png" data-name="A-102 Lower + upper plans">
+  <img src="out/png/A-102-lower-upper-plans.png" alt="Lower + upper plans" loading="lazy">
+  <span class="m"><span class="no">A-102</span><h3>Lower + upper plans</h3><p>382 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/A-201-section-aa.png" data-full="out/png/A-201-section-aa.png" data-name="A-201 Section A—A">
+  <img src="out/png/A-201-section-aa.png" alt="Section A—A" loading="lazy">
+  <span class="m"><span class="no">A-201</span><h3>Section A—A</h3><p>416 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/A-202-sections-longitudinal.png" data-full="out/png/A-202-sections-longitudinal-crop.png" data-name="A-202 Sections B—B + C—C">
+  <img src="out/png/A-202-sections-longitudinal-crop.png" alt="Sections B—B + C—C" loading="lazy">
+  <span class="m"><span class="no">A-202</span><h3>Sections B—B + C—C</h3><p>480 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/A-301-south-north-elevations.png" data-full="out/png/A-301-south-north-elevations-crop.png" data-name="A-301 South + north elevations">
+  <img src="out/png/A-301-south-north-elevations-crop.png" alt="South + north elevations" loading="lazy">
+  <span class="m"><span class="no">A-301</span><h3>South + north elevations</h3><p>376 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/A-302-east-west-elevations.png" data-full="out/png/A-302-east-west-elevations-crop.png" data-name="A-302 East + west + roof plan">
+  <img src="out/png/A-302-east-west-elevations-crop.png" alt="East + west + roof plan" loading="lazy">
+  <span class="m"><span class="no">A-302</span><h3>East + west + roof plan</h3><p>412 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gC">
+  <div class="eyebrow">C sheets <span class="count">1</span></div>
+  <h2>The site</h2>
+  <p class="note">The drive, solved: 655 ft, five switchbacks, 11% held — and the earth that has to move.</p>
+  <div class="grid">
+    <a class="card" href="out/png/C-101-site-grading-access.png" data-full="out/png/C-101-site-grading-access-crop.png" data-name="C-101 Site, grading and access">
+  <img src="out/png/C-101-site-grading-access-crop.png" alt="Site, grading and access" loading="lazy">
+  <span class="m"><span class="no">C-101</span><h3>Site, grading and access</h3><p>1152 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gP">
+  <div class="eyebrow">P sheets <span class="count">2</span></div>
+  <h2>Water and waste</h2>
+  <p class="note">One pump, home-run branches, and a branch that needs no pump at all.</p>
+  <div class="grid">
+    <a class="card" href="out/png/P-101-water.png" data-full="out/png/P-101-water.png" data-name="P-101 Water">
+  <img src="out/png/P-101-water.png" alt="Water" loading="lazy">
+  <span class="m"><span class="no">P-101</span><h3>Water</h3><p>337 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/P-201-waste.png" data-full="out/png/P-201-waste.png" data-name="P-201 Waste + drainage">
+  <img src="out/png/P-201-waste.png" alt="Waste + drainage" loading="lazy">
+  <span class="m"><span class="no">P-201</span><h3>Waste + drainage</h3><p>326 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gM">
+  <div class="eyebrow">M sheets <span class="count">1</span></div>
+  <h2>Air</h2>
+  <p class="note">The airway is separate from the heating system, exactly as it is in a body.</p>
+  <div class="grid">
+    <a class="card" href="out/png/M-101-air.png" data-full="out/png/M-101-air.png" data-name="M-101 Ventilation + HVAC">
+  <img src="out/png/M-101-air.png" alt="Ventilation + HVAC" loading="lazy">
+  <span class="m"><span class="no">M-101</span><h3>Ventilation + HVAC</h3><p>320 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gE">
+  <div class="eyebrow">E sheets <span class="count">1</span></div>
+  <h2>Power</h2>
+  <p class="note">One brain, home runs, and reflex arcs that work when the brain is offline.</p>
+  <div class="grid">
+    <a class="card" href="out/png/E-101-power.png" data-full="out/png/E-101-power.png" data-name="E-101 Electrical + data">
+  <img src="out/png/E-101-power.png" alt="Electrical + data" loading="lazy">
+  <span class="m"><span class="no">E-101</span><h3>Electrical + data</h3><p>339 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gG">
+  <div class="eyebrow">G sheets <span class="count">1</span></div>
+  <h2>The house as a system</h2>
+  <p class="note">What the house does before the weather does it.</p>
+  <div class="grid">
+    <a class="card" href="out/png/G-001-viable-system-and-cost.png" data-full="out/png/G-001-viable-system-and-cost-crop.png" data-name="G-001 The house as a system, and what it costs">
+  <img src="out/png/G-001-viable-system-and-cost-crop.png" alt="The house as a system, and what it costs" loading="lazy">
+  <span class="m"><span class="no">G-001</span><h3>The house as a system, and what it costs</h3><p>723 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gR">
+  <div class="eyebrow">R sheets <span class="count">1</span></div>
+  <h2>The reference bar</h2>
+  <p class="note">Six real houses with published numbers, turned into figures every scheme has to beat.</p>
+  <div class="grid">
+    <a class="card" href="out/png/R-101-reference-bar.png" data-full="out/png/R-101-reference-bar.png" data-name="R-101 The reference set, as a bar">
+  <img src="out/png/R-101-reference-bar.png" alt="The reference set, as a bar" loading="lazy">
+  <span class="m"><span class="no">R-101</span><h3>The reference set, as a bar</h3><p>399 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+<section id="gX">
+  <div class="eyebrow">X sheets <span class="count">10</span></div>
+  <h2>The alternatives</h2>
+  <p class="note">Eleven schemes measured by one set of code. X-2xx are the per-scheme dossiers: every level drawn as a real plan, with the checker's flags and a separate critic's verdict.</p>
+  <div class="grid">
+    <a class="card" href="out/png/X-101-seven-schemes.png" data-full="out/png/X-101-seven-schemes-crop.png" data-name="X-101 Seven schemes, one scale">
+  <img src="out/png/X-101-seven-schemes-crop.png" alt="Seven schemes, one scale" loading="lazy">
+  <span class="m"><span class="no">X-101</span><h3>Seven schemes, one scale</h3><p>547 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-102-proposed-schemes.png" data-full="out/png/X-102-proposed-schemes.png" data-name="X-102 Proposed schemes">
+  <img src="out/png/X-102-proposed-schemes.png" alt="Proposed schemes" loading="lazy">
+  <span class="m"><span class="no">X-102</span><h3>Proposed schemes</h3><p>480 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-201-s0-spine-plans.png" data-full="out/png/X-201-s0-spine-plans.png" data-name="X-201 Spine — schematic plans">
+  <img src="out/png/X-201-s0-spine-plans.png" alt="Spine — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-201</span><h3>Spine — schematic plans</h3><p>503 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-202-s1-armature-plans.png" data-full="out/png/X-202-s1-armature-plans.png" data-name="X-202 Armature — schematic plans">
+  <img src="out/png/X-202-s1-armature-plans.png" alt="Armature — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-202</span><h3>Armature — schematic plans</h3><p>385 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-203-s2-bridge-plans.png" data-full="out/png/X-203-s2-bridge-plans.png" data-name="X-203 Bridge — schematic plans">
+  <img src="out/png/X-203-s2-bridge-plans.png" alt="Bridge — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-203</span><h3>Bridge — schematic plans</h3><p>410 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-204-s3-narrow-plans.png" data-full="out/png/X-204-s3-narrow-plans.png" data-name="X-204 Narrow — schematic plans">
+  <img src="out/png/X-204-s3-narrow-plans.png" alt="Narrow — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-204</span><h3>Narrow — schematic plans</h3><p>587 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-206-s5-perch-plans.png" data-full="out/png/X-206-s5-perch-plans.png" data-name="X-206 Perch — schematic plans">
+  <img src="out/png/X-206-s5-perch-plans.png" alt="Perch — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-206</span><h3>Perch — schematic plans</h3><p>542 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-207-s6-tower-plans.png" data-full="out/png/X-207-s6-tower-plans.png" data-name="X-207 Tower — schematic plans">
+  <img src="out/png/X-207-s6-tower-plans.png" alt="Tower — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-207</span><h3>Tower — schematic plans</h3><p>414 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-208-s7-datum-plans.png" data-full="out/png/X-208-s7-datum-plans.png" data-name="X-208 Datum — schematic plans">
+  <img src="out/png/X-208-s7-datum-plans.png" alt="Datum — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-208</span><h3>Datum — schematic plans</h3><p>443 kB · SVG available</p></span>
+</a>
+    <a class="card" href="out/png/X-209-s8-water-plans.png" data-full="out/png/X-209-s8-water-plans.png" data-name="X-209 Water — schematic plans">
+  <img src="out/png/X-209-s8-water-plans.png" alt="Water — schematic plans" loading="lazy">
+  <span class="m"><span class="no">X-209</span><h3>Water — schematic plans</h3><p>465 kB · SVG available</p></span>
+</a>
+  </div>
+</section>
+
+<section id="renders">
+  <div class="eyebrow">Renders <span class="count">7</span></div>
+  <h2>What it looks like</h2>
+  <p class="note">Generated from the same model as the drawings, so a window in a render is a window in a plan.</p>
+  <div class="grid">
+    <a class="card" href="out/renders/ext-arrival.png" data-full="out/renders/ext-arrival.png" data-name=" ext arrival">
+  <img src="out/renders/ext-arrival.png" alt="ext arrival" loading="lazy">
+  <span class="m"><span class="no"></span><h3>ext arrival</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/ext-east.png" data-full="out/renders/ext-east.png" data-name=" ext east">
+  <img src="out/renders/ext-east.png" alt="ext east" loading="lazy">
+  <span class="m"><span class="no"></span><h3>ext east</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/ext-sse-air.png" data-full="out/renders/ext-sse-air.png" data-name=" ext sse air">
+  <img src="out/renders/ext-sse-air.png" alt="ext sse air" loading="lazy">
+  <span class="m"><span class="no"></span><h3>ext sse air</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/ext-sse-terrace.png" data-full="out/renders/ext-sse-terrace.png" data-name=" ext sse terrace">
+  <img src="out/renders/ext-sse-terrace.png" alt="ext sse terrace" loading="lazy">
+  <span class="m"><span class="no"></span><h3>ext sse terrace</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/int-great-west.png" data-full="out/renders/int-great-west.png" data-name=" int great west">
+  <img src="out/renders/int-great-west.png" alt="int great west" loading="lazy">
+  <span class="m"><span class="no"></span><h3>int great west</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/int-great.png" data-full="out/renders/int-great.png" data-name=" int great">
+  <img src="out/renders/int-great.png" alt="int great" loading="lazy">
+  <span class="m"><span class="no"></span><h3>int great</h3><p></p></span>
+</a>
+    <a class="card" href="out/renders/site-aerial.png" data-full="out/renders/site-aerial.png" data-name=" site aerial">
+  <img src="out/renders/site-aerial.png" alt="site aerial" loading="lazy">
+  <span class="m"><span class="no"></span><h3>site aerial</h3><p></p></span>
+</a>
+  </div>
+</section>
+
+<section id="schemes">
+  <div class="eyebrow">Scheme renders <span class="count">15</span></div>
+  <h2>The alternatives, from one camera</h2>
+  <p class="note">The <b>compare</b> shot uses one identical camera for every scheme, so this is a comparison and not a
+  beauty contest — a small house is small in frame. <b>hero</b> is framed to each scheme's own size.</p>
+  <div class="grid">
+    <a class="card" href="out/schemes/S0-SPINE-hero.png" data-full="out/schemes/S0-SPINE-hero.png" data-name=" S0-SPINE-hero">
+  <img src="out/schemes/S0-SPINE-hero.png" alt="S0-SPINE-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S0-SPINE-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S0-SPINE.png" data-full="out/schemes/S0-SPINE.png" data-name=" S0-SPINE">
+  <img src="out/schemes/S0-SPINE.png" alt="S0-SPINE" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S0-SPINE</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S1-ARMATURE-hero.png" data-full="out/schemes/S1-ARMATURE-hero.png" data-name=" S1-ARMATURE-hero">
+  <img src="out/schemes/S1-ARMATURE-hero.png" alt="S1-ARMATURE-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S1-ARMATURE-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S1-ARMATURE.png" data-full="out/schemes/S1-ARMATURE.png" data-name=" S1-ARMATURE">
+  <img src="out/schemes/S1-ARMATURE.png" alt="S1-ARMATURE" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S1-ARMATURE</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S10-SQUARE-hero.png" data-full="out/schemes/S10-SQUARE-hero.png" data-name=" S10-SQUARE-hero">
+  <img src="out/schemes/S10-SQUARE-hero.png" alt="S10-SQUARE-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S10-SQUARE-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S10-SQUARE.png" data-full="out/schemes/S10-SQUARE.png" data-name=" S10-SQUARE">
+  <img src="out/schemes/S10-SQUARE.png" alt="S10-SQUARE" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S10-SQUARE</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S2-BRIDGE.png" data-full="out/schemes/S2-BRIDGE.png" data-name=" S2-BRIDGE">
+  <img src="out/schemes/S2-BRIDGE.png" alt="S2-BRIDGE" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S2-BRIDGE</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S3-NARROW.png" data-full="out/schemes/S3-NARROW.png" data-name=" S3-NARROW">
+  <img src="out/schemes/S3-NARROW.png" alt="S3-NARROW" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S3-NARROW</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S4-CORE.png" data-full="out/schemes/S4-CORE.png" data-name=" S4-CORE">
+  <img src="out/schemes/S4-CORE.png" alt="S4-CORE" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S4-CORE</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S5-PERCH.png" data-full="out/schemes/S5-PERCH.png" data-name=" S5-PERCH">
+  <img src="out/schemes/S5-PERCH.png" alt="S5-PERCH" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S5-PERCH</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S6-TOWER-hero.png" data-full="out/schemes/S6-TOWER-hero.png" data-name=" S6-TOWER-hero">
+  <img src="out/schemes/S6-TOWER-hero.png" alt="S6-TOWER-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S6-TOWER-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S6-TOWER.png" data-full="out/schemes/S6-TOWER.png" data-name=" S6-TOWER">
+  <img src="out/schemes/S6-TOWER.png" alt="S6-TOWER" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S6-TOWER</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S7-DATUM-hero.png" data-full="out/schemes/S7-DATUM-hero.png" data-name=" S7-DATUM-hero">
+  <img src="out/schemes/S7-DATUM-hero.png" alt="S7-DATUM-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S7-DATUM-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S7-DATUM.png" data-full="out/schemes/S7-DATUM.png" data-name=" S7-DATUM">
+  <img src="out/schemes/S7-DATUM.png" alt="S7-DATUM" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S7-DATUM</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S8-WATER.png" data-full="out/schemes/S8-WATER.png" data-name=" S8-WATER">
+  <img src="out/schemes/S8-WATER.png" alt="S8-WATER" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S8-WATER</h3><p></p></span>
+</a>
+  </div>
+</section>
+
+<section id="docs">
+  <div class="eyebrow">Written <span class="count">7</span></div>
+  <h2>The reasoning</h2>
+  <p class="note">What is known, what is assumed for testing, and what must be verified — kept separate on purpose.</p>
+  <div class="grid">
+    <a class="card" href="docs/01-site-facts-register.md"><span class="m"><span class="no">01</span><h3>01 site facts register.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/02-code-basis.md"><span class="m"><span class="no">02</span><h3>02 code basis.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/03-body-diagram.md"><span class="m"><span class="no">03</span><h3>03 body diagram.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/04-professional-scope.md"><span class="m"><span class="no">04</span><h3>04 professional scope.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/05-what-is-wrong.md"><span class="m"><span class="no">05</span><h3>05 what is wrong.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/06-viable-system-and-cost.md"><span class="m"><span class="no">06</span><h3>06 viable system and cost.md</h3><p>markdown</p></span></a>
+    <a class="card" href="docs/07-seven-schemes.md"><span class="m"><span class="no">07</span><h3>07 seven schemes.md</h3><p>markdown</p></span></a>
+  </div>
+</section>
+
+<footer><div class="wrap" style="padding:0">
+  <p><b>Nothing here is engineered or code-verified, and none of it may be relied on for permitting.</b>
+  There is no survey, no soils report, no tested spring and no code text was read. Every drawing, render and
+  number is generated from one parametric model, which is why they cannot disagree with each other — it is not
+  why they are right.</p>
+</div></footer>
 </div>
 
-<pre>git clone https://github.com/hartswf0/henry-house &amp;&amp; cd henry-house
-npm install
-node tools/render/serve.mjs          # http://127.0.0.1:8099
-open http://127.0.0.1:8099/web/walk.html</pre>
-<p style="color:var(--mid)">The walkthrough imports the model files directly — the 3D model <em>is</em> the drawing
-model — so it needs to be served rather than opened from disk. Everything else on this page works as static files.</p>
-
-<div class="banner">
-  <b>TWO THINGS THIS PACKAGE CANNOT CLAIM</b><br><br>
-  <b>1 · No code was verified.</b> Produced with no outbound web access — every primary source
-  (<code>ncosfm.gov</code>, <code>codes.iccsafe.org</code>, <code>wataugacounty.org</code>, the ASCE Hazard Tool, NOAA)
-  returned HTTP 403. No code text was read. Design loads — ground snow, wind exposure, seismic, frost depth,
-  rainfall intensity — are <b>not established</b>, and those are the numbers that size the structure and the drainage.
-  Nothing here may be relied on for permitting.<br><br>
-  <b>2 · There is no site information.</b> Four facts are known; everything else is assumed and traceable in
-  <a href="docs/01-site-facts-register.md">the site facts register</a>.
-  <b>Commission the wastewater soil evaluation before anything else</b> — on steep NC mountain land it is the
-  commonest reason a house cannot be built where the owner wants it.
+<div id="v"><img id="vimg" alt=""></div>
+<div id="vbar">
+  <button id="vclose" type="button">Close</button>
+  <span id="vname"></span>
+  <button id="vfit" type="button">Fit</button>
+  <a id="vopen" href="#" target="_blank" rel="noopener">Full</a>
 </div>
+<script>
+(function () {
+  var v = document.getElementById('v'), img = document.getElementById('vimg');
+  var name = document.getElementById('vname'), open = document.getElementById('vopen');
+  var s = 1, tx = 0, ty = 0, natural = 1;
 
-<h2>THE DESIGN IN ONE PARAGRAPH</h2>
-<p>A long, narrow bar laid <b>along</b> the contour rather than across it — the move that minimises cut and fill on
-steep ground. Glass and terraces face downhill to the south-southeast, where the view and the winter sun arrive from
-the same direction; the uphill wall is nearly solid and holds an 11′-0″ <b>service spine</b> carrying every wet room,
-every chase and all mechanical distribution. Three levels step with the hill: a walkout lower level the slope gives
-you almost for free, a main level with everything essential on one floor, and a sleeping level under a 3:12 shed.
-A reinforced concrete <b>spine wall</b> retains the cut, carries the structure, resists lateral load and stores heat —
-one element doing four jobs, where the conventional alternative builds a retaining wall <em>and</em> a frame in front
-of it and pays twice. The roofs fall <b>downhill</b>, so no roof water is ever delivered to the uphill side where the
-cut and the groundwater problem already are. A 4′-0″ drained <b>drain gap</b> runs the length of the uphill wall so the
-house never touches the cut face. The garage is <b>detached</b>, joined by a conditioned mudroom link and a 9′-0″
-covered breezeway, which removes garage-to-house fire separation and CO migration at the source.</p>
+  function apply(){ img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')'; }
+  function fit(){
+    var iw = img.naturalWidth || 1, ih = img.naturalHeight || 1;
+    s = Math.min(innerWidth / iw, (innerHeight - 68) / ih);
+    natural = s;
+    tx = (innerWidth - iw * s) / 2; ty = (innerHeight - 68 - ih * s) / 2;
+    apply();
+  }
+  document.querySelectorAll('.card[data-full]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      img.src = a.getAttribute('data-full');
+      open.href = a.getAttribute('href');
+      name.textContent = a.getAttribute('data-name');
+      v.classList.add('on');
+      document.body.style.overflow = 'hidden';
+      if (img.complete) fit(); else img.onload = fit;
+    });
+  });
+  document.getElementById('vclose').onclick = function () {
+    v.classList.remove('on'); document.body.style.overflow = '';
+  };
+  document.getElementById('vfit').onclick = fit;
+  addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('vclose').click(); });
 
-<h2>SYSTEMS — 232 ROUTED RUNS</h2>
-<p style="color:var(--mid)">Generated from the fixture schedule and routed orthogonally through the service spine and
-two vertical chases. Every run answers: where does it come from, where does it go, what happens when it fails.</p>
-<div class="scroll"><table>
-<tr><th>System</th><th>Body</th><th>The move that matters</th><th>On failure</th></tr>
-<tr><td><span class="sw" style="background:#2f8fd0"></span>WATER</td><td>Arterial</td>
-    <td>One pump, home-run branches from a single manifold in The Heart.</td>
-    <td><b>A gravity branch bypasses the pump entirely</b> — ~9.5 psi static from the cistern, so power out still gives you a tap and a WC.</td></tr>
-<tr><td><span class="sw" style="background:#6b4a2f"></span>WASTE</td><td>Venous</td>
-    <td>Gravity, converging, never crossing the supply side. Water in at the top, waste out at the bottom.</td>
-    <td>The pressure main to the field often runs <b>uphill</b> on steep ground, so a pump failure backs sewage up — the high-water float is hardwired and audible, not an app notification.</td></tr>
-<tr><td><span class="sw" style="background:#2f8f6b"></span>AIR</td><td>Airway</td>
-    <td>Ventilation ducted <b>independently</b> of heating — supply to bedrooms, exhaust from wet rooms, continuous and low-volume.</td>
-    <td>You never re-breathe through the furnace, and ventilation does not stop when the heat is satisfied.</td></tr>
-<tr><td><span class="sw" style="background:#e0a03a"></span>POWER</td><td>Nerves</td>
-    <td>Home runs to one brain in The Heart; battery then generator behind a critical-loads panel.</td>
-    <td><b>Reflex arcs</b> (shown red) run without the brain: leak sensor → motorised shutoff, freeze stat, septic float. Any safety function that needs the internet is not a safety function.</td></tr>
-</table></div>
-
-<h2>DRAWINGS</h2>
-<div class="grid">
-  <div class="card"><a href="out/png/A-101-main-level-plan.png"><img src="out/png/A-101-main-level-plan.png" alt="A-101"></a>
-    <div class="meta"><div class="t">A-101 · MAIN LEVEL PLAN</div>
-    <div class="d">Service spine, two entries, drain gap, snow retention, fixtures and clearances.</div></div></div>
-  <div class="card"><a href="out/png/A-102-lower-upper-plans.png"><img src="out/png/A-102-lower-upper-plans.png" alt="A-102"></a>
-    <div class="meta"><div class="t">A-102 · LOWER + UPPER PLANS</div>
-    <div class="d">3/8″=1′-0″. The walkout level and the sleeping level.</div></div></div>
-  <div class="card"><a href="out/png/A-201-section-aa.png"><img src="out/png/A-201-section-aa.png" alt="A-201"></a>
-    <div class="meta"><div class="t">A-201 · SECTION A—A</div>
-    <div class="d">The governing drawing on a steep site.</div></div></div>
-  <div class="card"><a href="out/png/A-202-sections-longitudinal.png"><img src="out/png/A-202-sections-longitudinal.png" alt="A-202"></a>
-    <div class="meta"><div class="t">A-202 · SECTIONS B—B + C—C</div>
-    <div class="d">The long cuts. One through the living zone, one through the service spine — the whole plan turned on edge.</div></div></div>
-  <div class="card"><a href="out/png/A-301-south-north-elevations.png"><img src="out/png/A-301-south-north-elevations.png" alt="A-301"></a>
-    <div class="meta"><div class="t">A-301 · SOUTH + NORTH ELEVATIONS</div>
-    <div class="d">The view face against the cut face. Side by side they make the argument the plans only assert.</div></div></div>
-  <div class="card"><a href="out/png/A-302-east-west-elevations.png"><img src="out/png/A-302-east-west-elevations.png" alt="A-302"></a>
-    <div class="meta"><div class="t">A-302 · EAST + WEST + ROOF PLAN</div>
-    <div class="d">The ends of the bar, and every plane that sheds water.</div></div></div>
-  <div class="card"><a href="out/png/C-101-site-grading-access.png"><img src="out/png/C-101-site-grading-access.png" alt="C-101"></a>
-    <div class="meta"><div class="t">C-101 · SITE, GRADING AND ACCESS</div>
-    <div class="d">The drive solved rather than sketched: 655 ft, 5 switchbacks, 11% held. Plus the earth that has to move.</div></div></div>
-  <div class="card"><a href="out/png/G-001-viable-system-and-cost.png"><img src="out/png/G-001-viable-system-and-cost.png" alt="G-001"></a>
-    <div class="meta"><div class="t">G-001 · VIABLE SYSTEM + COST</div>
-    <div class="d">Beer's VSM applied, the six anticipatory policies the design was missing, and the first price in the package.</div></div></div>
-</div>
-
-<h2>RENDERS</h2>
-<div class="grid">
-  <div class="card"><a href="out/renders/ext-sse-air.png"><img src="out/renders/ext-sse-air.png" alt=""></a>
-    <div class="meta"><div class="t">THE DOWNHILL FACE</div><div class="d">View and winter sun from the same side.</div></div></div>
-  <div class="card"><a href="out/renders/ext-arrival.png"><img src="out/renders/ext-arrival.png" alt=""></a>
-    <div class="meta"><div class="t">ARRIVAL</div><div class="d">Motor court, entry bridge, breezeway, garage.</div></div></div>
-  <div class="card"><a href="out/renders/ext-east.png"><img src="out/renders/ext-east.png" alt=""></a>
-    <div class="meta"><div class="t">THE STEPPED SECTION</div><div class="d">Three levels stepping with the hill.</div></div></div>
-  <div class="card"><a href="out/renders/ext-sse-terrace.png"><img src="out/renders/ext-sse-terrace.png" alt=""></a>
-    <div class="meta"><div class="t">FROM THE LOWER TERRACE</div><div class="d">Walkout level and the terrace stair.</div></div></div>
-  <div class="card"><a href="out/renders/int-great.png"><img src="out/renders/int-great.png" alt=""></a>
-    <div class="meta"><div class="t">GREAT ROOM</div><div class="d">Ceiling falls 16′-4″ to 9′-10″ toward the glass.</div></div></div>
-  <div class="card"><a href="out/renders/site-aerial.png"><img src="out/renders/site-aerial.png" alt=""></a>
-    <div class="meta"><div class="t">THE HOUSE ON THE HILL</div><div class="d">Along the contour, not across it.</div></div></div>
-</div>
-
-<h2>IT IS TESTED</h2>
-<pre>npm test   →  MODEL 24 passed, 8 warnings, 0 failed
-           →  PAGES walkthrough + render scene load clean</pre>
-<p style="color:var(--mid)">The checker interrogates the model rather than the drawing. On its first run it found
-<b>16 failures</b>, several structural: bedroom 3 was reachable only <em>through</em> bath 2; the mechanical room's
-only door opened into bath 3; bedroom 2's door sat inside the room rather than on a wall; the linen closet had no
-door; the electrical panel had no NEC working space; five door swings landed on fixtures; bath 2 needed 82″ of depth
-in a 76″ room. A later run caught the terrace stair standing in front of the guest bedroom's <b>escape window</b>,
-which is a life-safety fault rather than a clash and now has its own check.</p>
-
-<h2>STILL OPEN</h2>
-<div class="scroll"><table>
-<tr><th>Gap</th><th>Why it matters</th></tr>
-<tr><td><span class="tag t-bad">FIRE APPARATUS ACCESS</span></td><td>The drive holds <b>11%</b>. Fire apparatus access provisions commonly cap grade at 10% and require 20 ft of width. At 10% the drive becomes about 720 ft. A longer, costlier drive, or a sprinkler system and a variance — <b>a decision for Henry, not a detail</b>.</td></tr>
-<tr><td><span class="tag t-bad">6,400 CY OF SPOIL</span></td><td>Pad and drive cut far more than they fill: roughly <b>536 tandem loads</b> down a mountain road, with no designed place to put any of it. Sidecasting onto a 30% colluvial slope is how mountain fills fail.</td></tr>
-<tr><td><span class="tag t-bad">1.2 ACRES DISTURBED</span></td><td>Over the one-acre threshold commonly cited for the NC Sedimentation Pollution Control Act. The pad alone reads 0.4 ac and looks safe; <b>the driveway corridor is what crosses the line</b>.</td></tr>
-<tr><td><span class="tag t-bad">NO S4 DATA SOURCE</span></td><td>Every anticipatory policy on G-001 depends on a forecast. Which feed, and what the house does with none, is undesigned.</td></tr>
-<tr><td><span class="tag t-bad">SPRING NEVER TESTED</span></td><td>No yield test, no water quality test, no confirmed legal right. The house cannot model the one resource it cannot buy back quickly.</td></tr>
-<tr><td><span class="tag t-warn">NO LOAD CALCULATIONS</span></td><td>No Manual J, no fixture-unit count, no electrical load calculation. The systems are proven to <em>coexist</em>, not to <em>perform</em>.</td></tr>
-<tr><td><span class="tag t-warn">SNOW LOAD UNVERIFIED</span></td><td>The one load that governs every structural member. Watauga may be a case-study snow area with no map value at all.</td></tr>
-<tr><td><span class="tag t-warn">THE BREEZEWAY</span></td><td>S5 says the house must work on the worst night of the year; the everyday route crosses 9 ft of unconditioned outdoors. Fire and CO separation argue for the gap. Stated, not resolved.</td></tr>
-<tr><td><span class="tag t-warn">NOT LIVED IN</span></td><td>Fixtures are coordinated, but there are no lamps, books, art or blinds. No evidence of a life.</td></tr>
-</table></div>
-
-<h2>DOCUMENTS</h2>
-<ul>
-  <li><a href="docs/01-site-facts-register.md">01 — Site facts register</a> · four knowns, every assumption traced to the model constant it drives</li>
-  <li><a href="docs/02-code-basis.md">02 — Code basis and verification status</a> · every reference marked with how strongly it is held</li>
-  <li><a href="docs/03-body-diagram.md">03 — The body diagram</a> · where the analogy produced better architecture, and where it failed or nearly caused a mistake</li>
-  <li><a href="docs/04-professional-scope.md">04 — What requires a licensed professional</a></li>
-  <li><a href="docs/05-what-is-wrong.md">05 — What is wrong</a> · an audit written against the model rather than from memory</li>
-  <li><a href="docs/06-viable-system-and-cost.md">06 — The viable system, and what it costs</a> · Beer's VSM applied, and the first price</li>
-  <li><a href="README.md">README</a></li>
-</ul>
-
-<footer>
-  One model, three files — <code>model/geometry.mjs</code>, <code>model/openings.mjs</code>,
-  <code>model/fixtures.mjs</code> — plus <code>model/systems.mjs</code> for the routed networks. Every plan,
-  section, render and check derives from them, so a drawing and a render cannot disagree about where a toilet is.<br>
-  <code>node tools/build.mjs &amp;&amp; node tools/render/raster.mjs &amp;&amp; node tools/check/clash.mjs</code><br><br>
-  Produced by an AI system without site access, without verified code text, and without engineering analysis.
-  A design proposition and coordination study — not a construction document, not an engineered design, and not
-  evidence of code compliance.
-</footer>
-
-</div>
+  // one finger drags, two fingers pinch — the gestures a phone already knows
+  var pts = new Map(), last = null, lastTap = 0;
+  v.addEventListener('pointerdown', function (e) { v.setPointerCapture(e.pointerId); pts.set(e.pointerId, e); last = null; });
+  v.addEventListener('pointerup', function (e) {
+    pts.delete(e.pointerId); last = null;
+    var now = Date.now();
+    if (now - lastTap < 300) {           // double tap: 100%, or back to fit
+      var to = Math.abs(s - natural) < 1e-4 ? 1 : natural;
+      tx -= (e.clientX - tx) * (to / s - 1); ty -= (e.clientY - ty) * (to / s - 1);
+      s = to; apply();
+    }
+    lastTap = now;
+  });
+  v.addEventListener('pointermove', function (e) {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, e);
+    var a = [...pts.values()];
+    if (a.length === 1) {
+      if (last) { tx += e.clientX - last.x; ty += e.clientY - last.y; apply(); }
+      last = { x: e.clientX, y: e.clientY };
+    } else if (a.length === 2) {
+      var d = Math.hypot(a[0].clientX - a[1].clientX, a[0].clientY - a[1].clientY);
+      var cx = (a[0].clientX + a[1].clientX) / 2, cy = (a[0].clientY + a[1].clientY) / 2;
+      if (last && last.d) {
+        var k = d / last.d;
+        s *= k; tx = cx - (cx - tx) * k; ty = cy - (cy - ty) * k; apply();
+      }
+      last = { d: d };
+    }
+  });
+  v.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    var k = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+    s *= k; tx = e.clientX - (e.clientX - tx) * k; ty = e.clientY - (e.clientY - ty) * k; apply();
+  }, { passive: false });
+  addEventListener('resize', function () { if (v.classList.contains('on')) fit(); });
+})();
+</script>
 </body>
 </html>
