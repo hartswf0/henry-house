@@ -3,16 +3,16 @@
 <style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style>
 <script type="importmap">
 {"imports":{
-  "three":"/node_modules/three/build/three.module.js",
-  "three/addons/":"/node_modules/three/examples/jsm/"
+  "three":"../../node_modules/three/build/three.module.js",
+  "three/addons/":"../../node_modules/three/examples/jsm/"
 }}
 </script>
 </head><body>
 <script type="module">
 import * as THREE from 'three';
-import { buildScene } from '/tools/render/lib/scene.mjs';
-import { makeShiftCamera, applyShift, Accumulator, sunDirection } from '/tools/render/lib/render.mjs';
-import { VIEWS } from '/tools/render/lib/views.mjs';
+import { buildScene } from './lib/scene.mjs';
+import { makeShiftCamera, applyShift, Accumulator, sunDirection } from './lib/render.mjs';
+import { VIEWS } from './lib/views.mjs';
 
 let renderer, state = null;
 window.__ready = false;

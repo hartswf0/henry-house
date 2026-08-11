@@ -78,12 +78,12 @@ export const OPENINGS = [
   O('O-133', 'L1', 'opening', 874, 200, 60, 'H', { wallT: 5, room: 'MUDROOM <-> LAUNDRY' }),
 
   // ── LOWER LEVEL ────────────────────────────────────────────────────────────
-  O('D-001', 'L0', 'slider', 60, 0, 120, 'H', { head: 96, panels: 3, room: 'FAMILY / FLEX', note: 'walkout to lower terrace — SECOND MEANS OF EGRESS' }),
-  O('W-002', 'L0', 'window', 300, 0, 72, 'H', { sill: 24, head: 96, room: 'GUEST BEDROOM', egress: true, note: 'EERO — verify net clear opening' }),
+  O('D-001', 'L0', 'slider', 200, 0, 120, 'H', { head: 96, panels: 3, room: 'FAMILY / FLEX', note: 'walkout to lower terrace — SECOND MEANS OF EGRESS' }),
+  O('W-002', 'L0', 'window', 46, 0, 72, 'H', { sill: 24, head: 96, room: 'GUEST BEDROOM', egress: true, note: 'EERO — verify net clear opening' }),
   O('W-003', 'L0', 'window', 0, 60, 48, 'V', { sill: 30, head: 90, room: 'FAMILY / FLEX' }),
-  O('D-010', 'L0', 'door', 288, 60, 32, 'V', { wallT: 5, side: 1, hand: 1, room: 'GUEST BEDROOM' }),
-  O('D-011', 'L0', 'door', 200, 180, 32, 'H', { wallT: 5, side: 1, hand: 1, room: 'BATH 3' }),
-  O('D-012', 'L0', 'door', 60, 185, 36, 'H', { wallT: 7, side: -1, hand: 1, room: 'MECHANICAL — THE HEART', note: '36" leaf, swings OUT to the family room so equipment can leave without demolition' }),
+  O('D-010', 'L0', 'door', 160, 60, 32, 'V', { wallT: 5, side: -1, hand: 1, room: 'GUEST BEDROOM' }),
+  O('D-011', 'L0', 'door', 60, 180, 32, 'H', { wallT: 5, side: 1, hand: 1, room: 'BATH 3 — guest ensuite' }),
+  O('D-012', 'L0', 'door', 190, 185, 36, 'H', { wallT: 7, side: -1, hand: 1, room: 'MECHANICAL — THE HEART', note: '36" leaf, swings OUT to the family room so equipment can leave without demolition' }),
 
   // ── UPPER LEVEL ────────────────────────────────────────────────────────────
   O('W-201', 'L2', 'window', 600, 0, 60, 'H', { sill: 24, head: 90, room: 'BEDROOM 2', egress: true }),
@@ -92,6 +92,7 @@ export const OPENINGS = [
   O('D-210', 'L2', 'door', 584, 180, 32, 'H', { wallT: 5, side: -1, hand: 1, room: 'BEDROOM 2' }),
   O('D-211', 'L2', 'door', 740, 180, 32, 'H', { wallT: 5, side: -1, hand: 1, room: 'BEDROOM 3' }),
   O('D-212', 'L2', 'door', 705, 232, 30, 'V', { wallT: 5, side: 1, hand: 1, room: 'BATH 2' }),
+  O('O-214', 'L2', 'opening', 700, 188, 32, 'V', { wallT: 5, room: 'STAIR <-> HALL — the stair had no way into the hall at all' }),
   O('D-213', 'L2', 'door', 820, 221, 30, 'H', { wallT: 5, side: 1, hand: 1, room: 'LINEN / AIR HANDLER' }),
   O('O-213', 'L2', 'opening', 576, 200, 90, 'V', { wallT: 5, room: 'INTERIOR OVERLOOK into the tall great room' }),
 ];

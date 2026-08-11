@@ -1,10 +1,10 @@
 <!doctype html><meta charset="utf-8">
-<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="importmap">{"imports":{"three":"../../node_modules/three/build/three.module.js","three/addons/":"../../node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
-import { buildScene } from '/tools/render/lib/scene.mjs';
-import { sunDirection } from '/tools/render/lib/render.mjs';
-import { ROOFS, ROOF_ASSEMBLY } from '/model/geometry.mjs';
+import { buildScene } from './lib/scene.mjs';
+import { sunDirection } from './lib/render.mjs';
+import { ROOFS, ROOF_ASSEMBLY } from '../../model/geometry.mjs';
 const r = new THREE.WebGLRenderer(); r.setSize(8,8);
 const { scene, materials } = buildScene(r, { sun: sunDirection({dayOfYear:288,hour:14}), realtime:true });
 const F=(i)=>i/12;

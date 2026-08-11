@@ -129,10 +129,14 @@ const R = (id, name, x, y, w, h, opts = {}) => ({
 
 export const ROOMS = {
   L0: [
-    R('L0-family',  'FAMILY / FLEX',      10,  10, 273, 170, { use: 'living',  finish: 'engineered wood' }),
-    R('L0-guest',   'GUEST BEDROOM',     288,  10, 137, 170, { use: 'sleeping', egress: true }),
-    R('L0-heart',   'MECHANICAL — "THE HEART"', 10, 185, 140, 117, { use: 'mech', critical: true }),
-    R('L0-bath3',   'BATH 3',            155, 185, 128, 117, { use: 'wet' }),
+    // Rooms swapped end for end. The stair used to land INSIDE the guest
+    // bedroom, and the mechanical room's door opened into it too. Now the
+    // stair and The Heart both open onto the family room, and BATH 3 becomes
+    // the guest ensuite.
+    R('L0-guest',   'GUEST BEDROOM',      10,  10, 150, 170, { use: 'sleeping', egress: true }),
+    R('L0-family',  'FAMILY / FLEX',     165,  10, 260, 170, { use: 'living',  finish: 'engineered wood' }),
+    R('L0-bath3',   'BATH 3',             10, 185, 140, 117, { use: 'wet', note: 'guest ensuite' }),
+    R('L0-heart',   'MECHANICAL — "THE HEART"', 155, 185, 128, 117, { use: 'mech', critical: true }),
     R('L0-stairD',  'STAIR — LOWER',     288, 185, 134, 117, { use: 'circ', stair: 'S2' }),
   ],
   L1: [
@@ -354,12 +358,22 @@ export const DECKS = [
 // that the hill gives you the lower level, that is a serious omission.
 export const EXT_STAIR = {
   id: 'S3', name: 'TERRACE STAIR',
-  x: ft(32), w: 48,                 // 4'-0" clear — clear of W-002 (egress)
-  yBot: ft(-14) - 24, yTop: -6,     // runs north, up toward the house
+  // RUNS EAST-WEST, parallel to the house, in the open part of the terrace.
+  //
+  // The first version ran north toward the house and climbed straight into the
+  // UNDERSIDE OF THE MAIN DECK: at y = -31" the stair was already above the
+  // deck framing, so the last 2'-6" of the climb passed through the deck.
+  // Running it in X instead puts the whole flight WEST of the deck's edge
+  // (deck starts at grid C, x = 36'-0"), so it rises in open air and lands on
+  // the deck's west corner. It is also clear of the walkout slider and of
+  // W-002, the guest bedroom escape window.
+  orientation: 'X',
+  xBot: 123, xTop: 288,             // 13'-9" run, west (bottom) to east (top)
+  y: -108, w: 48,                   // 4'-0" clear, held out in the terrace
   zBot: -6, zTop: ft(10) - 8,
   risers: 16, riserHeight: 7.375, treadDepth: 11,
-  guard: '42" steel guard, cable infill, both sides',
-  note: 'At the terrace/deck junction so it lands under the deck, and clear of the guest bedroom escape window.',
+  guard: '42" steel guard, cable infill, both sides; guard returned at the deck landing',
+  note: 'Come out of the lower level, turn, and go up. Nothing overhead, nothing blocked.',
 };
 
 export const DRAIN_GAP = {

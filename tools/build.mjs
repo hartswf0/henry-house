@@ -1,8 +1,9 @@
 // HENRY HOUSE — sheet builder. Generates the drawing set from the model.
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { Sheet, SCALES, INK, LW } from './svg.mjs';
+import { ft } from '../model/units.mjs';
 import { drawPlan } from './draw/plan.mjs';
-import G, { areaSummary, LEVELS } from '../model/geometry.mjs';
+import G, { areaSummary, LEVELS, FOOTPRINTS } from '../model/geometry.mjs';
 
 const OUT = new URL('../out/drawings/', import.meta.url);
 mkdirSync(OUT, { recursive: true });
@@ -148,3 +149,58 @@ function sheetA201() {
   return s.toString();
 }
 write('A-201-section-aa.svg', sheetA201());
+
+// ── SYSTEMS SHEETS ──────────────────────────────────────────────────────────
+import { drawSystemPlan, systemLegend, FAILURE_NOTES } from './draw/systems.mjs';
+
+const SYS_SHEETS = [
+  { no: 'P-101', group: 'WATER', title: 'WATER — CIRCULATION',
+    sub: 'ARTERIAL · ONE PUMP, HOME-RUN BRANCHES, AND A BRANCH THAT NEEDS NO PUMP AT ALL' },
+  { no: 'P-201', group: 'WASTE', title: 'WASTEWATER — DIGESTION',
+    sub: 'VENOUS · GRAVITY AND CONVERGING · IN AT THE TOP, OUT AT THE BOTTOM, NEVER CROSSING' },
+  { no: 'M-101', group: 'AIR', title: 'VENTILATION + HVAC — RESPIRATION',
+    sub: 'THE AIRWAY IS SEPARATE FROM THE HEATING SYSTEM, EXACTLY AS IT IS IN A BODY' },
+  { no: 'E-101', group: 'POWER', title: 'ELECTRICAL + DATA — NERVOUS SYSTEM',
+    sub: 'ONE BRAIN, HOME RUNS, AND REFLEX ARCS THAT WORK WHEN THE BRAIN IS OFFLINE' },
+];
+
+for (const sh of SYS_SHEETS) {
+  const scaleName = '3/16"=1\'-0"';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: sh.no, title: sh.title, subtitle: sh.sub,
+    originX: 470, originY: 900,
+    notes: [
+      'THIS IS NOT A DIAGRAM. Every run is generated from model/systems.mjs, routed from the ACTUAL fixture positions in model/fixtures.mjs. The same network is drawn here, built in 3D, and walked through in web/walk.html. A pipe cannot serve a fixture that is not in the plan.',
+      'ROUTING RULE: everything runs in the SERVICE SPINE (grid 2 to grid 3) or in a vertical chase. Nothing crosses the living zone. NO PIPE RUNS IN AN EXTERIOR WALL — at this elevation that is a freeze rule, not a preference.',
+      'Circles are RISERS passing through this level in a chase. CH-1 is in The Gallery; CH-2 at the stair core.',
+      'DIAMETERS ARE CONVENTIONAL, NOT CALCULATED. Nothing here is sized against a fixture-unit count, a Manual J, or a load calculation. This set proves the systems can COEXIST IN THE SPACE PROVIDED — the coordination question — not that they will perform.',
+      'Sizing, equipment selection and balancing must be done by an MEP engineer or a qualified designer. See docs/04-professional-scope.md.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+
+  let stats = { drawn: 0, risers: 0, total: 0 };
+  const LEVEL_X = { L0: 470, L1: 470, L2: 470 };
+  let oy = 780;
+  for (const lvl of ['L0', 'L1', 'L2']) {
+    s.ox = LEVEL_X[lvl]; s.oy = oy;
+    const st = drawSystemPlan(s, lvl, sh.group);
+    stats.drawn += st.drawn; stats.risers += st.risers; stats.total = st.total;
+    s.text(FOOTPRINTS[lvl].x0, -ft(20), `${LEVELS.find(l => l.id === lvl).name}`,
+      { size: 19, weight: 700, spacing: 1.5 });
+    oy += 640;
+  }
+  systemLegend(s, 2300, 320, sh.group, FAILURE_NOTES[sh.group]);
+  s.scaleBar(2300, 2200, { scaleName, feetTicks: [0, 4, 8, 16] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    `${stats.total} runs in this system`,
+    `${stats.drawn} horizontal, ${stats.risers} riser passes`,
+    '',
+    'Generated from model/systems.mjs —',
+    'the same network the 3D x-ray shows.',
+  ] });
+  write(`${sh.no}-${sh.group.toLowerCase()}.svg`, s.toString());
+}

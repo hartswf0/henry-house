@@ -13,9 +13,9 @@ import { Sky } from 'three/addons/objects/Sky.js';
 import G, {
   LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
   STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR, roofTopAt,
-} from '/model/geometry.mjs';
-import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
-import { FIXTURES } from '/model/fixtures.mjs';
+} from '../../../model/geometry.mjs';
+import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '../../../model/openings.mjs';
+import { FIXTURES } from '../../../model/fixtures.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
 import { buildSystems } from './systems3d.mjs';
@@ -320,22 +320,22 @@ function buildHouse(M) {
   g.add(mbox(fp1.x0 - 2, fp1.x1 + 2, -2, 314, L1.ffe - 26, L1.ffe - 4, M.stone));
   g.add(mbox(ft(23) - 30, ft(23) + 30, 26, 136, RA.topAtY0 + 96, RA.topAtY0 + 104, M.steel));
 
-  // EXTERIOR STAIR: terrace up to the main deck. Without it the lower terrace
-  // is a dead end and you must go back through the house to reach the deck.
+  // EXTERIOR STAIR — runs EAST-WEST in the open terrace, west of the deck edge,
+  // so it never climbs into the deck framing.
   {
     const st = EXT_STAIR;
-    const run = st.yTop - st.yBot, rise = st.zTop - st.zBot;
+    const run = st.xTop - st.xBot, rise = st.zTop - st.zBot;
     for (let i = 0; i < st.risers; i++) {
-      const y = st.yBot + (run * i) / st.risers;
+      const x = st.xBot + (run * i) / st.risers;
       const z = st.zBot + (rise * (i + 1)) / st.risers;
-      g.add(mbox(st.x, st.x + st.w, y, y + run / st.risers + 1, z - 2, z, M.timber));
-      g.add(mbox(st.x, st.x + st.w, y, y + 2, st.zBot, z - 2, M.concrete, { cast: false }));
+      g.add(mbox(x, x + run / st.risers + 1, st.y, st.y + st.w, z - 2, z, M.timber));
+      g.add(mbox(x, x + 2, st.y, st.y + st.w, st.zBot, z - 2, M.concrete, { cast: false }));
     }
-    for (const sx of [st.x - 3, st.x + st.w]) {
+    for (const sy of [st.y - 3, st.y + st.w]) {
       for (let i = 0; i <= st.risers; i += 4) {
-        const y = st.yBot + (run * i) / st.risers;
+        const x = st.xBot + (run * i) / st.risers;
         const z = st.zBot + (rise * i) / st.risers;
-        g.add(mbox(sx, sx + 3, y, y + 3, z, z + 42, M.steel, { cast: false }));
+        g.add(mbox(x, x + 3, sy, sy + 3, z, z + 42, M.steel, { cast: false }));
       }
     }
   }

@@ -68,29 +68,29 @@ export const FIXTURES = [
   // THE HEART — mechanical. Laid out so every unit can be serviced and replaced.
   // Equipment on the north wall, a shared working aisle in front of it, and the
   // electrical panel on the west wall with its full 36" NEC space kept clear.
-  F('MEQ-02', 'L0', 'hpwh',    26, 274, S.hpwh.w, S.hpwh.d, 'S', { label: 'HPWH 80 GAL', clear: 24 }),
-  F('MEQ-01', 'L0', 'tank',    56, 276, S.tank.w, S.tank.d, 'S', { label: 'PRESSURE TANK' }),
-  F('MEQ-03', 'L0', 'erv',     84, 278, S.erv.w,  S.erv.d,  'S', { label: 'ERV', clear: 24 }),
-  F('MEQ-08', 'L0', 'ahu',    120, 272, S.ahu.w, S.ahu.d, 'S', { label: 'AHU-1 LOWER', clear: 24 }),
-  F('MEQ-04', 'L0', 'panel',   12, 200, 8, 30, 'E', { label: 'PANEL 200A', clear: CLEARANCE.panelFront }),
-  F('MEQ-05', 'L0', 'battery', 12, 240, 8, 28, 'E', { label: 'BATTERY', clear: 30 }),
-  F('MEQ-06', 'L0', 'filter', 100, 190, 46, 14, 'N', { label: 'SEDIMENT + UV', h: 46, clear: 24 }),
-  F('MEQ-07', 'L0', 'manifold', 60, 190, 30, 8, 'N', { label: 'PEX MANIFOLD', h: 40, clear: 24 }),
+  F('MEQ-02', 'L0', 'hpwh',   190, 274, S.hpwh.w, S.hpwh.d, 'S', { label: 'HPWH 80 GAL', clear: 24 }),
+  F('MEQ-01', 'L0', 'tank',   220, 276, S.tank.w, S.tank.d, 'S', { label: 'PRESSURE TANK' }),
+  F('MEQ-03', 'L0', 'erv',    248, 278, S.erv.w,  S.erv.d,  'S', { label: 'ERV', clear: 24 }),
+  F('MEQ-04', 'L0', 'panel',  157, 200, 8, 30, 'E', { label: 'PANEL 200A', clear: CLEARANCE.panelFront }),
+  F('MEQ-05', 'L0', 'battery',157, 240, 8, 28, 'E', { label: 'BATTERY', clear: 30 }),
+  F('MEQ-07', 'L0', 'manifold',170, 190, 30, 8, 'N', { label: 'PEX MANIFOLD', h: 40, clear: 24 }),
+  F('MEQ-08', 'L0', 'ahu',    205, 190, S.ahu.w, S.ahu.d, 'N', { label: 'AHU-1 LOWER', clear: 24 }),
+  F('MEQ-06', 'L0', 'filter', 236, 190, 46, 14, 'N', { label: 'SEDIMENT + UV', h: 46, clear: 24 }),
 
   // BATH 3 (lower)
-  F('P-001', 'L0', 'wc',   250, 272, S.wc.w, S.wc.d, 'S', { label: 'WC', clear: CLEARANCE.wcFront }),
-  F('P-002', 'L0', 'lav',  164, 279, S.lav.w, S.lav.d, 'S', { label: 'LAV', clear: CLEARANCE.lavFront }),
-  F('P-003', 'L0', 'shower36', 164, 190, S.shower36.w, S.shower36.d, 'N', { label: 'SHOWER', clear: CLEARANCE.showerFront }),
+  F('P-001', 'L0', 'wc',   112, 272, S.wc.w, S.wc.d, 'S', { label: 'WC', clear: CLEARANCE.wcFront }),
+  F('P-002', 'L0', 'lav',   18, 279, S.lav.w, S.lav.d, 'S', { label: 'LAV', clear: CLEARANCE.lavFront }),
+  F('P-003', 'L0', 'shower36', 18, 190, S.shower36.w, S.shower36.d, 'N', { label: 'SHOWER', clear: CLEARANCE.showerFront }),
 
   // GUEST BEDROOM
-  F('FF-001', 'L0', 'bedQ', 320, 96, S.bedQ.w, S.bedQ.d, 'S', { label: 'QUEEN' }),
-  F('FF-002', 'L0', 'nightstand', 296, 150, 20, 18, 'S'),
-  F('FF-003', 'L0', 'nightstand', 384, 150, 20, 18, 'S'),
+  F('FF-001', 'L0', 'bedQ',  45, 96, S.bedQ.w, S.bedQ.d, 'S', { label: 'QUEEN' }),
+  F('FF-002', 'L0', 'nightstand', 21, 150, 20, 18, 'S'),
+  F('FF-003', 'L0', 'nightstand', 109, 150, 20, 18, 'S'),
 
   // FAMILY / FLEX
-  F('FF-010', 'L0', 'sofa',  60, 96, 90, 36, 'S', { label: 'SOFA' }),
-  F('FF-011', 'L0', 'rug',   50, 30, 120, 84, 'N', { h: 0.5 }),
-  F('FF-012', 'L0', 'table-c', 86, 52, 42, 24, 'N', { h: 17 }),
+  F('FF-010', 'L0', 'sofa', 220, 96, 90, 36, 'S', { label: 'SOFA' }),
+  F('FF-011', 'L0', 'rug',  210, 30, 120, 84, 'N', { h: 0.5 }),
+  F('FF-012', 'L0', 'table-c', 246, 52, 42, 24, 'N', { h: 17 }),
 
   // ══ MAIN LEVEL ════════════════════════════════════════════════════════════
   // PRIMARY BEDROOM — bed against the solid interior wall, not the glass.

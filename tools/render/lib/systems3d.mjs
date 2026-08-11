@@ -2,7 +2,7 @@
 // Reads model/systems.mjs, which routes from the actual fixture positions.
 
 import * as THREE from 'three';
-import { allRuns, SYSTEM_COLOURS, SYSTEM_GROUPS, CHASES, SOURCES } from '/model/systems.mjs';
+import { allRuns, SYSTEM_COLOURS, SYSTEM_GROUPS, CHASES, SOURCES } from '../../../model/systems.mjs';
 
 const F = (i) => i / 12;
 const P = (p) => new THREE.Vector3(F(p[0]), F(p[2]), -F(p[1]));   // model -> three

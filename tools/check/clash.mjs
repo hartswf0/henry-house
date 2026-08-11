@@ -16,7 +16,7 @@
 import { ROOMS, LEVELS, FOOTPRINTS, BAR, STAIRS, LINK, ROOFS, ROOF_ASSEMBLY, ceilingAt } from '../../model/geometry.mjs';
 import { OPENINGS, OPEN_EDGES } from '../../model/openings.mjs';
 import { FIXTURES, CLEARANCE, fixturesFor, fixtureCounts } from '../../model/fixtures.mjs';
-import { EXT_STAIR } from '../../model/geometry.mjs';
+import { EXT_STAIR, DECKS } from '../../model/geometry.mjs';
 import { dim } from '../../model/units.mjs';
 
 const results = [];
@@ -162,7 +162,7 @@ if (!swing) ok('DOOR-SWING', `all ${OPENINGS.filter(o => o.type === 'door').leng
 let unreachable = 0;
 for (const [lvl, rooms] of Object.entries(ROOMS)) {
   for (const r of rooms) {
-    if (r.use === 'circ') continue;
+    if (r.stair) continue;   // a stair is reached by its own flight
     const open = (OPEN_EDGES[r.id] ?? []).length > 0;
     const served = OPENINGS.some(o => {
       if (o.level !== lvl) return false;
@@ -210,18 +210,45 @@ if (!noEero) ok('EGRESS', 'every bedroom has an escape-and-rescue window (dimens
 // clash, so it gets its own check.
 {
   let blockedEero = 0;
-  const obstructions = [
-    { id: EXT_STAIR.id, name: EXT_STAIR.name, x: EXT_STAIR.x, w: EXT_STAIR.w },
-  ];
+  // "Blocking" means standing in the escape path: close to the wall, overlapping
+  // the opening in plan, AND overlapping it in height. Testing X alone flagged a
+  // stair sitting 5 ft out and 10 ft below a first-floor window.
+  const NEAR_WALL = 36;
+  const obstructions = [{
+    id: EXT_STAIR.id, name: EXT_STAIR.name,
+    x0: EXT_STAIR.xBot, x1: EXT_STAIR.xTop,
+    y0: EXT_STAIR.y, y1: EXT_STAIR.y + EXT_STAIR.w,
+    z0: EXT_STAIR.zBot, z1: EXT_STAIR.zTop,
+  }];
   for (const o of OPENINGS.filter(o => o.egress && o.orient === 'H' && o.y <= 12)) {
+    const lvl = LEVELS.find(l => l.id === o.level);
+    const oz0 = lvl.ffe + o.sill, oz1 = lvl.ffe + o.head;
     for (const ob of obstructions) {
-      if (ob.x < o.x + o.len && o.x < ob.x + ob.w) {
-        fail('EERO-BLOCKED', `${ob.name} (${ob.id}) stands in front of ${o.id} — ${o.room}'s escape window`);
+      const nearWall = ob.y1 > -NEAR_WALL;                       // within 3'-0" of the face
+      const inPlan = ob.x0 < o.x + o.len && o.x < ob.x1;
+      const inHeight = ob.z1 > oz0 && oz1 > ob.z0;
+      if (nearWall && inPlan && inHeight) {
+        fail('EERO-BLOCKED', `${ob.name} (${ob.id}) stands in the escape path of ${o.id} — ${o.room}`);
         blockedEero++;
       }
     }
   }
   if (!blockedEero) ok('EERO-BLOCKED', 'no exterior construction stands in front of an escape window');
+}
+
+// ── 8c. The exterior stair must not climb into the deck framing ─────────────
+{
+  const st = EXT_STAIR, d1 = DECKS[0];
+  const underDeck = st.orientation === 'X'
+    ? (st.xTop > d1.x0 + 1 && st.xBot < d1.x1 - 1 && st.y + st.w > d1.y0 && st.y < d1.y1)
+    : true;
+  if (underDeck) {
+    fail('EXT-STAIR', `${st.name} runs beneath the MAIN DECK (deck soffit ~${dim(d1.top - 16)}) — it will climb into the framing`);
+  } else ok('EXT-STAIR', `${st.name} rises clear of the deck: nothing overhead`);
+  const totalRise = st.risers * st.riserHeight;
+  if (Math.abs(totalRise - (st.zTop - st.zBot)) > 0.6) {
+    fail('EXT-STAIR', `${st.name}: ${st.risers} @ ${st.riserHeight}" = ${totalRise}" but the rise is ${st.zTop - st.zBot}"`);
+  } else ok('EXT-STAIR', `${st.name}: ${st.risers} @ ${st.riserHeight}" = ${dim(totalRise)}, matches terrace to deck`);
 }
 
 // ── 9. Stairs fit the floor-to-floor they span ──────────────────────────────

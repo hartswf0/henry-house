@@ -32,6 +32,23 @@
 </head>
 <body>
 <div id="loading">BUILDING MODEL…</div>
+<script>
+  if (location.protocol === 'file:') {
+    document.getElementById('loading').innerHTML =
+      '<div style="max-width:560px;text-align:center;line-height:1.7">' +
+      '<b style="color:#e08056">THIS PAGE MUST BE SERVED, NOT OPENED FROM DISK.</b><br><br>' +
+      'It imports the model files as ES modules, which browsers refuse to load over file://.<br><br>' +
+      '<code style="color:#e9edf2">node tools/render/serve.mjs</code><br>' +
+      'then open <code style="color:#e9edf2">http://127.0.0.1:8099/web/walk.html</code></div>';
+  }
+  addEventListener('error', (e) => {
+    if (!/\.mjs|\.js/.test(e.filename || '')) return;
+    const el = document.getElementById('loading');
+    if (el) el.innerHTML = '<div style="max-width:600px;text-align:center;line-height:1.7">' +
+      '<b style="color:#e0716d">A MODULE FAILED TO LOAD</b><br><br>' + (e.filename||'') +
+      '<br><br>Serve from the REPOSITORY ROOT:<br><code style="color:#e9edf2">node tools/render/serve.mjs</code></div>';
+  }, true);
+</script>
 <div id="ui">
   <h1>HENRY HOUSE</h1>
   <div class="sub">WALKTHROUGH · WATAUGA CO., NC</div>
@@ -79,17 +96,17 @@
 
 <script type="importmap">
 {"imports":{
-  "three":"/node_modules/three/build/three.module.js",
-  "three/addons/":"/node_modules/three/examples/jsm/"
+  "three":"../node_modules/three/build/three.module.js",
+  "three/addons/":"../node_modules/three/examples/jsm/"
 }}
 </script>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
-import { buildScene, siteZ } from '/tools/render/lib/scene.mjs';
-import { sunDirection } from '/tools/render/lib/render.mjs';
-import { LEVELS } from '/model/geometry.mjs';
+import { buildScene, siteZ } from '../tools/render/lib/scene.mjs';
+import { sunDirection } from '../tools/render/lib/render.mjs';
+import { LEVELS } from '../model/geometry.mjs';
 
 const F = (i) => i / 12;
 
