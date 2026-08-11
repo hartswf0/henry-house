@@ -16,6 +16,7 @@ import { LW, INK } from '../svg.mjs';
 import { ft } from '../../model/units.mjs';
 import { sym } from './fixtures.mjs';
 import { furnishLevel, stairsFor } from '../../model/scheme-furnish.mjs';
+import { doorwaysAt } from '../../model/scheme-doors.mjs';
 
 const EXT_T = 10;                                  // exterior wall, inches
 const INT_T = 5;                                   // partition, inches
@@ -117,6 +118,9 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true, plan = null
   // generator the 3D reads. A toilet here is the toilet in the model, at the
   // same coordinates, because there is only one list.
   if (plan) {
+    // Doorways FIRST: each one paints out the partition it passes through, so
+    // an opening reads as a hole rather than as a leaf drawn over a solid wall.
+    for (const d of doorwaysAt(plan, level.ffe)) drawDoorway(s, d);
     for (const st of stairsFor(plan).filter(t => Math.abs(t.level - level.ffe) < 0.6)) drawStair(s, st);
     for (const f of furnishLevel(plan, level.ffe)) {
       const fn = sym[f.type];
@@ -156,6 +160,28 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true, plan = null
     s.dimV(e.y0, e.y1, e.x1 + 46, null);
   }
   return B;
+}
+
+/**
+ * One interior doorway: the partition erased across the opening, jambs marked,
+ * and — where it is a door rather than a cased opening — a leaf and its swing.
+ * Positions come from model/scheme-doors.mjs, the same list the 3D punches.
+ */
+function drawDoorway(s, d) {
+  const half = d.wIn / 2, T = INT_T;
+  if (d.axis === 'Y') {
+    s.rect(d.xIn - T / 2 - 1, d.yIn - half, T + 2, d.wIn, { fill: INK.paper, color: 'none', w: 0 });
+    s.line(d.xIn - T / 2, d.yIn - half, d.xIn + T / 2, d.yIn - half, { w: LW.hair, color: INK.line });
+    s.line(d.xIn - T / 2, d.yIn + half, d.xIn + T / 2, d.yIn + half, { w: LW.hair, color: INK.line });
+  } else {
+    s.rect(d.xIn - half, d.yIn - T / 2 - 1, d.wIn, T + 2, { fill: INK.paper, color: 'none', w: 0 });
+    s.line(d.xIn - half, d.yIn - T / 2, d.xIn - half, d.yIn + T / 2, { w: LW.hair, color: INK.line });
+    s.line(d.xIn + half, d.yIn - T / 2, d.xIn + half, d.yIn + T / 2, { w: LW.hair, color: INK.line });
+  }
+  // A cased opening has no leaf — drawing one would claim a door that is not
+  // there, and the difference between the two is most of what an open plan is.
+  if (d.kind === 'opening') return;
+  s.door(d.xIn, d.yIn, d.wIn, d.axis === 'Y' ? 90 : 0, { wallT: T });
 }
 
 /**

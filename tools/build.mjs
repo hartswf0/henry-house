@@ -656,9 +656,11 @@ PLANS.forEach((plan) => {
   if (plan.flags?.length) {
     const fx = bx + 700, fy = by + 190;
     s.stext(fx, fy, `THE CHECKER FLAGGED ${plan.flags.length}`, { size: 13, weight: 700, spacing: 1.3, color: INK.fire });
-    s.stext(fx, fy + 18, 'Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each one first caught by a critic reading a drawing and since made automatic.',
-      { size: 9.5, color: INK.mid });
-    let fyy = fy + 44;
+    // wrapped, because at 9.5pt this ran unbroken straight through the
+    // critic's column to its right
+    wrapTo('Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each first caught by a critic reading a drawing and since made automatic.', 66)
+      .forEach((ln, i) => s.stext(fx, fy + 18 + i * 12, ln, { size: 9.5, color: INK.mid }));
+    let fyy = fy + 56;
     for (const f of plan.flags.slice(0, 8)) {
       wrapTo('· ' + f, 66).forEach(ln => { s.stext(fx, fyy, ln, { size: 9.5, color: INK.line }); fyy += 13; });
       fyy += 3;
@@ -671,9 +673,9 @@ PLANS.forEach((plan) => {
     const kx = bx + 1250, ky = by + 210;
     s.stext(kx, ky, `THE CRITIC — ${crit.verdict}`, { size: 13, weight: 700, spacing: 1.3,
       color: crit.verdict === 'WIN' ? '#2f7d54' : INK.fire });
-    s.stext(kx, ky + 18, 'A separate agent, fresh context, which did not draw this plan and cannot see the builder\'s note.',
-      { size: 9.5, color: INK.mid });
-    let ly = ky + 44;
+    wrapTo('A separate agent, fresh context, which did not draw this plan and cannot see the builder\'s note.', 66)
+      .forEach((ln, i) => s.stext(kx, ky + 18 + i * 12, ln, { size: 9.5, color: INK.mid }));
+    let ly = ky + 56;
     for (const f of (crit.findings ?? []).slice(0, 5)) {
       wrapTo(`${f.severity === 'FATAL' ? '!!' : f.severity === 'MAJOR' ? '!' : '·'} ${f.finding}`, 74)
         .forEach(ln => { s.stext(kx, ly, ln, { size: 10, color: f.severity === 'FATAL' ? INK.fire : INK.line }); ly += 14; });

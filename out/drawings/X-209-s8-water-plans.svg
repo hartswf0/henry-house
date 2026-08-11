@@ -101,6 +101,66 @@
 <rect x="1362.94" y="696" width="94.12" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="1410" y="710" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BOOT ROOM</text>
 <text x="1410" y="728" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">96 SF</text>
+<polygon points="1292.031,710 1302.969,710 1302.969,653.75 1292.031,653.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1293.594" y1="710" x2="1301.406" y2="710" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1293.594" y1="653.75" x2="1301.406" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1293.594,681.875 1293.594,625.625 1301.406,625.625 1301.406,681.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1297.5" y1="681.875" x2="1241.25" y2="681.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1241.25 681.875 A 56.25 56.25 0 0 1 1297.5 625.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1231.875,734.219 1288.125,734.219 1288.125,723.281 1231.875,723.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1231.875" y1="732.656" x2="1231.875" y2="724.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1288.125" y1="732.656" x2="1288.125" y2="724.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1260,724.844 1316.25,724.844 1316.25,732.656 1260,732.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1260" y1="728.75" x2="1260" y2="672.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1260 672.5 A 56.25 56.25 0 0 1 1316.25 728.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1217.031,944.375 1227.969,944.375 1227.969,888.125 1217.031,888.125" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1218.594" y1="944.375" x2="1226.406" y2="944.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1218.594" y1="888.125" x2="1226.406" y2="888.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1104.531,944.375 1115.469,944.375 1115.469,888.125 1104.531,888.125" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1106.094" y1="944.375" x2="1113.906" y2="944.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1106.094" y1="888.125" x2="1113.906" y2="888.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1138.125,865.469 1194.375,865.469 1194.375,854.531 1138.125,854.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1138.125" y1="863.906" x2="1138.125" y2="856.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1194.375" y1="863.906" x2="1194.375" y2="856.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1166.25,856.094 1222.5,856.094 1222.5,863.906 1166.25,863.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1166.25" y1="860" x2="1166.25" y2="803.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1166.25 803.75 A 56.25 56.25 0 0 1 1222.5 860" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1292.031,935 1302.969,935 1302.969,878.75 1292.031,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1293.594" y1="935" x2="1301.406" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1293.594" y1="878.75" x2="1301.406" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1293.594,906.875 1293.594,850.625 1301.406,850.625 1301.406,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1297.5" y1="906.875" x2="1241.25" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1241.25 906.875 A 56.25 56.25 0 0 1 1297.5 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="973.281,963.125 984.219,963.125 984.219,850.625 973.281,850.625" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="974.844" y1="963.125" x2="982.656" y2="963.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="974.844" y1="850.625" x2="982.656" y2="850.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="692.031,963.125 702.969,963.125 702.969,850.625 692.031,850.625" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="693.594" y1="963.125" x2="701.406" y2="963.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="693.594" y1="850.625" x2="701.406" y2="850.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="617.031,935 627.969,935 627.969,878.75 617.031,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="935" x2="626.406" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="878.75" x2="626.406" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="618.594,906.875 618.594,850.625 626.406,850.625 626.406,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="622.5" y1="906.875" x2="566.25" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 566.25 906.875 A 56.25 56.25 0 0 1 622.5 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="617.031,728.75 627.969,728.75 627.969,672.5 617.031,672.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="728.75" x2="626.406" y2="728.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="672.5" x2="626.406" y2="672.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="618.594,700.625 618.594,644.375 626.406,644.375 626.406,700.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="622.5" y1="700.625" x2="566.25" y2="700.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 566.25 700.625 A 56.25 56.25 0 0 1 622.5 644.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="692.031,728.75 702.969,728.75 702.969,672.5 692.031,672.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="693.594" y1="728.75" x2="701.406" y2="728.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="693.594" y1="672.5" x2="701.406" y2="672.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="693.594,700.625 693.594,644.375 701.406,644.375 701.406,700.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="697.5" y1="700.625" x2="641.25" y2="700.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 641.25 700.625 A 56.25 56.25 0 0 1 697.5 644.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="819.375,771.719 931.875,771.719 931.875,760.781 819.375,760.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="819.375" y1="770.156" x2="819.375" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="931.875" y1="770.156" x2="931.875" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1016.25,771.719 1072.5,771.719 1072.5,760.781 1016.25,760.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1016.25" y1="770.156" x2="1016.25" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1072.5" y1="770.156" x2="1072.5" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1228.75" y1="956.094" x2="1291.25" y2="956.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1228.75" y1="939.688" x2="1291.25" y2="939.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1228.75" y1="923.281" x2="1291.25" y2="923.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -310,6 +370,45 @@
 <polygon points="2613.906,799.844 2774.844,799.844 2774.844,713.906 2613.906,713.906" fill="#e4eef2" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
 <text x="2694.375" y="760.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">BATH 3</text>
 <line x1="2619.375" y1="720.938" x2="2769.375" y2="720.938" stroke="#1d6fa5" stroke-width="3.4" stroke-linecap="butt"/>
+<polygon points="2066.25,771.719 2122.5,771.719 2122.5,760.781 2066.25,760.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2066.25" y1="770.156" x2="2066.25" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2122.5" y1="770.156" x2="2122.5" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2094.375,762.344 2150.625,762.344 2150.625,770.156 2094.375,770.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2094.375" y1="766.25" x2="2094.375" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2094.375 710 A 56.25 56.25 0 0 1 2150.625 766.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2263.125,771.719 2319.375,771.719 2319.375,760.781 2263.125,760.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2263.125" y1="770.156" x2="2263.125" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2319.375" y1="770.156" x2="2319.375" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2291.25,762.344 2347.5,762.344 2347.5,770.156 2291.25,770.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2291.25" y1="766.25" x2="2291.25" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2291.25 710 A 56.25 56.25 0 0 1 2347.5 766.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2417.031,963.125 2427.969,963.125 2427.969,906.875 2417.031,906.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2418.594" y1="963.125" x2="2426.406" y2="963.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2418.594" y1="906.875" x2="2426.406" y2="906.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2418.594,935 2418.594,878.75 2426.406,878.75 2426.406,935" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2422.5" y1="935" x2="2366.25" y2="935" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2366.25 935 A 56.25 56.25 0 0 1 2422.5 878.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2450.625,771.719 2506.875,771.719 2506.875,760.781 2450.625,760.781" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2450.625" y1="770.156" x2="2450.625" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2506.875" y1="770.156" x2="2506.875" y2="762.344" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2478.75,762.344 2535,762.344 2535,770.156 2478.75,770.156" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2478.75" y1="766.25" x2="2478.75" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2478.75 710 A 56.25 56.25 0 0 1 2535 766.25" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2529.531,963.125 2540.469,963.125 2540.469,906.875 2529.531,906.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2531.094" y1="963.125" x2="2538.906" y2="963.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2531.094" y1="906.875" x2="2538.906" y2="906.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2604.531,935 2615.469,935 2615.469,878.75 2604.531,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2606.094" y1="935" x2="2613.906" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2606.094" y1="878.75" x2="2613.906" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2606.094,906.875 2606.094,850.625 2613.906,850.625 2613.906,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2610" y1="906.875" x2="2553.75" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2553.75 906.875 A 56.25 56.25 0 0 1 2610 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2604.531,785 2615.469,785 2615.469,728.75 2604.531,728.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2606.094" y1="785" x2="2613.906" y2="785" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2606.094" y1="728.75" x2="2613.906" y2="728.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2606.094,756.875 2606.094,700.625 2613.906,700.625 2613.906,756.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2610" y1="756.875" x2="2553.75" y2="756.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2553.75 756.875 A 56.25 56.25 0 0 1 2610 700.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <line x1="2541.25" y1="956.094" x2="2603.75" y2="956.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="2541.25" y1="939.688" x2="2603.75" y2="939.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="2541.25" y1="923.281" x2="2603.75" y2="923.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>

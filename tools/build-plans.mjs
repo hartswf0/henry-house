@@ -15,6 +15,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { SCHEMES } from '../model/schemes.mjs';
+import { doorways } from './../model/scheme-doors.mjs';
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const DIR = resolve(ROOT, 'plans');
@@ -200,6 +201,19 @@ export function checkPlan(scheme, plan) {
   }
   if (!(plan.doors ?? []).some(d => d.kind === 'entry')) warnings.push('no entry door');
 
+  // ── CAN YOU ACTUALLY WALK THROUGH IT ────────────────────────────────────
+  // Interior doors are derived in model/scheme-doors.mjs, so a room with no
+  // door onto anything is not a drafting oversight, it is a room the plan
+  // cannot connect. That is an ERROR: a plan you cannot occupy is not a plan.
+  {
+    for (const lv of plan.levels) lv.doors = lv.doors ?? (plan.doors ?? []).filter(d => Math.abs((d.ffe ?? lv.ffe) - lv.ffe) < 0.6);
+    const nav = doorways(plan);
+    for (const u of nav.unreachable) errors.push(`UNREACHABLE — "${u}" has no doorway onto any other room`);
+    for (const t of nav.throughPrivate) flags.push(`THROUGH A PRIVATE ROOM — ${t}`);
+    stats.doors = nav.doors.length;
+    stats.openings = nav.doors.filter(d => d.kind === 'opening').length;
+  }
+
   // ── SEVERED BODIES ──────────────────────────────────────────────────────
   // Rooms that touch, plus stairs that link levels, form a graph. If that
   // graph has more than one component, the house is two houses and the route
@@ -274,7 +288,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     kept.push(plan);
     const circPct = stats.sf ? Math.round((stats.circSf / stats.sf) * 100) : 0;
     console.log(`  ✓ ${plan.id.padEnd(14)} ${String(stats.levels).padStart(2)} levels  ${String(stats.rooms).padStart(3)} rooms  ` +
-                `${String(Math.round(stats.sf)).padStart(5)} sf  ${stats.beds} bed  ${stats.baths} bath  ${String(circPct).padStart(2)}% circulation`);
+                `${String(Math.round(stats.sf)).padStart(5)} sf  ${stats.beds} bed  ${stats.baths} bath  ${String(circPct).padStart(2)}% circ  ` +
+                `${String(stats.doors ?? 0).padStart(2)} doorways`);
     for (const w of warnings) console.log(`      ~ ${w}`);
     for (const f of flags) console.log(`      ! ${f}`);
   }

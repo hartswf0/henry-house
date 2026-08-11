@@ -19,6 +19,7 @@ import * as THREE from 'three';
 import { roofBase } from '../../../model/schemes.mjs';
 import { planFor } from '../../../model/scheme-plans.mjs';
 import { furnish, stairsFor } from '../../../model/scheme-furnish.mjs';
+import { doorways } from '../../../model/scheme-doors.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -202,13 +203,44 @@ function buildInterior(g, scheme, mats) {
   const { wall, trim, conc, steel } = mats;
   let placed = 0;
 
-  // partitions, at the same 5 in the plan poches them at
+  // Partitions, at the same 5 in the plan poches them at — PUNCHED at every
+  // doorway. A solid partition is why the plans showed a house you could not
+  // walk through; the same defect existed here, where every room was a sealed
+  // box. Head height is 6'-8", so the panel over each opening stays.
+  const HEAD = 80;
+  const { doors } = doorways(plan);
+  /** One wall run, emitted as the segments left between its openings. */
+  const runWith = (axis, fixed, a0, a1, z0, z1, gaps, mat) => {
+    const cuts = gaps.filter(gp => gp.a0 < a1 && gp.a1 > a0)
+      .sort((p, q) => p.a0 - q.a0);
+    let cursor = a0;
+    for (const c of cuts) {
+      if (c.a0 > cursor) emit(axis, fixed, cursor, c.a0, z0, z1, mat);
+      // the head panel over the opening
+      if (z1 > z0 + HEAD) emit(axis, fixed, Math.max(c.a0, a0), Math.min(c.a1, a1), z0 + HEAD, z1, mat);
+      cursor = Math.max(cursor, c.a1);
+    }
+    if (cursor < a1) emit(axis, fixed, cursor, a1, z0, z1, mat);
+  };
+  const emit = (axis, fixed, a0, a1, z0, z1, mat) => {
+    if (a1 - a0 < 1) return;
+    if (axis === 'X') g.add(box(a0, a1, fixed, fixed + 5, z0, z1, mat, { cast: false }));
+    else g.add(box(fixed, fixed + 5, a0, a1, z0, z1, mat, { cast: false }));
+  };
+
   for (const lv of plan.levels) {
     const z0 = ft(lv.ffe), z1 = z0 + STOREY - 14;
+    const lvDoors = doors.filter(d => Math.abs(d.level - lv.ffe) < 0.6);
     for (const r of lv.rooms ?? []) {
       const x0 = ft(r.x0), x1 = ft(r.x0 + r.w), y0 = ft(r.y0), y1 = ft(r.y0 + r.d);
-      g.add(box(x0, x0 + 5, y0, y1, z0, z1, trim, { cast: false }));
-      g.add(box(x0, x1, y1 - 5, y1, z0, z1, trim, { cast: false }));
+      // west wall of this room, running in y
+      runWith('Y', x0, y0, y1, z0, z1,
+        lvDoors.filter(d => d.axis === 'Y' && Math.abs(ft(d.x) - x0) < 7)
+          .map(d => ({ a0: ft(d.y - d.w / 2), a1: ft(d.y + d.w / 2) })), trim);
+      // uphill wall of this room, running in x
+      runWith('X', y1 - 5, x0, x1, z0, z1,
+        lvDoors.filter(d => d.axis === 'X' && Math.abs(ft(d.y) - y1) < 7)
+          .map(d => ({ a0: ft(d.x - d.w / 2), a1: ft(d.x + d.w / 2) })), trim);
     }
   }
 

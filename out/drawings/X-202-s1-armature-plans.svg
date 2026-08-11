@@ -168,6 +168,120 @@
 <text x="1578.75" y="728" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">80 SF</text>
 <polygon points="1413.906,631.094 1668.594,631.094 1668.594,563.906 1413.906,563.906" fill="#e7e9e6" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
 <text x="1541.25" y="601.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">GALLERY 5</text>
+<polygon points="879.531,625.625 890.469,625.625 890.469,569.375 879.531,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="881.094" y1="625.625" x2="888.906" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="881.094" y1="569.375" x2="888.906" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="617.031,625.625 627.969,625.625 627.969,569.375 617.031,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="625.625" x2="626.406" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="569.375" x2="626.406" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="397.5,640.469 453.75,640.469 453.75,629.531 397.5,629.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="397.5" y1="638.906" x2="397.5" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="453.75" y1="638.906" x2="453.75" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="425.625,631.094 481.875,631.094 481.875,638.906 425.625,638.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="425.625" y1="635" x2="425.625" y2="578.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 425.625 578.75 A 56.25 56.25 0 0 1 481.875 635" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="542.031,738.125 552.969,738.125 552.969,681.875 542.031,681.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="543.594" y1="738.125" x2="551.406" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="543.594" y1="681.875" x2="551.406" y2="681.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="543.594,710 543.594,653.75 551.406,653.75 551.406,710" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="547.5" y1="710" x2="491.25" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 491.25 710 A 56.25 56.25 0 0 1 547.5 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="556.875,790.469 613.125,790.469 613.125,779.531 556.875,779.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="556.875" y1="788.906" x2="556.875" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="613.125" y1="788.906" x2="613.125" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="585,781.094 641.25,781.094 641.25,788.906 585,788.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="585" y1="785" x2="585" y2="728.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 585 728.75 A 56.25 56.25 0 0 1 641.25 785" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="617.031,738.125 627.969,738.125 627.969,681.875 617.031,681.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="738.125" x2="626.406" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="681.875" x2="626.406" y2="681.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="922.5,677.969 978.75,677.969 978.75,667.031 922.5,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="922.5" y1="676.406" x2="922.5" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="978.75" y1="676.406" x2="978.75" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1010.781,625.625 1021.719,625.625 1021.719,569.375 1010.781,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1012.344" y1="625.625" x2="1020.156" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1012.344" y1="569.375" x2="1020.156" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1053.75,640.469 1110,640.469 1110,629.531 1053.75,629.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1053.75" y1="638.906" x2="1053.75" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1110" y1="638.906" x2="1110" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1081.875,631.094 1138.125,631.094 1138.125,638.906 1081.875,638.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1081.875" y1="635" x2="1081.875" y2="578.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1081.875 578.75 A 56.25 56.25 0 0 1 1138.125 635" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1142.031,710 1152.969,710 1152.969,653.75 1142.031,653.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1143.594" y1="710" x2="1151.406" y2="710" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1143.594" y1="653.75" x2="1151.406" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1143.594,681.875 1143.594,625.625 1151.406,625.625 1151.406,681.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1147.5" y1="681.875" x2="1091.25" y2="681.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1091.25 681.875 A 56.25 56.25 0 0 1 1147.5 625.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1142.031,625.625 1152.969,625.625 1152.969,569.375 1142.031,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1143.594" y1="625.625" x2="1151.406" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1143.594" y1="569.375" x2="1151.406" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1156.875,790.469 1213.125,790.469 1213.125,779.531 1156.875,779.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1156.875" y1="788.906" x2="1156.875" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1213.125" y1="788.906" x2="1213.125" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1185,781.094 1241.25,781.094 1241.25,788.906 1185,788.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1185" y1="785" x2="1185" y2="728.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1185 728.75 A 56.25 56.25 0 0 1 1241.25 785" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1217.031,738.125 1227.969,738.125 1227.969,681.875 1217.031,681.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1218.594" y1="738.125" x2="1226.406" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1218.594" y1="681.875" x2="1226.406" y2="681.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1218.594,710 1218.594,653.75 1226.406,653.75 1226.406,710" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1222.5" y1="710" x2="1166.25" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1166.25 710 A 56.25 56.25 0 0 1 1222.5 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1404.531,738.125 1415.469,738.125 1415.469,681.875 1404.531,681.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1406.094" y1="738.125" x2="1413.906" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1406.094" y1="681.875" x2="1413.906" y2="681.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1406.094,710 1406.094,653.75 1413.906,653.75 1413.906,710" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1410" y1="710" x2="1353.75" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1353.75 710 A 56.25 56.25 0 0 1 1410 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1404.531,625.625 1415.469,625.625 1415.469,569.375 1404.531,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1406.094" y1="625.625" x2="1413.906" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1406.094" y1="569.375" x2="1413.906" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1419.375,790.469 1475.625,790.469 1475.625,779.531 1419.375,779.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1419.375" y1="788.906" x2="1419.375" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1475.625" y1="788.906" x2="1475.625" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1447.5,781.094 1503.75,781.094 1503.75,788.906 1447.5,788.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1447.5" y1="785" x2="1447.5" y2="728.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1447.5 728.75 A 56.25 56.25 0 0 1 1503.75 785" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1479.531,738.125 1490.469,738.125 1490.469,681.875 1479.531,681.875" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1481.094" y1="738.125" x2="1488.906" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1481.094" y1="681.875" x2="1488.906" y2="681.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1481.094,710 1481.094,653.75 1488.906,653.75 1488.906,710" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1485" y1="710" x2="1428.75" y2="710" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1428.75 710 A 56.25 56.25 0 0 1 1485 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="660,790.469 716.25,790.469 716.25,779.531 660,779.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="660" y1="788.906" x2="660" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="716.25" y1="788.906" x2="716.25" y2="781.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="688.125,781.094 744.375,781.094 744.375,788.906 688.125,788.906" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="688.125" y1="785" x2="688.125" y2="728.75" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 688.125 728.75 A 56.25 56.25 0 0 1 744.375 785" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="879.531,935 890.469,935 890.469,878.75 879.531,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="881.094" y1="935" x2="888.906" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="881.094" y1="878.75" x2="888.906" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="881.094,906.875 881.094,850.625 888.906,850.625 888.906,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="885" y1="906.875" x2="828.75" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 828.75 906.875 A 56.25 56.25 0 0 1 885 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1010.781,935 1021.719,935 1021.719,878.75 1010.781,878.75" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1012.344" y1="935" x2="1020.156" y2="935" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1012.344" y1="878.75" x2="1020.156" y2="878.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1012.344,906.875 1012.344,850.625 1020.156,850.625 1020.156,906.875" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1016.25" y1="906.875" x2="960" y2="906.875" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 960 906.875 A 56.25 56.25 0 0 1 1016.25 850.625" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1010.781,794.375 1021.719,794.375 1021.719,738.125 1010.781,738.125" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1012.344" y1="794.375" x2="1020.156" y2="794.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1012.344" y1="738.125" x2="1020.156" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1012.344,766.25 1012.344,710 1020.156,710 1020.156,766.25" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1016.25" y1="766.25" x2="960" y2="766.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 960 766.25 A 56.25 56.25 0 0 1 1016.25 710" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="631.875,640.469 744.375,640.469 744.375,629.531 631.875,629.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="631.875" y1="638.906" x2="631.875" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="744.375" y1="638.906" x2="744.375" y2="631.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="879.531,756.875 890.469,756.875 890.469,700.625 879.531,700.625" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="881.094" y1="756.875" x2="888.906" y2="756.875" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="881.094" y1="700.625" x2="888.906" y2="700.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="922.5,809.219 978.75,809.219 978.75,798.281 922.5,798.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="922.5" y1="807.656" x2="922.5" y2="799.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="978.75" y1="807.656" x2="978.75" y2="799.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
 <rect x="444.375" y="806.875" width="93.75" height="125" rx="4.6875" fill="#ffffff" stroke="#98a2ab" stroke-width="1.4"/>
 <polygon points="449.063,831.875 488.906,831.875 488.906,811.563 449.063,811.563" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
 <polygon points="493.594,831.875 533.438,831.875 533.438,811.563 493.594,811.563" fill="none" stroke="#98a2ab" stroke-width="0.6" stroke-linejoin="miter"/>
@@ -368,17 +482,23 @@
 <text x="1550" y="1378" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">gallery at the cut face), and the only site work in phase 2 or 3 is infill</text>
 <text x="1550" y="1392" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">between existing posts. Second, the ARTERY: one wall at x=35 running y2 to</text>
 <text x="1550" y="1406" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">y24, 22 ft, inboard on both faces in every phase, so the two temporary</text>
-<text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 4</text>
-<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each one first caught by a critic reading a drawing and since made automatic.</text>
-<text x="1000" y="1484" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 2" (MAIN @ffe 4) backs onto the downhill</text>
-<text x="1000" y="1497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1513" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO DAYLIGHT — the kitchen (MAIN @ffe 4) touches no exterior</text>
-<text x="1000" y="1526" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">wall.</text>
-<text x="1000" y="1542" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once</text>
-<text x="1000" y="1555" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
-<text x="1000" y="1571" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on MAIN @ffe 4 sum to 100.0% of the</text>
-<text x="1000" y="1584" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floor plate, so every dimension shown is an ideal clear dimension</text>
-<text x="1000" y="1597" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 6</text>
+<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT</text>
+<text x="1000" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the scheme, each first caught by a critic reading a drawing and</text>
+<text x="1000" y="1482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">since made automatic.</text>
+<text x="1000" y="1496" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 2" (MAIN @ffe 4) backs onto the downhill</text>
+<text x="1000" y="1509" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1525" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO DAYLIGHT — the kitchen (MAIN @ffe 4) touches no exterior</text>
+<text x="1000" y="1538" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">wall.</text>
+<text x="1000" y="1554" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once</text>
+<text x="1000" y="1567" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
+<text x="1000" y="1583" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on MAIN @ffe 4 sum to 100.0% of the</text>
+<text x="1000" y="1596" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floor plate, so every dimension shown is an ideal clear dimension</text>
+<text x="1000" y="1609" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· THROUGH A PRIVATE ROOM — ANTE 4 (MAIN @ffe 4) can only be</text>
+<text x="1000" y="1638" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">reached by walking through the bathroom "BATH 1"</text>
+<text x="1000" y="1654" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· THROUGH A PRIVATE ROOM — DINING (MAIN @ffe 4) can only be</text>
+<text x="1000" y="1667" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">reached by walking through the bedroom "BED 1 PRIMARY"</text>
 <rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
 <text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
 <text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>

@@ -68,6 +68,39 @@
 <rect x="686.55" y="480.375" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="716.25" y="494.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">STAIR</text>
 <text x="716.25" y="512.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">90 SF</text>
+<polygon points="631.875,584.219 744.375,584.219 744.375,573.281 631.875,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="631.875" y1="582.656" x2="631.875" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="744.375" y1="582.656" x2="744.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="631.875,715.469 744.375,715.469 744.375,704.531 631.875,704.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="631.875" y1="713.906" x2="631.875" y2="706.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="744.375" y1="713.906" x2="744.375" y2="706.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="617.031,672.5 627.969,672.5 627.969,616.25 617.031,616.25" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="672.5" x2="626.406" y2="672.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="616.25" x2="626.406" y2="616.25" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="617.031,541.25 627.969,541.25 627.969,485 617.031,485" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="618.594" y1="541.25" x2="626.406" y2="541.25" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="618.594" y1="485" x2="626.406" y2="485" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="618.594,513.125 618.594,456.875 626.406,456.875 626.406,513.125" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="622.5" y1="513.125" x2="566.25" y2="513.125" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 566.25 513.125 A 56.25 56.25 0 0 1 622.5 456.875" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="579.531,888.125 590.469,888.125 590.469,775.625 579.531,775.625" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="581.094" y1="888.125" x2="588.906" y2="888.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="581.094" y1="775.625" x2="588.906" y2="775.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="369.375,584.219 425.625,584.219 425.625,573.281 369.375,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="369.375" y1="582.656" x2="369.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="425.625" y1="582.656" x2="425.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="397.5,574.844 453.75,574.844 453.75,582.656 397.5,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="397.5" y1="578.75" x2="397.5" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 397.5 522.5 A 56.25 56.25 0 0 1 453.75 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="453.75,584.219 510,584.219 510,573.281 453.75,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="453.75" y1="582.656" x2="453.75" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="510" y1="582.656" x2="510" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="481.875,574.844 538.125,574.844 538.125,582.656 481.875,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="481.875" y1="578.75" x2="481.875" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 481.875 522.5 A 56.25 56.25 0 0 1 538.125 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="369.375,715.469 481.875,715.469 481.875,704.531 369.375,704.531" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="369.375" y1="713.906" x2="369.375" y2="706.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="481.875" y1="713.906" x2="481.875" y2="706.094" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="638.906" y1="572.5" x2="638.906" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="655.313" y1="572.5" x2="655.313" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="671.719" y1="572.5" x2="671.719" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -213,6 +246,33 @@
 <rect x="1286.55" y="480.375" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="1316.25" y="494.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">STAIR</text>
 <text x="1316.25" y="512.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">90 SF</text>
+<polygon points="997.5,659.219 1053.75,659.219 1053.75,648.281 997.5,648.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="997.5" y1="657.656" x2="997.5" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1053.75" y1="657.656" x2="1053.75" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1025.625,649.844 1081.875,649.844 1081.875,657.656 1025.625,657.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1025.625" y1="653.75" x2="1025.625" y2="597.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1025.625 597.5 A 56.25 56.25 0 0 1 1081.875 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1241.25,659.219 1297.5,659.219 1297.5,648.281 1241.25,648.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1241.25" y1="657.656" x2="1241.25" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1297.5" y1="657.656" x2="1297.5" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1269.375,649.844 1325.625,649.844 1325.625,657.656 1269.375,657.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1269.375" y1="653.75" x2="1269.375" y2="597.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1269.375 597.5 A 56.25 56.25 0 0 1 1325.625 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="969.375,584.219 1025.625,584.219 1025.625,573.281 969.375,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="969.375" y1="582.656" x2="969.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1025.625" y1="582.656" x2="1025.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="997.5,574.844 1053.75,574.844 1053.75,582.656 997.5,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="997.5" y1="578.75" x2="997.5" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 997.5 522.5 A 56.25 56.25 0 0 1 1053.75 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1072.5,584.219 1128.75,584.219 1128.75,573.281 1072.5,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1072.5" y1="582.656" x2="1072.5" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1128.75" y1="582.656" x2="1128.75" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1100.625,574.844 1156.875,574.844 1156.875,582.656 1100.625,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1100.625" y1="578.75" x2="1100.625" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1100.625 522.5 A 56.25 56.25 0 0 1 1156.875 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1231.875,584.219 1344.375,584.219 1344.375,573.281 1231.875,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1231.875" y1="582.656" x2="1231.875" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1344.375" y1="582.656" x2="1344.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1238.906" y1="572.5" x2="1238.906" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1255.313" y1="572.5" x2="1255.313" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1271.719" y1="572.5" x2="1271.719" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -335,6 +395,33 @@
 <rect x="1886.55" y="480.375" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="1916.25" y="494.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">STAIR</text>
 <text x="1916.25" y="512.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">90 SF</text>
+<polygon points="1597.5,659.219 1653.75,659.219 1653.75,648.281 1597.5,648.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1597.5" y1="657.656" x2="1597.5" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1653.75" y1="657.656" x2="1653.75" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1625.625,649.844 1681.875,649.844 1681.875,657.656 1625.625,657.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1625.625" y1="653.75" x2="1625.625" y2="597.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1625.625 597.5 A 56.25 56.25 0 0 1 1681.875 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1860,659.219 1916.25,659.219 1916.25,648.281 1860,648.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1860" y1="657.656" x2="1860" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1916.25" y1="657.656" x2="1916.25" y2="649.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1888.125,649.844 1944.375,649.844 1944.375,657.656 1888.125,657.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1888.125" y1="653.75" x2="1888.125" y2="597.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1888.125 597.5 A 56.25 56.25 0 0 1 1944.375 653.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1569.375,584.219 1625.625,584.219 1625.625,573.281 1569.375,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1569.375" y1="582.656" x2="1569.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1625.625" y1="582.656" x2="1625.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1597.5,574.844 1653.75,574.844 1653.75,582.656 1597.5,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1597.5" y1="578.75" x2="1597.5" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1597.5 522.5 A 56.25 56.25 0 0 1 1653.75 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1672.5,584.219 1728.75,584.219 1728.75,573.281 1672.5,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1672.5" y1="582.656" x2="1672.5" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1728.75" y1="582.656" x2="1728.75" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1700.625,574.844 1756.875,574.844 1756.875,582.656 1700.625,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1700.625" y1="578.75" x2="1700.625" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1700.625 522.5 A 56.25 56.25 0 0 1 1756.875 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1831.875,584.219 1944.375,584.219 1944.375,573.281 1831.875,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1831.875" y1="582.656" x2="1831.875" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1944.375" y1="582.656" x2="1944.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1838.906" y1="572.5" x2="1838.906" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1855.313" y1="572.5" x2="1855.313" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1871.719" y1="572.5" x2="1871.719" y2="416.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -452,67 +539,70 @@
 <text x="1550" y="1392" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">undercroft to the roof, so 26 lf of wet wall serves 1.5 baths, a laundry</text>
 <text x="1550" y="1406" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and a kitchen with no branch longer than 9 ft. The stair takes the</text>
 <text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 11</text>
-<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each one first caught by a critic reading a drawing and since made automatic.</text>
-<text x="1000" y="1484" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "KITCHEN" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
-<text x="1000" y="1497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">west exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1513" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "MECH / WATER ENTRY" (ARRIVAL / LIVING @ffe 6)</text>
-<text x="1000" y="1526" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">backs onto the uphill and west exterior wall. No plumbing may run</text>
-<text x="1000" y="1539" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">there at this elevation.</text>
-<text x="1000" y="1555" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "POWDER" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
-<text x="1000" y="1568" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">uphill exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1584" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "LAUNDRY" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
-<text x="1000" y="1597" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">uphill exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1613" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once</text>
-<text x="1000" y="1626" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
-<text x="1000" y="1642" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on ARRIVAL / LIVING @ffe 6 sum to</text>
-<text x="1000" y="1655" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">100.0% of the floor plate, so every dimension shown is an ideal</text>
-<text x="1000" y="1668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">clear dimension with nothing left for walls, risers or chases.</text>
-<text x="1000" y="1684" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH" (SLEEPING @ffe 16) backs onto the uphill</text>
-<text x="1000" y="1697" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1713" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on SLEEPING @ffe 16 sum to 100.0% of</text>
-<text x="1000" y="1726" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
-<text x="1000" y="1739" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
-<text x="1000" y="1755" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">+ 3 more</text>
+<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT</text>
+<text x="1000" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the scheme, each first caught by a critic reading a drawing and</text>
+<text x="1000" y="1482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">since made automatic.</text>
+<text x="1000" y="1496" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "KITCHEN" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
+<text x="1000" y="1509" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">west exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1525" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "MECH / WATER ENTRY" (ARRIVAL / LIVING @ffe 6)</text>
+<text x="1000" y="1538" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">backs onto the uphill and west exterior wall. No plumbing may run</text>
+<text x="1000" y="1551" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">there at this elevation.</text>
+<text x="1000" y="1567" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "POWDER" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
+<text x="1000" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">uphill exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1596" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "LAUNDRY" (ARRIVAL / LIVING @ffe 6) backs onto the</text>
+<text x="1000" y="1609" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">uphill exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 7 ft leaves under 42 in of working aisle once</text>
+<text x="1000" y="1638" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
+<text x="1000" y="1654" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on ARRIVAL / LIVING @ffe 6 sum to</text>
+<text x="1000" y="1667" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">100.0% of the floor plate, so every dimension shown is an ideal</text>
+<text x="1000" y="1680" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">clear dimension with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1696" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH" (SLEEPING @ffe 16) backs onto the uphill</text>
+<text x="1000" y="1709" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1725" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on SLEEPING @ffe 16 sum to 100.0% of</text>
+<text x="1000" y="1738" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
+<text x="1000" y="1751" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1767" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">+ 3 more</text>
 <text x="1550" y="1460" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CRITIC — LOSS</text>
-<text x="1550" y="1478" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A separate agent, fresh context, which did not draw this plan and cannot see the builder's note.</text>
-<text x="1550" y="1504" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! Every plumbed room is pinned to the uphill band y23-32, and y=32 IS the</text>
-<text x="1550" y="1518" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">exterior face. MECH/WATER ENTRY is a corner room with two exterior walls</text>
-<text x="1550" y="1532" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">and holds the most freeze-critical pipe in the building. The claimed 26 lf</text>
-<text x="1550" y="1546" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">of wet wall cannot be an interior line: the longest interior run is 24 ft;</text>
-<text x="1550" y="1560" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">the only 26 ft dimension in the plate is the exterior side wall. Either</text>
-<text x="1550" y="1574" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">the metric is wrong or the wet wall is an exterior wall - a direct</text>
-<text x="1550" y="1588" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">violation of the stated freeze rule at 3,400 ft.</text>
-<text x="1550" y="1606" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! One stair is the only vertical route and the only way out of a sleeping</text>
-<text x="1550" y="1620" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">room 20 ft above the only exterior door. The house is lifted on a plinth</text>
-<text x="1550" y="1634" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">on a 30% slope, so the loft's downhill sill is roughly 30-40 ft above</text>
-<text x="1550" y="1648" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">downhill grade - beyond ground-ladder rescue, on a road a volunteer</text>
-<text x="1550" y="1662" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">department reaches slowly in winter. A fire on ffe 6, which holds the</text>
-<text x="1550" y="1676" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">kitchen, laundry and mechanical room, cuts off both bedroom floors at</text>
-<text x="1550" y="1690" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">once.</text>
-<text x="1550" y="1708" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! One shutter closes the entire downhill face, which is the only glazing</text>
-<text x="1550" y="1722" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">serving DINING, LIVING, BED 1, BED 2, LOFT and WORK. Closed, it blacks out</text>
-<text x="1550" y="1736" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">every habitable room and covers the emergency escape opening of all three</text>
-<text x="1550" y="1750" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">sleeping rooms simultaneously. The operating gear sits on the third floor</text>
-<text x="1550" y="1764" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">behind the only stair. Nothing is drawn for interior manual release,</text>
-<text x="1550" y="1778" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">per-floor override or fail-open - and at 3,400 ft it will ice up in</text>
-<text x="1550" y="1792" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">whatever position it was last left.</text>
-<text x="1550" y="1810" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">! Three sleeping rooms, a family, and one full bath, plus a powder two</text>
-<text x="1550" y="1824" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floors below it. Loft occupants descend a 10 ft flight at night to reach a</text>
-<text x="1550" y="1838" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">toilet. The plan already has a perfectly aligned 10x9 wet stack -</text>
-<text x="1550" y="1852" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">POWDER+LAUNDRY at ffe 6, BATH at ffe 16 - and at ffe 26 squanders it on</text>
-<text x="1550" y="1866" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">shutter storage. The riser is already there and the plan declines to use</text>
-<text x="1550" y="1880" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">it.</text>
-<text x="1550" y="1898" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">! There is no level on which a person who cannot climb stairs could live.</text>
-<text x="1550" y="1912" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A doctor with a broken ankle from this very slope, an ageing parent, a</text>
-<text x="1550" y="1926" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">post-op recovery, a newborn: all locked out. The only bay stacking clear</text>
-<text x="1550" y="1940" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">on all three floors that could take a future lift is 4 ft wide - short of</text>
-<text x="1550" y="1954" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">a residential shaft - and occupied at the bottom by the water entry.</text>
-<text x="1550" y="1978" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">BIGGEST GAP — One stair, one exterior door, and a sleeping room at ffe 26</text>
-<text x="1550" y="1992" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">twenty feet above that door and 30-40 ft above downhill grade with no</text>
-<text x="1550" y="2006" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">second way out - compounded by a shutter that can cover the only escape</text>
-<text x="1550" y="2020" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">openings on all three floors at once. Until there is a second means of</text>
-<text x="1550" y="2034" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">egress and the shutter is made fail-open and EERO-clear, nothing else</text>
-<text x="1550" y="2048" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">about this plan is worth optimising.</text>
+<text x="1550" y="1478" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A separate agent, fresh context, which did not draw this plan and</text>
+<text x="1550" y="1490" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">cannot see the builder's note.</text>
+<text x="1550" y="1516" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! Every plumbed room is pinned to the uphill band y23-32, and y=32 IS the</text>
+<text x="1550" y="1530" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">exterior face. MECH/WATER ENTRY is a corner room with two exterior walls</text>
+<text x="1550" y="1544" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">and holds the most freeze-critical pipe in the building. The claimed 26 lf</text>
+<text x="1550" y="1558" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">of wet wall cannot be an interior line: the longest interior run is 24 ft;</text>
+<text x="1550" y="1572" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">the only 26 ft dimension in the plate is the exterior side wall. Either</text>
+<text x="1550" y="1586" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">the metric is wrong or the wet wall is an exterior wall - a direct</text>
+<text x="1550" y="1600" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">violation of the stated freeze rule at 3,400 ft.</text>
+<text x="1550" y="1618" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! One stair is the only vertical route and the only way out of a sleeping</text>
+<text x="1550" y="1632" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">room 20 ft above the only exterior door. The house is lifted on a plinth</text>
+<text x="1550" y="1646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">on a 30% slope, so the loft's downhill sill is roughly 30-40 ft above</text>
+<text x="1550" y="1660" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">downhill grade - beyond ground-ladder rescue, on a road a volunteer</text>
+<text x="1550" y="1674" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">department reaches slowly in winter. A fire on ffe 6, which holds the</text>
+<text x="1550" y="1688" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">kitchen, laundry and mechanical room, cuts off both bedroom floors at</text>
+<text x="1550" y="1702" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">once.</text>
+<text x="1550" y="1720" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">!! One shutter closes the entire downhill face, which is the only glazing</text>
+<text x="1550" y="1734" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">serving DINING, LIVING, BED 1, BED 2, LOFT and WORK. Closed, it blacks out</text>
+<text x="1550" y="1748" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">every habitable room and covers the emergency escape opening of all three</text>
+<text x="1550" y="1762" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">sleeping rooms simultaneously. The operating gear sits on the third floor</text>
+<text x="1550" y="1776" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">behind the only stair. Nothing is drawn for interior manual release,</text>
+<text x="1550" y="1790" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">per-floor override or fail-open - and at 3,400 ft it will ice up in</text>
+<text x="1550" y="1804" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">whatever position it was last left.</text>
+<text x="1550" y="1822" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">! Three sleeping rooms, a family, and one full bath, plus a powder two</text>
+<text x="1550" y="1836" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">floors below it. Loft occupants descend a 10 ft flight at night to reach a</text>
+<text x="1550" y="1850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">toilet. The plan already has a perfectly aligned 10x9 wet stack -</text>
+<text x="1550" y="1864" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">POWDER+LAUNDRY at ffe 6, BATH at ffe 16 - and at ffe 26 squanders it on</text>
+<text x="1550" y="1878" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">shutter storage. The riser is already there and the plan declines to use</text>
+<text x="1550" y="1892" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">it.</text>
+<text x="1550" y="1910" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">! There is no level on which a person who cannot climb stairs could live.</text>
+<text x="1550" y="1924" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A doctor with a broken ankle from this very slope, an ageing parent, a</text>
+<text x="1550" y="1938" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">post-op recovery, a newborn: all locked out. The only bay stacking clear</text>
+<text x="1550" y="1952" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">on all three floors that could take a future lift is 4 ft wide - short of</text>
+<text x="1550" y="1966" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">a residential shaft - and occupied at the bottom by the water entry.</text>
+<text x="1550" y="1990" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">BIGGEST GAP — One stair, one exterior door, and a sleeping room at ffe 26</text>
+<text x="1550" y="2004" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">twenty feet above that door and 30-40 ft above downhill grade with no</text>
+<text x="1550" y="2018" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">second way out - compounded by a shutter that can cover the only escape</text>
+<text x="1550" y="2032" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">openings on all three floors at once. Until there is a second means of</text>
+<text x="1550" y="2046" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">egress and the shutter is made fail-open and EERO-clear, nothing else</text>
+<text x="1550" y="2060" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">about this plan is worth optimising.</text>
 <rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
 <text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
 <text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>

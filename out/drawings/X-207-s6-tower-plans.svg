@@ -51,6 +51,27 @@
 <rect x="569.71" y="752.25" width="68.08" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="603.75" y="766.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">LIVING</text>
 <text x="603.75" y="784.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">100 SF</text>
+<polygon points="594.375,677.969 650.625,677.969 650.625,667.031 594.375,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="594.375" y1="676.406" x2="594.375" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="650.625" y1="676.406" x2="650.625" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="542.031,625.625 552.969,625.625 552.969,569.375 542.031,569.375" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="543.594" y1="625.625" x2="551.406" y2="625.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="543.594" y1="569.375" x2="551.406" y2="569.375" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="467.031,653.75 477.969,653.75 477.969,597.5 467.031,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="468.594" y1="653.75" x2="476.406" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="468.594" y1="597.5" x2="476.406" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="468.594,625.625 468.594,569.375 476.406,569.375 476.406,625.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="472.5" y1="625.625" x2="416.25" y2="625.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 416.25 625.625 A 56.25 56.25 0 0 1 472.5 569.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="504.531,850.625 515.469,850.625 515.469,738.125 504.531,738.125" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="506.094" y1="850.625" x2="513.906" y2="850.625" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="506.094" y1="738.125" x2="513.906" y2="738.125" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="388.125,584.219 444.375,584.219 444.375,573.281 388.125,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="388.125" y1="582.656" x2="388.125" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="444.375" y1="582.656" x2="444.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="416.25,574.844 472.5,574.844 472.5,582.656 416.25,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="416.25" y1="578.75" x2="416.25" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 416.25 522.5 A 56.25 56.25 0 0 1 472.5 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <line x1="553.75" y1="656.094" x2="691.25" y2="656.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="553.75" y1="639.688" x2="691.25" y2="639.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="553.75" y1="623.281" x2="691.25" y2="623.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -169,6 +190,39 @@
 <rect x="1061.55" y="752.25" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="1091.25" y="766.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 2</text>
 <text x="1091.25" y="784.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">100 SF</text>
+<polygon points="1029.531,653.75 1040.469,653.75 1040.469,597.5 1029.531,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1031.094" y1="653.75" x2="1038.906" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1031.094" y1="597.5" x2="1038.906" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="954.531,653.75 965.469,653.75 965.469,597.5 954.531,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="956.094" y1="653.75" x2="963.906" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="956.094" y1="597.5" x2="963.906" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="956.094,625.625 956.094,569.375 963.906,569.375 963.906,625.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="960" y1="625.625" x2="903.75" y2="625.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 903.75 625.625 A 56.25 56.25 0 0 1 960 569.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="969.375,584.219 1025.625,584.219 1025.625,573.281 969.375,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="969.375" y1="582.656" x2="969.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1025.625" y1="582.656" x2="1025.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="997.5,574.844 1053.75,574.844 1053.75,582.656 997.5,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="997.5" y1="578.75" x2="997.5" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 997.5 522.5 A 56.25 56.25 0 0 1 1053.75 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1081.875,677.969 1138.125,677.969 1138.125,667.031 1081.875,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1081.875" y1="676.406" x2="1081.875" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1138.125" y1="676.406" x2="1138.125" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1110,668.594 1166.25,668.594 1166.25,676.406 1110,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1110" y1="672.5" x2="1110" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1110 616.25 A 56.25 56.25 0 0 1 1166.25 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="875.625,677.969 931.875,677.969 931.875,667.031 875.625,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="875.625" y1="676.406" x2="875.625" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="931.875" y1="676.406" x2="931.875" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="903.75,668.594 960,668.594 960,676.406 903.75,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="903.75" y1="672.5" x2="903.75" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 903.75 616.25 A 56.25 56.25 0 0 1 960 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="875.625,584.219 931.875,584.219 931.875,573.281 875.625,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="875.625" y1="582.656" x2="875.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="931.875" y1="582.656" x2="931.875" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="903.75,574.844 960,574.844 960,582.656 903.75,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="903.75" y1="578.75" x2="903.75" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 903.75 522.5 A 56.25 56.25 0 0 1 960 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <line x1="1041.25" y1="656.094" x2="1178.75" y2="656.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1041.25" y1="639.688" x2="1178.75" y2="639.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1041.25" y1="623.281" x2="1178.75" y2="623.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -267,6 +321,33 @@
 <rect x="1549.05" y="752.25" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="1578.75" y="766.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 3</text>
 <text x="1578.75" y="784.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">100 SF</text>
+<polygon points="1517.031,653.75 1527.969,653.75 1527.969,597.5 1517.031,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1518.594" y1="653.75" x2="1526.406" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1518.594" y1="597.5" x2="1526.406" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1442.031,653.75 1452.969,653.75 1452.969,597.5 1442.031,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1443.594" y1="653.75" x2="1451.406" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1443.594" y1="597.5" x2="1451.406" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1443.594,625.625 1443.594,569.375 1451.406,569.375 1451.406,625.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1447.5" y1="625.625" x2="1391.25" y2="625.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1391.25 625.625 A 56.25 56.25 0 0 1 1447.5 569.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1456.875,584.219 1513.125,584.219 1513.125,573.281 1456.875,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1456.875" y1="582.656" x2="1456.875" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1513.125" y1="582.656" x2="1513.125" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1485,574.844 1541.25,574.844 1541.25,582.656 1485,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1485" y1="578.75" x2="1485" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1485 522.5 A 56.25 56.25 0 0 1 1541.25 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1569.375,677.969 1625.625,677.969 1625.625,667.031 1569.375,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1569.375" y1="676.406" x2="1569.375" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1625.625" y1="676.406" x2="1625.625" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1597.5,668.594 1653.75,668.594 1653.75,676.406 1597.5,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1597.5" y1="672.5" x2="1597.5" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1597.5 616.25 A 56.25 56.25 0 0 1 1653.75 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1363.125,677.969 1419.375,677.969 1419.375,667.031 1363.125,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1363.125" y1="676.406" x2="1363.125" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1419.375" y1="676.406" x2="1419.375" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1391.25,668.594 1447.5,668.594 1447.5,676.406 1391.25,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1391.25" y1="672.5" x2="1391.25" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1391.25 616.25 A 56.25 56.25 0 0 1 1447.5 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <line x1="1528.75" y1="656.094" x2="1666.25" y2="656.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1528.75" y1="639.688" x2="1666.25" y2="639.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="1528.75" y1="623.281" x2="1666.25" y2="623.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -367,6 +448,33 @@
 <rect x="2036.55" y="752.25" width="59.4" height="29.4" fill="#ffffff" opacity="0.82"/>
 <text x="2066.25" y="766.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="1.2">BED 1</text>
 <text x="2066.25" y="784.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">100 SF</text>
+<polygon points="2004.531,653.75 2015.469,653.75 2015.469,597.5 2004.531,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2006.094" y1="653.75" x2="2013.906" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2006.094" y1="597.5" x2="2013.906" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1929.531,653.75 1940.469,653.75 1940.469,597.5 1929.531,597.5" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1931.094" y1="653.75" x2="1938.906" y2="653.75" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1931.094" y1="597.5" x2="1938.906" y2="597.5" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1931.094,625.625 1931.094,569.375 1938.906,569.375 1938.906,625.625" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1935" y1="625.625" x2="1878.75" y2="625.625" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1878.75 625.625 A 56.25 56.25 0 0 1 1935 569.375" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1944.375,584.219 2000.625,584.219 2000.625,573.281 1944.375,573.281" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1944.375" y1="582.656" x2="1944.375" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2000.625" y1="582.656" x2="2000.625" y2="574.844" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1972.5,574.844 2028.75,574.844 2028.75,582.656 1972.5,582.656" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1972.5" y1="578.75" x2="1972.5" y2="522.5" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1972.5 522.5 A 56.25 56.25 0 0 1 2028.75 578.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="2056.875,677.969 2113.125,677.969 2113.125,667.031 2056.875,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="2056.875" y1="676.406" x2="2056.875" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="2113.125" y1="676.406" x2="2113.125" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="2085,668.594 2141.25,668.594 2141.25,676.406 2085,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="2085" y1="672.5" x2="2085" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 2085 616.25 A 56.25 56.25 0 0 1 2141.25 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
+<polygon points="1850.625,677.969 1906.875,677.969 1906.875,667.031 1850.625,667.031" fill="#ffffff" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<line x1="1850.625" y1="676.406" x2="1850.625" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1906.875" y1="676.406" x2="1906.875" y2="668.594" stroke="#111418" stroke-width="0.6" stroke-linecap="butt"/>
+<polygon points="1878.75,668.594 1935,668.594 1935,676.406 1878.75,676.406" fill="#ffffff" stroke="#111418" stroke-width="1" stroke-linejoin="miter"/>
+<line x1="1878.75" y1="672.5" x2="1878.75" y2="616.25" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M 1878.75 616.25 A 56.25 56.25 0 0 1 1935 672.5" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="6 5"/>
 <line x1="2016.25" y1="656.094" x2="2153.75" y2="656.094" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="2016.25" y1="639.688" x2="2153.75" y2="639.688" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
 <line x1="2016.25" y1="623.281" x2="2153.75" y2="623.281" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
@@ -471,30 +579,32 @@
 <text x="1550" y="1378" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">ft or more. Two habitable rooms is the deck level's hard ceiling. I</text>
 <text x="1550" y="1392" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">therefore deleted the dining room (merged into a 10x10 living/dining</text>
 <text x="1550" y="1406" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">opening to the 18x14 deck) and deleted the interior mudroom (its work goes</text>
-<text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 11</text>
-<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each one first caught by a critic reading a drawing and since made automatic.</text>
-<text x="1000" y="1484" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 1" (DECK LEVEL @ffe 2) backs onto the west</text>
-<text x="1000" y="1497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1513" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "MECH" (DECK LEVEL @ffe 2) backs onto the uphill</text>
-<text x="1000" y="1526" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and west exterior wall. No plumbing may run there at this</text>
-<text x="1000" y="1539" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
-<text x="1000" y="1555" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "KITCHEN" (DECK LEVEL @ffe 2) backs onto the</text>
-<text x="1000" y="1568" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">downhill and west exterior wall. No plumbing may run there at this</text>
-<text x="1000" y="1581" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
-<text x="1000" y="1597" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 8 ft leaves under 42 in of working aisle once</text>
-<text x="1000" y="1610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
-<text x="1000" y="1626" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on DECK LEVEL @ffe 2 sum to 100.0% of</text>
-<text x="1000" y="1639" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
-<text x="1000" y="1652" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
-<text x="1000" y="1668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "LAUNDRY" (LEVEL 2 @ffe 12) backs onto the west</text>
-<text x="1000" y="1681" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
-<text x="1000" y="1697" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on LEVEL 2 @ffe 12 sum to 100.0% of</text>
-<text x="1000" y="1710" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
-<text x="1000" y="1723" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
-<text x="1000" y="1739" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 2" (LEVEL 3 @ffe 22) backs onto the uphill</text>
-<text x="1000" y="1752" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and west exterior wall. No plumbing may run there at this</text>
-<text x="1000" y="1765" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
-<text x="1000" y="1781" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">+ 3 more</text>
+<text x="1000" y="1440" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.3">THE CHECKER FLAGGED 13</text>
+<text x="1000" y="1458" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Not geometry faults — the plan is legal. These are findings ABOUT</text>
+<text x="1000" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the scheme, each first caught by a critic reading a drawing and</text>
+<text x="1000" y="1482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">since made automatic.</text>
+<text x="1000" y="1496" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 1" (DECK LEVEL @ffe 2) backs onto the west</text>
+<text x="1000" y="1509" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1525" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "MECH" (DECK LEVEL @ffe 2) backs onto the uphill</text>
+<text x="1000" y="1538" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and west exterior wall. No plumbing may run there at this</text>
+<text x="1000" y="1551" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
+<text x="1000" y="1567" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "KITCHEN" (DECK LEVEL @ffe 2) backs onto the</text>
+<text x="1000" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">downhill and west exterior wall. No plumbing may run there at this</text>
+<text x="1000" y="1593" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
+<text x="1000" y="1609" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· KITCHEN DEPTH — 8 ft leaves under 42 in of working aisle once</text>
+<text x="1000" y="1622" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">cabinets land on both faces.</text>
+<text x="1000" y="1638" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on DECK LEVEL @ffe 2 sum to 100.0% of</text>
+<text x="1000" y="1651" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
+<text x="1000" y="1664" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1680" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "LAUNDRY" (LEVEL 2 @ffe 12) backs onto the west</text>
+<text x="1000" y="1693" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">exterior wall. No plumbing may run there at this elevation.</text>
+<text x="1000" y="1709" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· NO WALL THICKNESS — rooms on LEVEL 2 @ffe 12 sum to 100.0% of</text>
+<text x="1000" y="1722" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">the floor plate, so every dimension shown is an ideal clear</text>
+<text x="1000" y="1735" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">dimension with nothing left for walls, risers or chases.</text>
+<text x="1000" y="1751" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">· FREEZE RULE — "BATH 2" (LEVEL 3 @ffe 22) backs onto the uphill</text>
+<text x="1000" y="1764" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">and west exterior wall. No plumbing may run there at this</text>
+<text x="1000" y="1777" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">elevation.</text>
+<text x="1000" y="1793" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">+ 5 more</text>
 <rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
 <text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
 <text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>
