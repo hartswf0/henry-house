@@ -155,7 +155,7 @@ for (const [name, v] of Object.entries(VIEWS)) {
 
 // ── layer toggles ───────────────────────────────────────────────────────────
 const groups = scene.children.filter(c => c.type === 'Group' && c.name !== 'SYSTEMS');
-const NAMES = ['House + interior', 'Frames', 'Drive + court', 'Vegetation', 'Distant ridges'];
+const NAMES = ['House shell', 'Interior + furniture', 'Window frames', 'Drive + motor court', 'Vegetation', 'Distant ridges'];
 const layersEl = document.getElementById('layers');
 groups.forEach((g, i) => {
   const b = document.createElement('button');
