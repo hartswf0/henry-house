@@ -16,6 +16,7 @@ import { SCHEMES, schemeById, metrics, roofBase } from '../../../model/schemes.m
 import { SITE_SLOPE } from '../../../model/geometry.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
+import { buildScheme } from './build3d.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -98,56 +99,28 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
   const s = schemeById(schemeId) ?? SCHEMES[0];
   const mats = {
     solid: MAT.sidingMaterial(),
-    roof: MAT.roofMaterial(),
+    // Explicit dark standing seam. The shared roofMaterial reads warm and pale
+    // at this sun angle and was being mistaken for the timber structure under it.
+    roof: MAT.simple(0x2b3138, 0.42, 0.55),
     conc: MAT.concreteMaterial(),
     glass: MAT.glassMaterial({ opacity: 0.2 }),
     deck: MAT.floorMaterial(),
+    steel: MAT.simple(0x3a4148, 0.55, 0.35),
+    timber: MAT.simple(0x9c7f5c, 0.86, 0),
   };
 
   const scene = new THREE.Scene();
   const groundFn = schemeGround(s);
   scene.add(terrain(groundFn, realtime));
 
-  const g = new THREE.Group();
-  const STOREY = 120;
-
-  for (const v of s.volumes) {
-    const ffeIn = ft(v.ffe);
-    v.ffeIn = ffeIn;
-    const top = ffeIn + STOREY * (v.storeys ?? 1);
-    if (v.kind === 'cond') {
-      g.add(boxAt(v.x0, v.x1, v.y0, v.y1, ffeIn, top, mats.solid));
-      // the downhill face is the glass face on every scheme
-      g.add(boxAt(v.x0 + 14, v.x1 - 14, v.y0 - 2, v.y0 + 3, ffeIn + 30, ffeIn + 96, mats.glass, false));
-      if (v.core) g.add(boxAt(v.x0 - 3, v.x1 + 3, v.y0 - 3, v.y1 + 3, ffeIn - 36, top + 26, mats.conc));
-    } else if (v.kind === 'future') {
-      // roofed, floored, framed — but open. This is the territory that becomes
-      // rooms later without touching the roof.
-      g.add(boxAt(v.x0, v.x1, v.y0, v.y1, ffeIn - 12, ffeIn, mats.deck, false));
-      g.add(frame(v, ffeIn + STOREY, mats.solid));
-    } else {
-      g.add(boxAt(v.x0, v.x1, v.y0, v.y1, ffeIn - 10, ffeIn, mats.deck, false));
-      if (v.dFt > 8 && v.wFt > 8) g.add(frame(v, ffeIn + STOREY, mats.solid));
-    }
-  }
-
-  for (const r of s.roofs) g.add(shed(r, mats.roof, roofBase(s, r)));
-
-  // ground contact, drawn honestly: piers are thin, benches are a wall
-  if (s.ground.kind === 'piers') {
-    for (const [px, py] of s.ground.pts) {
-      const zTop = ft(s.volumes.find(v => v.kind === 'cond')?.ffe ?? 4);
-      const zBot = natural(px, py) - 36;
-      const m = new THREE.Mesh(new THREE.CylinderGeometry(F(s.ground.diaFt * 6), F(s.ground.diaFt * 6), F(zTop - zBot), 12), mats.conc);
-      m.position.set(F(px), F((zBot + zTop) / 2), -F(py));
-      m.castShadow = true; m.receiveShadow = true;
-      g.add(m);
-    }
-  } else {
-    const G = s.ground;
-    const zPad = natural((G.x0 + G.x1) / 2, G.y0);
-    g.add(boxAt(G.x0, G.x1, G.y0, G.y1, zPad - 30, zPad, mats.conc, false));
-  }
+  // The building itself is built by build3d.mjs: framed openings, posts and
+  // beams, roofs with fascia and overhang, decks with guards, piers with caps
+  // and the beams they carry. Boxes answered "how much house"; this answers
+  // "is it a building".
+  const g = buildScheme(s, {
+    wall: mats.solid, roof: mats.roof, trim: mats.timber, glass: mats.glass,
+    conc: mats.conc, steel: mats.steel, deck: mats.deck,
+  }, groundFn);
 
   scene.add(g);
 
