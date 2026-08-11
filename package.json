@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "HENRY HOUSE — a coordinated design package for a steep-slope mountain house outside Boone, North Carolina. One parametric model; every drawing, diagram and render derives from it.",
+  "description": "HENRY HOUSE \u2014 a coordinated design package for a steep-slope mountain house outside Boone, North Carolina. One parametric model; every drawing, diagram and render derives from it.",
   "scripts": {
     "build": "node tools/build.mjs",
-    "draw": "node tools/build.mjs --drawings-only",
+    "raster": "node tools/render/raster.mjs",
     "render": "node tools/render/shoot.mjs",
+    "serve": "node tools/render/serve.mjs",
+    "vendor": "node tools/render/vendor-three.mjs",
     "check": "node tools/check/run-checks.mjs",
-    "test": "node tools/check/run-checks.mjs"
+    "check:model": "node tools/check/clash.mjs",
+    "check:pages": "node tools/render/walkcheck.mjs",
+    "test": "node tools/check/run-checks.mjs",
+    "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/check/run-checks.mjs"
   },
   "dependencies": {
     "playwright": "^1.49.0",

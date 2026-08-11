@@ -182,7 +182,8 @@ two vertical chases. Every run answers: where does it come from, where does it g
 </div>
 
 <h2>IT IS TESTED</h2>
-<pre>node tools/check/clash.mjs     →  22 passed, 8 warnings, 0 failed</pre>
+<pre>npm test   →  MODEL 24 passed, 8 warnings, 0 failed
+           →  PAGES walkthrough + render scene load clean</pre>
 <p style="color:var(--mid)">The checker interrogates the model rather than the drawing. On its first run it found
 <b>16 failures</b>, several structural: bedroom 3 was reachable only <em>through</em> bath 2; the mechanical room's
 only door opened into bath 3; bedroom 2's door sat inside the room rather than on a wall; the linen closet had no
