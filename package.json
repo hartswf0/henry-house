@@ -17,7 +17,8 @@
     "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/build-site.mjs && node tools/check/run-checks.mjs",
     "check:plan3d": "node tools/check/plan3d.mjs",
     "site": "node tools/build-site.mjs",
-    "check:envelope": "node tools/check/envelope.mjs"
+    "check:envelope": "node tools/check/envelope.mjs",
+    "shoot:one": "node tools/render/shoot-one.mjs"
   },
   "dependencies": {
     "playwright": "^1.49.0",

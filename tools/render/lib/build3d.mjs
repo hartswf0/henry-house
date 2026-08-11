@@ -99,7 +99,8 @@ const box = (x0, x1, y0, y1, z0, z1, mat, { cast = true, receive = true, part = 
  * no geometry at all. It is the alternative to a second system of gable
  * infill pieces, and a second system is the thing this rebuild removes.
  */
-function slab(x0, x1, y0, y1, z0, topY0, topY1, mat, { cast = true, receive = true, part = 'wall', level } = {}) {
+function slab(x0, x1, y0, y1, z0, topY0, topY1, mat,
+              { cast = true, receive = true, part = 'wall', level, outside, inner } = {}) {
   const zMax = Math.max(topY0, topY1);
   const geo = new THREE.BoxGeometry(F(x1 - x0), F(zMax - z0), F(y1 - y0));
   if (Math.abs(topY0 - topY1) > 0.01) {
@@ -114,7 +115,13 @@ function slab(x0, x1, y0, y1, z0, topY0, topY1, mat, { cast = true, receive = tr
     p.needsUpdate = true;
     geo.computeVertexNormals();
   }
-  const m = new THREE.Mesh(geo, mat);
+  // An exterior wall is siding on ONE face. Giving the whole box the siding
+  // material lined every room in the house with the outside of the building,
+  // which is what the interior view showed. BoxGeometry carries six material
+  // groups in the order +x, -x, +y, -y, +z, -z, and scene +z is model -y
+  // (downhill), so naming the outward face is enough to finish both sides.
+  const m = new THREE.Mesh(geo, outside === undefined ? mat
+    : [0, 1, 2, 3, 4, 5].map(i => (i === outside ? mat : inner)));
   m.position.set(F((x0 + x1) / 2), F((z0 + zMax) / 2), -F((y0 + y1) / 2));
   m.castShadow = cast; m.receiveShadow = receive;
   m.userData.part = part; if (level !== undefined) m.userData.level = level;
@@ -132,7 +139,8 @@ function slab(x0, x1, y0, y1, z0, topY0, topY1, mat, { cast = true, receive = tr
  * `top(x, y)` is the height the wall reaches at a point: the floor above where
  * there is one, the roof underside where there is not.
  */
-function run(g, { axis, fixed, thick, a0, a1, z0, top, gaps = [], mat, glassMat, part, level }) {
+function run(g, { axis, fixed, thick, a0, a1, z0, top, gaps = [], mat, glassMat, part, level,
+                  outside, inner }) {
   const topAt = (a) => (axis === 'X' ? top(a, fixed + thick / 2) : top(fixed + thick / 2, a));
   const emit = (b0, b1, c0, cTop, m, kind, cast = true) => {
     if (b1 - b0 < 0.5) return;
@@ -140,7 +148,7 @@ function run(g, { axis, fixed, thick, a0, a1, z0, top, gaps = [], mat, glassMat,
     const t0 = axis === 'X' ? cTop((b0 + b1) / 2) : cTop(b0);
     const t1 = axis === 'X' ? t0 : cTop(b1);
     if (Math.min(t0, t1) - c0 < 0.5) return;
-    const o = { cast, part: kind, level };
+    const o = { cast, part: kind, level, ...(kind === part ? { outside, inner } : {}) };
     if (axis === 'X') g.add(slab(b0, b1, fixed, fixed + thick, c0, t0, t1, m, o));
     else g.add(slab(fixed, fixed + thick, b0, b1, c0, t0, t1, m, o));
   };
@@ -322,20 +330,25 @@ function buildLevel(g, L, top, doors, wells, mats, isLowest) {
   } else {
     glassGaps.push({ a0: L.x0 + 24, a1: L.x1 - 24, kind: 'glass' });
   }
+  // Face 4 is scene +z, which is model -y: downhill. Face 5 is uphill, 1 is
+  // west, 0 is east. Each exterior run names the face that faces the weather.
   run(g, { axis: 'X', fixed: L.y0, thick: EXT, a0: ix0, a1: ix1, z0, top,
-           gaps: glassGaps, mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe });
+           gaps: glassGaps, mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe,
+           outside: 4, inner: trim });
 
   // Uphill face: the cold side, the cut side. One high strip, nothing more.
   run(g, { axis: 'X', fixed: L.y1 - EXT, thick: EXT, a0: ix0, a1: ix1, z0, top,
            gaps: [{ a0: L.x0 + (L.x1 - L.x0) * 0.55, a1: L.x0 + (L.x1 - L.x0) * 0.55 + 40, kind: 'glass' }],
-           mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe });
+           mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe,
+           outside: 5, inner: trim });
 
   // The two ends. Their tops climb with the roof — that is the shed section.
-  for (const fx of [L.x0, L.x1 - EXT]) {
+  for (const [fx, face] of [[L.x0, 1], [L.x1 - EXT, 0]]) {
     const endGaps = (L.y1 - L.y0) > 180
       ? [{ a0: L.y0 + 30, a1: L.y0 + 30 + 44, kind: 'glass' }] : [];
     run(g, { axis: 'Y', fixed: fx, thick: EXT, a0: L.y0, a1: L.y1, z0, top,
-             gaps: endGaps, mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe });
+             gaps: endGaps, mat: wallMat, glassMat: glass, part: 'wall', level: L.ffe,
+             outside: face, inner: trim });
   }
 
   // ── PARTITIONS ──────────────────────────────────────────────────────────

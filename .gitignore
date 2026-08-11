@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 *.log
+
+# working frames from tools/render/shoot-one.mjs — low sample counts, rendered
+# to answer "did that change do what I think", never the published set
+out/preview/
