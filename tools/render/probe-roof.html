@@ -1,0 +1,41 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { buildScene } from '/tools/render/lib/scene.mjs';
+import { sunDirection } from '/tools/render/lib/render.mjs';
+import { ROOFS, ROOF_ASSEMBLY } from '/model/geometry.mjs';
+const r = new THREE.WebGLRenderer(); r.setSize(8,8);
+const { scene, materials } = buildScene(r, { sun: sunDirection({dayOfYear:288,hour:14}), realtime:true });
+const F=(i)=>i/12;
+const name = (m)=>Object.keys(materials).find(k=>materials[k]===m) || m?.type || '?';
+// roof underside in three-space (y up), for the plane covering a given x,z
+function underAt(xft, zft){
+  const X = xft*12, Y = -zft*12;
+  let best = null;
+  for (const R of ROOFS){
+    if (X < R.x0 - R.overhang.west || X > R.x1 + R.overhang.east) continue;
+    if (Y < R.y0 - R.overhang.south || Y > R.y1 + R.overhang.north) continue;
+    const yy = Math.max(R.y0, Math.min(R.y1, Y));
+    const top = R.topAtY0 + (R.pitch/12)*(yy - R.y0);
+    best = best === null ? top : Math.max(best, top);
+  }
+  return best === null ? null : F(best - ROOF_ASSEMBLY);
+}
+const bad = [];
+const box = new THREE.Box3();
+scene.traverse(o=>{
+  if(!o.isMesh || o.isInstancedMesh) return;
+  if(o.material===materials.roof) return;
+  o.updateWorldMatrix(true,false);
+  box.setFromObject(o);
+  const cx=(box.min.x+box.max.x)/2, cz=(box.min.z+box.max.z)/2;
+  const u = underAt(cx,cz);
+  if(u===null) return;
+  if(box.max.y > u + 0.6){
+    bad.push(`${name(o.material).padEnd(11)} top ${box.max.y.toFixed(1)}ft  roof-under ${u.toFixed(1)}ft  over ${(box.max.y-u).toFixed(1)}ft  @ x${cx.toFixed(0)} z${cz.toFixed(0)}`);
+  }
+});
+window.__out = bad.length ? bad.slice(0,14).join('\n') : 'nothing pokes through the roof';
+window.__done = true;
+</script>
