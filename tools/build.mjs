@@ -150,6 +150,45 @@ function sheetA201() {
 }
 write('A-201-section-aa.svg', sheetA201());
 
+// ── A-202  SECTION B-B — LONGITUDINAL ───────────────────────────────────────
+import { drawSectionLong } from './draw/section.mjs';
+function sheetA202() {
+  const scaleName = '1/8"=1\'-0"';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: 'A-202', title: 'SECTIONS B—B + C—C',
+    subtitle: 'THE LONG SECTIONS · ONE COMPOSITION, FOUR VOLUMES, A ROOF THAT STEPS',
+    originX: 380, originY: 980,
+    notes: [
+      '1. TWO CUTS, ONE BUILDING. B—B runs through the LIVING ZONE — primary suite, gallery, great room, dining, kitchen, mudroom, breezeway, garage. C—C runs 13\'-4" further uphill through the SERVICE SPINE — baths, both stairs, the office, the entry, the laundry. Read together they are the whole plan turned on edge.',
+      '2. THE ROOF STEPS AT GRID E and the step is glazed. The tall wing carries the upper level; the low wing does not. Ceiling heights are labelled per room and computed from the roof planes, not assumed.',
+      '3. FOUR VOLUMES, ONE ARGUMENT. Bar, link, breezeway, garage. The breezeway is the only unconditioned link in the chain, and on the worst night of the year it is the piece you cross carrying a sleeping child. That trade — fire and CO separation against comfort — is stated in docs/05-what-is-wrong.md B.3 and it is not yet decided.',
+      '4. THE LOWER LEVEL WALKS OUT AT THE WEST END AND BECOMES A SEALED CRAWL AT THE EAST. Grade falls 8% along this cut; that fall, not a stylistic decision, is what sets where the walkout stops.',
+      '5. THE CRAWL IS CONDITIONED, NOT VENTED. A vented crawlspace in this climate is a moisture pump.',
+      '6. GRADE IS FROM model/site.mjs AT THIS STATION. Long dashes are ASSUMED natural grade. There is no survey.',
+      '7. CEILING CLEARANCES SHOWN ARE STRUCTURE TO STRUCTURE. Finishes, ducts within the ceiling zone and any dropped soffits are not deducted here — see the systems sheets for what has to fit.',
+      '8. NO DROPPED CEILINGS ARE MODELLED. That is why the spine rooms on C—C read 15\'-0" to the underside of the shed: the model has every room open to the roof plane above it. In a real set the wet rooms and the office take a flat ceiling with the duct and plumbing zone above, and the clear heights there drop accordingly. The section is telling the truth about the model, and the model is not yet telling the truth about the house.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  drawSectionLong(s, { cutY: 90, id: 'B' });
+  s.oy = 1900;
+  drawSectionLong(s, { cutY: 250, id: 'C' });
+  s.scaleBar(2180, 2200, { scaleName, feetTicks: [0, 8, 16, 32] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    'CUT AT Y = 7\'-6" — through the living zone.',
+    '',
+    'The transverse section says how the house',
+    'stands on the hill. This one says what the',
+    'house IS: a 122 ft chain of volumes that',
+    'steps down the slope with the ground.',
+  ] });
+  return s.toString();
+}
+write('A-202-sections-longitudinal.svg', sheetA202());
+
 // ── C-101  SITE, GRADING AND ACCESS ─────────────────────────────────────────
 import { drawSite, siteData, siteLegend, driveProfileStrip, typicalSection } from './draw/site.mjs';
 function sheetC101() {
