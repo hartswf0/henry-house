@@ -231,14 +231,21 @@ function buildInterior(g, scheme, mats) {
   for (const lv of plan.levels) {
     const z0 = ft(lv.ffe), z1 = z0 + STOREY - 14;
     const lvDoors = doors.filter(d => Math.abs(d.level - lv.ffe) < 0.6);
+    // The level's own outer edge. A partition drawn ON that edge sits in the
+    // same plane as the exterior wall the volume loop already built, and two
+    // coplanar faces is exactly the z-fighting that made the walls strobe.
+    const rs = lv.rooms ?? [];
+    const E = { x0: Math.min(...rs.map(r => ft(r.x0))), x1: Math.max(...rs.map(r => ft(r.x0 + r.w))),
+                y0: Math.min(...rs.map(r => ft(r.y0))), y1: Math.max(...rs.map(r => ft(r.y0 + r.d))) };
     for (const r of lv.rooms ?? []) {
       const x0 = ft(r.x0), x1 = ft(r.x0 + r.w), y0 = ft(r.y0), y1 = ft(r.y0 + r.d);
-      // west wall of this room, running in y
-      runWith('Y', x0, y0, y1, z0, z1,
+      // west wall of this room, running in y — skipped where it IS the gable
+      if (Math.abs(x0 - E.x0) > 2) runWith('Y', x0, y0, y1, z0, z1,
         lvDoors.filter(d => d.axis === 'Y' && Math.abs(ft(d.x) - x0) < 7)
           .map(d => ({ a0: ft(d.y - d.w / 2), a1: ft(d.y + d.w / 2) })), trim);
-      // uphill wall of this room, running in x
-      runWith('X', y1 - 5, x0, x1, z0, z1,
+      // uphill wall of this room, running in x — skipped where it IS the
+      // building's uphill face
+      if (Math.abs(y1 - E.y1) > 2) runWith('X', y1 - 5, x0, x1, z0, z1,
         lvDoors.filter(d => d.axis === 'X' && Math.abs(ft(d.y) - y1) < 7)
           .map(d => ({ a0: ft(d.x - d.w / 2), a1: ft(d.x + d.w / 2) })), trim);
     }

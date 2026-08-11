@@ -437,9 +437,9 @@
 <text x="300" y="1376" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">ROOF PLANES / JUNCTIONS</text>
 <text x="630" y="1376" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">1 / 0</text>
 <text x="300" y="1400" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">EARTH MOVED</text>
-<text x="630" y="1400" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">9 CY, deepest cut 6 ft</text>
+<text x="630" y="1400" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">110 CY, deepest cut 9.5 ft</text>
 <text x="300" y="1424" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">GROUND</text>
-<text x="630" y="1424" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">6 piers</text>
+<text x="630" y="1424" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">6 piers + 101 CY to clear the hill</text>
 <text x="300" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">PHASE 1 → MATURE</text>
 <text x="630" y="1448" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">1,200 → 1,680 sf</text>
 <text x="1000" y="1250" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.3">ROOM USE</text>

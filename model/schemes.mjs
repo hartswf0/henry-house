@@ -361,14 +361,51 @@ function wetWallLf(volumes) {
  * number the whole reference pack is pointing at, so it is integrated rather
  * than asserted: for a bench, sample natural grade against the platform.
  */
+/**
+ * The cut a scheme needs so its FLOOR CLEARS THE HILL.
+ *
+ * "Piers disturb nothing" is the whole argument of half these schemes, and on
+ * this site it is not true. A 22 ft deep body on a 30% cross-slope rises 6.6 ft
+ * from its downhill face to its uphill one, so a floor set near the downhill
+ * grade has its uphill end UNDERGROUND — which is exactly how the schemes were
+ * reading in the walkthrough: half houses, buried to the windowsill.
+ *
+ * Every scheme therefore pays for a clearance cut along its uphill side,
+ * counted here and cut in the terrain by the same rule, so the render and the
+ * number cannot disagree. Piers are still far cheaper than a bench; they are
+ * not free.
+ */
+export function clearanceCut(s) {
+  const cond = s.volumes.filter(v => v.kind !== 'shelt');
+  if (!cond.length) return { cutCY: 0, maxCutFt: 0, areaSf: 0 };
+  let cut = 0, maxCut = 0, area = 0;
+  for (const v of cond) {
+    const floor = ft(v.ffe) - 12;                    // 1 ft under the floor plate
+    for (let x = v.x0; x < v.x1; x += STEP) {
+      for (let y = v.y0; y < v.y1; y += STEP) {
+        const d = natural(x + STEP / 2, y + STEP / 2) - floor;
+        if (d <= 0) continue;                        // already clear
+        area += 1;
+        cut += (d / 12) / 27;
+        maxCut = Math.max(maxCut, d / 12);
+      }
+    }
+  }
+  return { cutCY: Math.round(cut), maxCutFt: +maxCut.toFixed(1), areaSf: area };
+}
+
 export function groundMetrics(s) {
   const G = s.ground;
   if (G.kind === 'piers') {
     const areaSf = G.pts.length * Math.PI * (G.diaFt / 2) ** 2;
     // each pier still needs a hole; assume 6 ft deep to competent material
     const cy = (areaSf * 6) / 27;
+    // plus the earth that has to come out for the floor to clear the hill
+    const c = clearanceCut(s);
     return { kind: 'piers', contacts: G.pts.length, contactSf: +areaSf.toFixed(0),
-             cutCY: Math.round(cy), maxCutFt: 6, note: `${G.pts.length} piers` };
+             cutCY: Math.round(cy) + c.cutCY, maxCutFt: Math.max(6, c.maxCutFt),
+             clearanceCY: c.cutCY,
+             note: `${G.pts.length} piers` + (c.cutCY ? ` + ${c.cutCY} CY to clear the hill` : '') };
   }
   const r = G;
   // platform elevation = natural grade at the DOWNHILL edge, so the cut is all

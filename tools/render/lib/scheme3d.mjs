@@ -31,18 +31,46 @@ const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b
  */
 export function schemeGround(s) {
   const G = s.ground;
-  if (G.kind === 'piers') return (x, y) => natural(x, y);
-  const zPad = natural((G.x0 + G.x1) / 2, G.y0);     // platform meets grade at the low edge
   const fade = ft(14);
+
+  // THE CLEARANCE CUT. Every scheme, piers included.
+  //
+  // A 22 ft deep body on a 30% cross-slope rises 6.6 ft from its downhill face
+  // to its uphill one, so a floor set near the downhill grade has its uphill
+  // end underground. Leaving the terrain natural under a pier scheme is what
+  // made the walkthrough show half houses buried to the sill — and it was not
+  // just a rendering fault, it was the model quietly asserting that a pier
+  // house needs no earthwork on a 30% slope. model/schemes.mjs now counts this
+  // cut in the scheme's earthwork; this cuts the same ground by the same rule,
+  // so the picture and the number cannot disagree.
+  const cond = s.volumes.filter(v => v.kind !== 'shelt');
+  const clear = (x, y, nat) => {
+    let z = nat;
+    for (const v of cond) {
+      const floor = ft(v.ffe) - 12;
+      if (nat <= floor) continue;
+      const inx = smoothstep(v.x0 - fade, v.x0, x) * (1 - smoothstep(v.x1, v.x1 + fade, x));
+      // uphill of the volume the cut lays back at 1.5H:1V rather than standing vertical
+      const layback = Math.min(1, Math.max(0, 1 - (y - v.y1) / (fade * 1.5)));
+      const iny = smoothstep(v.y0 - fade, v.y0, y) * (y <= v.y1 ? 1 : layback);
+      const k = inx * iny;
+      if (k < 0.002) continue;
+      z = Math.min(z, nat + (floor - nat) * k);
+    }
+    return z;
+  };
+
+  if (G.kind === 'piers') return (x, y) => clear(x, y, natural(x, y));
+
+  const zPad = natural((G.x0 + G.x1) / 2, G.y0);     // platform meets grade at the low edge
   return (x, y) => {
     const nat = natural(x, y);
     const inx = smoothstep(G.x0 - fade, G.x0, x) * (1 - smoothstep(G.x1, G.x1 + fade, x));
     const iny = smoothstep(G.y0 - fade, G.y0, y) * (1 - smoothstep(G.y1, G.y1 + fade, y));
     const k = inx * iny;
-    if (k < 0.002) return nat;
     // uphill of the platform the cut lays back at 1.5H:1V
     const z = y > G.y1 ? Math.min(nat, zPad + (y - G.y1) / 1.5) : zPad;
-    return nat + (z - nat) * k;
+    return clear(x, y, k < 0.002 ? nat : nat + (z - nat) * k);
   };
 }
 
@@ -228,10 +256,13 @@ export function schemeViews(schemeId) {
 
   // Stand off downhill and to the west by a distance proportional to the
   // scheme, so framing is consistent rather than accidental.
+  // Stand mostly DOWNHILL rather than off to the west: the west side of this
+  // site carries a rock outcrop, and the first version of this camera put it
+  // straight through the left third of every hero shot.
   const dist = size * 1.75 + 26;
   out.push({
     id: 'hero',
-    pos: [cx - dist * 0.55, top * 0.62 + 6, -(by0 - dist * 0.8)],
+    pos: [cx - dist * 0.22, top * 0.78 + 10, -(by0 - dist * 1.0)],
     target: [cx + w * 0.08, top * 0.42, -(cy - d * 0.1)],
     focal: 38, shift: 0.16, w: 1700, h: 1062, exposure: 1.02,
     sun: { dayOfYear: 288, hour: 13.9 },

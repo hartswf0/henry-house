@@ -50,7 +50,7 @@
 <polygon points="870,545 1088.75,545 1088.75,513.75 870,513.75" fill="none" stroke="#111418" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
 <text x="870" y="616" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.1">THE ARMATURE</text>
 <text x="870" y="632" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">616 sf conditioned  ·  184 lf perimeter</text>
-<text x="870" y="646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#8a6508" text-anchor="start" letter-spacing="0">8 CY of earth  ·  12 piers</text>
+<text x="870" y="646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#8a6508" text-anchor="start" letter-spacing="0">197 CY of earth  ·  12 piers + 189 CY to clear the hill</text>
 <circle cx="1446.25" cy="507.5" r="4.687" fill="#5c6670" stroke="#111418" stroke-width="2.2"/>
 <circle cx="1446.25" cy="457.5" r="4.687" fill="#5c6670" stroke="#111418" stroke-width="2.2"/>
 <circle cx="1533.75" cy="507.5" r="4.687" fill="#5c6670" stroke="#111418" stroke-width="2.2"/>
@@ -65,7 +65,7 @@
 <polygon points="1465,513.75 1540,513.75 1540,451.25 1465,451.25" fill="#cfd8cf" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
 <text x="1440" y="616" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.1">THE BRIDGE</text>
 <text x="1440" y="632" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">1,200 sf conditioned  ·  160 lf perimeter</text>
-<text x="1440" y="646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#8a6508" text-anchor="start" letter-spacing="0">9 CY of earth  ·  6 piers</text>
+<text x="1440" y="646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#8a6508" text-anchor="start" letter-spacing="0">110 CY of earth  ·  6 piers + 101 CY to clear the hill</text>
 <polygon points="2003.75,520 2210,520 2210,438.75 2003.75,438.75" fill="url(#cut-S3-NARROW)" stroke="#b8860b" stroke-width="2.2" stroke-dasharray="12 7" stroke-linejoin="miter"/>
 <polygon points="2003.75,551.25 2210,551.25 2210,438.75 2003.75,438.75" fill="none" stroke="#4a5560" stroke-width="0.6" stroke-dasharray="14 9" stroke-linejoin="miter"/>
 <polygon points="2010,513.75 2091.25,513.75 2091.25,445 2010,445" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
@@ -271,17 +271,17 @@
 <text x="2401.429" y="1646" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">1</text>
 <text x="300" y="1670" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">EARTH MOVED</text>
 <text x="738.571" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">440 CY</text>
-<rect x="881.143" y="1657" width="269.143" height="19" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
-<text x="1015.714" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">8 CY</text>
-<text x="1292.857" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">9 CY</text>
+<text x="1015.714" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">197 CY</text>
+<text x="1292.857" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">110 CY</text>
 <text x="1570" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">253 CY</text>
 <text x="1847.143" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">501 CY</text>
-<text x="2124.286" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">17 CY</text>
+<rect x="1989.714" y="1657" width="269.143" height="19" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
+<text x="2124.286" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#2f7d54" text-anchor="middle" letter-spacing="0">17 CY</text>
 <text x="2401.429" y="1670" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">59 CY</text>
 <text x="300" y="1694" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0.4">DEEPEST CUT</text>
 <text x="738.571" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">12.4 ft</text>
-<text x="1015.714" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">6 ft</text>
-<text x="1292.857" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">6 ft</text>
+<text x="1015.714" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">9.1 ft</text>
+<text x="1292.857" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">9.5 ft</text>
 <text x="1570" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">10.2 ft</text>
 <text x="1847.143" y="1694" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">14.1 ft</text>
 <rect x="1989.714" y="1681" width="269.143" height="19" rx="0" fill="#e7efe9" stroke="none" stroke-width="0"/>
