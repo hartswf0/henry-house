@@ -203,6 +203,63 @@ function sheetC101() {
 }
 write('C-101-site-grading-access.svg', sheetC101());
 
+// ── A-301 / A-302  ELEVATIONS + ROOF PLAN ───────────────────────────────────
+import { drawElevation, drawRoofPlan } from './draw/elevation.mjs';
+
+function sheetElevations(no, faces, title, sub, notes, opts = {}) {
+  const { scaleName = '1/8"=1\'-0"', step = 760, y0 = 780, ticks = [0, 8, 16, 32],
+          extra = null, sideBySide = false, colStep = 1120 } = opts;
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: no, title, subtitle: sub, originX: 300, originY: y0, notes,
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  let oy = y0, col = 300;
+  for (const f of faces) {
+    s.oy = oy;
+    drawElevation(s, f, { alignLeft: col });
+    if (sideBySide) col += colStep; else oy += step;
+  }
+  if (extra) extra(s, oy);
+  s.scaleBar(2180, 2210, { scaleName, feetTicks: ticks });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    'Elevations are PROJECTED FROM THE MODEL.',
+    'Openings come from model/openings.mjs —',
+    'the same list the plans draw. Grade comes',
+    'from model/site.mjs. If a window moves in',
+    'plan it moves here, or the build failed.',
+  ] });
+  return s.toString();
+}
+
+const ELEV_NOTES = [
+  '1. GLASS IS ON THE DOWNHILL WALL. Compare the south and north faces: the view and the winter sun arrive from the same side, which is the entire reason the bar was turned to this azimuth. The uphill wall is the cold side, the cut side and the service side, and it is nearly solid.',
+  '2. THE ROOF STEPS AT GRID E. Two 3:12 planes, both falling downhill, with the tall wing raised so the step can be glazed. That clerestory is the one opening on this building that faces the wrong direction — see the note on the south elevation.',
+  '3. SNOW RETENTION IS DRAWN WHERE IT IS REQUIRED. Standing seam at 3:12 releases in slabs. Retention runs over every occupied surface; the one free-shed zone is west of grid C, where nothing is below, and it is marked on the roof plan as a zone in which nothing may be placed.',
+  '4. HEAVY LINE IS FINISHED GRADE AT THE FACE. Long dashes are ASSUMED NATURAL GRADE. Fine dashes are finished grade beyond the building. There is no survey; see docs/01-site-facts-register.md A-01.',
+  '5. EERO marks an emergency escape and rescue opening. Net clear area, clear width and height and maximum sill height must all be VERIFIED against the governing NC Residential Code edition. Not verified in this environment.',
+  '6. MATERIALS, NOT YET SPECIFIED, are indicated by extent only: standing seam metal roof, vertical rainscreen siding on the uphill and end walls, glazing on the downhill wall. No product, gauge, finish or fastening is selected.',
+  UNVERIFIED,
+];
+
+write('A-301-south-north-elevations.svg', sheetElevations(
+  'A-301', ['S', 'N'], 'SOUTH + NORTH ELEVATIONS',
+  'THE VIEW FACE AND THE CUT FACE · WHY THE GLASS IS ALL ON ONE SIDE', ELEV_NOTES));
+
+write('A-302-east-west-elevations.svg', sheetElevations(
+  'A-302', ['E', 'W'], 'EAST + WEST ELEVATIONS + ROOF PLAN',
+  'THE ENDS OF THE BAR · AND EVERY PLANE THAT SHEDS WATER', ELEV_NOTES, {
+    scaleName: '1/4"=1\'-0"', y0: 1180, ticks: [0, 4, 8, 16],
+    sideBySide: true, colStep: 1180,
+    extra: (s) => {
+      s.scale = SCALES['1/8"=1\'-0"'];
+      s.ox = 300; s.oy = 2050;
+      drawRoofPlan(s);
+      s.northArrow(2300, 1720, 46, G.ORIENTATION.longAxisAzimuth);
+    },
+  }));
+
 // ── SYSTEMS SHEETS ──────────────────────────────────────────────────────────
 import { drawSystemPlan, systemLegend, FAILURE_NOTES } from './draw/systems.mjs';
 

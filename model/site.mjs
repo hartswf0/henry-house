@@ -62,7 +62,10 @@ export function finished(x, y) {
   else if (x > ft(94)) z = Math.max(nat, COURT.z - (front - y) / 2); // fill off the apron edge
   else if (y >= front - 48) z = DRAIN_GAP.invert;                // the drain gap
   else if (y > 0) z = Math.min(nat, ft(10) - 46);                // against the house
-  else if (y > DECKS[1].y0) z = -6;                              // lower terrace
+  // The lower terrace is a built surface only where it exists. An earlier
+  // version flattened the whole downhill strip to its elevation, which quietly
+  // buried the east end of the house in four feet of imaginary fill.
+  else if (y > DECKS[1].y0 && x > DECKS[1].x0 - ft(6) && x < DECKS[1].x1 + ft(6)) z = -6;
   else z = nat;
   return nat + (z - nat) * lat;
 }
