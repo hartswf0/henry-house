@@ -6,7 +6,7 @@
 // wall and a bed wall, wet rooms grouped or stacked, stairs landing on the
 // stair below. A plan that failed was reported and dropped, not repaired.
 //
-// 10 plans.
+// 11 plans.
 
 export const PLANS = [
   {
@@ -3212,6 +3212,205 @@ export const PLANS = [
       "FREEZE RULE — \"BATH 3\" (WALKOUT @ffe 3.5) hangs its fixtures on the uphill EXTERIOR wall. No plumbing may run there at this elevation.",
       "THROUGH A PRIVATE ROOM — WALKOUT LANDING (WALKOUT @ffe 3.5) can only be reached by walking through the bedroom \"BEDROOM 3\"",
       "ONE WAY DOWN — 2 sleeping rooms more than a storey above the entry (BEDROOM 4 at ffe 13, PRIMARY BEDROOM at ffe 13) served by a single stair. Second means of escape not drawn."
+    ]
+  },
+  {
+    "id": "S9-ASSEMBLY",
+    "levels": [
+      {
+        "ffe": 10,
+        "name": "MAIN",
+        "rooms": [
+          {
+            "name": "GREAT ROOM",
+            "use": "living",
+            "x0": 0.25,
+            "y0": 2,
+            "w": 15.75,
+            "d": 14,
+            "phase": 1
+          },
+          {
+            "name": "KITCHEN",
+            "use": "kitchen",
+            "x0": 16,
+            "y0": 2,
+            "w": 11.75,
+            "d": 9,
+            "phase": 1
+          },
+          {
+            "name": "LAUNDRY / MECH",
+            "use": "laundry",
+            "x0": 16,
+            "y0": 11,
+            "w": 11.75,
+            "d": 5,
+            "phase": 1
+          },
+          {
+            "name": "BED 1",
+            "use": "bed",
+            "x0": 0.25,
+            "y0": 16,
+            "w": 11.75,
+            "d": 9.75,
+            "phase": 1
+          },
+          {
+            "name": "STAIR",
+            "use": "circ",
+            "x0": 12,
+            "y0": 16,
+            "w": 8,
+            "d": 9.75,
+            "phase": 1
+          },
+          {
+            "name": "BATH 1",
+            "use": "bath",
+            "x0": 20,
+            "y0": 16,
+            "w": 7.75,
+            "d": 5,
+            "phase": 1
+          },
+          {
+            "name": "ENTRY / MUD",
+            "use": "entry",
+            "x0": 20,
+            "y0": 21,
+            "w": 7.75,
+            "d": 4.75,
+            "phase": 1
+          }
+        ],
+        "doors": [
+          {
+            "x": 28,
+            "y": 23.4,
+            "face": "E",
+            "kind": "entry",
+            "ffe": 10
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "face": "S",
+            "kind": "slider",
+            "ffe": 10
+          },
+          {
+            "x": 22,
+            "y": 2,
+            "face": "S",
+            "kind": "slider",
+            "ffe": 10
+          },
+          {
+            "x": 28,
+            "y": 15,
+            "face": "E",
+            "kind": "service",
+            "ffe": 10
+          }
+        ]
+      },
+      {
+        "ffe": 20,
+        "name": "UPPER",
+        "rooms": [
+          {
+            "name": "BED 2",
+            "use": "bed",
+            "x0": 0.25,
+            "y0": 5,
+            "w": 15.75,
+            "d": 11,
+            "phase": 2
+          },
+          {
+            "name": "BED 3",
+            "use": "bed",
+            "x0": 16,
+            "y0": 2,
+            "w": 11.75,
+            "d": 14,
+            "phase": 2
+          },
+          {
+            "name": "STUDY",
+            "use": "work",
+            "x0": 0.25,
+            "y0": 16,
+            "w": 11.75,
+            "d": 9.75,
+            "phase": 2
+          },
+          {
+            "name": "STAIR",
+            "use": "circ",
+            "x0": 12,
+            "y0": 16,
+            "w": 8,
+            "d": 9.75,
+            "phase": 2
+          },
+          {
+            "name": "BATH 2",
+            "use": "bath",
+            "x0": 20,
+            "y0": 16,
+            "w": 7.75,
+            "d": 5,
+            "phase": 2
+          },
+          {
+            "name": "LINEN / STORE",
+            "use": "store",
+            "x0": 20,
+            "y0": 21,
+            "w": 7.75,
+            "d": 4.75,
+            "phase": 2
+          }
+        ],
+        "doors": []
+      }
+    ],
+    "doors": [
+      {
+        "x": 28,
+        "y": 23.4,
+        "face": "E",
+        "kind": "entry",
+        "ffe": 10
+      },
+      {
+        "x": 8,
+        "y": 2,
+        "face": "S",
+        "kind": "slider",
+        "ffe": 10
+      },
+      {
+        "x": 22,
+        "y": 2,
+        "face": "S",
+        "kind": "slider",
+        "ffe": 10
+      },
+      {
+        "x": 28,
+        "y": 15,
+        "face": "E",
+        "kind": "service",
+        "ffe": 10
+      }
+    ],
+    "notes": "THE SCHEME'S WET BLOCK AT x12-20 / y16-26 BACKS ONTO THE UPHILL PANEL - fixtures on an exterior wall, and not the 'interior on all four sides' it claims. The wet moved one bay downhill into the x16-27.75 column. Three fixture walls, all interior, all within 10 ft: kitchen y=11, laundry/mech y=16, baths y=21 stacked. 31 lf, one riser, nothing wet on the panel. Rooms hold 3 in off the loop so the panel has thickness. The great room keeps a 15.75 x 3 ft slot open the full 20 ft after phase 2, so the volume survives the second floor. Worst compromise: one 78 sf stair per level is the only route, and two bedrooms sit above it with no second way down.",
+    "flags": [
+      "ONE WAY DOWN — 2 sleeping rooms more than a storey above the entry (BED 2 at ffe 20, BED 3 at ffe 20) served by a single stair. Second means of escape not drawn."
     ]
   }
 ];
