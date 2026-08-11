@@ -13,11 +13,12 @@ import * as THREE from 'three';
 import { buildSchemeScene, schemeCamera, schemeViews } from '../tools/render/lib/scheme3d.mjs';
 import { makeShiftCamera, Accumulator, sunDirection } from '../tools/render/lib/render.mjs';
 import { SCHEMES } from '../model/schemes.mjs';
+import { SITE, ORIENTATION } from '../model/geometry.mjs';
 
 let renderer, state = null;
 window.__loaded = false; window.__error = null;
 
-window.setupScheme = function (id, w, h, viewId) {
+window.setupScheme = function (id, w, h, viewId, opts) {
   try {
     if (renderer) { renderer.dispose(); renderer.domElement.remove(); }
     const _views = schemeViews(id);
@@ -38,8 +39,19 @@ window.setupScheme = function (id, w, h, viewId) {
     // set AFTER the view is chosen — the first version assigned this next to
     // the other renderer settings, above the line that defines V, which throws
     renderer.toneMappingExposure = V.exposure ?? 1;
-    const sun = sunDirection(V.sun || { dayOfYear: 288, hour: 14.2 });
-    const built = buildSchemeScene(renderer, { schemeId: id, sun });
+    // THE GROUND, AND THEREFORE THE SUN.
+    // 'assumed' is the synthetic plane the whole package was drawn on, whose
+    // long axis bears 70°. 'real' is the measured hill at the parcel, whose
+    // long axis bears 275° because the land falls north (docs/09). The sun has
+    // to be projected onto whichever axis is actually being rendered — leave it
+    // at 70° while standing the house on the real hill and the render puts
+    // winter sun on the downhill glass, which is the one thing this parcel
+    // does not do.
+    const ground = (opts && opts.ground) || 'assumed';
+    const longAxisAz = ground === 'real' ? (SITE.fallsToAzimuth + 270) % 360
+                                         : ORIENTATION.longAxisAzimuth;
+    const sun = sunDirection({ ...(V.sun || { dayOfYear: 288, hour: 14.2 }), longAxisAz });
+    const built = buildSchemeScene(renderer, { schemeId: id, sun, ground });
     const cam = makeShiftCamera({ focalMm: V.focal, aspect: canvas.width / canvas.height,
       position: new THREE.Vector3(...V.pos), target: new THREE.Vector3(...V.target), shift: V.shift });
     const accum = new Accumulator(renderer, canvas.width, canvas.height);
@@ -53,7 +65,8 @@ window.setupScheme = function (id, w, h, viewId) {
     window.__scene = built.scene;
     window.__building = built.building;
     window.__ground = built.heightAt;
-    return { ok: true, name: built.scheme.name, metrics: built.metrics, view: V.id, w: V.w, h: V.h };
+    return { ok: true, name: built.scheme.name, metrics: built.metrics, view: V.id,
+             w: V.w, h: V.h, ground: built.ground, sunAzDeg: sun.azDeg, sunAltDeg: sun.altDeg };
   } catch (e) { window.__error = e.message + '\n' + e.stack; return { ok: false, error: e.message }; }
 };
 window.renderPasses = function (n) {

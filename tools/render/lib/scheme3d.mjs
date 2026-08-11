@@ -13,7 +13,8 @@
 import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import { SCHEMES, schemeById, metrics } from '../../../model/schemes.mjs';
-import { SITE_SLOPE } from '../../../model/geometry.mjs';
+import { SITE_SLOPE, SITE, ORIENTATION } from '../../../model/geometry.mjs';
+import { siteGrade } from '../../../model/site-terrain.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
 import { buildScheme } from './build3d.mjs';
@@ -21,7 +22,13 @@ import { planFor } from '../../../model/scheme-plans.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
-const natural = (x, y) => SITE_SLOPE.grade(x, y);
+// TWO GROUNDS. The assumed plane the whole package was drawn on, and the
+// measured hill at the coordinate the client gave. `real` picks the second.
+// They are not variants of one thing: the plane falls SSE and the hill falls
+// north, so a scheme rendered on each is lit from opposite sides. That is the
+// point of being able to render both.
+const assumed = (x, y) => SITE_SLOPE.grade(x, y);
+const groundFns = { assumed, real: siteGrade };
 const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
 /**
@@ -29,7 +36,7 @@ const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b
  * declares a bench or plinth. Piers disturb nothing, which is the entire
  * argument of the schemes that use them.
  */
-export function schemeGround(s) {
+export function schemeGround(s, natural = assumed) {
   const G = s.ground;
   const fade = ft(14);
 
@@ -124,8 +131,9 @@ function frame(v, zTop, mat) {
   return g;
 }
 
-export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } = {}) {
+export function buildSchemeScene(renderer, { schemeId, sun, realtime = false, ground = 'assumed' } = {}) {
   const s = schemeById(schemeId) ?? SCHEMES[0];
+  const natural = groundFns[ground] ?? assumed;
   const mats = {
     solid: MAT.sidingMaterial(),
     // Explicit dark standing seam. The shared roofMaterial reads warm and pale
@@ -139,7 +147,7 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
   };
 
   const scene = new THREE.Scene();
-  const groundFn = schemeGround(s);
+  const groundFn = schemeGround(s, natural);
   scene.add(terrain(groundFn, realtime));
 
   // The building itself is built by build3d.mjs: framed openings, posts and
@@ -201,7 +209,7 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
   scene.add(new THREE.HemisphereLight(0x9fb6cf, 0x51492f, 0.13));
 
   return {
-    scene, scheme: s, metrics: metrics(s),
+    scene, scheme: s, metrics: metrics(s), ground,
     // the building alone, and the finished ground under it — tools/check reads
     // both, so a check never has to infer which meshes are the house
     building: g, heightAt: groundFn,

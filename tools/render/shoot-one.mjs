@@ -20,7 +20,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const [id, view = 'compare', samples = '20'] = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const real = argv.includes('--real');
+const [id, view = 'compare', samples = '20'] = argv.filter((a) => !a.startsWith('--'));
 if (!id) {
   console.error('usage: node tools/render/shoot-one.mjs <SCHEME-ID> [view] [samples]');
   process.exit(2);
@@ -39,18 +41,20 @@ page.on('pageerror', e => console.error('  ! page error:', e.message));
 await page.goto(`http://127.0.0.1:${port}/web/schemes.html`, { waitUntil: 'load' });
 await page.waitForFunction('window.__loaded === true', { timeout: 90000 });
 
-const r = await page.evaluate(async ([i, v, n]) => {
-  const s = await window.setupScheme(i, 1100, 760, v);
+const r = await page.evaluate(async ([i, v, n, g]) => {
+  const s = await window.setupScheme(i, 1100, 760, v, { ground: g });
   if (!s.ok) return { ok: false, error: s.error };
   const p = await window.renderPasses(n);
   if (!p.ok) return { ok: false, error: p.error };
-  return { ok: true, uri: window.grab(), view: s.view };
-}, [id, view, Number(samples)]);
+  return { ok: true, uri: window.grab(), view: s.view, ground: s.ground,
+           sunAzDeg: s.sunAzDeg, sunAltDeg: s.sunAltDeg };
+}, [id, view, Number(samples), real ? 'real' : 'assumed']);
 
 await browser.close();
 server.close();
 
 if (!r.ok) { console.error(`  ✗ ${id} ${view}: ${r.error}`); process.exit(1); }
-const out = path.join(dir, `${id}-${r.view}.png`);
+const out = path.join(dir, `${id}-${r.view}${real ? '-SITE' : ''}.png`);
 fs.writeFileSync(out, Buffer.from(r.uri.split(',')[1], 'base64'));
 console.log(`  ✓ ${out}  (${samples} samples — a working frame, not the published render)`);
+console.log(`    ground ${r.ground}   sun az ${r.sunAzDeg.toFixed(0)}° alt ${r.sunAltDeg.toFixed(0)}°`);

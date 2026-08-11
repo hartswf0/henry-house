@@ -267,7 +267,7 @@ export class Accumulator {
  * a render, but it is the kind of thing that is wrong for years once nobody
  * writes it down.
  */
-export function sunDirection({ lat = SITE.lat, dayOfYear = 45, hour = 15.5 }) {
+export function sunDirection({ lat = SITE.lat, dayOfYear = 45, hour = 15.5, longAxisAz = 70 }) {
   const rad = Math.PI / 180;
   const decl = 23.45 * rad * Math.sin(2 * Math.PI * (284 + dayOfYear) / 365);
   const H = (hour - 12) * 15 * rad;                       // hour angle
@@ -275,13 +275,19 @@ export function sunDirection({ lat = SITE.lat, dayOfYear = 45, hour = 15.5 }) {
   const alt = Math.asin(Math.sin(decl) * Math.sin(la) + Math.cos(decl) * Math.cos(la) * Math.cos(H));
   let az = Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(la) - Math.tan(decl) * Math.cos(la));
   az = az + Math.PI;                                      // measured from north, clockwise
-  // Model axes: three +X = azimuth 70 deg, three +Z = downhill = azimuth 160 deg.
-  // A compass direction `az` projects onto those axes as
-  //   x = cos(az - 70)      z = cos(az - 160) = sin(az - 70)
+  // Model axes: three +X = azimuth `longAxisAz`, three +Z = downhill = that
+  // plus 90°. A compass direction `az` projects onto those axes as
+  //   x = cos(az - longAxisAz)      z = sin(az - longAxisAz)
   // Both components are POSITIVE sine/cosine of the same relative angle; an
   // earlier negation here put the sun on the uphill side of the house and lit
   // nothing the camera could see.
-  const rel = az - 70 * rad;
+  //
+  // longAxisAz is a PARAMETER because the assumed orientation and the real
+  // parcel disagree by 155° (docs/09). Rendering the house on the real hill
+  // while still projecting the sun onto the assumed axis would put winter sun
+  // on the downhill glass — which is exactly the thing the real site does not
+  // do, and exactly what the render is supposed to show.
+  const rel = az - longAxisAz * rad;
   return {
     altitude: alt, azimuth: az,
     dir: new THREE.Vector3(Math.cos(alt) * Math.cos(rel), Math.sin(alt), Math.cos(alt) * Math.sin(rel)).normalize(),
