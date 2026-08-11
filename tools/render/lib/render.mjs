@@ -19,6 +19,7 @@
 // the camera, which splays the verticals and reads as a video-game screenshot.
 
 import * as THREE from 'three';
+import { SITE } from '../../../model/geometry.mjs';
 
 const ACES = `
 vec3 aces(vec3 x){
@@ -251,10 +252,22 @@ export class Accumulator {
 }
 
 /**
- * Sun position from real solar geometry. Latitude defaults to Boone, NC.
- * ASSUMED coordinates — see docs/01-site-facts-register.md.
+ * Sun position from real solar geometry, at the parcel the client named.
+ *
+ * The latitude was 36.217 — Boone, and a guess. It is now SITE.lat, which is a
+ * fact. The difference is 0.07° and moves the sun by four hundredths of a
+ * degree, so nothing visible changes; it is corrected because a number that
+ * can be known should not be guessed.
+ *
+ * `hour` is SOLAR time, not clock time. At longitude 81.925°W, 6.925° west of
+ * the 75°W standard meridian, solar noon falls about 28 minutes AFTER clock
+ * noon EST — before the equation of time, which is another ±16 minutes. So a
+ * view asking for hour 14.2 is asking for a sun position that occurs at about
+ * 14:41 EST in mid-winter. That matters for a shading study and not at all for
+ * a render, but it is the kind of thing that is wrong for years once nobody
+ * writes it down.
  */
-export function sunDirection({ lat = 36.217, dayOfYear = 45, hour = 15.5 }) {
+export function sunDirection({ lat = SITE.lat, dayOfYear = 45, hour = 15.5 }) {
   const rad = Math.PI / 180;
   const decl = 23.45 * rad * Math.sin(2 * Math.PI * (284 + dayOfYear) / 365);
   const H = (hour - 12) * 15 * rad;                       // hour angle

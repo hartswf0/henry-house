@@ -18,8 +18,41 @@ These come from the client brief. There are only four, and that is the honest co
 | K-2 | The site has an existing water source (type unspecified) | Client brief | Stated by client |
 | K-3 | The client, Henry, is a physician | Client brief | Stated by client |
 | K-4 | The house is a single-family residence for one household | Client brief | Stated by client |
+| **K-5** | **The site is at 36°17'14.2"N 81°55'30.4"W** (36.287267, −81.925097) | **Client, 2026-08-11** | **Stated by client** |
 
-**That is all that is known.** No parcel identifier, no survey, no contours, no soils data, no test pit, no well log, no address, no deed, no plat, no jurisdictional confirmation. The design below is therefore a *strategy* that responds correctly to a described condition — not a design sited on a specific piece of ground.
+### K-5 changes the status of this document
+
+For six days this project had four facts and no ground. It now has a location,
+and a location can be measured against. What follows is **measured, not
+surveyed** — read the confidence column before spending anything on it.
+
+| # | Measured | Value | Source | Resolution |
+|---|---|---|---|---|
+| M-1 | Elevation at the anchor | **2,364 ft AMSL** (720.5 m) | terrarium DEM | ±31 m horizontally |
+| M-2 | Slope at building scale (±92 m) | **30%** — 40% at ±31 m, 27% at ±185 m | terrarium DEM | ±31 m |
+| M-3 | The land falls to **azimuth 5° — almost due NORTH** | 354°–34° across every window tested | terrarium DEM | ±31 m |
+| M-4 | The Watauga River is mapped **298 m north** of the anchor, downhill | OpenStreetMap | ODbL |
+
+M-3 and M-4 are independent of each other — a raster elevation model and a
+vector map of waterways, from two different sources. They agree. Rivers sit in
+valleys; the river is north; the hill falls north.
+
+**How this was obtained, and its limits.** The elevation raster is the public
+terrarium tile set (AWS open data) at zoom 12, about 31 m per pixel, read
+through CREO (`hartswf0/motor`, `creo3/places/36-28727-n-81-92510-w.json`).
+This container has no outbound network — every request returns 403 by policy —
+so none of it was fetched here and none of it can be refined here. **A 31 m
+grid resolves which way a hillside faces and roughly how steep it is. It does
+not resolve a building site.** It cannot see a bench, a rock outcrop, a
+drainage swale, or the ten-metre shelf that would decide where this house
+actually sits. Re-import at zoom 14 (~8 m) over a tight box — CREO does this
+from a browser, which is not subject to this container's policy — and then get
+a survey.
+
+**Still unknown:** parcel identifier, boundaries, deed, plat, soils, test pit,
+well log, septic feasibility, road access, easements, jurisdictional
+confirmation, and whether the coordinate is the centre of the parcel or a point
+on it.
 
 ---
 
@@ -31,11 +64,11 @@ Each row lists the model constant so you can change it in one place and regenera
 
 | ID | Assumption | Value used | Model constant | If wrong |
 |---|---|---|---|---|
-| A-01 | Cross-slope falls at 30% perpendicular to the house | 30% | `SITE_SLOPE.crossSlopePct` | The single most load-bearing assumption in the project. Below ~15% the stepped section and walkout lower level lose their justification and the house should be re-massed. Above ~45% the foundation strategy changes from stepped footings to piers/caissons, cost rises steeply, and the septic strategy may become infeasible. |
+| A-01 ✅ | Cross-slope falls at 30% perpendicular to the house | 30% | `SITE_SLOPE.crossSlopePct` | **CONFIRMED by M-2 at 31 m.** The plane fit gives 30% over a ±92 m window — the assumption was right to the percent. It reads 40% closer in and 27% further out, which is what real ground does. The stepped section and the walkout level keep their justification. |
 | A-02 | Grade falls 8% along the length of the house | 8% | `SITE_SLOPE.longSlopePct` | Sets where the crawlspace/walkout transition happens (bays D–G) and where the driveway can arrive at main-floor level. |
-| A-03 | Long axis bears N70°E, chosen to lie along the contour | 70° azimuth | `ORIENTATION.longAxisAzimuth` | The whole parti — glass on one face, service on the other — depends on view and winter sun being on the same side. If the real view is north or the slope faces north, the plan must be reconsidered, not rotated. |
-| A-04 | The view and the best solar exposure are both toward SSE (az. 160°) | 160° | `ORIENTATION.viewFaceAzimuth` | See A-03. Requires a real view study standing on the site. |
-| A-05 | Project datum EL. 100'-0" ≈ 3,412 ft AMSL | 3,412 ft | `units.mjs DATUM_FT` | Affects snow load, climate data, and possible Mountain Ridge Protection Act exposure. Relative geometry does not depend on it. |
+| A-03 ❌ | Long axis bears N70°E, chosen to lie along the contour | 70° azimuth | `ORIENTATION.longAxisAzimuth` | **CONTRADICTED by M-3.** The contour at this parcel runs roughly E–W, so the long axis is about 20° out — small, and fixable by rotating. The clause that matters is the next one, and it was written for exactly this: *"If the real view is north or the slope faces north, the plan must be reconsidered, not rotated."* It does. See **docs/09**. |
+| A-04 ❌❌ | The view and the best solar exposure are both toward SSE (az. 160°) | 160° | `ORIENTATION.viewFaceAzimuth` | **CONTRADICTED by M-3, and this one cannot be rotated away.** The land falls to azimuth 5°; the assumed view face points 155° from that — into the hill. On a north slope the view is north and the winter sun is south, so the downhill face and the solar face are on OPPOSITE sides of the house. The entire parti assumes they are the same side. This is a design decision, not a constant, and it is not being made silently. |
+| A-05 ❌ | Project datum EL. 100'-0" ≈ 3,412 ft AMSL | 3,412 ft | `units.mjs DATUM_FT` | **CONTRADICTED by M-1: ~2,364 ft, about 1,050 ft lower.** Relative geometry is unaffected, but snow load, design temperature and the freeze-depth reasoning were all argued from 3,400 ft. Still a cold mountain site; the numbers behind the envelope and the freeze rule need recomputing from the real elevation. |
 | A-06 | The site is not on a protected mountain ridge as defined by NCGS 113A Art. 14 | assumed clear | — | If the site IS on a protected ridge, a height limit applies and the roof/massing may need to change. |
 
 ### B.2 Geotechnical — **entirely assumed, zero data**
