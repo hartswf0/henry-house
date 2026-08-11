@@ -37,6 +37,30 @@ const WET = new Set(['bath', 'kitchen', 'laundry', 'mech']);
 
 const R = (r) => ({ x0: ft(r.x0), y0: ft(r.y0), x1: ft(r.x0 + r.w), y1: ft(r.y0 + r.d) });
 
+/**
+ * A room name shortened to what its own box can hold at 1/8" scale.
+ * "PANTRY / SCULLERY" in a 12 ft room printed across the wall into the room
+ * next door. Drop the qualifier after the slash first, then truncate.
+ */
+function fitName(r) {
+  const cap = Math.max(4, Math.floor(r.w * 1.15));
+  let s = r.name;
+  if (s.length > cap && s.includes('/')) s = s.split('/')[0].trim();
+  if (s.length > cap && s.includes(' ')) {
+    const parts = s.split(' ');
+    while (parts.length > 1 && parts.join(' ').length > cap) parts.pop();
+    s = parts.join(' ');
+  }
+  return s.length > cap ? s.slice(0, cap - 1) + '.' : s;
+}
+
+/** Bounds of a level in FEET. Exported so a sheet can place a plan before drawing it. */
+export function levelBounds(level) {
+  const rooms = level.rooms ?? [];
+  if (!rooms.length) return null;
+  return bounds(rooms);
+}
+
 /** The outer boundary of a level, as the union bounds of its rooms. */
 function bounds(rooms) {
   return {
@@ -71,11 +95,14 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true } = {}) {
     // A room too small to letter gets a leader rather than an unreadable label.
     const sf = Math.round(r.w * r.d);
     if (r.w >= 7 && r.d >= 6) {
-      s.roomTag((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, r.name, `${sf} SF`,
-        { size: r.w >= 12 ? 19 : 15 });
+      // roomTag appends the unit itself; passing "84 SF" printed "84 SF SF".
+      // Long names are shortened to the box, because a label that overruns its
+      // own room reads as a drawing error even when the room is correct.
+      s.roomTag((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r), sf,
+        { size: r.w >= 14 ? 18 : 14 });
     } else {
-      s.text((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, r.name,
-        { size: 12, anchor: 'middle', color: INK.mid, dy: 4 });
+      s.text((q.x0 + q.x1) / 2, (q.y0 + q.y1) / 2, fitName(r),
+        { size: 11, anchor: 'middle', color: INK.mid, dy: 4 });
     }
     if (WET.has(r.use)) {
       // the plumbing wall of this room: its uphill (+y) face

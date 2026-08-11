@@ -547,7 +547,7 @@ import { drawReferenceSheet } from './draw/refs.mjs';
 // paid for, glass on the downhill face, the plumbing wall called out. The
 // rooms come from model/scheme-plans.mjs, which is generated and CHECKED —
 // nothing reaches this sheet without surviving tools/build-plans.mjs.
-import { drawSchemeLevel, labelLevel, drawPlanLegend } from './draw/scheme-plan.mjs';
+import { drawSchemeLevel, labelLevel, drawPlanLegend, levelBounds } from './draw/scheme-plan.mjs';
 import { PLANS } from '../model/scheme-plans.mjs';
 import { metrics as schemeMetrics } from '../model/schemes.mjs';
 import { CRITIQUES } from '../model/scheme-critiques.mjs';
@@ -563,7 +563,9 @@ PLANS.forEach((plan, idx) => {
   if (!scheme) return;
   const m = schemeMetrics(scheme);
   const crit = CRITIQUES.find(c => c.id === plan.id) ?? null;
-  const scaleName = '1/8"=1\'-0"';
+  // 3/16" rather than 1/8": at 1/8" the plans used a third of the sheet and
+  // the rooms were barely legible. Wide sets wrap to a second row.
+  const scaleName = '3/16"=1\'-0"';
   const num = `X-${201 + idx}`;
 
   const s = new Sheet({
@@ -584,22 +586,39 @@ PLANS.forEach((plan, idx) => {
   s.border();
   s.sheetTitle(300, 150);
 
-  // levels across the sheet, each in its own column, all at ONE scale
-  let cx = 380;
-  const rowY = 900;
-  for (const lv of plan.levels) {
-    s.ox = cx; s.oy = rowY;
-    const B = drawSchemeLevel(s, scheme, lv);
-    if (!B) continue;
-    labelLevel(s, scheme, lv, cx - 40, rowY + 260);
-    cx += Math.max(360, (B.x1 - B.x0) * 12 * SCALES[scaleName] + 180);
+  // Levels across the sheet, each in its own column, ALL AT ONE SCALE.
+  //
+  // Rooms carry absolute site coordinates, so a level whose rooms start at
+  // x=48 ft draws 600 units right of wherever its column begins. Advancing the
+  // column by width alone pushed the Spine's upper floor off the paper and
+  // under the notes. Offset each plan by its OWN x0, then advance.
+  const SC = SCALES[scaleName];
+  const LEFT = 360, RIGHT = 2820, GAP = 150;
+  const rowY = 1010;
+  const placed = plan.levels.map(lv => ({ lv, B: levelBounds(lv) })).filter(p => p.B);
+  const totalW = placed.reduce((a, p) => a + (p.B.x1 - p.B.x0) * 12 * SC + GAP, -GAP);
+  // If the set is wider than the paper, wrap to a second row rather than
+  // silently drawing off the edge.
+  const wrap = totalW > (RIGHT - LEFT);
+  let cx = LEFT, ry = rowY, lowest = rowY;
+  for (const { lv, B } of placed) {
+    const w = (B.x1 - B.x0) * 12 * SC;
+    if (wrap && cx > LEFT && cx + w > RIGHT) { cx = LEFT; ry += 700; }
+    s.ox = cx - B.x0 * 12 * SC;
+    s.oy = ry;
+    drawSchemeLevel(s, scheme, lv);
+    labelLevel(s, scheme, lv, cx, ry + 130);
+    cx += w + GAP;
+    lowest = Math.max(lowest, ry);
   }
 
   s.northArrow(3180, 380);
   s.scaleBar(2780, 380, { scaleName, feetTicks: [0, 8, 16, 32] });
 
   // the numbers this scheme actually has, beside the plans that produce them
-  const bx = 300, by = 1500;
+  // The block sits under whatever the plans actually used, so a scheme that
+  // wrapped to two rows does not have its metrics drawn through its own plan.
+  const bx = 300, by = lowest + 240;
   s.stext(bx, by, 'WHAT THIS SCHEME IS, MEASURED', { size: 15, weight: 700, spacing: 1.5 });
   const rows = [
     ['CONDITIONED', `${m.conditionedSf.toLocaleString()} sf`],

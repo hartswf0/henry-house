@@ -1,0 +1,54 @@
+{
+  "id": "S5-PERCH",
+  "levels": [
+    {
+      "ffe": 6,
+      "name": "ARRIVAL / LIVING",
+      "rooms": [
+        {"name": "DINING", "use": "dining", "x0": 20, "y0": 6, "w": 12, "d": 10},
+        {"name": "LIVING", "use": "living", "x0": 32, "y0": 6, "w": 12, "d": 10},
+        {"name": "KITCHEN", "use": "kitchen", "x0": 20, "y0": 16, "w": 14, "d": 7},
+        {"name": "MUD / GEAR", "use": "entry", "x0": 34, "y0": 16, "w": 10, "d": 7},
+        {"name": "MECH / WATER ENTRY", "use": "mech", "x0": 20, "y0": 23, "w": 4, "d": 9},
+        {"name": "POWDER", "use": "bath", "x0": 24, "y0": 23, "w": 5, "d": 9},
+        {"name": "LAUNDRY", "use": "laundry", "x0": 29, "y0": 23, "w": 5, "d": 9},
+        {"name": "STAIR", "use": "circ", "x0": 34, "y0": 23, "w": 10, "d": 9}
+      ]
+    },
+    {
+      "ffe": 16,
+      "name": "SLEEPING",
+      "rooms": [
+        {"name": "BED 1", "use": "bed", "x0": 20, "y0": 6, "w": 13, "d": 13},
+        {"name": "BED 2", "use": "bed", "x0": 33, "y0": 6, "w": 11, "d": 13},
+        {"name": "GALLERY HALL", "use": "circ", "x0": 20, "y0": 19, "w": 24, "d": 4},
+        {"name": "LINEN / STORE", "use": "store", "x0": 20, "y0": 23, "w": 4, "d": 9},
+        {"name": "BATH", "use": "bath", "x0": 24, "y0": 23, "w": 10, "d": 9},
+        {"name": "STAIR", "use": "circ", "x0": 34, "y0": 23, "w": 10, "d": 9}
+      ]
+    },
+    {
+      "ffe": 26,
+      "name": "LOFT",
+      "rooms": [
+        {"name": "LOFT", "use": "bed", "x0": 20, "y0": 6, "w": 14, "d": 13},
+        {"name": "WORK", "use": "work", "x0": 34, "y0": 6, "w": 10, "d": 13},
+        {"name": "GALLERY HALL", "use": "circ", "x0": 20, "y0": 19, "w": 24, "d": 4},
+        {"name": "MECH / ERV / AIR HANDLER", "use": "mech", "x0": 20, "y0": 23, "w": 4, "d": 9},
+        {"name": "STORE / SHUTTER GEAR", "use": "store", "x0": 24, "y0": 23, "w": 10, "d": 9},
+        {"name": "STAIR", "use": "circ", "x0": 34, "y0": 23, "w": 10, "d": 9}
+      ]
+    }
+  ],
+  "doors": [
+    {"x": 39, "y": 32, "face": "N", "kind": "entry", "ffe": 6},
+    {"x": 22, "y": 32, "face": "N", "kind": "service", "ffe": 6},
+    {"x": 26, "y": 6, "face": "S", "kind": "glass", "ffe": 6},
+    {"x": 38, "y": 6, "face": "S", "kind": "glass", "ffe": 6},
+    {"x": 26, "y": 6, "face": "S", "kind": "egress", "ffe": 16},
+    {"x": 39, "y": 6, "face": "S", "kind": "egress", "ffe": 16},
+    {"x": 27, "y": 6, "face": "S", "kind": "egress", "ffe": 26},
+    {"x": 40, "y": 6, "face": "S", "kind": "egress", "ffe": 26}
+  ],
+  "notes": "The massing showed a tower; it could not show that a 24x26 plate only works if you surrender the cold uphill nine feet outright and then cut every floor on the same two lines - y=23, the wet wall, and x=34, the stair. That makes the plumbing one interior partition on all three storeys and never an exterior one: kitchen sink on its south face at ffe 6, powder and laundry on its north face, the only full bath directly above at ffe 16, and a 4 ft mechanical chase at x20-24 running unbroken from the undercroft to the roof, so 26 lf of wet wall serves 1.5 baths, a laundry and a kitchen with no branch longer than 9 ft. The stair takes the coldest, most useless 90 sf on each plate (the NE corner) and is drawn identically three times: 270 sf, 14% of the house, the honest price of refusing the horizontal. Egress is answered rather than dodged - the stair is a rated enclosure discharging straight onto the uphill entry bridge, and a 3 ft steel gallery hung inside the shutter frame runs the downhill face at ffe 16 and ffe 26 with ship's ladders down to the ffe 6 deck, so both bedrooms and the loft get a door, not a window, to open air; the same gallery carries the shutter track and shades the glass, and when the shutter is closed the house is empty anyway. Worst compromise: 1.5 baths spread over 30 vertical feet means the loft sleeps two people a full flight above the only tub and two flights above the powder, and the living floor is only 10 ft deep front to back - on this scheme you are always at the glass, never behind it."
+}

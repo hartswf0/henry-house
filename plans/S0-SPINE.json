@@ -1,0 +1,64 @@
+{
+  "id": "S0-SPINE",
+  "levels": [
+    {
+      "ffe": 0,
+      "name": "LOWER",
+      "rooms": [
+        {"name": "BED 3", "use": "bed", "x0": 0, "y0": 0, "w": 13, "d": 14},
+        {"name": "BED 4", "use": "bed", "x0": 13, "y0": 0, "w": 13, "d": 14},
+        {"name": "REC / GEAR ROOM", "use": "living", "x0": 26, "y0": 0, "w": 10, "d": 14},
+        {"name": "SPINE HALL L", "use": "circ", "x0": 0, "y0": 14, "w": 26, "d": 5},
+        {"name": "STAIR HALL A", "use": "circ", "x0": 26, "y0": 14, "w": 10, "d": 12},
+        {"name": "MECH", "use": "mech", "x0": 0, "y0": 19, "w": 8, "d": 7},
+        {"name": "BATH 3", "use": "bath", "x0": 8, "y0": 19, "w": 8, "d": 7},
+        {"name": "STORE", "use": "store", "x0": 16, "y0": 19, "w": 10, "d": 7}
+      ]
+    },
+    {
+      "ffe": 10,
+      "name": "MAIN",
+      "rooms": [
+        {"name": "BED 1 PRIMARY", "use": "bed", "x0": 0, "y0": 0, "w": 20, "d": 14},
+        {"name": "OFFICE", "use": "work", "x0": 20, "y0": 0, "w": 16, "d": 14},
+        {"name": "SPINE HALL W", "use": "circ", "x0": 0, "y0": 14, "w": 26, "d": 5},
+        {"name": "STAIR HALL A", "use": "circ", "x0": 26, "y0": 14, "w": 10, "d": 12},
+        {"name": "PRIMARY W.I.C.", "use": "store", "x0": 0, "y0": 19, "w": 8, "d": 7},
+        {"name": "BATH 1", "use": "bath", "x0": 8, "y0": 19, "w": 12, "d": 7},
+        {"name": "LINEN", "use": "store", "x0": 20, "y0": 19, "w": 6, "d": 7},
+        {"name": "LIVING", "use": "living", "x0": 36, "y0": 0, "w": 18, "d": 14},
+        {"name": "DINING", "use": "dining", "x0": 54, "y0": 0, "w": 18, "d": 14},
+        {"name": "SPINE HALL E", "use": "circ", "x0": 36, "y0": 14, "w": 26, "d": 5},
+        {"name": "PANTRY / SCULLERY", "use": "store", "x0": 36, "y0": 19, "w": 12, "d": 7},
+        {"name": "KITCHEN", "use": "kitchen", "x0": 48, "y0": 19, "w": 14, "d": 7},
+        {"name": "STAIR HALL B", "use": "circ", "x0": 62, "y0": 14, "w": 10, "d": 12},
+        {"name": "ENTRY / MUD", "use": "entry", "x0": 72, "y0": 5, "w": 15, "d": 9},
+        {"name": "LINK HALL", "use": "circ", "x0": 72, "y0": 14, "w": 15, "d": 5},
+        {"name": "POWDER", "use": "bath", "x0": 72, "y0": 19, "w": 7, "d": 7},
+        {"name": "LAUNDRY", "use": "laundry", "x0": 79, "y0": 19, "w": 8, "d": 7}
+      ]
+    },
+    {
+      "ffe": 20,
+      "name": "UPPER",
+      "rooms": [
+        {"name": "BED 2", "use": "bed", "x0": 48, "y0": 0, "w": 14, "d": 14},
+        {"name": "LOFT", "use": "living", "x0": 62, "y0": 0, "w": 10, "d": 14},
+        {"name": "UPPER HALL", "use": "circ", "x0": 48, "y0": 14, "w": 14, "d": 5},
+        {"name": "STAIR HALL B", "use": "circ", "x0": 62, "y0": 14, "w": 10, "d": 12},
+        {"name": "STORE", "use": "store", "x0": 48, "y0": 19, "w": 6, "d": 7},
+        {"name": "BATH 2", "use": "bath", "x0": 54, "y0": 19, "w": 8, "d": 7}
+      ]
+    }
+  ],
+  "doors": [
+    {"x": 87, "y": 9.5, "face": "E", "kind": "entry", "ffe": 10},
+    {"x": 30, "y": 0, "face": "S", "kind": "deck", "ffe": 10},
+    {"x": 45, "y": 0, "face": "S", "kind": "deck", "ffe": 10},
+    {"x": 63, "y": 0, "face": "S", "kind": "deck", "ffe": 10},
+    {"x": 79, "y": 26, "face": "N", "kind": "service", "ffe": 10},
+    {"x": 31, "y": 0, "face": "S", "kind": "terrace", "ffe": 0},
+    {"x": 6, "y": 0, "face": "S", "kind": "egress", "ffe": 0}
+  ],
+  "notes": "The massing read as three stacked bars; the plan shows they are really one corridor. A 5 ft spine hall sits at y=14-19 and runs the whole 87 ft from the west gable at x=0 to the breezeway door at x=87, broken only by the two stair halls, which are pass-through landings rather than rooms you enter, and which stack exactly (A at x26-36, B at x62-72). That fixes the freeze rule in plan rather than in principle: the wet wall is the y=19 partition, an interior wall, and every wet room - mech and bath 3 below, primary bath, kitchen, powder and laundry on the main, bath 2 above - sits in the 7 ft band uphill of it with fixtures hung on that partition, so the buried y=26 wall carries no pipe. Bath 1 lands over bath 3 at x8-16, and bath 2 lands over the kitchen at x54-62, giving two clean vertical stacks. Everything that wants light - all four bedrooms, living, dining, office, loft, rec - is on the y=0 downhill face, with the lower level's dead uphill band given to mech and storage because it is buried roughly 8 ft. Worst compromise: with a single through-route there is no back way around the kitchen. The walk from the garage to the primary suite is the full 87 ft, and for 14 ft of it the cook's aisle and the house's only corridor are the same 5 ft of floor in front of a kitchen that is only 7 ft deep - the price of putting every fixture on one interior wall."
+}
