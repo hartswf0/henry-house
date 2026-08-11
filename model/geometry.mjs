@@ -20,6 +20,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { ft, rect, polyArea, sf } from './units.mjs';
+import { RIB_ROOF, RIB_ROOF_FLOOR } from './structure.mjs';
 
 // ── Orientation ──────────────────────────────────────────────────────────────
 export const ORIENTATION = {
@@ -302,9 +303,17 @@ export const STRUCTURE = {
     waterproofing: 'fluid-applied membrane + drainage composite, full height of retained earth',
     engineerNote: 'RETAINING HEIGHT AND REINFORCEMENT TO BE DESIGNED BY A NC-LICENSED STRUCTURAL ENGINEER ON GEOTECHNICAL RECOMMENDATIONS. Values here are placeholders for coordination only.',
   },
+  // Sections come from model/structure.mjs, where they are SIZED from a
+  // tributary width, a load combination and a deflection limit — not asserted.
+  // The string that used to sit here read "glulam 5-1/8 x 15 (placeholder)",
+  // and the sizing pass showed that member was undersized. A placeholder that
+  // travels into drawings stops being a placeholder.
   ribs: GRID.x.map(g => ({
     id: `RIB-${g.id}`, x: g.v,
-    member: 'glulam 5-1/8 x 15 (placeholder)',
+    member: g.v >= ft(48)
+      ? `${RIB_ROOF_FLOOR.section} ${RIB_ROOF_FLOOR.material} — roof + upper floor`
+      : `${RIB_ROOF.section} ${RIB_ROOF.material} — roof only`,
+    sizedBy: 'model/structure.mjs',
     from: { y: ft(26), support: 'spine wall' },
     to:   { y: ft(0),  support: 'downhill column line' },
   })),
