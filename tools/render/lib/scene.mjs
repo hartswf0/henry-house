@@ -15,6 +15,7 @@ import G, {
   STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR, roofTopAt,
 } from '../../../model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '../../../model/openings.mjs';
+import { finished as siteFinished, COURT, driveProfile, DRIVE_SECTION } from '../../../model/site.mjs';
 import { FIXTURES } from '../../../model/fixtures.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
@@ -40,34 +41,24 @@ function benchInfluence(X) {
 
 /** Finished site elevation (inches above datum) at a model point.
  *
- * Rule that matters: INSIDE the building footprint the ground must stay BELOW
- * the lowest slab. The first version ramped it up to 90" under the house, which
- * buried the entire walkout level and made a three-storey house read as one.
- * The step back up to the drain gap happens behind the spine wall, which hides it.
+ * DELEGATES TO model/site.mjs. This function used to carry its own copy of the
+ * grading rules, which is how the render ended up showing a rectangular motor
+ * court after C-101 had already been redrawn as an L. Two terrain functions is
+ * one terrain function too many.
+ *
+ * The one render-specific rule that stays here: INSIDE the building footprint
+ * the ground must never rise above the lowest slab. An earlier version ramped
+ * it to 90" under the house, which buried the walkout level and made a
+ * three-storey house read as one.
  */
 export function siteZ(X, Y) {
-  const nat = SITE_SLOPE.grade(X, Y);
-  const lat = benchInfluence(X);
-  if (lat < 0.002) return nat;
-
-  const overLower = X < FOOTPRINTS.L0.x1 + 24;     // the walkout half of the bar
-  const underFloor = overLower ? -12 : Math.min(nat, L1.ffe - 46);
-  let bench;
-
-  if (Y <= DECKS[1].y0) {
-    bench = nat;                                            // below the terrace, untouched
-  } else if (Y <= 0) {
-    bench = overLower ? -6 : underFloor;                    // lower terrace
-  } else if (Y < DRAIN_GAP.y0) {
-    bench = underFloor;                                     // under the building — never pokes through
-  } else if (Y < GAP_OUT) {
-    bench = DRAIN_GAP.invert;                               // the drain gap
-  } else if (Y < COURT_BACK) {
-    bench = COURT_Z;                                        // motor court
-  } else {
-    bench = Math.min(nat, COURT_Z + (Y - COURT_BACK) / 1.5); // cut face 1.5H:1V
+  let z = siteFinished(X, Y);
+  const inFootprint = X > BAR.x0 - 24 && X < BAR.x1 + 24 && Y > -24 && Y < DRAIN_GAP.y0;
+  if (inFootprint) {
+    const overLower = X < FOOTPRINTS.L0.x1 + 24;
+    z = Math.min(z, overLower ? -12 : L1.ffe - 46);
   }
-  return nat + (bench - nat) * lat;
+  return z;
 }
 
 function buildTerrain(realtime = false) {
@@ -568,16 +559,30 @@ function buildRidges() {
 
 function buildDrive(M) {
   const g = new THREE.Group();
-  const r = rng(77);
-  // motor court apron
-  g.add(mbox(ft(-14), ft(122), GAP_OUT, COURT_BACK, COURT_Z - 6, COURT_Z, M.gravel, { cast: false }));
-  // drive running off to the east, following the bench then falling away
-  let X = ft(122);
-  for (let i = 0; i < 22; i++) {
-    const x1 = X + ft(16);
-    const z = COURT_Z + i * 9;
-    g.add(mbox(X, x1, GAP_OUT + ft(2) + i * 14, GAP_OUT + ft(16) + i * 14, z - 6, z, M.gravel, { cast: false }));
-    X = x1;
+  // MOTOR COURT — two limbs. The apron is what lets a car back clear of the
+  // garage doors; without it the arrival sequence does not work at all.
+  for (const r of [COURT.main, COURT.apron]) {
+    g.add(mbox(r.x0, r.x1, r.y0, r.y1, COURT.z - 6, COURT.z, M.gravel, { cast: false }));
+  }
+  // THE DRIVE — the solved alignment from model/site.mjs, not 22 guessed boxes.
+  const d = driveProfile();
+  const halfW = ft(DRIVE_SECTION.widthFt) / 2;
+  for (let i = 1; i < d.pts.length; i++) {
+    const a = d.pts[i - 1], b = d.pts[i];
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const L = Math.hypot(dx, dy) || 1;
+    const steps = Math.max(2, Math.round(L / ft(12)));
+    for (let k = 0; k < steps; k++) {
+      const t0 = k / steps, t1 = (k + 1) / steps;
+      const x0 = a.x + dx * t0, y0 = a.y + dy * t0;
+      const x1 = a.x + dx * t1, y1 = a.y + dy * t1;
+      const z = a.z + (b.z - a.z) * ((t0 + t1) / 2);
+      // axis-aligned slab wide enough to cover the segment either way it runs
+      const pad = Math.abs(dx) > Math.abs(dy) ? [0, halfW] : [halfW, 0];
+      g.add(mbox(Math.min(x0, x1) - pad[0], Math.max(x0, x1) + pad[0],
+                 Math.min(y0, y1) - pad[1], Math.max(y0, y1) + pad[1],
+                 z - 8, z, M.gravel, { cast: false }));
+    }
   }
   return g;
 }
