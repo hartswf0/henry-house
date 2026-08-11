@@ -1,0 +1,44 @@
+{
+  "id": "S8-WATER",
+  "levels": [
+    {"ffe": 13, "name": "ENTRY", "rooms": [
+      {"name":"BEDROOM 4","use":"bed","x0":-6,"y0":2,"w":14,"d":11,"phase":2},
+      {"name":"STUDY / WEST BUNK","use":"work","x0":-6,"y0":13,"w":14,"d":7,"phase":2},
+      {"name":"WEST GALLERY","use":"circ","x0":8,"y0":2,"w":4,"d":18,"phase":2},
+      {"name":"GREAT ROOM","use":"living","x0":12,"y0":2,"w":15,"d":11,"phase":1},
+      {"name":"DINING","use":"dining","x0":27,"y0":2,"w":7,"d":11,"phase":1},
+      {"name":"PANTRY","use":"store","x0":12,"y0":13,"w":6,"d":7,"phase":1},
+      {"name":"KITCHEN","use":"kitchen","x0":18,"y0":13,"w":16,"d":7,"phase":1},
+      {"name":"CORE HALL","use":"circ","x0":34,"y0":2,"w":6,"d":6,"phase":1},
+      {"name":"BATH 1","use":"bath","x0":34,"y0":8,"w":6,"d":7,"phase":1},
+      {"name":"UTILITY BAY / LAUNDRY","use":"laundry","x0":34,"y0":15,"w":10,"d":5,"phase":1},
+      {"name":"STAIR","use":"circ","x0":40,"y0":2,"w":4,"d":13,"phase":1},
+      {"name":"PRIMARY BEDROOM","use":"bed","x0":44,"y0":2,"w":12,"d":10,"phase":1},
+      {"name":"BOOT ROOM","use":"entry","x0":44,"y0":12,"w":12,"d":8,"phase":1}
+    ]},
+    {"ffe": 3.5, "name": "WALKOUT", "rooms": [
+      {"name":"BEDROOM 5","use":"bed","x0":-6,"y0":2,"w":12,"d":10,"phase":2},
+      {"name":"GEAR STORE","use":"store","x0":6,"y0":2,"w":6,"d":10,"phase":2},
+      {"name":"WEST HALL","use":"circ","x0":-6,"y0":12,"w":18,"d":4,"phase":2},
+      {"name":"BEDROOM 2","use":"bed","x0":13,"y0":2,"w":10.5,"d":11,"phase":1},
+      {"name":"BEDROOM 3","use":"bed","x0":23.5,"y0":2,"w":10.5,"d":11,"phase":1},
+      {"name":"BEDROOM CORRIDOR","use":"circ","x0":13,"y0":13,"w":27,"d":3,"phase":1},
+      {"name":"WALKOUT LANDING","use":"circ","x0":34,"y0":2,"w":6,"d":4,"phase":1},
+      {"name":"BATH 2","use":"bath","x0":34,"y0":6,"w":6,"d":7,"phase":1},
+      {"name":"STAIR","use":"circ","x0":40,"y0":2,"w":4,"d":14,"phase":1},
+      {"name":"WATER PLANT","use":"mech","x0":44,"y0":2,"w":9,"d":9,"phase":1},
+      {"name":"BATH 3","use":"bath","x0":44,"y0":11,"w":9,"d":5,"phase":2}
+    ]}
+  ],
+  "doors": [
+    {"x":50,"y":20,"face":"N","kind":"entry","ffe":13},
+    {"x":24,"y":2,"face":"S","kind":"deck","ffe":13},
+    {"x":50,"y":2,"face":"S","kind":"deck","ffe":13},
+    {"x":0,"y":2,"face":"S","kind":"deck","ffe":13},
+    {"x":37,"y":2,"face":"S","kind":"walkout","ffe":3.5},
+    {"x":18,"y":2,"face":"S","kind":"egress","ffe":3.5},
+    {"x":48,"y":2,"face":"S","kind":"service","ffe":3.5},
+    {"x":0,"y":2,"face":"S","kind":"walkout","ffe":3.5}
+  ],
+  "notes": "The massing showed one roof, one leader, one stack; the plan shows what that costs in rooms. Every fixture in the house lands in a 6 ft strip at x34-40 with the stair beside it at x40-44: kitchen sink on the west face of the x=34 wall, bath 1 and the 10x5 utility bay above it, bath 2 directly under bath 1 (they overlap y8-13, so the drain is one plumb line), and the WATER PLANT as an 81 sf room at the foot of the stair - first flush, sediment, UV, pressure tank and heater all racked on the interior x=44 core wall, buried-tank line entering under the slab and relief draining to daylight through the walkout face, so not one pipe sits in an exterior wall on either floor. Phase 2's bath 3 tucks against the plant for the shortest hot run in the house. The single uphill door at x50,y20 lands in a 12x8 boot room that is also the laundry's standing room and the hinge to primary, stair and mudroom, so a wet dog and a filter change use the same treads and never cross the great room. The worst compromise: the future west bay - 576 sf, two bedrooms and a study - carries no plumbing at all. The one-stack bet means a guest in bedroom 4 walks 22 ft to bath 1, and the mature five-bedroom house ends up with two of its three baths on the walkout level. I would rather explain that walk than explain a second stack freezing on the cold end of the house."
+}

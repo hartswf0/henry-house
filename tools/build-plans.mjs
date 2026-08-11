@@ -84,7 +84,7 @@ const touching = (a, b) => {
 
 /** Every check a plan has to survive. Returns {errors, warnings, stats}. */
 export function checkPlan(scheme, plan) {
-  const errors = [], warnings = [];
+  const errors = [], warnings = [], flags = [];
   const stats = { levels: 0, rooms: 0, sf: 0, circSf: 0, beds: 0, baths: 0 };
 
   if (!Array.isArray(plan.levels) || !plan.levels.length) {
@@ -136,6 +136,53 @@ export function checkPlan(scheme, plan) {
       }
     }
 
+    // ── FLAGS ────────────────────────────────────────────────────────────
+    // These are not geometry faults, so they do not drop the plan. They are
+    // real findings ABOUT the scheme, and they belong on its sheet where a
+    // reader can weigh them. Every one of them was first caught by a critic
+    // reading a drawing; turning each into a check is how a critic's work
+    // stops being a one-off opinion and becomes something the model enforces.
+    const ext = { x0: Math.min(...lv.rooms.map(r => r.x0)), x1: Math.max(...lv.rooms.map(r => r.x0 + r.w)),
+                  y0: Math.min(...lv.rooms.map(r => r.y0)), y1: Math.max(...lv.rooms.map(r => r.y0 + r.d)) };
+
+    // THE FREEZE RULE. A wet room whose plumbing wall IS the exterior wall.
+    // The Perch passed every geometric check with its entire wet band backed
+    // onto the uphill exterior face; a critic found it, this now finds it.
+    for (const r of lv.rooms.filter(x => WET.has(x.use))) {
+      const onExt = [
+        Math.abs((r.y0 + r.d) - ext.y1) < 0.6 && 'uphill',
+        Math.abs(r.y0 - ext.y0) < 0.6 && 'downhill',
+        Math.abs(r.x0 - ext.x0) < 0.6 && 'west',
+        Math.abs((r.x0 + r.w) - ext.x1) < 0.6 && 'east',
+      ].filter(Boolean);
+      if (onExt.length) flags.push(`FREEZE RULE — "${r.name}" (${label}) backs onto the ${onExt.join(' and ')} exterior wall. No plumbing may run there at this elevation.`);
+    }
+
+    // A kitchen with no exterior wall has no daylight and no direct vent.
+    for (const r of lv.rooms.filter(x => x.use === 'kitchen')) {
+      const daylit = Math.abs(r.y0 - ext.y0) < 0.6 || Math.abs((r.y0 + r.d) - ext.y1) < 0.6 ||
+                     Math.abs(r.x0 - ext.x0) < 0.6 || Math.abs((r.x0 + r.w) - ext.x1) < 0.6;
+      if (!daylit) flags.push(`NO DAYLIGHT — the kitchen (${label}) touches no exterior wall.`);
+      if (Math.min(r.w, r.d) < 9) flags.push(`KITCHEN DEPTH — ${Math.min(r.w, r.d)} ft leaves under 42 in of working aisle once cabinets land on both faces.`);
+    }
+
+    // A "primary" bath or closet that shares no edge with the primary bedroom
+    // cannot have an en-suite door, however it is labelled.
+    const primaryBed = lv.rooms.find(r => r.use === 'bed' && /primary|master/i.test(r.name));
+    if (primaryBed) {
+      for (const r of lv.rooms) {
+        if (!/primary|master|w\.?i\.?c|ensuite|en-suite/i.test(r.name)) continue;
+        if (r === primaryBed) continue;
+        if (!touching(r, primaryBed)) flags.push(`NOT EN-SUITE — "${r.name}" shares no edge with "${primaryBed.name}", so it can only be entered from circulation.`);
+      }
+    }
+
+    // Rooms summing to exactly the floor plate means the dimensions are ideal
+    // clear sizes with no wall thickness anywhere.
+    if (roomSf / footSf > 0.995) {
+      flags.push(`NO WALL THICKNESS — rooms on ${label} sum to ${(roomSf / footSf * 100).toFixed(1)}% of the floor plate, so every dimension shown is an ideal clear dimension with nothing left for walls, risers or chases.`);
+    }
+
     stats.sf += roomSf;
     const cover = roomSf / footSf;
     if (cover < 0.88) errors.push(`${label}: rooms cover only ${(cover * 100).toFixed(0)}% of the ${Math.round(footSf)} sf floor — ${Math.round(footSf - roomSf)} sf unaccounted`);
@@ -152,7 +199,45 @@ export function checkPlan(scheme, plan) {
     }
   }
   if (!(plan.doors ?? []).some(d => d.kind === 'entry')) warnings.push('no entry door');
-  return { errors, warnings, stats };
+
+  // ── SEVERED BODIES ──────────────────────────────────────────────────────
+  // Rooms that touch, plus stairs that link levels, form a graph. If that
+  // graph has more than one component, the house is two houses and the route
+  // between them is OUTDOORS — which is exactly how the Narrow reported 7%
+  // circulation while its real corridor was 840 sf of unheated porch and
+  // dogtrot that no conditioned-area metric could see. Cheap circulation is
+  // not cheap if it is outside.
+  {
+    const nodes = [];
+    for (const lv of plan.levels) for (const r of lv.rooms ?? []) nodes.push({ r, ffe: lv.ffe });
+    const parent = nodes.map((_, i) => i);
+    const find = (i) => (parent[i] === i ? i : (parent[i] = find(parent[i])));
+    const union = (a, b) => { const x = find(a), y = find(b); if (x !== y) parent[x] = y; };
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      if (Math.abs(a.ffe - b.ffe) < 0.6) { if (touching(a.r, b.r)) union(i, j); }
+      // a stair joins the level it sits on to the level above, where it
+      // reappears in plan at the same footprint
+      else if (/stair/i.test(a.r.name) && /stair/i.test(b.r.name) && overlap(a.r, b.r) > 8) union(i, j);
+    }
+    const comps = new Set(nodes.map((_, i) => find(i)));
+    if (comps.size > 1) {
+      const groups = [...comps].map(c => nodes.filter((_, i) => find(i) === c));
+      const sizes = groups.map(g => Math.round(g.reduce((a, n) => a + area(n.r), 0)));
+      flags.push(`SEVERED — the plan is ${comps.size} disconnected groups of rooms (${sizes.join(' sf and ')} sf). There is no interior route between them, so the corridor joining this house to itself is OUTDOORS. Any circulation figure quoted for this plan excludes it.`);
+    }
+  }
+
+  // Sleeping rooms above the entry level with only one stair in the building.
+  const stairCount = new Set(plan.levels.flatMap(lv => (lv.rooms ?? [])
+    .filter(r => r.use === 'circ' && /stair/i.test(r.name)).map(r => `${r.x0},${r.y0}`))).size;
+  const entryFfe = Math.min(...plan.levels.map(l => l.ffe));
+  const highBeds = plan.levels.filter(l => l.ffe > entryFfe + 9)
+    .flatMap(l => (l.rooms ?? []).filter(r => r.use === 'bed').map(r => `${r.name} at ffe ${l.ffe}`));
+  if (stairCount === 1 && highBeds.length) {
+    flags.push(`ONE WAY DOWN — ${highBeds.length} sleeping room${highBeds.length > 1 ? 's' : ''} more than a storey above the entry (${highBeds.join(', ')}) served by a single stair. Second means of escape not drawn.`);
+  }
+  return { errors, warnings, flags, stats };
 }
 
 // ── run ─────────────────────────────────────────────────────────────────────
@@ -171,8 +256,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const scheme = SCHEMES.find(s => s.id === plan.id);
     if (!scheme) { console.log(`  ✗ ${f}  no scheme "${plan.id}"`); totalErr++; continue; }
 
-    const { errors, warnings, stats } = checkPlan(scheme, plan);
+    const { errors, warnings, flags, stats } = checkPlan(scheme, plan);
     totalWarn += warnings.length;
+    plan.flags = flags;
     if (errors.length) {
       totalErr += errors.length;
       console.log(`  ✗ ${plan.id.padEnd(14)} DROPPED — ${errors.length} error${errors.length > 1 ? 's' : ''}`);
@@ -190,6 +276,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`  ✓ ${plan.id.padEnd(14)} ${String(stats.levels).padStart(2)} levels  ${String(stats.rooms).padStart(3)} rooms  ` +
                 `${String(Math.round(stats.sf)).padStart(5)} sf  ${stats.beds} bed  ${stats.baths} bath  ${String(circPct).padStart(2)}% circulation`);
     for (const w of warnings) console.log(`      ~ ${w}`);
+    for (const f of flags) console.log(`      ! ${f}`);
   }
 
   console.log(`\n  ${kept.length}/${files.length} plans accepted, ${totalErr} errors, ${totalWarn} warnings`);

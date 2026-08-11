@@ -611,7 +611,7 @@ PLANS.forEach((plan) => {
     if (wrap && cx > LEFT && cx + w > RIGHT) { cx = LEFT; ry += 700; }
     s.ox = cx - B.x0 * 12 * SC;
     s.oy = ry;
-    drawSchemeLevel(s, scheme, lv);
+    drawSchemeLevel(s, scheme, lv, { plan });
     labelLevel(s, scheme, lv, cx, ry + 130);
     cx += w + GAP;
     lowest = Math.max(lowest, ry);
@@ -650,6 +650,20 @@ PLANS.forEach((plan) => {
       { size: 9.5, color: INK.mid });
     wrapTo(plan.notes, 74).slice(0, 9).forEach((ln, i) =>
       s.stext(bx + 1250, by + 44 + i * 14, ln, { size: 10, color: INK.line }));
+  }
+
+  // what the checker flagged — geometry that is legal but says something
+  if (plan.flags?.length) {
+    const fx = bx + 700, fy = by + 190;
+    s.stext(fx, fy, `THE CHECKER FLAGGED ${plan.flags.length}`, { size: 13, weight: 700, spacing: 1.3, color: INK.fire });
+    s.stext(fx, fy + 18, 'Not geometry faults — the plan is legal. These are findings ABOUT the scheme, each one first caught by a critic reading a drawing and since made automatic.',
+      { size: 9.5, color: INK.mid });
+    let fyy = fy + 44;
+    for (const f of plan.flags.slice(0, 8)) {
+      wrapTo('· ' + f, 66).forEach(ln => { s.stext(fx, fyy, ln, { size: 9.5, color: INK.line }); fyy += 13; });
+      fyy += 3;
+    }
+    if (plan.flags.length > 8) s.stext(fx, fyy, `+ ${plan.flags.length - 8} more`, { size: 9.5, color: INK.mid });
   }
 
   // the critic, with fresh context, per the gauntlet template's fan-out rule

@@ -14,6 +14,8 @@
 
 import { LW, INK } from '../svg.mjs';
 import { ft } from '../../model/units.mjs';
+import { sym } from './fixtures.mjs';
+import { furnishLevel, stairsFor } from '../../model/scheme-furnish.mjs';
 
 const EXT_T = 10;                                  // exterior wall, inches
 const INT_T = 5;                                   // partition, inches
@@ -73,7 +75,7 @@ function bounds(rooms) {
  * One level of one scheme, drawn as a schematic plan.
  * Returns the bounds in feet so the caller can lay sheets out.
  */
-export function drawSchemeLevel(s, scheme, level, { showDims = true } = {}) {
+export function drawSchemeLevel(s, scheme, level, { showDims = true, plan = null } = {}) {
   const rooms = level.rooms ?? [];
   if (!rooms.length) return null;
   const B = bounds(rooms);
@@ -110,6 +112,19 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true } = {}) {
     }
   }
 
+  // ── fixtures, furniture and stairs ───────────────────────────────────────
+  // Every one of these comes from model/scheme-furnish.mjs, which is the SAME
+  // generator the 3D reads. A toilet here is the toilet in the model, at the
+  // same coordinates, because there is only one list.
+  if (plan) {
+    for (const st of stairsFor(plan).filter(t => Math.abs(t.level - level.ffe) < 0.6)) drawStair(s, st);
+    for (const f of furnishLevel(plan, level.ffe)) {
+      const fn = sym[f.type];
+      if (fn) fn(s, f);
+      else s.rect(f.x, f.y, f.w, f.d, { fill: 'none', color: INK.mid, w: LW.thin });
+    }
+  }
+
   // ── the exterior wall, heavy ─────────────────────────────────────────────
   const e = { x0: ft(B.x0), y0: ft(B.y0), x1: ft(B.x1), y1: ft(B.y1) };
   for (const [x1, y1, x2, y2] of [
@@ -141,6 +156,33 @@ export function drawSchemeLevel(s, scheme, level, { showDims = true } = {}) {
     s.dimV(e.y0, e.y1, e.x1 + 46, null);
   }
   return B;
+}
+
+/**
+ * A real flight: treads counted from the scheme's own floor-to-floor, an up
+ * arrow, and a break line. The riser count is the same number the 3D builds
+ * steps from, so a stair you can count here is the stair you climb in the model.
+ */
+function drawStair(s, t) {
+  const along = t.run === 'Y' ? t.d : t.w;
+  const n = Math.max(2, Math.min(t.risers, Math.floor(along / t.tread)));
+  for (let i = 1; i < n; i++) {
+    const o = i * t.tread;
+    if (t.run === 'Y') s.line(t.x + 4, t.y + o, t.x + t.w - 4, t.y + o, { w: LW.hair, color: INK.mid });
+    else s.line(t.x + o, t.y + 4, t.x + o, t.y + t.d - 4, { w: LW.hair, color: INK.mid });
+  }
+  // UP arrow, pointing the way you climb
+  const cx = t.x + t.w / 2, cy = t.y + t.d / 2;
+  if (t.run === 'Y') {
+    s.line(cx, t.y + 8, cx, t.y + t.d - 8, { w: LW.medium, color: INK.line });
+    s.poly([[cx - 5, t.y + t.d - 16], [cx, t.y + t.d - 6], [cx + 5, t.y + t.d - 16]],
+      { fill: INK.line, color: INK.line, w: LW.hair });
+  } else {
+    s.line(t.x + 8, cy, t.x + t.w - 8, cy, { w: LW.medium, color: INK.line });
+    s.poly([[t.x + t.w - 16, cy - 5], [t.x + t.w - 6, cy], [t.x + t.w - 16, cy + 5]],
+      { fill: INK.line, color: INK.line, w: LW.hair });
+  }
+  s.text(cx, t.y + 10, `UP ${t.risers}R`, { size: 10, anchor: 'middle', color: INK.mid });
 }
 
 /** The heading over one level: which scheme, which floor, how big. */
