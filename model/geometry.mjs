@@ -103,13 +103,17 @@ export const LINK = {
 };
 
 export const GARAGE = {
-  x0: ft(89), x1: ft(113),     // 24'-0"
+  x0: ft(96), x1: ft(120),     // 24'-0"
   y0: ft(5),  y1: ft(29),      // 24'-0"
   ffe: ft(10) - 8,             // 8" below MAIN — slab drains away from the link door
   clear: 120,
   ridgeTop: ft(10) - 8 + 196,
   extWall: 10,
-  note: 'Detached, joined by the conditioned LINK. 2 bays + shop/ski bench.',
+  // The gap to the LINK was 2'-0", which is a joint, not a breezeway. It is now
+  // 9'-0" and roofed: you get out of the car under cover, and the fire gap and
+  // the CO separation are both real.
+  breezeway: { x0: ft(87), x1: ft(96), width: ft(9), covered: true },
+  note: 'Detached, joined by a 9\'-0" covered breezeway to the LINK. 2 bays + shop.',
 };
 
 // ── ROOMS ────────────────────────────────────────────────────────────────────
@@ -343,6 +347,20 @@ export const DECKS = [
     note: 'THE DRAIN GAP: the house never touches the cut face. A 4\'-0" open, gravel-bottomed, trench-drained margin runs the length of the uphill wall so groundwater and meltwater are intercepted and carried away instead of loading a habitable wall. You do not close a contaminated wound tight; you leave a drain.',
   },
 ];
+
+// EXTERIOR STAIR — lower terrace up to the main deck.
+// Without this the lower terrace is a dead end: a 9'-10" change of level with
+// no way up except back through the house. On a house whose whole argument is
+// that the hill gives you the lower level, that is a serious omission.
+export const EXT_STAIR = {
+  id: 'S3', name: 'TERRACE STAIR',
+  x: ft(25), w: 48,                 // 4'-0" clear
+  yBot: ft(-14) - 24, yTop: -6,     // runs north, up toward the house
+  zBot: -6, zTop: ft(10) - 8,
+  risers: 16, riserHeight: 7.375, treadDepth: 11,
+  guard: '42" steel guard, cable infill, both sides',
+  note: 'Lands on the terrace at the foot of the lower-level walkout.',
+};
 
 export const DRAIN_GAP = {
   y0: ft(26), y1: ft(30),      // 4'-0" wide, full length of the uphill wall

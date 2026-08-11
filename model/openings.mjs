@@ -100,9 +100,9 @@ export const openingsFor = (level) => OPENINGS.filter(o => o.level === level);
 
 // ── GARAGE (separate structure) ──────────────────────────────────────────────
 export const GARAGE_OPENINGS = [
-  O('D-G01', 'L1', 'garage', 1080, 348, 108, 'H', { head: 96, note: '9\'-0" x 8\'-0" insulated sectional' }),
-  O('D-G02', 'L1', 'garage', 1212, 348, 108, 'H', { head: 96 }),
-  O('D-G03', 'L1', 'door', 1068, 100, 36, 'V', { side: 1, hand: 1, note: 'garage -> breezeway' }),
+  O('D-G01', 'L1', 'garage', 1164, 348, 108, 'H', { head: 96, note: '9\'-0" x 8\'-0" insulated sectional' }),
+  O('D-G02', 'L1', 'garage', 1296, 348, 108, 'H', { head: 96 }),
+  O('D-G03', 'L1', 'door', 1152, 100, 36, 'V', { side: 1, hand: 1, note: 'garage -> breezeway' }),
 ];
 
 export default { OPENINGS, OPEN_EDGES, openingsFor, GARAGE_OPENINGS };

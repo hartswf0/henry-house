@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HENRY HOUSE — walkthrough</title>
+<style>
+  :root{ --ink:#e9edf2; --panel:rgba(16,19,24,.86); --line:#2c333d; --accent:#e08056; --mid:#93a0ae;
+         --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#0d1014;font-family:var(--mono);color:var(--ink)}
+  canvas{display:block}
+  #ui{position:fixed;top:0;left:0;padding:14px;width:288px;max-height:100%;overflow:auto;
+      background:var(--panel);backdrop-filter:blur(9px);border-right:1px solid var(--line);font-size:12px}
+  #ui h1{font-size:15px;letter-spacing:2.2px;margin:0 0 2px}
+  #ui .sub{color:var(--mid);font-size:10.5px;letter-spacing:1.2px;margin-bottom:14px}
+  #ui h2{font-size:10px;letter-spacing:1.8px;color:var(--mid);margin:16px 0 7px;font-weight:400;
+         border-top:1px solid var(--line);padding-top:11px}
+  button{font-family:var(--mono);font-size:11px;background:#1b2029;color:var(--ink);
+         border:1px solid var(--line);border-radius:3px;padding:6px 8px;cursor:pointer;width:100%;text-align:left;margin-bottom:4px}
+  button:hover{background:#242b36;border-color:var(--accent)}
+  button.on{border-color:var(--accent);color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  label{display:block;color:var(--mid);font-size:10.5px;margin:9px 0 3px;letter-spacing:.8px}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  #hud{position:fixed;bottom:0;left:288px;right:0;padding:8px 14px;background:var(--panel);
+       border-top:1px solid var(--line);font-size:11px;color:var(--mid);letter-spacing:.7px}
+  #hud b{color:var(--ink)}
+  kbd{background:#242b36;border:1px solid var(--line);border-radius:3px;padding:0 4px;font-size:10px}
+  #loading{position:fixed;inset:0;display:grid;place-items:center;background:#0d1014;z-index:9;
+           letter-spacing:2px;font-size:12px;color:var(--mid)}
+</style>
+</head>
+<body>
+<div id="loading">BUILDING MODEL…</div>
+<div id="ui">
+  <h1>HENRY HOUSE</h1>
+  <div class="sub">WALKTHROUGH · WATAUGA CO., NC</div>
+
+  <h2>MOVE</h2>
+  <div class="row">
+    <button id="mOrbit" class="on">ORBIT</button>
+    <button id="mWalk">WALK</button>
+  </div>
+  <div style="color:var(--mid);font-size:10.5px;line-height:1.55;margin-top:6px">
+    ORBIT — drag to turn, scroll to zoom, right-drag to pan.<br>
+    WALK — click to capture the mouse, <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move,
+    <kbd>SHIFT</kbd> run, <kbd>SPACE</kbd>/<kbd>C</kbd> up-down, <kbd>ESC</kbd> release.
+  </div>
+
+  <h2>GO TO</h2>
+  <div id="views"></div>
+
+  <h2>SHOW</h2>
+  <div id="layers"></div>
+
+  <h2>SUN</h2>
+  <label>Time of day — <span id="hourLabel">14:00</span></label>
+  <input type="range" id="hour" min="7" max="19" step="0.25" value="14">
+  <label>Day of year — <span id="doyLabel">Oct 15</span></label>
+  <input type="range" id="doy" min="1" max="365" step="1" value="288">
+
+  <h2>QUALITY</h2>
+  <div class="row">
+    <button id="qLow">FAST</button>
+    <button id="qHigh" class="on">GOOD</button>
+  </div>
+</div>
+<div id="hud">
+  <span id="pos">—</span> &nbsp;·&nbsp; <span id="eye">—</span> &nbsp;·&nbsp; <b id="fps">—</b>
+</div>
+
+<script type="importmap">
+{"imports":{
+  "three":"/node_modules/three/build/three.module.js",
+  "three/addons/":"/node_modules/three/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { buildScene, siteZ } from '/tools/render/lib/scene.mjs';
+import { sunDirection } from '/tools/render/lib/render.mjs';
+import { LEVELS } from '/model/geometry.mjs';
+
+const F = (i) => i / 12;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+let sun = sunDirection({ dayOfYear: 288, hour: 14 });
+const built = buildScene(renderer, { sun, realtime: true });
+const scene = built.scene, rig = built.rig;
+
+// Realtime uses ONE sun with a soft shadow map, not the offline accumulation.
+rig.sun.position.copy(sun.dir).multiplyScalar(900).add(rig.focus);
+rig.sun.target.position.copy(rig.focus);
+rig.skyLight.position.set(rig.focus.x + 200, rig.focus.y + 700, rig.focus.z + 150);
+rig.skyLight.target.position.copy(rig.focus);
+
+const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.3, 9000);
+camera.position.set(-30, 46, 150);
+
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.target.set(40, 14, -12);
+orbit.enableDamping = true; orbit.dampingFactor = 0.07;
+orbit.maxPolarAngle = Math.PI * 0.495;
+
+const walk = new PointerLockControls(camera, renderer.domElement);
+scene.add(walk.object);
+let mode = 'orbit';
+
+// ── view presets ────────────────────────────────────────────────────────────
+const VIEWS = {
+  'Hero — downhill face':      { p: [-30, 30, 130], t: [44, 22, -13] },
+  'Arrival — motor court':     { p: [-8, 16, -52],  t: [72, 14, -18] },
+  'The stepped section':       { p: [126, 14, 62],  t: [30, 10, -12] },
+  'Lower terrace':             { p: [14, -4, 34],   t: [46, 4, -10] },
+  'Great room':                { p: [30, 15.4, -6], t: [46, 14, 40] },
+  'Kitchen + dining':          { p: [62, 15.4, -8], t: [72, 14.5, -4] },
+  'Mudroom / airlock':         { p: [78, 15.4, -14],t: [88, 15, -12] },
+  'Garage + breezeway':        { p: [88, 15, -34],  t: [104, 13, -20] },
+  'Primary suite':             { p: [10, 15.4, -8], t: [4, 14.6, -12] },
+  'Upper hall + bedrooms':     { p: [56, 25.4, -18],t: [70, 25, -14] },
+  'Site aerial':               { p: [-70, 150, 250],t: [58, 12, -20] },
+};
+const viewsEl = document.getElementById('views');
+for (const [name, v] of Object.entries(VIEWS)) {
+  const b = document.createElement('button');
+  b.textContent = name;
+  b.onclick = () => {
+    camera.position.set(...v.p);
+    if (mode === 'orbit') { orbit.target.set(...v.t); orbit.update(); }
+    else camera.lookAt(new THREE.Vector3(...v.t));
+  };
+  viewsEl.appendChild(b);
+}
+
+// ── layer toggles ───────────────────────────────────────────────────────────
+const groups = scene.children.filter(c => c.type === 'Group');
+const NAMES = ['House + interior', 'Frames', 'Drive + court', 'Vegetation', 'Distant ridges'];
+const layersEl = document.getElementById('layers');
+groups.forEach((g, i) => {
+  const b = document.createElement('button');
+  b.textContent = NAMES[i] ?? `Group ${i + 1}`;
+  b.className = 'on';
+  b.onclick = () => { g.visible = !g.visible; b.className = g.visible ? 'on' : ''; };
+  layersEl.appendChild(b);
+});
+// roof toggle so you can look down into the plan
+const roofBtn = document.createElement('button');
+roofBtn.textContent = 'Roofs (hide to see plan)';
+roofBtn.className = 'on';
+let roofsOn = true;
+const roofMeshes = [];
+scene.traverse(o => { if (o.material === built.materials.roof) roofMeshes.push(o); });
+roofBtn.onclick = () => { roofsOn = !roofsOn; roofMeshes.forEach(m => m.visible = roofsOn); roofBtn.className = roofsOn ? 'on' : ''; };
+layersEl.appendChild(roofBtn);
+
+// ── sun controls ────────────────────────────────────────────────────────────
+const hourEl = document.getElementById('hour'), doyEl = document.getElementById('doy');
+const MONTH = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function setSun() {
+  const h = +hourEl.value, d = +doyEl.value;
+  sun = sunDirection({ dayOfYear: d, hour: h });
+  rig.sun.position.copy(sun.dir).multiplyScalar(900).add(rig.focus);
+  rig.sun.target.updateMatrixWorld();
+  rig.sun.intensity = Math.max(0, Math.sin(sun.altitude)) * 5.2;
+  const dt = new Date(2026, 0, d);
+  document.getElementById('hourLabel').textContent =
+    `${String(Math.floor(h)).padStart(2, '0')}:${String(Math.round((h % 1) * 60)).padStart(2, '0')}  ·  alt ${sun.altDeg.toFixed(0)}° az ${sun.azDeg.toFixed(0)}°`;
+  document.getElementById('doyLabel').textContent = `${MONTH[dt.getMonth()]} ${dt.getDate()}`;
+}
+hourEl.oninput = doyEl.oninput = setSun;
+setSun();
+
+// ── quality ─────────────────────────────────────────────────────────────────
+const qLow = document.getElementById('qLow'), qHigh = document.getElementById('qHigh');
+function quality(hi) {
+  renderer.setPixelRatio(hi ? Math.min(devicePixelRatio, 2) : 1);
+  rig.sun.shadow.mapSize.set(hi ? 2048 : 1024, hi ? 2048 : 1024);
+  rig.sun.shadow.map?.dispose(); rig.sun.shadow.map = null;
+  rig.skyLight.visible = hi;
+  qHigh.className = hi ? 'on' : ''; qLow.className = hi ? '' : 'on';
+}
+qLow.onclick = () => quality(false); qHigh.onclick = () => quality(true);
+
+// ── movement ────────────────────────────────────────────────────────────────
+const keys = {};
+addEventListener('keydown', e => keys[e.code] = true);
+addEventListener('keyup', e => keys[e.code] = false);
+const mOrbit = document.getElementById('mOrbit'), mWalk = document.getElementById('mWalk');
+mOrbit.onclick = () => { mode = 'orbit'; walk.unlock(); orbit.enabled = true; mOrbit.className = 'on'; mWalk.className = ''; };
+mWalk.onclick = () => { mode = 'walk'; orbit.enabled = false; walk.lock(); mWalk.className = 'on'; mOrbit.className = ''; };
+renderer.domElement.addEventListener('click', () => { if (mode === 'walk') walk.lock(); });
+
+/** Floor height under the camera: the nearest level slab you are standing over,
+ *  else the ground. Keeps you on a storey instead of flying through it. */
+function floorUnder(x, z) {
+  const X = x * 12, Y = -z * 12;
+  const inBar = X > -20 && X < 880 && Y > -20 && Y < 330;
+  const ground = F(siteZ(X, Y));
+  if (!inBar) return ground;
+  const cams = LEVELS.map(l => F(l.ffe)).filter(f => f <= camera.position.y + 3.2);
+  return cams.length ? Math.max(ground, Math.max(...cams)) : ground;
+}
+
+const EYE = 5.6;
+let last = performance.now(), fpsAcc = 0, fpsN = 0;
+const vel = new THREE.Vector3();
+
+function tick() {
+  requestAnimationFrame(tick);
+  const now = performance.now(), dt = Math.min(0.05, (now - last) / 1000); last = now;
+  fpsAcc += 1 / dt; fpsN++;
+  if (fpsN >= 20) { document.getElementById('fps').textContent = `${(fpsAcc / fpsN).toFixed(0)} fps`; fpsAcc = 0; fpsN = 0; }
+
+  if (mode === 'orbit') { orbit.enabled = true; orbit.update(); }
+  else {
+    const sp = (keys.ShiftLeft || keys.ShiftRight ? 34 : 13) * dt;
+    vel.set(0, 0, 0);
+    if (keys.KeyW) vel.z -= 1; if (keys.KeyS) vel.z += 1;
+    if (keys.KeyA) vel.x -= 1; if (keys.KeyD) vel.x += 1;
+    if (vel.lengthSq()) {
+      vel.normalize().multiplyScalar(sp);
+      walk.moveRight(vel.x); walk.moveForward(-vel.z);
+    }
+    if (keys.Space) camera.position.y += sp;
+    if (keys.KeyC) camera.position.y -= sp;
+    // settle onto the storey you are standing on
+    const target = floorUnder(camera.position.x, camera.position.z) + EYE;
+    if (!keys.Space && !keys.KeyC) camera.position.y += (target - camera.position.y) * Math.min(1, dt * 7);
+  }
+
+  const X = camera.position.x * 12, Y = -camera.position.z * 12;
+  document.getElementById('pos').textContent =
+    `X ${(X / 12).toFixed(0)}'  Y ${(Y / 12).toFixed(0)}'  EL ${(100 + camera.position.y).toFixed(1)}'`;
+  document.getElementById('eye').textContent =
+    mode === 'walk' ? `eye ${(camera.position.y - floorUnder(camera.position.x, camera.position.z)).toFixed(1)}' above floor` : 'orbit';
+
+  renderer.render(scene, camera);
+}
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+document.getElementById('loading').remove();
+tick();
+</script>
+</body>
+</html>

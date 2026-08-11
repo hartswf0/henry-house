@@ -12,7 +12,7 @@ import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
 import G, {
   LEVELS, FOOTPRINTS, GRID, BAR, LINK, GARAGE, ROOFS, ROOF_ASSEMBLY,
-  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS,
+  STRUCTURE, DECKS, DRAIN_GAP, SITE_SLOPE, CLERESTORY, ROOMS, EXT_STAIR,
 } from '/model/geometry.mjs';
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
 import { FIXTURES } from '/model/fixtures.mjs';
@@ -69,8 +69,8 @@ export function siteZ(X, Y) {
   return nat + (bench - nat) * lat;
 }
 
-function buildTerrain() {
-  const W = 620, D = 640, SEG = 132;               // feet
+function buildTerrain(realtime = false) {
+  const W = 620, D = 640, SEG = realtime ? 96 : 132;               // feet
   const g = new THREE.PlaneGeometry(W, D, SEG, SEG);
   g.rotateX(-Math.PI / 2);
   const cx = F(ft(50)), cz = 40;
@@ -251,6 +251,16 @@ function buildHouse(M) {
                  [lk.y1 + RL.overhang.north, RL.topAtY1], [lk.y0 - RL.overhang.south, RL.topAtY0]],
                  lk.x0 - 10, lk.x1 + 10, M.roof));
 
+  // covered breezeway: you get out of the car under cover
+  {
+    const b = GARAGE.breezeway;
+    g.add(mbox(b.x0, b.x1, 100, 240, L1.ffe - 40, L1.ffe - 34, M.paver, { cast: false }));
+    g.add(mbox(b.x0, b.x1, 96, 244, L1.ffe + 118, L1.ffe + 128, M.roof));
+    for (const bx of [b.x0 + 6, b.x1 - 12]) {
+      for (const by of [100, 232]) g.add(mbox(bx, bx + 6, by, by + 6, L1.ffe - 34, L1.ffe + 118, M.steel));
+    }
+  }
+
   // ---- GARAGE (detached) --------------------------------------------------
   const ga = GARAGE;
   g.add(mbox(ga.x0, ga.x1, ga.y0, ga.y1, ga.ffe - 40, ga.ffe, M.concrete, { cast: false }));
@@ -308,6 +318,26 @@ function buildHouse(M) {
   // stone base course under the siding, and a chimney cap
   g.add(mbox(fp1.x0 - 2, fp1.x1 + 2, -2, 314, L1.ffe - 26, L1.ffe - 4, M.stone));
   g.add(mbox(ft(23) - 30, ft(23) + 30, 26, 136, RA.topAtY0 + 96, RA.topAtY0 + 104, M.steel));
+
+  // EXTERIOR STAIR: terrace up to the main deck. Without it the lower terrace
+  // is a dead end and you must go back through the house to reach the deck.
+  {
+    const st = EXT_STAIR;
+    const run = st.yTop - st.yBot, rise = st.zTop - st.zBot;
+    for (let i = 0; i < st.risers; i++) {
+      const y = st.yBot + (run * i) / st.risers;
+      const z = st.zBot + (rise * (i + 1)) / st.risers;
+      g.add(mbox(st.x, st.x + st.w, y, y + run / st.risers + 1, z - 2, z, M.timber));
+      g.add(mbox(st.x, st.x + st.w, y, y + 2, st.zBot, z - 2, M.concrete, { cast: false }));
+    }
+    for (const sx of [st.x - 3, st.x + st.w]) {
+      for (let i = 0; i <= st.risers; i += 4) {
+        const y = st.yBot + (run * i) / st.risers;
+        const z = st.zBot + (rise * i) / st.risers;
+        g.add(mbox(sx, sx + 3, y, y + 3, z, z + 42, M.steel, { cast: false }));
+      }
+    }
+  }
 
   // entry bridge over the drain gap
   const br = DECKS[2];
@@ -610,7 +640,7 @@ function buildSky(renderer, scene, sunDir, turbidity = 3.2) {
 }
 
 // ── PUBLIC ──────────────────────────────────────────────────────────────────
-export function buildScene(renderer, { sun, exposureBoost = 1, interior = false } = {}) {
+export function buildScene(renderer, { sun, exposureBoost = 1, interior = false, realtime = false } = {}) {
   const scene = new THREE.Scene();
 
   const M = {
@@ -645,7 +675,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
   buildSky(renderer, scene, sun.dir);
   scene.fog = new THREE.FogExp2(0xaec1d4, 0.00030);
 
-  scene.add(buildTerrain());
+  scene.add(buildTerrain(realtime));
   scene.add(buildHouse(M));
   scene.add(buildInterior(M));
   scene.add(buildFrames(M));
@@ -657,6 +687,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
       (X > ft(-46) && X < ft(136) && Y > ft(-40) && Y < ft(72)) ||     // house, court, drive
       (Y > ft(-150) && Y < ft(10) && X > ft(-16) && X < ft(96)),       // the view cone
     F, ft,
+    counts: realtime ? { conifer: 110, hardwood: 90, shrub: 200, grass: 400 } : {},
   }));
   scene.add(buildRidges());
 
@@ -665,7 +696,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
 
   const sunLight = new THREE.DirectionalLight(0xffeed6, 3.4 * exposureBoost);
   sunLight.castShadow = true;
-  sunLight.shadow.mapSize.set(1536, 1536);
+  sunLight.shadow.mapSize.set(realtime ? 2048 : 1536, realtime ? 2048 : 1536);
   // Tight shadow frustum: at 2048 over 240ft a texel is ~0.12ft, so the bias
   // needed to kill acne is small enough to keep contact shadows alive.
   const S = 120;
