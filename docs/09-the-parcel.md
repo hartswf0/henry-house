@@ -5,6 +5,12 @@ fifth known fact this project has, and it is worth more than the other four
 together, because a coordinate can be measured against and a description
 cannot.
 
+It also turned out to be **parcel TN-JOHNSON-100 064.03 — Johnson County,
+TENNESSEE, owner HARTSOE HENRY, 29.34 deed acres** (K-6, K-7). The brief said
+"outside Boone, North Carolina" and every one of the 26 sheets said WATAUGA
+COUNTY, NORTH CAROLINA. The land is in another state. That is a code-basis
+problem, not a caption problem, and it is set out in docs/01 under K-7.
+
 The measurement is in docs/01 as M-1 to M-4. This file is about what it does to
 the design.
 

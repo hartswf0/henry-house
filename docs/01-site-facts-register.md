@@ -18,7 +18,28 @@ These come from the client brief. There are only four, and that is the honest co
 | K-2 | The site has an existing water source (type unspecified) | Client brief | Stated by client |
 | K-3 | The client, Henry, is a physician | Client brief | Stated by client |
 | K-4 | The house is a single-family residence for one household | Client brief | Stated by client |
-| **K-5** | **The site is at 36°17'14.2"N 81°55'30.4"W** (36.287267, −81.925097) | **Client, 2026-08-11** | **Stated by client** |
+| **K-5** | **The site is at 36°17'14.2"N 81°55'30.4"W** (36.287278, −81.925111) | **Client, 2026-08-11** | **Stated by client** |
+| **K-6** | **Parcel TN-JOHNSON-100 064.03, owner HARTSOE HENRY, 29.34 deed acres** | TN Property Viewer | Public record |
+| **K-7** | **The site is in JOHNSON COUNTY, TENNESSEE** — not Watauga County, North Carolina | Follows from K-6 | Public record |
+
+### K-7 contradicts every title block in this set
+
+The brief said "outside Boone, North Carolina" and K-1 still records that,
+because it is what the client said. The parcel record puts the land in
+**Tennessee**. Boone is about 20 miles south-east, and the state line runs
+between.
+
+This is not a caption. **A North Carolina statute has no force in Tennessee**,
+so the code basis moves with it:
+
+- the permitting and inspection authority is Johnson County, TN, not Watauga County, NC;
+- **A-06 assumed the NC Mountain Ridge Protection Act (NCGS 113A Art. 14) might apply. It cannot — it is a North Carolina statute.** Tennessee's own ridge, steep-slope and stormwater rules have never been looked at;
+- every code reference gathered in `docs/02-code-basis.md` was gathered against the wrong state.
+
+`tools/svg.mjs` now prints JOHNSON COUNTY, TENNESSEE, so the 26 sheets no
+longer state a jurisdiction the land is not in. **Nothing else about the code
+basis has been re-derived.** That work is outstanding and needs a Tennessee
+source.
 
 ### K-5 changes the status of this document
 

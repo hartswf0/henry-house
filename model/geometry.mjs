@@ -20,6 +20,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { ft, rect, polyArea, sf } from './units.mjs';
+import { SITE_CONTEXT } from './site-context.mjs';
 import { RIB_ROOF, RIB_ROOF_FLOOR } from './structure.mjs';
 
 // ── THE PARCEL ───────────────────────────────────────────────────────────────
@@ -34,9 +35,23 @@ import { RIB_ROOF, RIB_ROOF_FLOOR } from './structure.mjs';
  * is, where the rock is, or where a house can actually stand.
  */
 export const SITE = {
-  lat: 36.28726666666667,     // 36°17'14.2"N
-  lon: -81.92509722222222,    // 81°55'30.4"W
-  source: 'Client, 2026-08-11',
+  // ONE coordinate, from the parcel record in model/site-context.mjs. This file
+  // briefly carried its own — copied out of CREO, which had parsed the seconds
+  // as 14.16" rather than 14.2" and landed 1.2 m away. Two declarations of one
+  // number is the fault this project keeps finding in itself; 1.2 m does not
+  // matter and a second source does.
+  get lat() { return SITE_CONTEXT.anchor.lat; },     // 36°17'14.2"N
+  get lon() { return SITE_CONTEXT.anchor.lon; },     // 81°55'30.4"W
+  source: 'Client, 2026-08-11 — parcel record TN-JOHNSON-100-064.03',
+  // ── the jurisdiction, which is NOT the one on the drawings ───────────────
+  // Every title block in this set says WATAUGA COUNTY, NORTH CAROLINA. The
+  // parcel record says Johnson County, TENNESSEE. A North Carolina statute has
+  // no force in Tennessee, so this is not a caption error: it changes the code
+  // basis, the permitting authority, and whether the NC Mountain Ridge
+  // Protection Act assumed at docs/01 A-06 applies at all.
+  county: 'JOHNSON', state: 'TN',
+  parcelId: '100 064.03',
+  deedAcres: 29.34,
   // ── measured off the DEM at that coordinate ──────────────────────────────
   elevationFtAmsl: 2364,      // 720.5 m — NOT the 3,412 ft this project assumed
   fallsToAzimuth: 5,          // degrees from true north: the land falls NORTH

@@ -191,7 +191,7 @@ function renderPage({ renders, sheets, shots, gaunt, walk, est, drive, totals, A
   // out at 980px and shrinks it, which is exactly the "unusable on mobile"
   // failure. Browsers honour a viewport meta found in the body, so it goes here.
   return `<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Henry House — Watauga County, North Carolina</title>
+<title>Henry House — Johnson County, Tennessee</title>
 <style>
 :root{
   --paper:#eceeec; --surface:#ffffff; --sunken:#e2e5e3;
@@ -360,7 +360,7 @@ section{scroll-margin-top:58px}
   <div class="inner">
     <div class="eyebrow" style="color:#c3cfca">Schematic design · not for construction</div>
     <h1>Henry House</h1>
-    <div class="place eyebrow">Watauga County, North Carolina · 30% slope · 3,400 ft</div>
+    <div class="place eyebrow">Johnson County, Tennessee · 30% slope · 2,364 ft</div>
     <p class="sub">A house built along the contour instead of across it, so the hill does half the excavation and the lower floor comes nearly free. Every drawing, render and number on this page is generated from one model — which is why they cannot disagree with each other.</p>
     <button class="cta" id="go">Walk through the house →</button>
   </div>

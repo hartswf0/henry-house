@@ -152,7 +152,7 @@ const html = `<!doctype html>
 <header><div class="wrap">
   <div class="eyebrow">Schematic design · not for construction</div>
   <h1>Henry House</h1>
-  <div class="eyebrow">Watauga County, North Carolina · 30% slope · 3,400 ft</div>
+  <div class="eyebrow">Johnson County, Tennessee · 30% slope · 2,364 ft</div>
   <p class="lede">Everything in the package, in one index. <b>${sheets.length} drawing sheets</b>,
   ${renders.length} renders of the house, ${schemeShots.length} scheme renders and ${docs.length} written documents.
   Tap any sheet to open it full screen — pinch to zoom, double-tap for 100%. A 36 × 24 inch sheet
