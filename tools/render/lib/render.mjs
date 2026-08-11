@@ -83,22 +83,29 @@ export class Accumulator {
     this.outMat = new THREE.ShaderMaterial({
       uniforms: {
         tAccum: { value: this.accumRT.texture },
+        tBloom: { value: null },
         uInv: { value: 1 }, uExposure: { value: 1 },
-        uVignette: { value: 0.22 }, uGrain: { value: 0.012 },
+        uVignette: { value: 0.26 }, uGrain: { value: 0.010 },
+        uBloom: { value: 0.22 }, uSat: { value: 1.06 }, uContrast: { value: 1.07 },
       },
       vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`,
       fragmentShader: `
-        uniform sampler2D tAccum; uniform float uInv,uExposure,uVignette,uGrain;
+        uniform sampler2D tAccum, tBloom;
+        uniform float uInv,uExposure,uVignette,uGrain,uBloom,uSat,uContrast;
         varying vec2 vUv;
         ${ACES}
         float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }
         void main(){
           vec3 c = texture2D(tAccum,vUv).rgb * uInv * uExposure;
+          c += texture2D(tBloom,vUv).rgb * uBloom;               // halation on highlights
           c = aces(c);
+          float l = dot(c, vec3(0.2126,0.7152,0.0722));
+          c = mix(vec3(l), c, uSat);                             // saturation
+          c = clamp((c - 0.5) * uContrast + 0.5, 0.0, 1.0);      // filmic contrast
           vec2 d = vUv - 0.5;
-          c *= 1.0 - uVignette * dot(d,d) * 2.2;                 // gentle falloff
-          c += (hash(vUv*vec2(1024.,768.))-0.5) * uGrain;        // breaks banding
-          c = pow(max(c,0.0), vec3(1.0/2.2));                    // to sRGB
+          c *= 1.0 - uVignette * dot(d,d) * 2.2;
+          c += (hash(vUv*vec2(1024.,768.))-0.5) * uGrain;
+          c = pow(max(c,0.0), vec3(1.0/2.2));
           gl_FragColor = vec4(c,1.0);
         }`,
       depthTest: false, depthWrite: false,
@@ -106,6 +113,44 @@ export class Accumulator {
     this.outQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.outMat);
     this.outQuad.frustumCulled = false;
     this.outScene.add(this.outQuad);
+
+    // Bloom: half-res bright pass + separable blur. Cheap, and it is most of
+    // the difference between "OpenGL screenshot" and "photograph".
+    const bw = Math.max(2, Math.floor(width / 2)), bh = Math.max(2, Math.floor(height / 2));
+    const bopt = { type: THREE.FloatType, format: THREE.RGBAFormat,
+      minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, depthBuffer: false };
+    this.brightRT = new THREE.WebGLRenderTarget(bw, bh, bopt);
+    this.blurRT = new THREE.WebGLRenderTarget(bw, bh, bopt);
+
+    this.brightMat = new THREE.ShaderMaterial({
+      uniforms: { tSrc: { value: this.accumRT.texture }, uInv: { value: 1 }, uExposure: { value: 1 }, uThresh: { value: 1.05 } },
+      vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`,
+      fragmentShader: `uniform sampler2D tSrc; uniform float uInv,uExposure,uThresh; varying vec2 vUv;
+        void main(){ vec3 c = texture2D(tSrc,vUv).rgb*uInv*uExposure;
+          float l = dot(c, vec3(0.2126,0.7152,0.0722));
+          gl_FragColor = vec4(c * smoothstep(uThresh, uThresh*2.0, l), 1.0); }`,
+      depthTest: false, depthWrite: false,
+    });
+    this.blurMat = new THREE.ShaderMaterial({
+      uniforms: { tSrc: { value: null }, uDir: { value: new THREE.Vector2(1, 0) },
+                  uTexel: { value: new THREE.Vector2(1 / bw, 1 / bh) } },
+      vertexShader: `varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position.xy,0.,1.);}`,
+      fragmentShader: `uniform sampler2D tSrc; uniform vec2 uDir,uTexel; varying vec2 vUv;
+        void main(){
+          vec3 c = vec3(0.0);
+          float w[5]; w[0]=0.227; w[1]=0.194; w[2]=0.121; w[3]=0.054; w[4]=0.016;
+          c += texture2D(tSrc,vUv).rgb * w[0];
+          for(int i=1;i<5;i++){
+            vec2 o = uDir*uTexel*float(i)*2.0;
+            c += texture2D(tSrc,vUv+o).rgb*w[i];
+            c += texture2D(tSrc,vUv-o).rgb*w[i];
+          }
+          gl_FragColor = vec4(c,1.0); }`,
+      depthTest: false, depthWrite: false,
+    });
+    this.fsQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.brightMat);
+    this.fsQuad.frustumCulled = false;
+    this.fsScene = new THREE.Scene().add(this.fsQuad);
 
     this.samples = 0;
     this._v = new THREE.Vector3();
@@ -173,10 +218,32 @@ export class Accumulator {
     this.samples++;
   }
 
-  present({ exposure = 1 } = {}) {
+  present({ exposure = 1, bloom = 0.22 } = {}) {
     const r = this.renderer;
-    this.outMat.uniforms.uInv.value = 1 / Math.max(1, this.samples);
+    const inv = 1 / Math.max(1, this.samples);
+
+    // bright pass -> blur H -> blur V
+    this.brightMat.uniforms.uInv.value = inv;
+    this.brightMat.uniforms.uExposure.value = exposure;
+    this.fsQuad.material = this.brightMat;
+    r.setRenderTarget(this.brightRT); r.clear(true, false, false);
+    r.render(this.fsScene, this.quadCam);
+
+    this.fsQuad.material = this.blurMat;
+    this.blurMat.uniforms.tSrc.value = this.brightRT.texture;
+    this.blurMat.uniforms.uDir.value.set(1, 0);
+    r.setRenderTarget(this.blurRT); r.clear(true, false, false);
+    r.render(this.fsScene, this.quadCam);
+
+    this.blurMat.uniforms.tSrc.value = this.blurRT.texture;
+    this.blurMat.uniforms.uDir.value.set(0, 1);
+    r.setRenderTarget(this.brightRT); r.clear(true, false, false);
+    r.render(this.fsScene, this.quadCam);
+
+    this.outMat.uniforms.tBloom.value = this.brightRT.texture;
+    this.outMat.uniforms.uInv.value = inv;
     this.outMat.uniforms.uExposure.value = exposure;
+    this.outMat.uniforms.uBloom.value = bloom;
     r.setRenderTarget(null);
     r.autoClear = true;
     r.render(this.outScene, this.quadCam);

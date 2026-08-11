@@ -226,13 +226,13 @@ export function groundMaterial({ size = 1024 } = {}) {
   const { c: hc, x: hx } = canvas(size, size);
   hx.putImageData(fbm(0, hx, size, size, 23, 6, 0.05, 0.55), 0, 0);
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#575c3e'; cx.fillRect(0, 0, size, size);
+  cx.fillStyle = '#3d4229'; cx.fillRect(0, 0, size, size);
   const rnd = R(3);
   for (let i = 0; i < 9000; i++) {
-    const g = 38 + rnd() * 52, dry = rnd() > 0.72;
+    const g = 24 + rnd() * 44, dry = rnd() > 0.62;
     cx.fillStyle = dry
-      ? `rgb(${g * 1.18 | 0},${g * 1.02 | 0},${g * 0.62 | 0})`      // cured grass
-      : `rgb(${g * 0.80 | 0},${g | 0},${g * 0.58 | 0})`;
+      ? `rgb(${g * 1.30 | 0},${g * 1.08 | 0},${g * 0.58 | 0})`      // cured grass
+      : `rgb(${g * 0.72 | 0},${g | 0},${g * 0.52 | 0})`;
     cx.fillRect(rnd() * size, rnd() * size, 1 + rnd() * 4, 1 + rnd() * 4);
   }
   cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.5;

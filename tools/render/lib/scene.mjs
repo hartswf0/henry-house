@@ -17,6 +17,7 @@ import G, {
 import { OPENINGS, GARAGE_OPENINGS, OPEN_EDGES } from '/model/openings.mjs';
 import { FIXTURES } from '/model/fixtures.mjs';
 import * as MAT from './textures.mjs';
+import { buildVegetation } from './vegetation.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -231,14 +232,48 @@ function buildHouse(M) {
                  [ga.y1 + RG.overhang.north, RG.topAtY1], [ga.y0 - RG.overhang.south, RG.topAtY0]],
                  ga.x0 - 24, ga.x1 + 24, M.roof));
 
+  // ---- EAVE DETAIL: fascia, gutter, downspouts --------------------------
+  // At the scale you actually look at a house, the eave IS the building.
+  for (const R of [RA, RB]) {
+    const oS = R.overhang.south, oN = R.overhang.north;
+    const zS = R.topAtY0 - (R.pitch / 12) * oS;
+    const x0 = R.x0 - R.overhang.west, x1 = R.x1 + R.overhang.east;
+    g.add(mbox(x0, x1, -oS - 4, -oS, zS - 12, zS, M.fascia));                    // fascia
+    g.add(mbox(x0, x1, -oS - 9, -oS - 3, zS - 17, zS - 11, M.gutter));           // gutter
+    g.add(mbox(x0, x1, 312 + oN, 312 + oN + 3, R.topAtY1 + (R.pitch/12)*oN - 11,
+      R.topAtY1 + (R.pitch/12)*oN, M.fascia));
+  }
+  for (const dx of [ft(2), ft(46), ft(70)]) {                                     // downspouts
+    g.add(mbox(dx, dx + 4, -52, -48, L1.ffe - 40, RA.topAtY0 - 14, M.gutter));
+  }
+  // exposed rib ends at the downhill column line
+  for (const gx of GRID.x) {
+    g.add(mbox(gx.v - 3, gx.v + 3, -46, 2, L1.ffe - 26, L1.ffe - 13, M.timber));
+  }
+
   // ---- DECKS, TERRACE, GUARDS --------------------------------------------
   const d1 = DECKS[0], d2 = DECKS[1];
-  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y1, d1.top - 14, d1.top, M.deck));
-  for (let x = d1.x0 + 48; x < d1.x1; x += 96) g.add(mbox(x - 3, x + 3, d1.y0 + 6, d1.y0 + 12, d2.top, d1.top - 14, M.steel));
-  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y0 + 3, d1.top, d1.top + 42, M.steel, { cast: false }));   // guard rail
-  for (let x = d1.x0; x <= d1.x1; x += 60) g.add(mbox(x - 2, x + 2, d1.y0, d1.y0 + 3, d1.top, d1.top + 42, M.steel, { cast: false }));
-  g.add(mbox(d2.x0, d2.x1, d2.y0, d2.y1, d2.top - 8, d2.top, M.gravel, { cast: false }));
-  g.add(mbox(d2.x0, d2.x1, d2.y0 - 10, d2.y0, F(-58) * 12, d2.top, M.stone));                   // terrace wall
+  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y1, d1.top - 16, d1.top - 6, M.timber, { cast: false }));   // framing
+  for (let y = d1.y0 + 2; y < d1.y1 - 2; y += 6) {                                              // individual boards
+    g.add(mbox(d1.x0, d1.x1, y, y + 5.1, d1.top - 6, d1.top, M.deck, { cast: false }));
+  }
+  for (let x = d1.x0 + 48; x < d1.x1; x += 96) g.add(mbox(x - 3, x + 3, d1.y0 + 6, d1.y0 + 12, d2.top, d1.top - 16, M.steel));
+  // guard: posts, top rail, horizontal cable infill
+  for (let x = d1.x0; x <= d1.x1; x += 60) g.add(mbox(x - 2, x + 2, d1.y0 + 1, d1.y0 + 4, d1.top, d1.top + 42, M.steel));
+  g.add(mbox(d1.x0, d1.x1, d1.y0, d1.y0 + 5, d1.top + 40, d1.top + 43, M.steel, { cast: false }));
+  for (let z = 4; z < 40; z += 4.2) {
+    g.add(mbox(d1.x0, d1.x1, d1.y0 + 2, d1.y0 + 2.7, d1.top + z, d1.top + z + 0.7, M.steel, { cast: false }));
+  }
+  // terrace: real pavers with joints
+  for (let x = d2.x0; x < d2.x1; x += 24) {
+    for (let y = d2.y0; y < d2.y1; y += 24) {
+      g.add(mbox(x + 0.6, x + 23.4, y + 0.6, y + 23.4, d2.top - 6, d2.top, M.paver, { cast: false }));
+    }
+  }
+  g.add(mbox(d2.x0, d2.x1, d2.y0 - 10, d2.y0, -58 * 12 / 12, d2.top, M.stone));                 // terrace wall
+  // stone base course under the siding, and a chimney cap
+  g.add(mbox(fp1.x0 - 2, fp1.x1 + 2, -2, 314, L1.ffe - 26, L1.ffe - 4, M.stone));
+  g.add(mbox(ft(23) - 30, ft(23) + 30, 26, 136, RA.topAtY0 + 96, RA.topAtY0 + 104, M.steel));
 
   // entry bridge over the drain gap
   const br = DECKS[2];
@@ -293,7 +328,7 @@ function buildInterior(M) {
     const ops = OPENINGS.filter(o => o.level === lvlId);
     const liner = (axis, bandLo, from, to) => wallRun({
       axis, bandLo, bandHi: bandLo + 1.5, from, to,
-      zBot: lvl.ffe, zTop: top + 80, ffe: lvl.ffe,
+      zBot: lvl.ffe, zTop: top, ffe: lvl.ffe,
       mat: M.plaster, glass: null, group: g, openings: ops,
     });
     liner('H', T, fp.x0 + T, fp.x1 - T);
@@ -512,6 +547,10 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     garageDoor: MAT.simple(0x2a2e33, 0.6),
     deck: MAT.simple(0x2f2823, 0.88),
     steel: MAT.simple(0x14171a, 0.55, 0.35),
+    fascia: MAT.simple(0x14171a, 0.6),
+    gutter: MAT.simple(0x1b1f24, 0.5, 0.4),
+    timber: MAT.simple(0x6b5236, 0.8),
+    paver: MAT.simple(0x6e6a63, 0.9),
     frame: MAT.simple(0x191c20, 0.45, 0.25),
     floor: MAT.floorMaterial(),
     plaster: MAT.plasterMaterial(),
@@ -534,7 +573,14 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
   scene.add(buildInterior(M));
   scene.add(buildFrames(M));
   scene.add(buildDrive(M));
-  scene.add(buildTrees());
+  scene.add(buildVegetation({
+    heightAt: siteZ,
+    naturalAt: (X, Y) => SITE_SLOPE.grade(X, Y),
+    keepOut: (X, Y) =>
+      (X > ft(-46) && X < ft(136) && Y > ft(-40) && Y < ft(72)) ||     // house, court, drive
+      (Y > ft(-150) && Y < ft(10) && X > ft(-16) && X < ft(96)),       // the view cone
+    F, ft,
+  }));
   scene.add(buildRidges());
 
   // ── LIGHT RIG ─────────────────────────────────────────────────────────────

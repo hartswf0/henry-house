@@ -143,6 +143,28 @@ contact shadows are computed rather than faked. Sun angles come from real solar 
 <tr><td>—</td><td>3D model + renders</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
 </table></div>
 
+<h2>COORDINATION CHECKS</h2>
+<p style="color:var(--mid)"><code>node tools/check/clash.mjs</code> interrogates the model directly. A room drawn as an
+empty rectangle with an area tag cannot answer any of these questions; a fixture schedule can.</p>
+<div class="scroll"><table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Every fixture sits inside a room</td><td><span class="tag t-ok">59 PASS</span></td></tr>
+<tr><td>No two fixtures occupy the same floor area</td><td><span class="tag t-ok">PASS</span></td></tr>
+<tr><td>Required clear floor space unobstructed</td><td><span class="tag t-ok">PASS</span></td></tr>
+<tr><td>Water closet side + front clearance</td><td><span class="tag t-ok">4 PASS</span></td></tr>
+<tr><td>Door swings clear of fixtures</td><td><span class="tag t-ok">16 PASS</span></td></tr>
+<tr><td>Every room can be entered</td><td><span class="tag t-ok">PASS</span></td></tr>
+<tr><td>Every bedroom has an escape window</td><td><span class="tag t-ok">PASS</span> <span style="color:var(--mid)">dimensions still unverified</span></td></tr>
+<tr><td>Stairs fit their floor-to-floor and core</td><td><span class="tag t-ok">PASS</span></td></tr>
+<tr><td>Habitable headroom under the shed</td><td><span class="tag t-ok">PASS</span></td></tr>
+<tr><td>Wet rooms stack in the service spine</td><td><span class="tag t-warn">1 WARN</span> kitchen sink drains via the crawlspace</td></tr>
+</table></div>
+<p style="color:var(--mid)">First run: <b>16 failures.</b> Genuine design errors, not cosmetics — bedroom 3 was only
+reachable <em>through</em> bath 2; the mechanical room's only door opened into bath 3; bedroom 2's door was placed
+inside the room rather than on a wall; the linen/air-handler closet had no door; the electrical panel had no NEC
+working space; five door swings landed on a toilet, a bed, a lavatory, a bench and an island; and bath 2 needed
+82&Prime; of depth to stack a tub and WC in a 76&Prime; room.</p>
+
 <h2>ERRORS FOUND BY LOOKING AT THE OUTPUT</h2>
 <p style="color:var(--mid)">Every one of these was caught by rendering the drawing and inspecting it — not by reasoning about it.
 That is the whole argument for generating drawings rather than describing them.</p>
@@ -154,6 +176,12 @@ That is the whole argument for generating drawings rather than describing them.<
 <tr><td>A-201</td><td>Level tags and annotations ran off-sheet under the title block</td><td>Rescaled and reframed</td><td><span class="tag t-ok">FIXED</span></td></tr>
 <tr><td>A-201</td><td>Lower level downhill (walkout) wall was not drawn</td><td>Added the walkout face</td><td><span class="tag t-ok">FIXED</span></td></tr>
 <tr><td>model</td><td>Main level net area exceeded gross — link rooms double-counted</td><td>Excluded link rooms from the bar total</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td><code>sunDirection</code> had an inverted Z sign — the sun sat on the uphill side, lighting nothing the camera could see</td><td>Corrected the axis projection</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td><code>shadow.normalBias</code> was 0.9 <b>feet</b>, erasing every shadow in the scene</td><td>Tight shadow frustum + 0.09</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td>Terrain ramped to 90&Prime; under the house, burying the whole walkout level</td><td>Ground held below the lowest slab inside the footprint</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td>Arrival camera sat <em>inside</em> the detached garage; interior camera sat behind the north wall</td><td>Cameras checked against room and terrain bounds</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td>Interior liner walled up the view — it ignored the openings</td><td>Liner reuses the same opening splitter as the exterior walls</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>3D</td><td>Interior liner ran 80&Prime; above the ceiling and poked through the roof as a white parapet</td><td>Clamped to the level's clear height</td><td><span class="tag t-ok">FIXED</span></td></tr>
 </table></div>
 
 <h2>UNRESOLVED SITE FACTS</h2>
@@ -185,14 +213,15 @@ Only the structure, drainage and snow chains have been drawn and checked so far.
 
 <h2>NEXT BIGGEST IMPROVEMENT</h2>
 <div class="next">
-  <b>The site and grading plan (C-101).</b><br><br>
-  Three sheets now describe a building; none describes the <em>ground</em>. Everything the brief calls hardest —
-  access, driveway grade, cut and fill balance, the septic field, the water source, the erosion control line,
-  where stormwater actually goes — lives on a drawing that does not yet exist. Until it does, the house is a
-  well-drawn object floating on an assumed plane.<br><br>
-  After that, in order: <b>systems routing</b> (water, waste, air, power drawn as real networks through the spine,
-  with a clash check that proves pipes do not pass through beams), then <b>elevations and the 3D model</b>, then
-  <b>envelope details</b> carrying the pen test.
+  <b>Render realism, then the site and grading plan.</b><br><br>
+  The plans are now competitive: real fixtures, real clearances, checked. The <em>renders</em> are not yet at the
+  reference bar. The remaining gap is asset fidelity — the reference uses scanned stone, photographed foliage and
+  real furniture models. This environment has no network, so every surface and every plant here is grown from code.
+  Low-poly canopy blobs read as stylised, not photographic. Closing that gap means leaf-card foliage with alpha,
+  a proper bark texture, and real furniture geometry.<br><br>
+  Then <b>C-101 site and grading</b>: three sheets describe a building, none describes the <em>ground</em>.
+  Access, driveway grade, cut/fill balance, the septic field, the water source, the erosion control line and
+  where stormwater actually goes all live on a drawing that does not yet exist.
 </div>
 
 <footer>
