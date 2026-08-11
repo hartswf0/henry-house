@@ -111,3 +111,40 @@ for (const [k, v] of Object.entries(a)) {
   console.log(`  ${v.name.padEnd(24)} gross ${String(v.gross).padStart(5)} SF   net ${String(v.net).padStart(5)} SF`);
 }
 console.log(`  ${'TOTAL UNDER ROOF'.padEnd(24)} gross ${String(a.TOTAL_HEATED_GROSS).padStart(5)} SF`);
+
+// ── A-201  SECTION A-A ───────────────────────────────────────────────────────
+import { drawSection } from './draw/section.mjs';
+function sheetA201() {
+  const scaleName = '3/16"=1\'-0"';
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES[scaleName],
+    number: 'A-201', title: 'SECTION A—A',
+    subtitle: 'THE SLOPE SECTION · HOW THE HOUSE STANDS ON THE HILL',
+    originX: 700, originY: 1500,
+    notes: [
+      '1. THIS IS THE GOVERNING DRAWING. On a steep site the section, not the plan, decides whether the house is buildable, what it costs, and whether it stays dry.',
+      '2. BUILD ALONG THE CONTOUR. The bar runs with the slope, not across it, so the cut is one consistent depth instead of a wedge. Cut and fill are roughly balanced on site — hauling spoil off a mountain driveway is one of the largest avoidable costs on this kind of project.',
+      '3. THE LOWER LEVEL IS ALMOST FREE. The hill already removed the earth. The wall holding that earth back had to exist anyway; enclosing it buys a whole floor for the cost of finishing it.',
+      '4. ONE ELEMENT, FOUR JOBS. The concrete spine retains the cut, carries the uphill end of every rib, resists lateral load and stores heat. The conventional alternative builds a retaining wall AND a separate frame in front of it, paying twice.',
+      '5. WATER MOVES BY GRAVITY WHEREVER IT CAN. Footing drains daylight at both ends of the building. No sump, no float, no pump. A pump that fails during an ice storm is a flooded lower level.',
+      '6. DASHED LINE IS ASSUMED NATURAL GRADE at 30%. NO SURVEY EXISTS. The earthwork shown is a proposition, not a quantity. See docs/01-site-facts-register.md A-01.',
+      '7. THE CUT FACE behind the motor court is laid back at 1.5H:1V to daylight. Whether that slope stands depends entirely on the geotechnical report, which does not exist. A retaining structure may be required instead.',
+      '8. ALL MEMBER SIZES ARE COORDINATION PLACEHOLDERS. Nothing here is engineered. Design snow, wind and seismic loads are NOT ESTABLISHED — see docs/02-code-basis.md.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  drawSection(s, { cutX: 300, id: 'A' });
+  s.scaleBar(2280, 2200, { scaleName, feetTicks: [0, 4, 8, 16, 32] });
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName, extra: [
+    'CUT AT GRID C — through the great room',
+    'and the lower family room.',
+    '',
+    'Ceiling falls from 16\'-4" at the spine to',
+    '9\'-10" at the glass: compression toward',
+    'the view, release at the back.',
+  ] });
+  return s.toString();
+}
+write('A-201-section-aa.svg', sheetA201());

@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs><pattern id="earth0" width="13" height="13" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="13" stroke="#6d5b4a" stroke-width="0.9"/></pattern></defs>
+<rect x="0" y="0" width="3600" height="2400" fill="#ffffff"/>
+<rect x="40" y="40" width="3520" height="2320" rx="0" fill="none" stroke="#111418" stroke-width="2.2"/>
+<rect x="52" y="52" width="3496" height="2296" rx="0" fill="none" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="300" y="150" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="46" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2.5">SECTION A—A</text>
+<text x="300" y="184" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.4">THE SLOPE SECTION · HOW THE HOUSE STANDS ON THE HILL</text>
+<line x1="300" y1="206" x2="2880" y2="206" stroke="#111418" stroke-width="2.2"/>
+<polygon points="212.5,1618.125 362.5,1573.125 400,1556.25 400,1509.375 700,1509.375 1187.5,1359.375 1253.125,1359.375 1262.5,1359.375 1290.625,1325 1712.5,1325 2143.75,1037.5 2368.75,971.25 2368.75,1668.75 212.5,1668.75" fill="url(#earth0)" stroke="none" stroke-width="0" stroke-linejoin="miter"/>
+<polyline points="212.5,1618.125 362.5,1573.125 400,1556.25 400,1509.375 700,1509.375 1187.5,1359.375 1253.125,1359.375 1262.5,1359.375 1290.625,1325 1712.5,1325 2143.75,1037.5 2368.75,971.25 2368.75,1668.75 212.5,1668.75" fill="none" stroke="#6d5b4a" stroke-width="2.2" stroke-linejoin="miter"/>
+<polyline points="212.5,1618.125 231.25,1612.5 250,1606.875 268.75,1601.25 287.5,1595.625 306.25,1590 325,1584.375 343.75,1578.75 362.5,1573.125 381.25,1567.5 400,1561.875 418.75,1556.25 437.5,1550.625 456.25,1545 475,1539.375 493.75,1533.75 512.5,1528.125 531.25,1522.5 550,1516.875 568.75,1511.25 587.5,1505.625 606.25,1500 625,1494.375 643.75,1488.75 662.5,1483.125 681.25,1477.5 700,1471.875 718.75,1466.25 737.5,1460.625 756.25,1455 775,1449.375 793.75,1443.75 812.5,1438.125 831.25,1432.5 850,1426.875 868.75,1421.25 887.5,1415.625 906.25,1410 925,1404.375 943.75,1398.75 962.5,1393.125 981.25,1387.5 1000,1381.875 1018.75,1376.25 1037.5,1370.625 1056.25,1365 1075,1359.375 1093.75,1353.75 1112.5,1348.125 1131.25,1342.5 1150,1336.875 1168.75,1331.25 1187.5,1325.625 1206.25,1320 1225,1314.375 1243.75,1308.75 1262.5,1303.125 1281.25,1297.5 1300,1291.875 1318.75,1286.25 1337.5,1280.625 1356.25,1275 1375,1269.375 1393.75,1263.75 1412.5,1258.125 1431.25,1252.5 1450,1246.875 1468.75,1241.25 1487.5,1235.625 1506.25,1230 1525,1224.375 1543.75,1218.75 1562.5,1213.125 1581.25,1207.5 1600,1201.875 1618.75,1196.25 1637.5,1190.625 1656.25,1185 1675,1179.375 1693.75,1173.75 1712.5,1168.125 1731.25,1162.5 1750,1156.875 1768.75,1151.25 1787.5,1145.625 1806.25,1140 1825,1134.375 1843.75,1128.75 1862.5,1123.125 1881.25,1117.5 1900,1111.875 1918.75,1106.25 1937.5,1100.625 1956.25,1095 1975,1089.375 1993.75,1083.75 2012.5,1078.125 2031.25,1072.5 2050,1066.875 2068.75,1061.25 2087.5,1055.625 2106.25,1050 2125,1044.375 2143.75,1038.75 2162.5,1033.125 2181.25,1027.5 2200,1021.875 2218.75,1016.25 2237.5,1010.625 2256.25,1005 2275,999.375 2293.75,993.75 2312.5,988.125 2331.25,982.5 2350,976.875 2368.75,971.25" fill="none" stroke="#6d5b4a" stroke-width="1.4" stroke-dasharray="22 10" stroke-linejoin="miter"/>
+<path d="M 2256.25 1005 L 2196.25 935 L 2170.25 935" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="2256.25" cy="1005" r="3.4" fill="#111418"/>
+<text x="2164.25" y="941" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">NATURAL GRADE (ASSUMED 30% — NO SURVEY)</text>
+<polygon points="1178.125,1556.25 1196.875,1556.25 1196.875,1312.5 1178.125,1312.5" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="1164.063,1575 1210.938,1575 1210.938,1556.25 1164.063,1556.25" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="690.625,1556.25 709.375,1556.25 709.375,1500 690.625,1500" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="676.563,1575 723.438,1575 723.438,1556.25 676.563,1556.25" fill="#5c6670" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="700,1507.813 1187.5,1507.813 1187.5,1500 700,1500" fill="#5c6670" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
+<polygon points="700,1332.813 1187.5,1332.813 1187.5,1312.5 700,1312.5" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
+<polygon points="684.375,1500 700,1500 700,1332.813 684.375,1332.813" fill="#ffffff" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<text x="653.125" y="1421.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#1d6fa5" text-anchor="middle" letter-spacing="0" transform="rotate(-90 653.125 1421.875)">WALKOUT</text>
+<polygon points="684.375,1312.5 700,1312.5 700,1143.75 684.375,1143.75" fill="#ffffff" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<text x="653.125" y="1228.125" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#1d6fa5" text-anchor="middle" letter-spacing="0" transform="rotate(-90 653.125 1228.125)">GLASS</text>
+<polygon points="1187.5,1332.813 1203.125,1332.813 1203.125,1006.25 1187.5,1006.25" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<polygon points="625,1115.625 1225,965.625 1225,996.875 625,1146.875" fill="#1b2026" stroke="#111418" stroke-width="4.2" stroke-linejoin="miter"/>
+<line x1="700" y1="1128.125" x2="1187.5" y2="1006.25" stroke="#111418" stroke-width="1.4" stroke-linecap="butt"/>
+<polygon points="475,1346.875 700,1346.875 700,1325 475,1325" fill="#1b2026" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
+<line x1="475" y1="1325" x2="475" y2="1259.375" stroke="#111418" stroke-width="2.2" stroke-linecap="butt"/>
+<line x1="475" y1="1259.375" x2="537.5" y2="1259.375" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<text x="587.5" y="1284.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">MAIN DECK — GUARD 42"</text>
+<polygon points="400,1518.75 700,1518.75 700,1509.375 400,1509.375" fill="#5c6670" stroke="#111418" stroke-width="2.2" stroke-linejoin="miter"/>
+<circle cx="1212.5" cy="1565.625" r="6.25" fill="#3a6ea5" stroke="#3a6ea5" stroke-width="1"/>
+<circle cx="668.75" cy="1565.625" r="6.25" fill="#3a6ea5" stroke="#3a6ea5" stroke-width="1"/>
+<polygon points="1206.25,1359.375 1262.5,1359.375 1262.5,1318.75 1206.25,1318.75" fill="none" stroke="#3a6ea5" stroke-width="1.4" stroke-dasharray="10 6" stroke-linejoin="miter"/>
+<path d="M 1196.875 1425 L 1292.875 1275 L 1318.875 1275" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1196.875" cy="1425" r="3.4" fill="#111418"/>
+<text x="1324.875" y="1281" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">CONCRETE SPINE WALL — retains the cut, carries every rib,</text>
+<path d="M 1196.875 1465.625 L 1292.875 1337.625 L 1318.875 1337.625" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1196.875" cy="1465.625" r="3.4" fill="#111418"/>
+<text x="1324.875" y="1343.625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">resists lateral load, stores heat. ONE ELEMENT, FOUR JOBS.</text>
+<path d="M 1225 1343.75 L 1375 1513.75 L 1401 1513.75" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1225" cy="1343.75" r="3.4" fill="#111418"/>
+<text x="1407" y="1519.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">THE DRAIN GAP — 4'-0" drained margin.</text>
+<path d="M 1225 1365.625 L 1375 1557.625 L 1401 1557.625" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1225" cy="1365.625" r="3.4" fill="#111418"/>
+<text x="1407" y="1563.625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">The house never touches the cut face.</text>
+<path d="M 1212.5 1565.625 L 1322.5 1625.625 L 1348.5 1625.625" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1212.5" cy="1565.625" r="3.4" fill="#111418"/>
+<text x="1354.5" y="1631.625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">FOOTING DRAIN — DAYLIGHTED BOTH ENDS, NO SUMP.</text>
+<path d="M 1212.5 1587.5 L 1322.5 1669.5 L 1348.5 1669.5" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="1212.5" cy="1587.5" r="3.4" fill="#111418"/>
+<text x="1354.5" y="1675.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A pump that fails in an ice storm floods the lower level.</text>
+<path d="M 640.625 1128.125 L 450.625 978.125 L 424.625 978.125" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="640.625" cy="1128.125" r="3.4" fill="#111418"/>
+<text x="418.625" y="984.125" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">ROOF FALLS DOWNHILL — no roof water is ever</text>
+<path d="M 640.625 1159.375 L 450.625 1031.375 L 424.625 1031.375" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="640.625" cy="1159.375" r="3.4" fill="#111418"/>
+<text x="418.625" y="1037.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">delivered to the uphill side, where the cut and the</text>
+<path d="M 640.625 1190.625 L 450.625 1084.625 L 424.625 1084.625" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="640.625" cy="1190.625" r="3.4" fill="#111418"/>
+<text x="418.625" y="1090.625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">groundwater problem already are.</text>
+<path d="M 653.125 1171.875 L 453.125 1151.875 L 427.125 1151.875" fill="none" stroke="#111418" stroke-width="0.6"/>
+<circle cx="653.125" cy="1171.875" r="3.4" fill="#111418"/>
+<text x="421.125" y="1157.875" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="17" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">SNOW RETAINED AT EAVE — deck below.</text>
+<line x1="400" y1="1500" x2="1300" y2="1500" stroke="#c6cfd8" stroke-width="0.6" stroke-dasharray="30 8 5 8" stroke-linecap="butt"/>
+<path d="M 1300 1500 l 10 -10 l 10 10 l -10 10 z" fill="#ffffff" stroke="#111418" stroke-width="1.4"/>
+<text x="1328" y="1494" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">LOWER  EL. 100'-0"</text>
+<line x1="400" y1="1312.5" x2="1300" y2="1312.5" stroke="#c6cfd8" stroke-width="0.6" stroke-dasharray="30 8 5 8" stroke-linecap="butt"/>
+<path d="M 1300 1312.5 l 10 -10 l 10 10 l -10 10 z" fill="#ffffff" stroke="#111418" stroke-width="1.4"/>
+<text x="1328" y="1306.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">MAIN  EL. 110'-0"</text>
+<line x1="325" y1="1500" x2="325" y2="1312.5" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="317" y1="1508" x2="333" y2="1492" stroke="#111418" stroke-width="2.2"/>
+<line x1="311" y1="1500" x2="331" y2="1500" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="317" y1="1320.5" x2="333" y2="1304.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="311" y1="1312.5" x2="331" y2="1312.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="337" y="1406.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0" transform="rotate(-90 337 1406.25)">10'-0"</text>
+<line x1="212.5" y1="1312.5" x2="212.5" y2="1128.125" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="204.5" y1="1320.5" x2="220.5" y2="1304.5" stroke="#111418" stroke-width="2.2"/>
+<line x1="198.5" y1="1312.5" x2="218.5" y2="1312.5" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="204.5" y1="1136.125" x2="220.5" y2="1120.125" stroke="#111418" stroke-width="2.2"/>
+<line x1="198.5" y1="1128.125" x2="218.5" y2="1128.125" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="224.5" y="1220.313" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0" transform="rotate(-90 224.5 1220.313)">9'-10"</text>
+<line x1="700" y1="1631.25" x2="1187.5" y2="1631.25" stroke="#111418" stroke-width="1" stroke-linecap="butt"/>
+<line x1="692" y1="1639.25" x2="708" y2="1623.25" stroke="#111418" stroke-width="2.2"/>
+<line x1="700" y1="1645.25" x2="700" y2="1625.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<line x1="1179.5" y1="1639.25" x2="1195.5" y2="1623.25" stroke="#111418" stroke-width="2.2"/>
+<line x1="1187.5" y1="1645.25" x2="1187.5" y2="1625.25" stroke="#4a5560" stroke-width="0.6" stroke-linecap="butt"/>
+<text x="943.75" y="1621.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="19" font-weight="400" fill="#111418" text-anchor="middle" letter-spacing="0">26'-0"</text>
+<text x="1125" y="1053.125" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#b8562f" text-anchor="end" letter-spacing="0">16'-4" CLR</text>
+<text x="762.5" y="1175" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#b8562f" text-anchor="start" letter-spacing="0">9'-10" CLR</text>
+<circle cx="700" cy="1687.5" r="26" fill="#ffffff" stroke="#4a5560" stroke-width="2.2"/>
+<text x="700" y="1695.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0">1</text>
+<circle cx="981.25" cy="1687.5" r="26" fill="#ffffff" stroke="#4a5560" stroke-width="2.2"/>
+<text x="981.25" y="1695.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0">2</text>
+<circle cx="1187.5" cy="1687.5" r="26" fill="#ffffff" stroke="#4a5560" stroke-width="2.2"/>
+<text x="1187.5" y="1695.5" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0">3</text>
+<text x="400" y="1743.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="24" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.5">SECTION A—A   ·   LOOKING WEST   ·   CUT AT X = 25'-0"</text>
+<text x="400" y="1769.75" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Downhill and the view are to the LEFT. The cut is to the RIGHT.</text>
+<rect x="2280" y="2200" width="75" height="12" fill="#111418" stroke="#111418" stroke-width="1"/>
+<text x="2280" y="2192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">0</text>
+<rect x="2355" y="2200" width="75" height="12" fill="#ffffff" stroke="#111418" stroke-width="1"/>
+<text x="2355" y="2192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">4</text>
+<rect x="2430" y="2200" width="150" height="12" fill="#111418" stroke="#111418" stroke-width="1"/>
+<text x="2430" y="2192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">8</text>
+<rect x="2580" y="2200" width="300" height="12" fill="#ffffff" stroke="#111418" stroke-width="1"/>
+<text x="2580" y="2192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">16</text>
+<text x="2880" y="2192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">32</text>
+<text x="2896" y="2212" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">FT</text>
+<text x="2280" y="2238" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="1">SCALE: 3/16"=1'-0"</text>
+<rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
+<text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>
+<line x1="2960" y1="158" x2="3540" y2="158" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="1.8">THE HOUSE WORKS LIKE A BODY</text>
+<text x="2966" y="214" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STRUCTURE = SKELETON   WATER = CIRCULATION</text>
+<text x="2966" y="230" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WASTE = DIGESTION      HVAC  = RESPIRATION</text>
+<text x="2966" y="246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">POWER = NERVOUS SYS.   SKIN  = ENVELOPE</text>
+<line x1="2960" y1="274" x2="3540" y2="274" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="304" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">SHEET NOTES</text>
+<text x="2966" y="324" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">1. THIS IS THE GOVERNING DRAWING. On a steep site the section,</text>
+<text x="2966" y="339" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">not the plan, decides whether the house is buildable, what it</text>
+<text x="2966" y="354" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">costs, and whether it stays dry.</text>
+<text x="2966" y="373" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">2. BUILD ALONG THE CONTOUR. The bar runs with the slope, not</text>
+<text x="2966" y="388" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">across it, so the cut is one consistent depth instead of a</text>
+<text x="2966" y="403" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">wedge. Cut and fill are roughly balanced on site — hauling</text>
+<text x="2966" y="418" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">spoil off a mountain driveway is one of the largest avoidable</text>
+<text x="2966" y="433" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">costs on this kind of project.</text>
+<text x="2966" y="452" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">3. THE LOWER LEVEL IS ALMOST FREE. The hill already removed</text>
+<text x="2966" y="467" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the earth. The wall holding that earth back had to exist</text>
+<text x="2966" y="482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">anyway; enclosing it buys a whole floor for the cost of</text>
+<text x="2966" y="497" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">finishing it.</text>
+<text x="2966" y="516" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">4. ONE ELEMENT, FOUR JOBS. The concrete spine retains the cut,</text>
+<text x="2966" y="531" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">carries the uphill end of every rib, resists lateral load and</text>
+<text x="2966" y="546" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">stores heat. The conventional alternative builds a retaining</text>
+<text x="2966" y="561" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">wall AND a separate frame in front of it, paying twice.</text>
+<text x="2966" y="580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">5. WATER MOVES BY GRAVITY WHEREVER IT CAN. Footing drains</text>
+<text x="2966" y="595" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">daylight at both ends of the building. No sump, no float, no</text>
+<text x="2966" y="610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">pump. A pump that fails during an ice storm is a flooded lower</text>
+<text x="2966" y="625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">level.</text>
+<text x="2966" y="644" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">6. DASHED LINE IS ASSUMED NATURAL GRADE at 30%. NO SURVEY</text>
+<text x="2966" y="659" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">EXISTS. The earthwork shown is a proposition, not a quantity.</text>
+<text x="2966" y="674" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">See docs/01-site-facts-register.md A-01.</text>
+<text x="2966" y="693" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">7. THE CUT FACE behind the motor court is laid back at 1.5H:1V</text>
+<text x="2966" y="708" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">to daylight. Whether that slope stands depends entirely on the</text>
+<text x="2966" y="723" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">geotechnical report, which does not exist. A retaining</text>
+<text x="2966" y="738" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">structure may be required instead.</text>
+<text x="2966" y="757" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">8. ALL MEMBER SIZES ARE COORDINATION PLACEHOLDERS. Nothing</text>
+<text x="2966" y="772" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">here is engineered. Design snow, wind and seismic loads are</text>
+<text x="2966" y="787" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">NOT ESTABLISHED — see docs/02-code-basis.md.</text>
+<text x="2966" y="806" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CODE VALUES ON THIS SET ARE UNVERIFIED. This container has no</text>
+<text x="2966" y="821" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">outbound web access, so no code text was read from a primary</text>
+<text x="2966" y="836" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">source. Every code reference is marked in</text>
+<text x="2966" y="851" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">docs/02-code-basis.md with its verification status. Nothing</text>
+<text x="2966" y="866" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">here may be relied on for permitting.</text>
+<line x1="2960" y1="2110" x2="3540" y2="2110" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">PHASE</text>
+<text x="2966" y="2160" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">SCHEMATIC DESIGN — NOT FOR CONSTRUCTION</text>
+<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CUT AT GRID C — through the great room</text>
+<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">and the lower family room.</text>
+<text x="2966" y="2220" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0"></text>
+<text x="2966" y="2236" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Ceiling falls from 16'-4" at the spine to</text>
+<text x="2966" y="2252" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">9'-10" at the glass: compression toward</text>
+<text x="2966" y="2268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the view, release at the back.</text>
+<line x1="2960" y1="2230" x2="3540" y2="2230" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">SCALE</text>
+<text x="2966" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">3/16"=1'-0"</text>
+<text x="3190" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">ISSUED</text>
+<text x="3190" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">2026-08-11</text>
+<text x="3370" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">REV</text>
+<text x="3370" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">—</text>
+<line x1="2960" y1="2292" x2="3540" y2="2292" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="44" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2">A-201</text>
+<text x="3534" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#8d99a6" text-anchor="end" letter-spacing="0">ARCH D 36x24</text>
+</svg>

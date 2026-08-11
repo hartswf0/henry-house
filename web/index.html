@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HENRY HOUSE — live progress</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --panel:#ffffff; --ink:#15191e; --mid:#5a6672; --faint:#c8d0d8;
+    --line:#e4e7ea; --accent:#b8562f; --ok:#2f7d5a; --warn:#b8860b; --bad:#a8322f;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --faint:#3a434f;
+    --line:#272d36; --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#12151a; --panel:#191d24; --ink:#e8ecf1; --mid:#98a4b2; --faint:#3a434f;
+    --line:#272d36; --accent:#e08056; --ok:#5cc191; --warn:#d8a93a; --bad:#e0716d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--mono);font-size:14px;line-height:1.6;padding:0 0 80px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  header{border-bottom:1px solid var(--line);padding:44px 0 26px;margin-bottom:34px}
+  h1{font-size:34px;margin:0 0 6px;letter-spacing:2.5px}
+  .sub{color:var(--mid);font-size:13px;letter-spacing:1.4px}
+  .body-line{color:var(--accent);font-size:12.5px;letter-spacing:1.6px;margin-top:14px}
+  h2{font-size:15px;letter-spacing:2px;margin:44px 0 14px;padding-bottom:8px;
+    border-bottom:1px solid var(--line);color:var(--ink)}
+  .banner{border:1px solid var(--bad);border-left:4px solid var(--bad);
+    background:color-mix(in srgb,var(--bad) 7%,transparent);
+    padding:16px 18px;margin:26px 0;border-radius:3px}
+  .banner b{color:var(--bad);letter-spacing:1.2px}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .card img{width:100%;display:block;background:#fff;border-bottom:1px solid var(--line)}
+  .card .meta{padding:11px 13px}
+  .card .t{font-weight:700;letter-spacing:1.2px;font-size:12.5px}
+  .card .d{color:var(--mid);font-size:11.5px;margin-top:3px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mid);font-weight:400;letter-spacing:1.2px;font-size:11px;text-transform:uppercase}
+  .tag{display:inline-block;padding:1px 7px;border-radius:3px;font-size:10.5px;letter-spacing:1px}
+  .t-ok{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+  .t-warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .t-bad{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+  .t-mid{background:color-mix(in srgb,var(--mid) 14%,transparent);color:var(--mid)}
+  .scroll{overflow-x:auto}
+  .next{border:1px solid var(--accent);border-left:4px solid var(--accent);
+    background:color-mix(in srgb,var(--accent) 6%,transparent);padding:16px 18px;border-radius:3px}
+  ul{padding-left:20px} li{margin:5px 0}
+  code{background:color-mix(in srgb,var(--mid) 12%,transparent);padding:1px 5px;border-radius:3px;font-size:12px}
+  footer{color:var(--mid);font-size:11.5px;margin-top:56px;padding-top:18px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>HENRY HOUSE</h1>
+  <div class="sub">STEEP MOUNTAIN LAND · WATAUGA COUNTY, NORTH CAROLINA · SCHEMATIC DESIGN</div>
+  <div class="body-line">THE HOUSE WORKS LIKE A BODY — SKELETON · CIRCULATION · DIGESTION · RESPIRATION · NERVOUS SYSTEM · SKIN · HOMEOSTASIS</div>
+  <div class="sub" style="margin-top:12px">Updated 2026-08-11 · branch <code>claude/henry-house-mountain-wsydn3</code></div>
+</header>
+
+<div class="banner">
+  <b>TWO THINGS THIS PACKAGE CANNOT CLAIM</b><br><br>
+  <b>1 · No code was verified.</b> This was produced in an environment with no outbound web access — every primary source
+  (<code>ncosfm.gov</code>, <code>codes.iccsafe.org</code>, <code>wataugacounty.org</code>, the ASCE Hazard Tool, NOAA)
+  returned HTTP&nbsp;403 at the egress proxy. No code text was read. Design loads — ground snow, wind exposure, seismic,
+  frost depth, rainfall — are <b>not established</b>. Nothing here may be relied upon for permitting.<br><br>
+  <b>2 · There is no site information.</b> Four facts are known; everything else is assumed and traceable in
+  <code>docs/01-site-facts-register.md</code>. <b>Commission the wastewater soil evaluation before anything else</b> —
+  on steep NC mountain land it is the most common reason a house cannot be built where the owner wants it.
+</div>
+
+<h2>CURRENT DRAWINGS</h2>
+<div class="grid">
+  <div class="card">
+    <img src="../out/png/A-101-main-level-plan.png" alt="A-101 Main Level Plan">
+    <div class="meta"><div class="t">A-101 · MAIN LEVEL PLAN</div>
+    <div class="d">The service spine, two entries, the drain gap, snow retention. 1,872 SF gross.</div></div>
+  </div>
+  <div class="card">
+    <img src="../out/png/A-102-lower-upper-plans.png" alt="A-102 Lower and Upper Level Plans">
+    <div class="meta"><div class="t">A-102 · LOWER + UPPER PLANS</div>
+    <div class="d">The walkout level the hill gives you almost free, and the sleeping level under the shed.</div></div>
+  </div>
+  <div class="card">
+    <img src="../out/png/A-201-section-aa.png" alt="A-201 Section A-A">
+    <div class="meta"><div class="t">A-201 · SECTION A—A</div>
+    <div class="d">The governing drawing. Spine wall, drain gap, gravity drainage, roof falling downhill.</div></div>
+  </div>
+</div>
+
+<h2>SHEET SET STATUS</h2>
+<div class="scroll"><table>
+<tr><th>Sheet</th><th>Title</th><th>Status</th></tr>
+<tr><td>A-101</td><td>Main Level Plan</td><td><span class="tag t-ok">DRAWN</span></td></tr>
+<tr><td>A-102</td><td>Lower + Upper Level Plans</td><td><span class="tag t-ok">DRAWN</span></td></tr>
+<tr><td>A-201</td><td>Section A—A (transverse)</td><td><span class="tag t-ok">DRAWN</span></td></tr>
+<tr><td>C-101</td><td>Site + Grading Plan</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>A-202</td><td>Section B—B (longitudinal)</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>A-301</td><td>Elevations</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>A-401</td><td>Roof + Snow Plan</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>S-101</td><td>Foundation + Structural Concept</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>P-101</td><td>Water + Plumbing</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>P-201</td><td>Wastewater</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>M-101</td><td>HVAC + Ventilation</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>E-101</td><td>Electrical / Lighting / Data</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>D-101</td><td>Drainage + Stormwater</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>A-501</td><td>Envelope Details</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+<tr><td>—</td><td>3D model + renders</td><td><span class="tag t-mid">NOT STARTED</span></td></tr>
+</table></div>
+
+<h2>ERRORS FOUND BY LOOKING AT THE OUTPUT</h2>
+<p style="color:var(--mid)">Every one of these was caught by rendering the drawing and inspecting it — not by reasoning about it.
+That is the whole argument for generating drawings rather than describing them.</p>
+<div class="scroll"><table>
+<tr><th>Found</th><th>Error</th><th>Fix</th><th>Status</th></tr>
+<tr><td>A-101</td><td>Stair UP/DN labels inverted — <code>isDown</code> tested <code>st.from</code> instead of <code>st.to</code></td><td>Corrected the test</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>A-101</td><td><b>Design error:</b> the snow apron sat underneath the main deck. A 4′ overhang cannot throw snow past a 12′ deck, so free-shedding was never available there — snow would have landed on the deck and against the glass doors.</td><td>Retain snow over occupied surfaces; free-shed only where nothing is below</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>A-101</td><td>Room labels collided in narrow rooms</td><td>Tags auto-size to fit</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>A-201</td><td>Level tags and annotations ran off-sheet under the title block</td><td>Rescaled and reframed</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>A-201</td><td>Lower level downhill (walkout) wall was not drawn</td><td>Added the walkout face</td><td><span class="tag t-ok">FIXED</span></td></tr>
+<tr><td>model</td><td>Main level net area exceeded gross — link rooms double-counted</td><td>Excluded link rooms from the bar total</td><td><span class="tag t-ok">FIXED</span></td></tr>
+</table></div>
+
+<h2>UNRESOLVED SITE FACTS</h2>
+<div class="scroll"><table>
+<tr><th>ID</th><th>Assumption</th><th>Value used</th><th>Risk if wrong</th></tr>
+<tr><td>A-01</td><td>Cross-slope</td><td>30%</td><td><span class="tag t-bad">GOVERNING</span> Below ~15% the whole parti loses its justification; above ~45% foundations change to piers</td></tr>
+<tr><td>A-15</td><td>A permittable septic area exists</td><td>assumed</td><td><span class="tag t-bad">CAN VETO SITE</span></td></tr>
+<tr><td>A-09</td><td>Slope is stable, not a debris-flow path</td><td>assumed</td><td><span class="tag t-bad">LIFE SAFETY</span></td></tr>
+<tr><td>A-12</td><td>Existing source is a spring ~40 ft above main floor</td><td>assumed</td><td><span class="tag t-warn">HIGH</span> If it is a well, the gravity-backup strategy disappears</td></tr>
+<tr><td>A-07</td><td>Competent bearing at conventional footing depth</td><td>assumed</td><td><span class="tag t-warn">HIGH</span> Colluvial soils are common here</td></tr>
+<tr><td>A-03</td><td>Long axis N70°E along the contour; view + sun both SSE</td><td>70°</td><td><span class="tag t-warn">HIGH</span> If the real view is north, the plan must be reconsidered, not rotated</td></tr>
+<tr><td>A-18</td><td>Parcel is unincorporated Watauga County</td><td>assumed</td><td><span class="tag t-mid">MEDIUM</span> Well supported (Boone ETJ abolished 2016) but unconfirmed</td></tr>
+</table></div>
+
+<h2>SYSTEM CONFLICTS</h2>
+<p style="color:var(--mid)">Where does it come from, where does it go, what happens when it fails?
+Only the structure, drainage and snow chains have been drawn and checked so far.</p>
+<div class="scroll"><table>
+<tr><th>Chain</th><th>Source → sink</th><th>On failure</th><th>Status</th></tr>
+<tr><td>Structure</td><td>Roof → ribs → spine wall / downhill columns → footings</td><td>n/a — every load line reaches its own footing</td><td><span class="tag t-warn">DRAWN, NOT ENGINEERED</span></td></tr>
+<tr><td>Groundwater</td><td>Curtain drain → drain gap → footing drains → daylight both ends</td><td>Gravity only; nothing to fail</td><td><span class="tag t-ok">DRAWN</span></td></tr>
+<tr><td>Roof water</td><td>Roof falls downhill → gutters → level spreader</td><td>Never delivered to the uphill side</td><td><span class="tag t-warn">PARTIAL</span> outfall not designed</td></tr>
+<tr><td>Snow</td><td>Retained over decks and doors; free-shed only west of grid C</td><td>Retention sized on an unverified snow load</td><td><span class="tag t-warn">PARTIAL</span></td></tr>
+<tr><td>Water supply</td><td>Spring → cistern → pump → manifold; gravity branch bypasses the pump</td><td>Power out → gravity tap + one toilet still work</td><td><span class="tag t-bad">NOT DRAWN</span></td></tr>
+<tr><td>Waste</td><td>Fixtures → tank → pump → dispersal field</td><td>Hardwired high-water alarm</td><td><span class="tag t-bad">NOT DRAWN</span></td></tr>
+<tr><td>Air</td><td>ERV supply to bedrooms, exhaust from wet rooms — ducted independently of heating</td><td>—</td><td><span class="tag t-bad">NOT DRAWN</span></td></tr>
+<tr><td>Power</td><td>Utility → panel → battery → generator → critical loads</td><td>Reflex arcs run without network</td><td><span class="tag t-bad">NOT DRAWN</span></td></tr>
+</table></div>
+
+<h2>NEXT BIGGEST IMPROVEMENT</h2>
+<div class="next">
+  <b>The site and grading plan (C-101).</b><br><br>
+  Three sheets now describe a building; none describes the <em>ground</em>. Everything the brief calls hardest —
+  access, driveway grade, cut and fill balance, the septic field, the water source, the erosion control line,
+  where stormwater actually goes — lives on a drawing that does not yet exist. Until it does, the house is a
+  well-drawn object floating on an assumed plane.<br><br>
+  After that, in order: <b>systems routing</b> (water, waste, air, power drawn as real networks through the spine,
+  with a clash check that proves pipes do not pass through beams), then <b>elevations and the 3D model</b>, then
+  <b>envelope details</b> carrying the pen test.
+</div>
+
+<footer>
+  Generated from a single parametric model — <code>model/geometry.mjs</code> is the source of truth; plans, sections
+  and elevations all derive from it, so they cannot silently disagree.<br>
+  Rebuild: <code>node tools/build.mjs &amp;&amp; node tools/render/raster.mjs</code><br><br>
+  Produced by an AI system without site access, without verified code text, and without engineering analysis.
+  A design proposition and coordination study — not a construction document, not an engineered design, and not
+  evidence of code compliance. See <code>docs/04-professional-scope.md</code>.
+</footer>
+
+</div>
+</body>
+</html>
