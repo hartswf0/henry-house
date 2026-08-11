@@ -353,3 +353,38 @@ for (const sh of SYS_SHEETS) {
   ] });
   write(`${sh.no}-${sh.group.toLowerCase()}.svg`, s.toString());
 }
+
+// ── G-001  THE HOUSE AS A VIABLE SYSTEM + WHAT IT COSTS ─────────────────────
+import { drawVSM, drawS4Schedule, drawCost, drawGaps } from './draw/vsm.mjs';
+{
+  const s = new Sheet({
+    size: 'ARCH_D', scale: SCALES['1/8"=1\'-0"'],
+    number: 'G-001', title: 'THE HOUSE AS A VIABLE SYSTEM',
+    subtitle: 'STAFFORD BEER\'S VSM APPLIED · THE MISSING FUNCTION · AND WHAT THE WHOLE THING COSTS',
+    notes: [
+      'THE BRIEF ASKED TWICE for the Viable System Model and was answered twice with the body analogy instead. They are adjacent, not identical. The body analogy says a house has organs. The VSM says what has to be TRUE for a system to survive an environment that is trying to kill it — which on a 3,400 ft ridge is the actual design problem.',
+      'APPLYING IT PRODUCED ONE FINDING the analogy could not: this house has almost no S4. Every sensor in the package looks INWARD — leak, freeze, CO, humidity. That is S3*, audit. Nothing told the house what was about to happen TO it. A house with audit and no intelligence can only react; it arrives at every emergency with an empty battery, a half cistern and a cold slab.',
+      'THE SIX POLICIES on this sheet are that missing function, built from hardware already in model/systems.mjs. None of them needs equipment the design does not have. What they need is a forecast and a decision to act on it early.',
+      'ALL THRESHOLDS, LEAD TIMES AND SETPOINTS ARE ASSUMED. They are the agenda for a commissioning conversation, not settings.',
+      'THE COST TAKEOFF IS DERIVED FROM THE MODEL. The unit costs are not: no supplier, no cost database and no local bid was consulted. Replace every rate with a Watauga County contractor\'s numbers before the estimate means anything.',
+      UNVERIFIED,
+    ],
+  });
+  s.border();
+  s.sheetTitle(300, 150);
+  const y = drawVSM(s, 300, 330, 2180);
+  const colY = y + 60;
+  drawS4Schedule(s, 300, colY, 1010);
+  const cy = drawCost(s, 1440, colY, 1040);
+  drawGaps(s, 1440, cy + 46, 1040);
+  s.titleBlock({ phase: PHASE, issued: ISSUED, scaleName: 'NONE — DIAGRAM', extra: [
+    'S1 operations · S2 coordination',
+    'S3 control · S3* audit',
+    'S4 intelligence · S5 identity',
+    '',
+    'Generated from model/vsm.mjs and',
+    'model/cost.mjs. Quantities derived;',
+    'unit costs invented and marked so.',
+  ] });
+  write('G-001-viable-system-and-cost.svg', s.toString());
+}

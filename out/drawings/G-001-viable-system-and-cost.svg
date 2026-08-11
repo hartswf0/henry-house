@@ -1,0 +1,391 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs></defs>
+<rect x="0" y="0" width="3600" height="2400" fill="#ffffff"/>
+<rect x="40" y="40" width="3520" height="2320" rx="0" fill="none" stroke="#111418" stroke-width="2.2"/>
+<rect x="52" y="52" width="3496" height="2296" rx="0" fill="none" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="300" y="150" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="46" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2.5">THE HOUSE AS A VIABLE SYSTEM</text>
+<text x="300" y="184" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="18" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.4">STAFFORD BEER'S VSM APPLIED · THE MISSING FUNCTION · AND WHAT THE WHOLE THING COSTS</text>
+<line x1="300" y1="206" x2="2880" y2="206" stroke="#111418" stroke-width="2.2"/>
+<rect x="300" y="330" width="654" height="560" rx="4" fill="#f6f2ea" stroke="#b8860b" stroke-width="2.2"/>
+<text x="314" y="356" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#8a6508" text-anchor="start" letter-spacing="1.6">ENVIRONMENT</text>
+<line x1="314" y1="376" x2="322" y2="376" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="380" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Ice storms and multi-day outages</text>
+<line x1="314" y1="398" x2="322" y2="398" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="402" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Snow load — governing and</text>
+<text x="330" y="416" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">UNVERIFIED</text>
+<line x1="314" y1="434" x2="322" y2="434" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="438" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Spring yield and drought</text>
+<line x1="314" y1="456" x2="322" y2="456" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="460" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Fire weather and smoke</text>
+<line x1="314" y1="478" x2="322" y2="478" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="482" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A 30% colluvial slope and its</text>
+<text x="330" y="496" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">groundwater</text>
+<line x1="314" y1="514" x2="322" y2="514" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="518" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A drive that can close</text>
+<line x1="314" y1="536" x2="322" y2="536" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="540" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Watauga County, NCDOT, the fire</text>
+<text x="330" y="554" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">marshal</text>
+<line x1="314" y1="572" x2="322" y2="572" stroke="#b8860b" stroke-width="1"/>
+<text x="330" y="576" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">A physician's hours</text>
+<text x="314" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#8a6508" text-anchor="start" letter-spacing="0">THE ADVERSARY, NOT THE BACKDROP</text>
+<rect x="1000" y="330" width="1480" height="96" rx="4" fill="#f3eef6" stroke="#6b4a8f" stroke-width="3.4"/>
+<text x="1014" y="356" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#6b4a8f" text-anchor="start" letter-spacing="1.6">S5   IDENTITY</text>
+<text x="1014" y="376" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">A house on a ridge for a doctor, which must keep working on the worst night of the year, and be</text>
+<text x="1014" y="390" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">worth living in on all the others.</text>
+<text x="1014" y="408" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">When S4 wants to charge the battery and S3 wants to run the hot tub, S5 says the battery.</text>
+<rect x="1000" y="442" width="1480" height="92" rx="4" fill="#eaf1f6" stroke="#1d6fa5" stroke-width="3.4"/>
+<text x="1014" y="468" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1.2">S4   INTELLIGENCE — THE MODEL OF THE ENVIRONMENT AND THE FUTURE</text>
+<text x="1014" y="488" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">6 anticipatory policies. THIS IS THE FUNCTION THE DESIGN DID NOT HAVE. Every sensor in the package</text>
+<text x="1014" y="502" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">looked inward — leak, freeze, CO. That is audit. It tells the house what is happening TO it, never what</text>
+<text x="1014" y="516" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">is about to.</text>
+<rect x="1000" y="550" width="888" height="86" rx="4" fill="#eef4ef" stroke="#2f7d54" stroke-width="3.4"/>
+<text x="1014" y="576" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#2f7d54" text-anchor="start" letter-spacing="1.6">S3   CONTROL</text>
+<text x="1014" y="596" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Seat: THE HEART — the lower-level mechanical room. Allocates 3</text>
+<text x="1014" y="610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">scarce resources between the operations below.</text>
+<rect x="1904" y="550" width="576" height="86" rx="4" fill="#f6efef" stroke="#b03535" stroke-width="3.4"/>
+<text x="1918" y="576" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.6">S3*  AUDIT</text>
+<text x="1918" y="596" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">5 direct channels into operations,</text>
+<text x="1918" y="610" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">including the clash checker — which found</text>
+<text x="1918" y="624" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">sixteen failures human review did not.</text>
+<rect x="1000" y="652" width="1480" height="66" rx="4" fill="#f4f1e9" stroke="#4a5560" stroke-width="2.2"/>
+<text x="1014" y="676" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#4a5560" text-anchor="start" letter-spacing="1.2">S2   COORDINATION — THE ANTI-OSCILLATION LAYER</text>
+<text x="1014" y="696" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE SERVICE SPINE · THE TWO CHASES · THE ERV VS THE HEAT PUMPS · THE MUDROOM AIRLOCK · SNOW RETENTION VS SNOW</text>
+<text x="1014" y="710" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">SHED · THE DRAIN GAP</text>
+<text x="1000" y="748" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">S1   OPERATIONS</text>
+<rect x="1000" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="1102.286" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">SHELTER</text>
+<text x="1102.286" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Hold habitable</text>
+<text x="1102.286" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">temperature and</text>
+<text x="1102.286" y="824" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">humidity</text>
+<text x="1102.286" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">Loss of power, loss of</text>
+<text x="1102.286" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">refrigerant, a frozen</text>
+<text x="1102.286" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">coil</text>
+<line x1="1102.286" y1="878" x2="1102.286" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="1102.286" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="1212.571" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="1314.857" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">WATER</text>
+<text x="1314.857" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Deliver potable water</text>
+<text x="1314.857" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">at pressure</text>
+<text x="1314.857" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">Spring drops, pump</text>
+<text x="1314.857" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">fails, a line freezes</text>
+<line x1="1314.857" y1="878" x2="1314.857" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="1314.857" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="1425.143" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="1527.429" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">WASTE</text>
+<text x="1527.429" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Remove wastewater</text>
+<text x="1527.429" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">without contaminating</text>
+<text x="1527.429" y="824" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">the water</text>
+<text x="1527.429" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">Pump fails, field</text>
+<text x="1527.429" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">saturates, tank backs</text>
+<text x="1527.429" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">up</text>
+<line x1="1527.429" y1="878" x2="1527.429" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="1527.429" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="1637.714" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="1740" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">POWER</text>
+<text x="1740" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Keep the loads that</text>
+<text x="1740" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">matter alive</text>
+<text x="1740" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">Multi-day outage,</text>
+<text x="1740" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">generator fuel runs</text>
+<text x="1740" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">out</text>
+<line x1="1740" y1="878" x2="1740" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="1740" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="1850.286" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="1952.571" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">ACCESS</text>
+<text x="1952.571" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Get people and</text>
+<text x="1952.571" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">vehicles to and from</text>
+<text x="1952.571" y="824" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">the house</text>
+<text x="1952.571" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">The drive closes;</text>
+<text x="1952.571" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">nobody leaves and</text>
+<text x="1952.571" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">nobody arrives</text>
+<line x1="1952.571" y1="878" x2="1952.571" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="1952.571" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="2062.857" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2165.143" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">STAY DRY</text>
+<text x="2165.143" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Keep water outside the</text>
+<text x="2165.143" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">envelope and off the</text>
+<text x="2165.143" y="824" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">cut</text>
+<text x="2165.143" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">The cut face loads the</text>
+<text x="2165.143" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">wall; a drain plugs</text>
+<line x1="2165.143" y1="878" x2="2165.143" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="2165.143" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<rect x="2275.429" y="760" width="204.571" height="118" rx="4" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2377.714" y="782" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0.8">DWELL</text>
+<text x="2377.714" y="800" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">Be a place a family</text>
+<text x="2377.714" y="812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="9.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">actually lives in</text>
+<text x="2377.714" y="850" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">Nothing breaks — it</text>
+<text x="2377.714" y="861" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">just stops being worth</text>
+<text x="2377.714" y="872" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#b03535" text-anchor="middle" letter-spacing="0">it</text>
+<line x1="2377.714" y1="878" x2="2377.714" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="954" y1="898" x2="2377.714" y2="898" stroke="#b8860b" stroke-width="0.6" stroke-dasharray="5 4"/>
+<line x1="974" y1="340" x2="974" y2="918" stroke="#b03535" stroke-width="3.4"/>
+<line x1="974" y1="340" x2="967" y2="356" stroke="#b03535" stroke-width="3.4"/>
+<line x1="974" y1="340" x2="981" y2="356" stroke="#b03535" stroke-width="3.4"/>
+<text x="966" y="624" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#b03535" text-anchor="middle" letter-spacing="0" transform="rotate(-90 966 624)">ALGEDONIC — PAIN BYPASSES EVERY LEVEL</text>
+<text x="1000" y="934" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">HARDWIRED REFLEXES, NO CONTROLLER IN THE PATH:  Smoke or CO  ·  Water on a floor  ·  Pipe approaching freezing  ·  Septic high water  ·  Loss of grid</text>
+<text x="300" y="1012" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">S4 — WHAT THE HOUSE DOES BEFORE THE WEATHER DOES IT</text>
+<text x="300" y="1034" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Each policy is a standing rule: when the model of the outside world crosses a threshold, act ahead of it,</text>
+<text x="300" y="1048" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">using hardware already in the design. Lead time is the whole point — a battery charged after the outage</text>
+<text x="300" y="1062" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">starts is not a battery. ALL THRESHOLDS ARE ASSUMED.</text>
+<rect x="300" y="1080" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1094" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">PRE-STORM CHARGE</text>
+<text x="1302" y="1094" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD 24-36 HOURS</text>
+<text x="308" y="1114" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Forecast winter storm, ice accretion, or high-wind warning</text>
+<text x="314" y="1130" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1130" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Charge the battery to 100% from the grid while the grid is still there</text>
+<text x="314" y="1145" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1145" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Raise the slab loop 3°F above setpoint — the concrete spine is the only heat store that does not</text>
+<text x="326" y="1159" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">need electricity to keep working</text>
+<text x="314" y="1174" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1174" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Bring domestic hot water to the top of its band</text>
+<text x="314" y="1189" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1189" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Top the cistern from the spring so the gravity branch has full head</text>
+<text x="314" y="1204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Test-start the generator and report fuel</text>
+<text x="308" y="1223" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">A 3,400 ft ridge loses power to ice, not to lightning. The warning is always there and the house</text>
+<text x="308" y="1237" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">currently ignores it.</text>
+<rect x="300" y="1257" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1271" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">ISLANDED OPERATION</text>
+<text x="1302" y="1271" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD CONTINUOUS</text>
+<text x="308" y="1291" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Grid absent; battery state of charge; forecast time to restoration</text>
+<text x="314" y="1307" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1307" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Shed non-critical loads in a declared order, not by tripping breakers</text>
+<text x="314" y="1322" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1322" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Ration: heat the primary suite and the great room, let the upper level float</text>
+<text x="314" y="1337" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1337" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Hold the well pump and the septic pump as protected loads — losing either ends occupancy faster</text>
+<text x="326" y="1351" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">than losing heat</text>
+<text x="314" y="1366" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1366" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Report projected hours remaining, in hours, not in percent</text>
+<text x="308" y="1385" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">A percentage tells you nothing. Hours until the pump stops tells you whether to leave.</text>
+<rect x="300" y="1405" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1419" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">SPRING DROUGHT RESPONSE</text>
+<text x="1302" y="1419" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD DAYS TO WEEKS</text>
+<text x="308" y="1439" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Cistern level trend, spring inflow rate, days since meaningful rain</text>
+<text x="314" y="1455" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1455" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Report the reserve as DAYS OF USE at the current rate, not as a level</text>
+<text x="314" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Restrict outdoor taps first, then irrigation, then guest-wing hot water recirculation</text>
+<text x="314" y="1485" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1485" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Alert early enough that hauled water can be scheduled rather than emergency-ordered</text>
+<text x="308" y="1504" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">A spring-fed house with no inflow measurement discovers a drought when the tap runs dry. THE</text>
+<text x="308" y="1518" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">SPRING'S YIELD HAS NEVER BEEN TESTED — see docs/01 A-05.</text>
+<rect x="300" y="1538" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1552" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">FIRE WEATHER POSTURE</text>
+<text x="1302" y="1552" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD HOURS TO DAYS</text>
+<text x="308" y="1572" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Low humidity, sustained wind, regional fire danger rating</text>
+<text x="314" y="1588" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1588" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Close the ERV outdoor air damper and switch to recirculation with the filter bank in line</text>
+<text x="314" y="1603" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1603" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Hold the cistern full and reserve a defined firefighting volume with a dedicated draft</text>
+<text x="326" y="1617" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">connection</text>
+<text x="314" y="1632" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1632" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Report the state of the free-shed and deck zones — combustible storage under a deck is the usual</text>
+<text x="326" y="1646" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ignition path</text>
+<text x="308" y="1665" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">Smoke reaches a ridge long before flame does, and a mechanically ventilated house pulls it inside.</text>
+<rect x="300" y="1685" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1699" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">SNOW LOAD AND ACCESS</text>
+<text x="1302" y="1699" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD 12-48 HOURS</text>
+<text x="308" y="1719" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Accumulated snow water equivalent; forecast rain-on-snow</text>
+<text x="314" y="1735" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1735" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Report accumulated roof load against the design value — the ONE load that governs every member</text>
+<text x="326" y="1749" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">in model/structure.mjs and is UNVERIFIED</text>
+<text x="314" y="1764" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1764" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Flag rain-on-snow, which can double an accumulated load in a day</text>
+<text x="314" y="1779" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1779" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Advise clearing the drive BEFORE the event rather than after, because at 11% a plough cannot</text>
+<text x="326" y="1793" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">climb what it could have prevented</text>
+<text x="308" y="1812" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">The drive at 11% exceeds the 10% fire apparatus limit. If it closes, an ambulance does not reach a</text>
+<text x="308" y="1826" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">doctor's house.</text>
+<rect x="300" y="1846" width="1010" height="20" rx="0" fill="#eaf1f6" stroke="none" stroke-width="0"/>
+<text x="308" y="1860" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.5" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="1">SEASONAL SETBACK AND SOLAR ANTICIPATION</text>
+<text x="1302" y="1860" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">LEAD HOURS</text>
+<text x="308" y="1880" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATCHES: Sun position, forecast clear-sky hours, interior temperature trend</text>
+<text x="314" y="1896" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1896" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Pre-cool the slab on summer nights so the 650 sf of south glass and the west clerestory have</text>
+<text x="326" y="1910" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">somewhere to dump heat</text>
+<text x="314" y="1925" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1925" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Stop heating before a clear winter afternoon and let the glass do it</text>
+<text x="314" y="1940" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">&gt;</text>
+<text x="326" y="1940" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Close the clerestory's motorised awnings against late summer gain — the one opening on this</text>
+<text x="326" y="1954" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">house facing the wrong way</text>
+<text x="308" y="1973" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">The building has real thermal mass and a lot of south glass. Without anticipation those are a</text>
+<text x="308" y="1987" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">liability instead of an asset.</text>
+<text x="1440" y="1012" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.8">WHAT IT COSTS</text>
+<text x="1440" y="1034" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">QUANTITIES ARE DERIVED from the same model that draws the plans. UNIT COSTS</text>
+<text x="1440" y="1048" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">ARE INVENTED — no supplier, no cost database, no local bid was consulted,</text>
+<text x="1440" y="1062" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">because this container has no outbound access. Trust the takeoff, distrust the</text>
+<text x="1440" y="1076" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#b03535" text-anchor="start" letter-spacing="0">money, read the range.</text>
+<line x1="1440" y1="1102" x2="2480" y2="1102" stroke="#111418" stroke-width="2.2"/>
+<text x="1440" y="1120" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">ITEM</text>
+<text x="1960" y="1120" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="1">QUANTITY</text>
+<text x="2188.8" y="1120" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="1">LOW</text>
+<text x="2480" y="1120" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="1">HIGH</text>
+<line x1="1440" y1="1128" x2="2480" y2="1128" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="1440" y="1144" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">HOUSE — heated, three levels + link (excl. items below)</text>
+<text x="1960" y="1144" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">3,747 sf</text>
+<text x="2188.8" y="1144" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$1,086,630</text>
+<text x="2480" y="1144" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$1,611,210</text>
+<text x="1440" y="1161" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">GARAGE — detached, unheated</text>
+<text x="1960" y="1161" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">576 sf</text>
+<text x="2188.8" y="1161" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$80,640</text>
+<text x="2480" y="1161" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$126,720</text>
+<text x="1440" y="1178" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">MAIN DECK</text>
+<text x="1960" y="1178" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">576 sf</text>
+<text x="2188.8" y="1178" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$51,840</text>
+<text x="2480" y="1178" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$92,160</text>
+<text x="1440" y="1195" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">LOWER TERRACE</text>
+<text x="1960" y="1195" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">576 sf</text>
+<text x="2188.8" y="1195" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$31,680</text>
+<text x="2480" y="1195" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$54,720</text>
+<text x="1440" y="1212" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">GLAZING — premium above shell allowance</text>
+<text x="1960" y="1212" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">650 sf</text>
+<text x="2188.8" y="1212" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$58,500</text>
+<text x="2480" y="1212" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$117,000</text>
+<text x="1440" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">CONCRETE SPINE — retains, carries, braces, stores heat</text>
+<text x="1960" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">984 sf</text>
+<text x="2188.8" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$83,640</text>
+<text x="2480" y="1229" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$147,600</text>
+<text x="1440" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">EARTHWORK — cut and fill placed</text>
+<text x="1960" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">6,682 CY</text>
+<text x="2188.8" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$93,548</text>
+<text x="2480" y="1246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$173,732</text>
+<text x="1440" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">SPOIL — hauled off site</text>
+<text x="1960" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">6,403 CY</text>
+<text x="2188.8" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$140,866</text>
+<text x="2480" y="1263" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$288,135</text>
+<text x="1440" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">DRIVEWAY — 5 switchbacks at 11%</text>
+<text x="1960" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">655 LF</text>
+<text x="2188.8" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$72,050</text>
+<text x="2480" y="1280" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$157,200</text>
+<text x="1440" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">EROSION CONTROL — over the one-acre threshold</text>
+<text x="1960" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">—</text>
+<text x="2188.8" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$12,000</text>
+<text x="2480" y="1297" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$34,000</text>
+<text x="1440" y="1314" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WASTEWATER — alternative system</text>
+<text x="1960" y="1314" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">—</text>
+<text x="2188.8" y="1314" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$30,000</text>
+<text x="2480" y="1314" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$75,000</text>
+<text x="1440" y="1331" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">WATER — spring, cistern, treatment</text>
+<text x="1960" y="1331" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">—</text>
+<text x="2188.8" y="1331" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$18,000</text>
+<text x="2480" y="1331" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$42,000</text>
+<text x="1440" y="1348" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">STANDBY POWER — battery + generator</text>
+<text x="1960" y="1348" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">—</text>
+<text x="2188.8" y="1348" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$26,000</text>
+<text x="2480" y="1348" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$55,000</text>
+<text x="1440" y="1365" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">MECHANICAL — heat pumps, ERV, hydronic</text>
+<text x="1960" y="1365" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">—</text>
+<text x="2188.8" y="1365" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="end" letter-spacing="0">$34,000</text>
+<text x="2480" y="1365" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$68,000</text>
+<line x1="1440" y1="1378" x2="2480" y2="1378" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="1440" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">CONSTRUCTION</text>
+<text x="2188.8" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$1,819,394</text>
+<text x="2480" y="1386" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$3,042,477</text>
+<text x="1440" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Contingency @ 15%</text>
+<text x="2188.8" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$272,909</text>
+<text x="2480" y="1404" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$456,372</text>
+<text x="1440" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Design, engineering, survey, geotech, permits @ 12%</text>
+<text x="2188.8" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$218,327</text>
+<text x="2480" y="1422" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="end" letter-spacing="0">$365,097</text>
+<line x1="1440" y1="1430" x2="2480" y2="1430" stroke="#111418" stroke-width="2.2"/>
+<text x="1440" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.4">PROJECT RANGE</text>
+<text x="2480" y="1448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="end" letter-spacing="0">$2,310,630 — $3,863,946</text>
+<text x="1440" y="1470" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">617 — 1,031 $/sf on 3,747 sf heated</text>
+<rect x="1440" y="1484" width="1040" height="58" rx="3" fill="#f6efef" stroke="#b03535" stroke-width="1.4"/>
+<text x="1448" y="1500" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">NOT IN THE TOTAL: $211,850 — $379,100</text>
+<text x="1448" y="1518" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">IF the geotechnical report says the 16.4 ft motor court cut will not stand at 1.5H:1V, it</text>
+<text x="1448" y="1532" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">must be retained. 2230 sf of engineered wall, NOT in the total above.</text>
+<text x="1440" y="1562" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1">THE THREE LINES THAT COME FROM THE GROUND, NOT THE HOUSE</text>
+<text x="1440" y="1580" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">Earthwork, spoil, drive and erosion control together run $318,464 to $653,067 — 18% to</text>
+<text x="1440" y="1594" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">21% of construction cost, before a single wall is framed. On steep land the site is not</text>
+<text x="1440" y="1608" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#111418" text-anchor="start" letter-spacing="0">a preliminary; it is a wing of the house you cannot see.</text>
+<text x="1440" y="1668" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="16" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="1.6">WHERE THE MODEL SAYS THIS IS STILL NOT VIABLE</text>
+<text x="1440" y="1690" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">The point of applying the VSM is not to label the parts. It is to find the missing channels.</text>
+<text x="1440" y="1704" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">These are the ones it found.</text>
+<text x="1440" y="1732" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S4</text>
+<text x="1544" y="1732" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">NO ENVIRONMENTAL DATA SOURCE IS SPECIFIED.</text>
+<text x="1544" y="1748" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Every policy above depends on a forecast. Which feed, what happens when it is</text>
+<text x="1544" y="1762" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">unreachable, and what the house does with no forecast at all are undesigned. A house</text>
+<text x="1544" y="1776" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">that only anticipates when the internet is up has not solved the problem it was</text>
+<text x="1544" y="1790" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">built for.</text>
+<text x="1440" y="1818" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S4</text>
+<text x="1544" y="1818" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">THE SPRING HAS NO MEASUREMENT AND NO TESTED YIELD.</text>
+<text x="1544" y="1834" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S4-DROUGHT cannot run. The house cannot model the one resource it cannot buy back</text>
+<text x="1544" y="1848" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">quickly.</text>
+<text x="1440" y="1876" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S1-ACCESS</text>
+<text x="1544" y="1876" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">THE DRIVE EXCEEDS THE FIRE APPARATUS GRADE LIMIT.</text>
+<text x="1544" y="1892" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">The single most consequential unresolved item: an operation whose failure mode is</text>
+<text x="1544" y="1906" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">that emergency services cannot reach a physician's house.</text>
+<text x="1440" y="1934" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S3</text>
+<text x="1544" y="1934" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">NO LOAD CALCULATION EXISTS.</text>
+<text x="1544" y="1950" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S3 allocates capacity it has never counted. No Manual J, no electrical load</text>
+<text x="1544" y="1964" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">calculation, no fixture-unit count. The systems are proven to COEXIST, not to</text>
+<text x="1544" y="1978" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">PERFORM.</text>
+<text x="1440" y="2006" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S1-SHELTER</text>
+<text x="1544" y="2006" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">THE GOVERNING SNOW LOAD IS UNVERIFIED.</text>
+<text x="1544" y="2022" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Every structural member resizes if it changes. The skeleton is provisional.</text>
+<text x="1440" y="2050" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#1d6fa5" text-anchor="start" letter-spacing="0">S5</text>
+<text x="1544" y="2050" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="11.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">THE BREEZEWAY CONTRADICTS THE IDENTITY STATEMENT.</text>
+<text x="1544" y="2066" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S5 says the house must work on the worst night of the year, and the everyday route</text>
+<text x="1544" y="2080" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">crosses 9 ft of unconditioned outdoors carrying groceries, a child, or a medical</text>
+<text x="1544" y="2094" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">bag. Fire and CO separation argue for the gap; S5 argues against it. That conflict</text>
+<text x="1544" y="2108" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10.5" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">is stated and NOT RESOLVED.</text>
+<rect x="2940" y="40" width="620" height="2320" rx="0" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
+<text x="2966" y="102" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="40" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="3">HENRY HOUSE</text>
+<text x="2966" y="132" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="1.6">WATAUGA COUNTY, NORTH CAROLINA</text>
+<line x1="2960" y1="158" x2="3540" y2="158" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="192" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#b8562f" text-anchor="start" letter-spacing="1.8">THE HOUSE WORKS LIKE A BODY</text>
+<text x="2966" y="214" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">STRUCTURE = SKELETON   WATER = CIRCULATION</text>
+<text x="2966" y="230" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">WASTE = DIGESTION      HVAC  = RESPIRATION</text>
+<text x="2966" y="246" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">POWER = NERVOUS SYS.   SKIN  = ENVELOPE</text>
+<line x1="2960" y1="274" x2="3540" y2="274" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="304" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="1.6">SHEET NOTES</text>
+<text x="2966" y="324" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE BRIEF ASKED TWICE for the Viable System Model and was</text>
+<text x="2966" y="339" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">answered twice with the body analogy instead. They are</text>
+<text x="2966" y="354" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">adjacent, not identical. The body analogy says a house has</text>
+<text x="2966" y="369" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">organs. The VSM says what has to be TRUE for a system to</text>
+<text x="2966" y="384" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">survive an environment that is trying to kill it — which on a</text>
+<text x="2966" y="399" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">3,400 ft ridge is the actual design problem.</text>
+<text x="2966" y="418" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">APPLYING IT PRODUCED ONE FINDING the analogy could not: this</text>
+<text x="2966" y="433" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">house has almost no S4. Every sensor in the package looks</text>
+<text x="2966" y="448" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">INWARD — leak, freeze, CO, humidity. That is S3*, audit.</text>
+<text x="2966" y="463" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Nothing told the house what was about to happen TO it. A house</text>
+<text x="2966" y="478" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">with audit and no intelligence can only react; it arrives at</text>
+<text x="2966" y="493" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">every emergency with an empty battery, a half cistern and a</text>
+<text x="2966" y="508" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">cold slab.</text>
+<text x="2966" y="527" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE SIX POLICIES on this sheet are that missing function,</text>
+<text x="2966" y="542" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">built from hardware already in model/systems.mjs. None of them</text>
+<text x="2966" y="557" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">needs equipment the design does not have. What they need is a</text>
+<text x="2966" y="572" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">forecast and a decision to act on it early.</text>
+<text x="2966" y="591" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">ALL THRESHOLDS, LEAD TIMES AND SETPOINTS ARE ASSUMED. They are</text>
+<text x="2966" y="606" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the agenda for a commissioning conversation, not settings.</text>
+<text x="2966" y="625" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">THE COST TAKEOFF IS DERIVED FROM THE MODEL. The unit costs are</text>
+<text x="2966" y="640" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">not: no supplier, no cost database and no local bid was</text>
+<text x="2966" y="655" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">consulted. Replace every rate with a Watauga County</text>
+<text x="2966" y="670" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">contractor's numbers before the estimate means anything.</text>
+<text x="2966" y="689" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">CODE VALUES ON THIS SET ARE UNVERIFIED. This container has no</text>
+<text x="2966" y="704" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">outbound web access, so no code text was read from a primary</text>
+<text x="2966" y="719" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">source. Every code reference is marked in</text>
+<text x="2966" y="734" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">docs/02-code-basis.md with its verification status. Nothing</text>
+<text x="2966" y="749" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12.2" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">here may be relied on for permitting.</text>
+<line x1="2960" y1="2110" x2="3540" y2="2110" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">PHASE</text>
+<text x="2966" y="2160" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">SCHEMATIC DESIGN — NOT FOR CONSTRUCTION</text>
+<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S1 operations · S2 coordination</text>
+<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S3 control · S3* audit</text>
+<text x="2966" y="2220" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">S4 intelligence · S5 identity</text>
+<text x="2966" y="2236" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0"></text>
+<text x="2966" y="2252" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Generated from model/vsm.mjs and</text>
+<text x="2966" y="2268" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">model/cost.mjs. Quantities derived;</text>
+<text x="2966" y="2284" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">unit costs invented and marked so.</text>
+<line x1="2960" y1="2230" x2="3540" y2="2230" stroke="#111418" stroke-width="1.4"/>
+<text x="2966" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">SCALE</text>
+<text x="2966" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">NONE — DIAGRAM</text>
+<text x="3190" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">ISSUED</text>
+<text x="3190" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">2026-08-11</text>
+<text x="3370" y="2256" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">REV</text>
+<text x="3370" y="2276" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="15" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="0">—</text>
+<line x1="2960" y1="2292" x2="3540" y2="2292" stroke="#c6cfd8" stroke-width="0.6"/>
+<text x="2966" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="44" font-weight="700" fill="#111418" text-anchor="start" letter-spacing="2">G-001</text>
+<text x="3534" y="2326" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13" font-weight="400" fill="#8d99a6" text-anchor="end" letter-spacing="0">ARCH D 36x24</text>
+</svg>

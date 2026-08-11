@@ -56,6 +56,8 @@
 <circle cx="1573.125" cy="395.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
 <circle cx="1573.125" cy="395.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
 <circle cx="1573.125" cy="395.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
+<circle cx="845" cy="395.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
+<circle cx="845" cy="395.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
 <circle cx="1573.125" cy="395.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
 <circle cx="1573.125" cy="395.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
 <circle cx="1573.125" cy="395.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
@@ -166,6 +168,12 @@
 <circle cx="1573.125" cy="1035.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
 <circle cx="1582.5" cy="1035.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
 <circle cx="1582.5" cy="1035.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
+<line x1="722.344" y1="988.75" x2="722.344" y2="1026.25" stroke="#6b4a2f" stroke-width="2.2" stroke-linecap="butt"/>
+<line x1="722.344" y1="1026.25" x2="845" y2="1026.25" stroke="#6b4a2f" stroke-width="2.2" stroke-linecap="butt"/>
+<circle cx="845" cy="1035.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
+<circle cx="845" cy="1035.625" r="3.125" fill="#6b4a2f" stroke="#6b4a2f" stroke-width="1"/>
+<circle cx="854.375" cy="1035.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
+<circle cx="854.375" cy="1035.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
 <line x1="1869.219" y1="987.188" x2="1869.219" y2="1026.25" stroke="#6b4a2f" stroke-width="2.2" stroke-linecap="butt"/>
 <line x1="1869.219" y1="1026.25" x2="1573.125" y2="1026.25" stroke="#6b4a2f" stroke-width="2.2" stroke-linecap="butt"/>
 <circle cx="1573.125" cy="1035.625" r="7.813" fill="none" stroke="#6b4a2f" stroke-width="2.2"/>
@@ -206,6 +214,8 @@
 <text x="1677.031" y="1271.563" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">SINK</text>
 <polygon points="1710.625,1288.75 1748.125,1288.75 1748.125,1251.25 1710.625,1251.25" fill="none" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
 <text x="1729.375" y="1270" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">DW</text>
+<polygon points="701.25,1004.375 743.438,1004.375 743.438,954.375 701.25,954.375" fill="none" stroke="#111418" stroke-width="1.4" stroke-linejoin="miter"/>
+<text x="722.344" y="979.375" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="8.5" font-weight="400" fill="#4a5560" text-anchor="middle" letter-spacing="0">STACKED W/D</text>
 <circle cx="-936.25" cy="-3267.5" r="15.625" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
 <text x="-936.25" y="-3236.25" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#111418" text-anchor="middle" letter-spacing="0">EXISTING SPRING (ASSUMED)</text>
 <circle cx="95" cy="13.75" r="15.625" fill="#ffffff" stroke="#111418" stroke-width="2.2"/>
@@ -259,6 +269,8 @@
 <circle cx="1582.5" cy="1675.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
 <circle cx="1582.5" cy="1675.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
 <circle cx="1582.5" cy="1675.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
+<circle cx="854.375" cy="1675.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
+<circle cx="854.375" cy="1675.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
 <circle cx="1582.5" cy="1675.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
 <circle cx="1582.5" cy="1675.625" r="3.125" fill="#9b8579" stroke="#9b8579" stroke-width="1"/>
 <circle cx="1582.5" cy="1675.625" r="7.813" fill="none" stroke="#9b8579" stroke-width="2.2"/>
@@ -365,8 +377,8 @@
 <line x1="2960" y1="2110" x2="3540" y2="2110" stroke="#111418" stroke-width="1.4"/>
 <text x="2966" y="2140" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#8d99a6" text-anchor="start" letter-spacing="1.4">PHASE</text>
 <text x="2966" y="2160" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#b03535" text-anchor="start" letter-spacing="0">SCHEMATIC DESIGN — NOT FOR CONSTRUCTION</text>
-<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">66 runs in this system</text>
-<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">33 horizontal, 60 riser passes</text>
+<text x="2966" y="2188" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">70 runs in this system</text>
+<text x="2966" y="2204" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">35 horizontal, 64 riser passes</text>
 <text x="2966" y="2220" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0"></text>
 <text x="2966" y="2236" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">Generated from model/systems.mjs —</text>
 <text x="2966" y="2252" font-family="ui-monospace, "SF Mono", Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#4a5560" text-anchor="start" letter-spacing="0">the same network the 3D x-ray shows.</text>

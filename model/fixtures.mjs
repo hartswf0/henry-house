@@ -140,6 +140,16 @@ export const FIXTURES = [
   F('K-105', 'L1', 'dw',     794, 84, S.dw.w, S.dw.d, 'S', { label: 'DW' }),
   F('C-120',  'L1', 'shelf', 800, 190, 50, 14, 'S', { label: 'PANTRY SHELVING', h: 84 }),
 
+  // PRIMARY SUITE — SECOND LAUNDRY.
+  // The link laundry is 68 ft from this bedroom. That is defensible as an
+  // airlock (dirty clothes never enter the house) and indefensible as daily
+  // ergonomics for a physician doing scrubs at odd hours. A stacked pair at the
+  // back of the walk-in closet is 7 ft from the bed, backs onto the primary
+  // bath's wet wall so it needs no new plumbing route, and costs 6 sf of
+  // hanging space. Both laundries earn their place; neither replaces the other.
+  F('P-160', 'L1', 'washer', 148, 266, 27, 32, 'S',
+    { label: 'STACKED W/D', h: 78, stacked: true, clear: CLEARANCE.applianceFront }),
+
   // ENTRY
   F('FF-140', 'L1', 'bench', 706, 190, 60, 16, 'N', { h: 18 }),
 
