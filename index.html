@@ -148,6 +148,21 @@ two vertical chases. Every run answers: where does it come from, where does it g
   <div class="card"><a href="out/png/A-201-section-aa.png"><img src="out/png/A-201-section-aa.png" alt="A-201"></a>
     <div class="meta"><div class="t">A-201 · SECTION A—A</div>
     <div class="d">The governing drawing on a steep site.</div></div></div>
+  <div class="card"><a href="out/png/A-202-sections-longitudinal.png"><img src="out/png/A-202-sections-longitudinal.png" alt="A-202"></a>
+    <div class="meta"><div class="t">A-202 · SECTIONS B—B + C—C</div>
+    <div class="d">The long cuts. One through the living zone, one through the service spine — the whole plan turned on edge.</div></div></div>
+  <div class="card"><a href="out/png/A-301-south-north-elevations.png"><img src="out/png/A-301-south-north-elevations.png" alt="A-301"></a>
+    <div class="meta"><div class="t">A-301 · SOUTH + NORTH ELEVATIONS</div>
+    <div class="d">The view face against the cut face. Side by side they make the argument the plans only assert.</div></div></div>
+  <div class="card"><a href="out/png/A-302-east-west-elevations.png"><img src="out/png/A-302-east-west-elevations.png" alt="A-302"></a>
+    <div class="meta"><div class="t">A-302 · EAST + WEST + ROOF PLAN</div>
+    <div class="d">The ends of the bar, and every plane that sheds water.</div></div></div>
+  <div class="card"><a href="out/png/C-101-site-grading-access.png"><img src="out/png/C-101-site-grading-access.png" alt="C-101"></a>
+    <div class="meta"><div class="t">C-101 · SITE, GRADING AND ACCESS</div>
+    <div class="d">The drive solved rather than sketched: 655 ft, 5 switchbacks, 11% held. Plus the earth that has to move.</div></div></div>
+  <div class="card"><a href="out/png/G-001-viable-system-and-cost.png"><img src="out/png/G-001-viable-system-and-cost.png" alt="G-001"></a>
+    <div class="meta"><div class="t">G-001 · VIABLE SYSTEM + COST</div>
+    <div class="d">Beer's VSM applied, the six anticipatory policies the design was missing, and the first price in the package.</div></div></div>
 </div>
 
 <h2>RENDERS</h2>
@@ -167,7 +182,7 @@ two vertical chases. Every run answers: where does it come from, where does it g
 </div>
 
 <h2>IT IS TESTED</h2>
-<pre>node tools/check/clash.mjs     →  14 passed, 1 warning, 0 failed</pre>
+<pre>node tools/check/clash.mjs     →  22 passed, 8 warnings, 0 failed</pre>
 <p style="color:var(--mid)">The checker interrogates the model rather than the drawing. On its first run it found
 <b>16 failures</b>, several structural: bedroom 3 was reachable only <em>through</em> bath 2; the mechanical room's
 only door opened into bath 3; bedroom 2's door sat inside the room rather than on a wall; the linen closet had no
@@ -178,10 +193,15 @@ which is a life-safety fault rather than a clash and now has its own check.</p>
 <h2>STILL OPEN</h2>
 <div class="scroll"><table>
 <tr><th>Gap</th><th>Why it matters</th></tr>
-<tr><td><span class="tag t-bad">NO SITE PLAN</span></td><td>The largest hole. Access, driveway grade, cut and fill balance, the septic field, the water source and where stormwater actually goes all live on a drawing that does not exist yet.</td></tr>
-<tr><td><span class="tag t-bad">RENDER FIDELITY</span></td><td>Canopies read stylised rather than photographic. Closing it needs alpha leaf-cards and real furniture geometry — asset work this environment cannot fetch.</td></tr>
-<tr><td><span class="tag t-bad">NOT LIVED IN</span></td><td>Fixtures are coordinated, but there are no lamps, books, art or blinds. No evidence of a life.</td></tr>
-<tr><td><span class="tag t-warn">SWING QUALITY</span></td><td>The checker proves door swings do not <em>hit</em> anything. It never asks whether the swing is the sensible one to use.</td></tr>
+<tr><td><span class="tag t-bad">FIRE APPARATUS ACCESS</span></td><td>The drive holds <b>11%</b>. Fire apparatus access provisions commonly cap grade at 10% and require 20 ft of width. At 10% the drive becomes about 720 ft. A longer, costlier drive, or a sprinkler system and a variance — <b>a decision for Henry, not a detail</b>.</td></tr>
+<tr><td><span class="tag t-bad">6,400 CY OF SPOIL</span></td><td>Pad and drive cut far more than they fill: roughly <b>536 tandem loads</b> down a mountain road, with no designed place to put any of it. Sidecasting onto a 30% colluvial slope is how mountain fills fail.</td></tr>
+<tr><td><span class="tag t-bad">1.2 ACRES DISTURBED</span></td><td>Over the one-acre threshold commonly cited for the NC Sedimentation Pollution Control Act. The pad alone reads 0.4 ac and looks safe; <b>the driveway corridor is what crosses the line</b>.</td></tr>
+<tr><td><span class="tag t-bad">NO S4 DATA SOURCE</span></td><td>Every anticipatory policy on G-001 depends on a forecast. Which feed, and what the house does with none, is undesigned.</td></tr>
+<tr><td><span class="tag t-bad">SPRING NEVER TESTED</span></td><td>No yield test, no water quality test, no confirmed legal right. The house cannot model the one resource it cannot buy back quickly.</td></tr>
+<tr><td><span class="tag t-warn">NO LOAD CALCULATIONS</span></td><td>No Manual J, no fixture-unit count, no electrical load calculation. The systems are proven to <em>coexist</em>, not to <em>perform</em>.</td></tr>
+<tr><td><span class="tag t-warn">SNOW LOAD UNVERIFIED</span></td><td>The one load that governs every structural member. Watauga may be a case-study snow area with no map value at all.</td></tr>
+<tr><td><span class="tag t-warn">THE BREEZEWAY</span></td><td>S5 says the house must work on the worst night of the year; the everyday route crosses 9 ft of unconditioned outdoors. Fire and CO separation argue for the gap. Stated, not resolved.</td></tr>
+<tr><td><span class="tag t-warn">NOT LIVED IN</span></td><td>Fixtures are coordinated, but there are no lamps, books, art or blinds. No evidence of a life.</td></tr>
 </table></div>
 
 <h2>DOCUMENTS</h2>
@@ -190,6 +210,8 @@ which is a life-safety fault rather than a clash and now has its own check.</p>
   <li><a href="docs/02-code-basis.md">02 — Code basis and verification status</a> · every reference marked with how strongly it is held</li>
   <li><a href="docs/03-body-diagram.md">03 — The body diagram</a> · where the analogy produced better architecture, and where it failed or nearly caused a mistake</li>
   <li><a href="docs/04-professional-scope.md">04 — What requires a licensed professional</a></li>
+  <li><a href="docs/05-what-is-wrong.md">05 — What is wrong</a> · an audit written against the model rather than from memory</li>
+  <li><a href="docs/06-viable-system-and-cost.md">06 — The viable system, and what it costs</a> · Beer's VSM applied, and the first price</li>
   <li><a href="README.md">README</a></li>
 </ul>
 

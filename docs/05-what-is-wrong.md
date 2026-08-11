@@ -126,8 +126,19 @@ Foliage reads as low-poly. Closing that needs alpha leaf-cards and real furnitur
 
 ## D. IF I COULD ONLY DO FIVE MORE THINGS
 
-1. **Site and grading plan** with a real driveway profile and a cut/fill balance. Nothing else matters if the drive cannot be built.
-2. **Structural model with real spans and members**, so the checker can test the skeleton the way it tests the plumbing.
-3. **Elevations, roof plan, and a longitudinal section** — the house has never been seen from outside in orthographic projection.
-4. **Move the laundry**, and price the house.
-5. **Apply the VSM properly**, especially S4 — give the house a model of its environment, not just its interior.
+*(All five were then done. Struck through with what they produced — including the parts that got worse when measured.)*
+
+1. ~~**Site and grading plan** with a real driveway profile and a cut/fill balance.~~ → **C-101**. The sketched drive measured **64% maximum grade**. The generated alignment holds **11% over 655 ft with 5 switchbacks** and daylights at the road. It also exposed a garage with **two feet of pavement in front of its doors**, 6,403 CY of spoil, and 1.2 acres disturbed — over the erosion threshold the pad alone appeared to clear.
+2. ~~**Structural model with real spans and members.**~~ → `model/structure.mjs`. The placeholder rib was **5-1/8 × 15 and undersized**; sizing gives 5-1/8 × 18 roof-only and 6-3/4 × 22-1/2 where it also carries the floor. The motor court wall was asserted at 9.8 ft; the geometry says **16.4 ft**.
+3. ~~**Elevations, roof plan, and a longitudinal section.**~~ → **A-301, A-302, A-202**. Four faces, a roof plan, and two long cuts. The projection caught its own errors, including a garage end wall drawn as a rectangle under a raked roof.
+4. ~~**Move the laundry**, and price the house.~~ → A second stacked pair at the back of the primary closet, 7 ft from the bed, backing onto the bath's wet wall. Price: **$2.31M – $3.86M**, `$617 – $1,031/sf`. See docs/06.
+5. ~~**Apply the VSM properly, especially S4.**~~ → `model/vsm.mjs` and **G-001**. Six anticipatory policies, and six viability gaps the model itself reports. See docs/06.
+
+### What that leaves
+
+The audit above is not closed. **A.2** (walls are boxes; the pen test is rhetoric), **A.3** (systems routed, not sized), **A.4** (the checker tests whether a swing *hits*, not whether it is *sensible*), **B.3** (the breezeway trade, now stated as an S5 contradiction and still not decided), **B.5** (ice damming at the low eave), **B.6** (the west clerestory), **C.4** (liveability, and no elevator provision) and **C.5** (render fidelity) all still stand.
+
+Two items changed status rather than closing:
+
+- **B.2 — the cut is deeper than the documents claim.** Confirmed and worse: **16.4 ft**, not 9.8.
+- **A-201 note 2 claimed cut and fill were roughly balanced on site.** The model disproves it. The note now says so.
