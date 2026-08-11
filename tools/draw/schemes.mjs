@@ -11,7 +11,7 @@
 
 import { LW, INK } from '../svg.mjs';
 import { ft, dim } from '../../model/units.mjs';
-import { SCHEMES, metrics, groundMetrics, roofBase } from '../../model/schemes.mjs';
+import { SCHEMES, metrics, groundMetrics, roofBase, PLATE } from '../../model/schemes.mjs';
 import { SITE_SLOPE } from '../../model/geometry.mjs';
 
 const natural = (x, y) => SITE_SLOPE.grade(x, y);
@@ -97,20 +97,47 @@ export function drawSchemeSection(s, scheme) {
     }
   }
 
-  // volumes cut at this station
+  // ── volumes cut at this station ───────────────────────────────────────────
+  // Their tops FOLLOW THE ROOF, exactly as the 3D builds the walls: high on
+  // the cut side, low at the eave. Drawn flat, the section showed a wedge of
+  // daylight between the box and the roof that does not exist in the model —
+  // and the section is the drawing that is supposed to prove the two agree.
+  const roofOver = (y) => {
+    let z = null;
+    for (const r of scheme.roofs) {
+      if (cx < r.x0 - 1 || cx > r.x1 + 1 || y < r.y0 || y > r.y1) continue;
+      const t = roofBase(scheme, r) + (r.pitch / 12) * (y - r.y0);
+      if (z === null || t > z) z = t;
+    }
+    return z;
+  };
   for (const v of scheme.volumes) {
     if (cx < v.x0 - 1 || cx > v.x1 + 1) continue;
     const k = KIND[v.kind];
-    const zb = ft(v.ffe), zt = zb + 120 * (v.storeys ?? 1);
-    s.rect(v.y0, zb, v.y1 - v.y0, zt - zb,
+    const zb = ft(v.ffe);
+    // the TOP PLATE, not the top of the storey: 14 in lower, and the number
+    // the roof actually lands on
+    const plate = zb + 120 * ((v.storeys ?? 1) - 1) + PLATE;
+    // a volume with another one stacked over it is capped by that floor, not
+    // by the roof, so only the topmost box climbs
+    const stacked = scheme.volumes.some(o => o !== v && o.kind !== 'shelt' &&
+      o.ffe > v.ffe + 0.5 && o.x0 < v.x1 && o.x1 > v.x0 && o.y0 < v.y1 && o.y1 > v.y0);
+    const top = (y) => {
+      if (stacked) return plate;
+      const z = roofOver(y);
+      return z === null ? plate : Math.max(plate, z);
+    };
+    s.poly([[v.y0, zb], [v.y1, zb], [v.y1, top(v.y1)], [v.y0, top(v.y0)]],
       { fill: k.fill, color: INK.line, w: v.kind === 'cond' ? LW.cut : LW.light,
         dash: v.kind === 'shelt' ? '10 6' : null });
   }
   for (const r of scheme.roofs) {
     if (cx < r.x0 - 1 || cx > r.x1 + 1) continue;
     const rise = (r.pitch / 12) * (r.y1 - r.y0);
+    // roofBase is the UNDERSIDE, so the build-up sits above it — it was drawn
+    // hanging below, which put the covering inside the rooms it covers
     const zb = roofBase(scheme, r);
-    s.poly([[r.y0, zb], [r.y1, zb + rise], [r.y1, zb + rise - 10], [r.y0, zb - 10]],
+    s.poly([[r.y0, zb], [r.y1, zb + rise], [r.y1, zb + rise + 10], [r.y0, zb + 10]],
       { fill: INK.poche, color: INK.line, w: LW.cut });
   }
 }

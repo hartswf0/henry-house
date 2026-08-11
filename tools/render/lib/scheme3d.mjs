@@ -12,7 +12,7 @@
 
 import * as THREE from 'three';
 import { Sky } from 'three/addons/objects/Sky.js';
-import { SCHEMES, schemeById, metrics, roofBase } from '../../../model/schemes.mjs';
+import { SCHEMES, schemeById, metrics } from '../../../model/schemes.mjs';
 import { SITE_SLOPE } from '../../../model/geometry.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';

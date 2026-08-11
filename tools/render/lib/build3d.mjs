@@ -39,6 +39,7 @@
 // A scheme with no checked plan gets honest massing — a plain box — because
 // pretending to detail an unverified scheme is how the slop started.
 import * as THREE from 'three';
+import { roofBase, PLATE } from '../../../model/schemes.mjs';
 import { planFor } from '../../../model/scheme-plans.mjs';
 import { furnish, stairsFor } from '../../../model/scheme-furnish.mjs';
 import { doorways } from '../../../model/scheme-doors.mjs';
@@ -46,7 +47,6 @@ import { doorways } from '../../../model/scheme-doors.mjs';
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
 const STOREY = 120;
-const PLATE = STOREY - 14;         // wall top above its own finished floor
 const EXT = 10;                    // exterior wall, inches
 const INT = 5;                     // partition
 const SILL = 30, HEAD = 90;        // window band within a storey
@@ -242,21 +242,13 @@ function massingOutlines(scheme) {
 }
 
 /**
- * Where each roof plane sits, taken from the PLAN's top plate rather than from
- * the volumes. The governing case is the highest plate the roof actually
- * covers, projected back down its slope to the roof's own low edge — so the
- * underside touches that plate exactly at the wall's downhill face and rises
- * from there. zLow only decides for a roof standing over nothing: a canopy.
+ * Where each roof plane sits. The arithmetic lives in model/schemes.mjs, NOT
+ * here: the section drawing needs the same answer, and a height computed
+ * separately by the renderer is a second source by definition — which is the
+ * fault this whole file exists to remove.
  */
-function roofPlanes(scheme, outlines) {
-  return scheme.roofs.map(r => {
-    const slope = r.pitch / 12;
-    const under = outlines.filter(o => o.x0 < r.x1 && o.x1 > r.x0 && o.y0 < r.y1 && o.y1 > r.y0);
-    const base = under.length
-      ? Math.max(...under.map(o => ft(o.ffe) + PLATE - slope * (Math.max(o.y0, r.y0) - r.y0)))
-      : r.zLow;
-    return { r, slope, base };
-  });
+function roofPlanes(scheme) {
+  return scheme.roofs.map(r => ({ r, slope: r.pitch / 12, base: roofBase(scheme, r) }));
 }
 
 /** The height a wall on this level reaches: the floor above, or the roof. */
@@ -391,7 +383,7 @@ export function buildScheme(scheme, mats, groundFn) {
   const outlines = plan ? planOutlines(plan) : massingOutlines(scheme);
 
   // Roofs are resolved BEFORE the walls, because the walls reach up to them.
-  const planes = roofPlanes(scheme, outlines);
+  const planes = roofPlanes(scheme);
   const roofUnder = (x, y) => {
     let z = null;
     for (const { r, slope, base } of planes) {

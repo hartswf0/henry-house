@@ -25,6 +25,9 @@
 import { ft } from './units.mjs';
 import { SITE_SLOPE } from './geometry.mjs';
 import { PROPOSED } from './schemes-proposed.mjs';
+// scheme-plans.mjs is generated data with no imports of its own, so this does
+// not close a cycle. roofBase() needs it: the roof sits on the plan's plate.
+import { planFor } from './scheme-plans.mjs';
 
 const natural = (x, y) => SITE_SLOPE.grade(x, y);
 
@@ -272,15 +275,61 @@ export const PROPOSED_SCHEMES = SCHEMES.filter(s => s.proposed);
 
 export const schemeById = (id) => SCHEMES.find(s => s.id === id);
 
+// The top of a wall above its own finished floor — the number the roof lands
+// on. Exported because build3d.mjs builds the walls to it and this file puts
+// the roof on it; two copies of one number is how the roof and the wall came
+// to disagree in the first place.
+export const PLATE = 106;
+
+/** Each level of a checked plan as one rectangle, in inches. */
+function planOutlines(plan) {
+  const out = [];
+  for (const lv of plan.levels ?? []) {
+    const rs = lv.rooms ?? [];
+    if (!rs.length) continue;
+    out.push({
+      ffe: lv.ffe,
+      x0: Math.min(...rs.map(q => q.x0)) * 12, x1: Math.max(...rs.map(q => q.x0 + q.w)) * 12,
+      y0: Math.min(...rs.map(q => q.y0)) * 12, y1: Math.max(...rs.map(q => q.y0 + q.d)) * 12,
+    });
+  }
+  return out;
+}
+
 /**
- * Where a roof plane actually starts.
+ * Where a roof plane actually starts — the UNDERSIDE at its low edge.
  *
  * zLow is a declared minimum, not the answer: a roof must sit ON the walls it
  * covers. Taking the declaration literally put the Spine's roof twelve feet up
  * through a twenty-foot volume. Derived here so the plan, the section and the
  * 3D cannot disagree about it.
+ *
+ * WHERE THE HEIGHT COMES FROM. The walls are built from the checked plan, so
+ * the roof is too: the governing case is the highest top plate the roof
+ * actually covers, projected back down its own slope to the roof's low edge,
+ * which puts the underside exactly on that plate at the wall's downhill face.
+ *
+ * Taking it from the VOLUMES instead — as this did — sat the plane 14 in above
+ * the wall at the eave and, because it slopes, 80 in above it at the uphill
+ * face. That is the gap the rebuild closed, and this function is why the
+ * SECTION would otherwise have gone on drawing the old one: the section and
+ * the model are two consumers, and a height either of them computes for itself
+ * is a second source.
+ *
+ * The volume branch survives for a scheme with no checked plan, and it now
+ * measures to the same top plate rather than to the top of the storey.
  */
 export function roofBase(scheme, r) {
+  const slope = r.pitch / 12;
+  const plan = planFor(scheme.id);
+  if (plan) {
+    const under = planOutlines(plan).filter(o =>
+      o.x0 < r.x1 && o.x1 > r.x0 && o.y0 < r.y1 && o.y1 > r.y0);
+    if (under.length) {
+      return Math.max(...under.map(o =>
+        ft(o.ffe) + PLATE - slope * (Math.max(o.y0, r.y0) - r.y0)));
+    }
+  }
   const covered = scheme.volumes.filter(v => v.kind !== 'shelt' &&
     v.x0 < r.x1 && v.x1 > r.x0 && v.y0 < r.y1 && v.y1 > r.y0);
   if (!covered.length) return r.zLow;
@@ -301,9 +350,8 @@ export function roofBase(scheme, r) {
   //    over nothing — a canopy, a carport — and floor-ing the walls with it put
   //    the Tower's roof two feet above the tower. Where there are walls, the
   //    walls decide; zLow decides only when there are none.
-  const slope = r.pitch / 12;
   return Math.max(...covered.map(v =>
-    ft(v.ffe) + 120 * (v.storeys ?? 1) - slope * (Math.max(v.y0, r.y0) - r.y0)));
+    ft(v.ffe) + 120 * ((v.storeys ?? 1) - 1) + PLATE - slope * (Math.max(v.y0, r.y0) - r.y0)));
 }
 
 // ── METRICS — the reference test, computed ──────────────────────────────────
