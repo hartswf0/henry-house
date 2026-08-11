@@ -87,8 +87,34 @@ function buildTerrain() {
 }
 
 // ── GEOMETRY HELPERS ────────────────────────────────────────────────────────
+// Texture tile size in FEET, per material. Without this every box gets UV 0..1
+// across its whole face, so one 1024px tile stretches over a 70ft wall and a
+// 6" board renders 4ft wide. This is the difference between a material and a
+// smear.
+const TILE = { siding: 8, roof: 30, stone: 8, concrete: 8, gravel: 12, paver: 4, floor: 10, plaster: 12, ceilWood: 8, deck: 6 };
+function tileFor(mat, M) {
+  for (const k of Object.keys(TILE)) if (M[k] === mat) return TILE[k];
+  return 0;
+}
+/** Rescale BoxGeometry UVs so each face tiles at `t` feet regardless of size. */
+function boxUV(g, w, h, d, t) {
+  if (!t) return g;
+  const uv = g.attributes.uv;
+  const dims = [[d, h], [d, h], [w, d], [w, d], [w, h], [w, h]];  // +X -X +Y -Y +Z -Z
+  for (let f = 0; f < 6; f++) {
+    const [du, dv] = dims[f];
+    for (let i = 0; i < 4; i++) {
+      const k = f * 4 + i;
+      uv.setXY(k, uv.getX(k) * (du / t), uv.getY(k) * (dv / t));
+    }
+  }
+  uv.needsUpdate = true;
+  return g;
+}
+let _M = null;
 function mbox(x0, x1, y0, y1, z0, z1, mat, { cast = true, receive = true } = {}) {
   const g = new THREE.BoxGeometry(F(x1 - x0), F(z1 - z0), F(y1 - y0));
+  if (_M) boxUV(g, F(x1 - x0), F(z1 - z0), F(y1 - y0), tileFor(mat, _M));
   const m = new THREE.Mesh(g, mat);
   m.position.set(F((x0 + x1) / 2), F((z0 + z1) / 2), -F((y0 + y1) / 2));
   m.castShadow = cast; m.receiveShadow = receive;
@@ -101,6 +127,14 @@ function prismYZ(pts, x0, x1, mat, { cast = true, receive = true } = {}) {
   pts.forEach(([y, z], i) => i ? shape.lineTo(F(y), F(z)) : shape.moveTo(F(y), F(z)));
   shape.closePath();
   const g = new THREE.ExtrudeGeometry(shape, { depth: F(x1 - x0), bevelEnabled: false });
+  // ExtrudeGeometry's WorldUVGenerator emits UVs in world units (feet here),
+  // so dividing by the tile size gives real-world tiling.
+  const t = _M ? tileFor(mat, _M) : 0;
+  if (t) {
+    const uv = g.attributes.uv;
+    for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / t, uv.getY(i) / t);
+    uv.needsUpdate = true;
+  }
   g.rotateY(Math.PI / 2);
   const m = new THREE.Mesh(g, mat);
   m.position.x = F(x0);
@@ -525,6 +559,48 @@ function buildSky(renderer, scene, sunDir, turbidity = 3.2) {
   u.sunPosition.value.copy(sunDir).multiplyScalar(10000);
   scene.add(sky);
 
+  // Procedural cumulus so the sky is not a bare gradient.
+  {
+    const S = 512;
+    const c = document.createElement('canvas'); c.width = c.height = S;
+    const x = c.getContext('2d');
+    const img = x.createImageData(S, S);
+    const rnd = (() => { let s0 = 8712; return () => (s0 = (s0 * 1664525 + 1013904223) >>> 0) / 4294967296; })();
+    const grids = [];
+    for (let o = 0; o < 5; o++) {
+      const n = 4 << o, g2 = new Float32Array(n * n);
+      for (let i = 0; i < n * n; i++) g2[i] = rnd();
+      grids.push({ n, g: g2 });
+    }
+    const smp = ({ n, g }, u, v) => {
+      const fx = u * n, fy = v * n;
+      const i0 = Math.floor(fx) % n, j0 = Math.floor(fy) % n;
+      const i1 = (i0 + 1) % n, j1 = (j0 + 1) % n;
+      const tx = fx - Math.floor(fx), ty = fy - Math.floor(fy);
+      const sx = tx * tx * (3 - 2 * tx), sy = ty * ty * (3 - 2 * ty);
+      return (g[j0 * n + i0] * (1 - sx) + g[j0 * n + i1] * sx) * (1 - sy)
+           + (g[j1 * n + i0] * (1 - sx) + g[j1 * n + i1] * sx) * sy;
+    };
+    for (let j = 0; j < S; j++) for (let i = 0; i < S; i++) {
+      let v = 0, amp = 1, tot = 0;
+      for (const gr of grids) { v += smp(gr, i / S, j / S) * amp; tot += amp; amp *= 0.55; }
+      v /= tot;
+      const a = Math.max(0, Math.min(1, (v - 0.50) / 0.26));
+      const k = (j * S + i) * 4;
+      img.data[k] = 255; img.data[k + 1] = 253; img.data[k + 2] = 249;
+      img.data[k + 3] = a * a * 235;
+    }
+    x.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 3); t.colorSpace = THREE.SRGBColorSpace;
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(26000, 26000),
+      new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, fog: false, opacity: 0.85 }));
+    plane.rotation.x = Math.PI / 2;
+    plane.position.y = 2600;
+    plane.renderOrder = -1;
+    scene.add(plane);
+  }
+
   const pmrem = new THREE.PMREMGenerator(renderer);
   pmrem.compileEquirectangularShader();
   const env = pmrem.fromScene(new THREE.Scene().add(sky.clone()), 0.04);
@@ -547,8 +623,8 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     garageDoor: MAT.simple(0x2a2e33, 0.6),
     deck: MAT.simple(0x2f2823, 0.88),
     steel: MAT.simple(0x14171a, 0.55, 0.35),
-    fascia: MAT.simple(0x14171a, 0.6),
-    gutter: MAT.simple(0x1b1f24, 0.5, 0.4),
+    fascia: MAT.simple(0x121519, 0.72, 0),
+    gutter: MAT.simple(0x101317, 0.6, 0.1),
     timber: MAT.simple(0x6b5236, 0.8),
     paver: MAT.simple(0x6e6a63, 0.9),
     frame: MAT.simple(0x191c20, 0.45, 0.25),
@@ -565,6 +641,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
     rug: MAT.simple(0x494c43, 0.98),
   };
 
+  _M = M;
   buildSky(renderer, scene, sun.dir);
   scene.fog = new THREE.FogExp2(0xaec1d4, 0.00030);
 

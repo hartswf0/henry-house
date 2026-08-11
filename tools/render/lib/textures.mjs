@@ -93,7 +93,7 @@ function fbm(x, ctx, w, h, seed, octaves = 5, scale = 0.02, alpha = 0.5) {
 // ── CHARRED / DARK-STAINED VERTICAL CEDAR RAINSCREEN ────────────────────────
 export function sidingMaterial({ boards = 16, size = 1024 } = {}) {
   const { c: hc, x: hx } = canvas(size, size);
-  hx.putImageData(fbm(0, hx, size, size, 7, 6, 0.05, 0.55), 0, 0);
+  hx.putImageData(fbm(0, hx, size, size, 7, 6, 0.22, 0.20), 0, 0);
   hx.globalCompositeOperation = 'multiply';
   // vertical boards with reveals, plus battens over alternate joints
   const bw = size / boards;
@@ -214,9 +214,9 @@ export function concreteMaterial({ size = 512, boards = 12 } = {}) {
   cx.fillStyle = '#383633'; cx.fillRect(0, 0, size, size);
   cx.globalAlpha = 0.16; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [2.2, 1.6], true),
-    normalMap: tex(normalFromHeight(hc, 1.6), [2.2, 1.6]),
-    roughnessMap: tex(roughFromHeight(hc, 0.80, 0.97), [2.2, 1.6]),
+    map: tex(cc, [1, 1], true),
+    normalMap: tex(normalFromHeight(hc, 1.6)),
+    roughnessMap: tex(roughFromHeight(hc, 0.80, 0.97)),
     roughness: 1, metalness: 0, envMapIntensity: 0.22,
   });
 }
@@ -238,8 +238,8 @@ export function groundMaterial({ size = 1024 } = {}) {
   cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.5;
   cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [42, 42], true),
-    normalMap: tex(normalFromHeight(hc, 1.1), [42, 42]),
+    map: tex(cc, [46, 46], true),
+    normalMap: tex(normalFromHeight(hc, 1.1), [46, 46]),
     roughness: 0.98, metalness: 0, envMapIntensity: 0.55,
   });
 }
@@ -259,8 +259,8 @@ export function gravelMaterial({ size = 512 } = {}) {
   cx.fillStyle = '#5d584f'; cx.fillRect(0, 0, size, size);
   cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.75; cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [10, 10], true),
-    normalMap: tex(normalFromHeight(hc, 2.4), [10, 10]),
+    map: tex(cc, [1, 1], true),
+    normalMap: tex(normalFromHeight(hc, 2.4)),
     roughness: 0.95, metalness: 0,
   });
 }
@@ -307,8 +307,8 @@ export function floorMaterial({ size = 1024, boards = 9 } = {}) {
   cx.fillStyle = '#8d6b48'; cx.fillRect(0, 0, size, size);
   cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.72; cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [5, 5], true),
-    normalMap: tex(normalFromHeight(hc, 1.3), [5, 5]),
+    map: tex(cc, [1, 1], true),
+    normalMap: tex(normalFromHeight(hc, 1.3)),
     roughness: 0.55, metalness: 0, envMapIntensity: 0.4,
   });
 }
@@ -320,8 +320,8 @@ export function plasterMaterial({ size = 512 } = {}) {
   cx.fillStyle = '#918a7e'; cx.fillRect(0, 0, size, size);
   cx.globalAlpha = 0.10; cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [3, 3], true),
-    normalMap: tex(normalFromHeight(hc, 0.6), [3, 3]),
+    map: tex(cc, [1, 1], true),
+    normalMap: tex(normalFromHeight(hc, 0.6)),
     roughness: 0.94, metalness: 0, envMapIntensity: 0.5,
   });
 }
@@ -342,8 +342,8 @@ export function ceilingWoodMaterial({ size = 512, boards = 14 } = {}) {
   cx.fillStyle = '#7d6042'; cx.fillRect(0, 0, size, size);
   cx.globalCompositeOperation = 'multiply'; cx.globalAlpha = 0.66; cx.drawImage(hc, 0, 0);
   return new THREE.MeshStandardMaterial({
-    map: tex(cc, [4, 2], true),
-    normalMap: tex(normalFromHeight(hc, 1.0), [4, 2]),
+    map: tex(cc, [1, 1], true),
+    normalMap: tex(normalFromHeight(hc, 1.0)),
     roughness: 0.72, metalness: 0, envMapIntensity: 0.4,
   });
 }

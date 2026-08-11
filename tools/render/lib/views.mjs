@@ -21,7 +21,7 @@ export const VIEWS = {
   'ext-arrival': {
     title: 'ARRIVAL — THE UPHILL SIDE',
     caption: 'Motor court, entry bridge over the drain gap, detached garage. The cold side is nearly solid.',
-    pos: [-11, 14.8, -41], target: [78, 14.8, -20], focal: 32, shift: 0.38,
+    pos: [-8, 15.5, -52], target: [72, 15.5, -18], focal: 30, shift: 0.30,
     sun: { dayOfYear: 172, hour: 9.6 }, exposure: 1.05, w: 1700, h: 1062,
   },
   'ext-east': {
