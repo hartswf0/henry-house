@@ -211,7 +211,7 @@ export function concreteMaterial({ size = 512, boards = 12 } = {}) {
   }
   hx.globalAlpha = 1;
   const { c: cc, x: cx } = canvas(size, size);
-  cx.fillStyle = '#4b4844'; cx.fillRect(0, 0, size, size);
+  cx.fillStyle = '#383633'; cx.fillRect(0, 0, size, size);
   cx.globalAlpha = 0.16; cx.drawImage(hc, 0, 0); cx.globalAlpha = 1;
   return new THREE.MeshStandardMaterial({
     map: tex(cc, [2.2, 1.6], true),

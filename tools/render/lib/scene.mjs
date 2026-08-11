@@ -68,7 +68,7 @@ export function siteZ(X, Y) {
 }
 
 function buildTerrain() {
-  const W = 620, D = 640, SEG = 190;               // feet
+  const W = 620, D = 640, SEG = 132;               // feet
   const g = new THREE.PlaneGeometry(W, D, SEG, SEG);
   g.rotateX(-Math.PI / 2);
   const cx = F(ft(50)), cz = 40;
@@ -247,7 +247,7 @@ function buildHouse(M) {
 }
 
 // ── ENTOURAGE: trees, distant ridges, driveway ──────────────────────────────
-function buildTrees(count = 340) {
+function buildTrees(count = 240) {
   const r = rng(1234);
   const trunk = new THREE.CylinderGeometry(0.28, 0.42, 7, 5);
   trunk.translate(0, 3.5, 0);
@@ -395,7 +395,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
   };
 
   buildSky(renderer, scene, sun.dir);
-  scene.fog = new THREE.FogExp2(0xa9bcd0, 0.00042);
+  scene.fog = new THREE.FogExp2(0xaec1d4, 0.00030);
 
   scene.add(buildTerrain());
   scene.add(buildHouse(M));
@@ -406,9 +406,9 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
   // ── LIGHT RIG ─────────────────────────────────────────────────────────────
   const focus = new THREE.Vector3(F(ft(36)), F(ft(14)), -F(ft(13)));
 
-  const sunLight = new THREE.DirectionalLight(0xfff1dc, 4.6 * exposureBoost);
+  const sunLight = new THREE.DirectionalLight(0xffeed6, 3.4 * exposureBoost);
   sunLight.castShadow = true;
-  sunLight.shadow.mapSize.set(2048, 2048);
+  sunLight.shadow.mapSize.set(1536, 1536);
   // Tight shadow frustum: at 2048 over 240ft a texel is ~0.12ft, so the bias
   // needed to kill acne is small enough to keep contact shadows alive.
   const S = 120;
@@ -421,7 +421,7 @@ export function buildScene(renderer, { sun, exposureBoost = 1, interior = false 
   // one stochastic sky sample per pass -> soft skylight + contact shadows
   const skyLight = new THREE.DirectionalLight(0xa8c4e4, 0.85 * exposureBoost);
   skyLight.castShadow = true;
-  skyLight.shadow.mapSize.set(1024, 1024);
+  skyLight.shadow.mapSize.set(768, 768);
   Object.assign(skyLight.shadow.camera, { left: -S, right: S, top: S, bottom: -S, near: 1, far: 2000 });
   skyLight.shadow.bias = -0.0004;
   skyLight.shadow.normalBias = 0.16;
