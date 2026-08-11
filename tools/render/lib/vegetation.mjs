@@ -182,29 +182,29 @@ export function buildVegetation({ heightAt, naturalAt, keepOut, F, ft, counts = 
     return m;
   };
 
-  const foliageMat = () => new THREE.MeshStandardMaterial({ roughness: 0.94, metalness: 0, flatShading: false });
+  const foliageMat = () => new THREE.MeshStandardMaterial({ color: 0x6b6b6b, roughness: 0.95, metalness: 0, flatShading: false });
   const barkMat = new THREE.MeshStandardMaterial({ color: 0x2e2620, roughness: 0.95 });
 
   // conifers keep their dark green and hold the composition together
   add(coniferGeo(11), foliageMat(), place(N.conifer, null, { minR: 62 }), () => 0.7 + r() * 0.85,
-    (c, rr) => { const t = rr(); c.setHSL(0.28 - t * 0.04, 0.30 + t * 0.14, 0.016 + t * 0.014); });
+    (c, rr) => { const t = rr(); c.setHSL(0.27 - t * 0.03, 0.34 + t * 0.12, 0.055 + t * 0.035); });
 
   // hardwoods carry the October colour: gold through orange to deep red
   add(hardwoodGeo(23), foliageMat(), place(N.hardwood, null, { minR: 58 }), () => 0.75 + r() * 0.8,
     (c, rr) => {
       const t = rr();
-      if (t < 0.46) c.setHSL(0.095 - t * 0.014, 0.66, 0.042 + t * 0.020);     // ochre
-      else if (t < 0.80) c.setHSL(0.043 - (t - 0.46) * 0.016, 0.70, 0.030);   // burnt orange
-      else c.setHSL(0.010, 0.62, 0.019 + (t - 0.80) * 0.030);                 // deep russet
+      if (t < 0.44) c.setHSL(0.098 - t * 0.010, 0.52, 0.150 + t * 0.060);     // ochre
+      else if (t < 0.78) c.setHSL(0.062 - (t - 0.44) * 0.014, 0.56, 0.115);   // burnt orange
+      else c.setHSL(0.035 - (t - 0.78) * 0.008, 0.48, 0.082);                 // deep russet
     });
 
   add(shrubGeo(31), foliageMat(), place(N.shrub, null, { minR: 34 }), () => 0.8 + r() * 1.0,
-    (c, rr) => { const t = rr(); c.setHSL(0.27 - t * 0.03, 0.28 + t * 0.12, 0.017 + t * 0.012); }, 0.9);
+    (c, rr) => { const t = rr(); c.setHSL(0.26 - t * 0.03, 0.30 + t * 0.10, 0.052 + t * 0.030); }, 0.9);
 
   // grass only near the house, where it is actually read
   add(grassGeo(41), foliageMat(), place(N.grass, null, { minR: 26, maxR: 125, allowDisturbed: false, tries: 30 }),
     () => 0.8 + r() * 0.9,
-    (c, rr) => { const t = rr(); c.setHSL(0.14 - t * 0.04, 0.34 + t * 0.20, 0.026 + t * 0.020); }, 0.2);
+    (c, rr) => { const t = rr(); c.setHSL(0.13 - t * 0.03, 0.36 + t * 0.18, 0.090 + t * 0.060); }, 0.2);
 
   return group;
 }
