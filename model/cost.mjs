@@ -14,7 +14,9 @@
 //
 //   UNIT COSTS are ASSUMED. Every $/unit below is a placeholder. This container
 //   has no outbound access; no supplier, no RSMeans, no local bid was consulted.
-//   A Watauga County general contractor must replace all of them.
+//   A Johnson County, TENNESSEE general contractor must replace all of them.
+//   (These rates were gathered against Watauga County, NC — the wrong state; the
+//   parcel record puts the land in Tennessee. See docs/01 K-7.)
 //
 // So: trust the takeoff, distrust the money, and read the range rather than the
 // midpoint. A schematic estimate that reports one number is lying about how
@@ -107,7 +109,7 @@ export const UNIT = {
   water:      { lo: 18000, hi: 42000, unit: 'LS', what: 'Spring capture, cistern, pump, filtration, UV' },
   standby:    { lo: 26000, hi: 55000, unit: 'LS', what: 'Battery, inverter, generator, transfer' },
   hvac:       { lo: 34000, hi: 68000, unit: 'LS', what: 'Ducted heat pumps, ERV, hydronic zone' },
-  status: 'EVERY VALUE ABOVE IS INVENTED. No supplier, no cost database and no local bid was consulted — this container has no outbound access. Replace all of them with a Watauga County GC\'s numbers before this estimate means anything.',
+  status: 'EVERY VALUE ABOVE IS INVENTED. No supplier, no cost database and no local bid was consulted — this container has no outbound access. Replace all of them with a Johnson County, TENNESSEE GC\'s numbers before this estimate means anything — and note they were assembled against North Carolina, which is not where this parcel is.',
 };
 
 const LINE = [

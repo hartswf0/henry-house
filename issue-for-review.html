@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Henry House — Issue for Review</title>
+<style>
+:root{
+  --paper:#fbfaf7; --ink:#14161a; --dim:#5a5f66; --rule:#c9c5bd;
+  --hot:#9c3312; --cool:#1d4f4a; --band:#eeeae1; --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#14161a; --ink:#eceae5; --dim:#9aa1a9; --rule:#3a3f46;
+  --hot:#e8825c; --cool:#7fd0c4; --band:#1c1f24;
+}}
+:root[data-theme="dark"]{--paper:#14161a;--ink:#eceae5;--dim:#9aa1a9;--rule:#3a3f46;--hot:#e8825c;--cool:#7fd0c4;--band:#1c1f24;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.55 Georgia,"Iowan Old Style",serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:52rem;margin:0 auto;padding:clamp(18px,4vw,54px) clamp(16px,4vw,40px) 90px}
+h1{font:700 clamp(28px,6vw,44px)/1.05 Georgia,serif;margin:0;letter-spacing:-.015em}
+.sub{font:400 13px/1.4 var(--mono);color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin:10px 0 0}
+h2{font:700 clamp(17px,3vw,21px)/1.25 Georgia,serif;margin:52px 0 4px;padding-top:16px;border-top:2px solid var(--ink)}
+h2 .no{font:400 12px/1 var(--mono);color:var(--dim);display:block;margin-bottom:7px;letter-spacing:.14em}
+h3{font:700 14px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin:26px 0 6px}
+p{margin:9px 0}
+.lede{font-size:17px}
+small,.small{font-size:13px;color:var(--dim)}
+a{color:inherit;text-decoration-color:var(--rule);text-underline-offset:2px}
+.stamp{margin:22px 0 0;border:2px solid var(--hot);padding:13px 15px}
+.stamp b{color:var(--hot);font:700 13px/1.4 var(--mono);letter-spacing:.1em;display:block;margin-bottom:5px}
+.stamp p{font-size:14px;margin:5px 0 0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{text-align:left;padding:7px 9px 7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:700 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+td.r,th.r{text-align:right;padding-right:0}
+.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.num{text-align:right}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.kv{display:grid;grid-template-columns:minmax(9rem,auto) 1fr;gap:2px 16px;font-size:14px;margin:12px 0}
+.kv dt{font:700 11px/1.7 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
+.kv dd{margin:0 0 6px}
+.act{border-left:3px solid var(--cool);padding:2px 0 2px 15px;margin:20px 0}
+.act .who{font:700 13px/1.3 var(--mono);letter-spacing:.07em;color:var(--cool)}
+.act .id{color:var(--dim);margin-right:8px}
+.act .un{font-size:13.5px;color:var(--dim);margin-top:6px}
+.act .un b{color:var(--ink);font:700 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px}
+.band{background:var(--band);padding:14px 16px;margin:16px 0}
+.two{display:grid;gap:0 30px}
+@media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+figure{margin:18px 0}
+img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+figcaption{font-size:12.5px;color:var(--dim);margin-top:6px}
+.win{color:var(--cool);font-weight:700}
+.lose{color:var(--hot);font-weight:700}
+ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--dim)}
+@media print{
+  :root{--paper:#fff;--ink:#000;--dim:#444;--rule:#bbb;--band:#f2f2f2}
+  body{font-size:10.5pt}.wrap{max-width:none;padding:0}
+  h2{break-before:page;border-top-width:1.5pt}h2:first-of-type{break-before:avoid}
+  .act,figure,table{break-inside:avoid}a{text-decoration:none}
+}
+</style></head><body><div class="wrap">
+
+<h1>HENRY HOUSE</h1>
+<p class="sub">Issue for review · Schematic design · 2026-08-11</p>
+<p class="sub">Parcel 100 064.03 · JOHNSON County, Tennessee · 29.34 deeded acres</p>
+
+<div class="stamp">
+  <b>NOT FOR CONSTRUCTION · NOT FOR PERMIT · NOT FOR PRICING AS BID</b>
+  <p>Nothing in this package is engineered. The code basis is void — it was researched
+  against North Carolina and the parcel is in Tennessee. All cost rates are invented.
+  Site data is a public 30.8 m elevation model, not a survey.</p>
+  <p>It is issued to get 8 questions answered (§06). It is not issued to build from.</p>
+</div>
+
+<h2><span class="no">00</span>Read this first</h2>
+<p class="lede">One decision blocks everything else, and it is not about the house.</p>
+<p>The client named a coordinate — 36°17'14.2"N 81°55'30.4"W. Measured against a public
+elevation model, the ground at that point falls almost due <b>north</b> at <b>38%</b>, and the
+straight-line driveway from the existing road climbs <b>357 ft at 25%</b>.</p>
+<p><b>A 25% driveway is not a driveway.</b> It is past what a loaded ready-mix truck will climb
+and past what anyone should descend on ice at 2,364 ft. Before a builder prices anything, someone
+has to stand on this ground and tell us whether a compliant drive can reach it.</p>
+<p>The parcel has better ground. About <b>656 ft north-west</b> of the coordinate the study finds
+ground falling <b>south-west at 9%</b>, reachable at <b>12%</b>. §02 sets both out. The house does
+not need redesigning for this land — it needs siting on it.</p>
+
+<h2><span class="no">01</span>The land</h2>
+<dl class="kv">
+  <dt>Parcel</dt><dd>100 064.03 — Johnson County, Tennessee <span class="small">(TN-JOHNSON-100-064.03)</span></dd>
+  <dt>Owner of record</dt><dd>HARTSOE HENRY</dd>
+  <dt>Deed area</dt><dd>29.34 acres <span class="small">(cadastral geometry computes 29.42 — 0.3% agreement)</span></dd>
+  <dt>Coordinate</dt><dd class="mono">36°17'14.2"N 81°55'30.4"W · 36.287278, -81.925111</dd>
+  <dt>Elevation</dt><dd>≈ 2,364 ft AMSL <span class="small">measured — the package was drawn assuming 3,412 ft</span></dd>
+  <dt>Slope</dt><dd>30% at building scale <span class="small">(40% at ±31 m, 27% at ±185 m)</span></dd>
+  <dt>Ground falls to</dt><dd>azimuth 5° — <b>almost due north</b></dd>
+</dl>
+<p class="small">Elevation: terrarium tiles, AWS open data. Parcel: Tennessee Comptroller cadastral
+service. Map data © OpenStreetMap contributors, ODbL. <b>None of these is a survey.</b></p>
+
+<h3>The jurisdiction changed late</h3>
+<p>The brief said “outside Boone, North Carolina.” The parcel record puts the land in
+<b>Johnson County, Tennessee</b> — the state line runs between. A North Carolina statute has no
+force in Tennessee, so every code reference in this package must be discarded and redone. See A6.</p>
+
+<h2><span class="no">02</span>The siting question</h2>
+<p>Every position on the parcel was scored — 331 candidates at 50 ft centres, 60 ft clear of the
+boundary — on aspect, slope, the cut and fill to bench a level 72 × 26 ft
+pad, and the driveway needed to reach it.</p>
+<div class="scroll"><table>
+<tr><th></th><th class="r">The client’s coordinate</th><th class="r">Best ground on the parcel</th></tr>
+<tr><td>Ground falls to</td><td class="num lose">31° — NNE</td><td class="num win">206° — SSW</td></tr>
+<tr><td>Off due north</td><td class="num">31°</td><td class="num win">154°</td></tr>
+<tr><td>Slope across the pad</td><td class="num lose">38%</td><td class="num win">9%</td></tr>
+<tr><td>Cut / fill for the pad</td><td class="num">85 / 156 CY</td><td class="num">0 / 120 CY</td></tr>
+<tr><td>Driveway from the road</td><td class="num lose">357 ft @ 25%</td><td class="num win">1,010 ft @ 12%</td></tr>
+</table></div>
+<div class="band">
+<p style="margin:0"><b>What the 29 acres are made of:</b> 51% faces north · 44% faces east or west ·
+5% faces south.</p>
+</div>
+<p>This matters because the design puts glass, view and terrace on the downhill face and the
+service wall, plumbing artery and cut on the uphill face. That works when downhill and sunny are
+the same direction — on a south slope. On a north slope the view is downhill and the winter sun is
+uphill, into the cut, and no rotation reconciles them.</p>
+<p><b>The recommendation is to move the house, not to redesign it.</b> The south-west ground is the
+condition every scheme in the set already assumes. Confirm it on foot (A1) before committing.</p>
+<p class="small">The elevation model is 30.8 m — one sample is wider than the house. This finds
+where the hillside turns. It cannot find the bench you would build on.</p>
+<figure>
+  <img src="out/preview/S0-SPINE-compare-SITE.png" alt="The Spine standing on the measured ground at the parcel">
+  <figcaption><b>The house on the measured ground at the coordinate.</b> Same model, same camera and
+  same sun as every other view in the set — the only difference is that this stands on the real hill
+  rather than the assumed plane. The glazed face is in its own shadow: at this position the sun is
+  behind the house, uphill. That is the siting problem in one frame.</figcaption>
+</figure>
+
+<h2><span class="no">03</span>The house</h2>
+<p>Eleven schemes were developed and checked. The one carried forward is <b>THE SPINE</b>,
+because its plumbing artery runs down an <em>interior</em> spine rather than the uphill exterior
+wall — which is the only one of the eleven whose service strategy survives a north-facing site
+unaltered.</p>
+<dl class="kv">
+  <dt>Conditioned</dt><dd>3,747 sf across 3 levels</dd>
+  <dt>Sheltered</dt><dd>1,341 sf — deck, terrace, breezeway, garage</dd>
+  <dt>Rooms</dt><dd>31 rooms · 4 bedrooms · 4 bathrooms · 27% circulation</dd>
+  <dt>Footprint</dt><dd>2,187 sf · perimeter 226 lf (0.060 lf/sf)</dd>
+  <dt>Wet-wall run</dt><dd>87 lf — one artery, all fixtures on it</dd>
+  <dt>Roof</dt><dd>4 planes, 2 junctions</dd>
+  <dt>Ground</dt><dd>benched platform · 440 CY cut, deepest 12.4 ft</dd>
+  <dt>Plumbed fixtures</dt><dd>16</dd>
+</dl>
+<figure>
+  <img src="out/png/X-201-s0-spine-plans.png" alt="The Spine — schematic plans, all three levels">
+  <figcaption><b>X-201 — the recommended scheme, all 3 levels.</b> Every fixture, door
+  swing, stair tread and wall thickness on this sheet is generated from the same description the 3D
+  model is built from, and a check asserts the two agree.</figcaption>
+</figure>
+<h3>The alternates</h3>
+<div class="scroll"><table>
+<tr><th>Scheme</th><th class="r">Cond. sf</th><th class="r">Beds</th><th class="r">Perim/sf</th><th class="r">Wet wall</th><th class="r">Cut CY</th></tr>
+<tr style="font-weight:700"><td>THE SPINE</td>
+    <td class="num">3,747</td><td class="num">4</td>
+    <td class="num">0.060</td><td class="num">87</td>
+    <td class="num">440</td></tr>
+<tr><td>THE ARMATURE</td>
+    <td class="num">616</td><td class="num">4</td>
+    <td class="num">0.299</td><td class="num">22</td>
+    <td class="num">197</td></tr>
+<tr><td>THE BRIDGE</td>
+    <td class="num">1,200</td><td class="num">3</td>
+    <td class="num">0.133</td><td class="num">20</td>
+    <td class="num">110</td></tr>
+<tr><td>THE NARROW</td>
+    <td class="num">1,716</td><td class="num">3</td>
+    <td class="num">0.112</td><td class="num">52</td>
+    <td class="num">253</td></tr>
+<tr><td>THE CORE</td>
+    <td class="num">1,312</td><td class="num">3</td>
+    <td class="num">0.137</td><td class="num">36</td>
+    <td class="num">501</td></tr>
+<tr><td>THE PERCH</td>
+    <td class="num">1,872</td><td class="num">3</td>
+    <td class="num">0.053</td><td class="num">26</td>
+    <td class="num">17</td></tr>
+<tr><td>THE TOWER</td>
+    <td class="num">1,296</td><td class="num">3</td>
+    <td class="num">0.056</td><td class="num">18</td>
+    <td class="num">59</td></tr>
+<tr><td>THE DATUM</td>
+    <td class="num">1,364</td><td class="num">4</td>
+    <td class="num">0.097</td><td class="num">22</td>
+    <td class="num">19</td></tr>
+<tr><td>THE CATCH</td>
+    <td class="num">1,366</td><td class="num">5</td>
+    <td class="num">0.117</td><td class="num">34</td>
+    <td class="num">68</td></tr>
+<tr><td>THE LOOP</td>
+    <td class="num">1,344</td><td class="num">3</td>
+    <td class="num">0.077</td><td class="num">36</td>
+    <td class="num">15</td></tr>
+<tr><td>THE SQUARE</td>
+    <td class="num">1,352</td><td class="num">3</td>
+    <td class="num">0.077</td><td class="num">16</td>
+    <td class="num">52</td></tr>
+</table></div>
+<p class="small">All eleven are drawn to the same standard and checked by the same rules — rooms
+inside their floor, no overlaps, every bedroom with an exterior wall and egress, wet rooms grouped
+or stacked, stairs landing on the stair below, and every room reachable without passing through a
+bedroom. A scheme that failed was reported and dropped, not repaired.</p>
+
+<h2><span class="no">04</span>What is drawn</h2>
+<p>26 sheets. Plans, sections, elevations, systems and the eleven-scheme comparison.
+SVG is the source; PNG is provided where it has been rasterised.</p>
+<div class="scroll"><table>
+<tr><th>Sheet</th><th>Title</th><th class="r">Files</th></tr>
+<tr><td class="mono">A-101</td><td>MAIN LEVEL PLAN</td>
+    <td class="r"><a href="out/drawings/A-101-main-level-plan.svg">SVG</a> · <a href="out/png/A-101-main-level-plan.png">PNG</a></td></tr>
+<tr><td class="mono">A-102</td><td>LOWER UPPER PLANS</td>
+    <td class="r"><a href="out/drawings/A-102-lower-upper-plans.svg">SVG</a> · <a href="out/png/A-102-lower-upper-plans.png">PNG</a></td></tr>
+<tr><td class="mono">A-201</td><td>SECTION AA</td>
+    <td class="r"><a href="out/drawings/A-201-section-aa.svg">SVG</a> · <a href="out/png/A-201-section-aa.png">PNG</a></td></tr>
+<tr><td class="mono">A-202</td><td>SECTIONS LONGITUDINAL</td>
+    <td class="r"><a href="out/drawings/A-202-sections-longitudinal.svg">SVG</a> · <a href="out/png/A-202-sections-longitudinal.png">PNG</a></td></tr>
+<tr><td class="mono">A-301</td><td>SOUTH NORTH ELEVATIONS</td>
+    <td class="r"><a href="out/drawings/A-301-south-north-elevations.svg">SVG</a> · <a href="out/png/A-301-south-north-elevations.png">PNG</a></td></tr>
+<tr><td class="mono">A-302</td><td>EAST WEST ELEVATIONS</td>
+    <td class="r"><a href="out/drawings/A-302-east-west-elevations.svg">SVG</a> · <a href="out/png/A-302-east-west-elevations.png">PNG</a></td></tr>
+<tr><td class="mono">C-101</td><td>SITE GRADING ACCESS</td>
+    <td class="r"><a href="out/drawings/C-101-site-grading-access.svg">SVG</a> · <a href="out/png/C-101-site-grading-access.png">PNG</a></td></tr>
+<tr><td class="mono">E-101</td><td>POWER</td>
+    <td class="r"><a href="out/drawings/E-101-power.svg">SVG</a> · <a href="out/png/E-101-power.png">PNG</a></td></tr>
+<tr><td class="mono">G-001</td><td>VIABLE SYSTEM AND COST</td>
+    <td class="r"><a href="out/drawings/G-001-viable-system-and-cost.svg">SVG</a> · <a href="out/png/G-001-viable-system-and-cost.png">PNG</a></td></tr>
+<tr><td class="mono">M-101</td><td>AIR</td>
+    <td class="r"><a href="out/drawings/M-101-air.svg">SVG</a> · <a href="out/png/M-101-air.png">PNG</a></td></tr>
+<tr><td class="mono">P-101</td><td>WATER</td>
+    <td class="r"><a href="out/drawings/P-101-water.svg">SVG</a> · <a href="out/png/P-101-water.png">PNG</a></td></tr>
+<tr><td class="mono">P-201</td><td>WASTE</td>
+    <td class="r"><a href="out/drawings/P-201-waste.svg">SVG</a> · <a href="out/png/P-201-waste.png">PNG</a></td></tr>
+<tr><td class="mono">R-101</td><td>REFERENCE BAR</td>
+    <td class="r"><a href="out/drawings/R-101-reference-bar.svg">SVG</a> · <a href="out/png/R-101-reference-bar.png">PNG</a></td></tr>
+<tr><td class="mono">X-101</td><td>SEVEN SCHEMES</td>
+    <td class="r"><a href="out/drawings/X-101-seven-schemes.svg">SVG</a> · <a href="out/png/X-101-seven-schemes.png">PNG</a></td></tr>
+<tr><td class="mono">X-102</td><td>PROPOSED SCHEMES</td>
+    <td class="r"><a href="out/drawings/X-102-proposed-schemes.svg">SVG</a> · <a href="out/png/X-102-proposed-schemes.png">PNG</a></td></tr>
+<tr><td class="mono">X-201</td><td>S0 SPINE PLANS</td>
+    <td class="r"><a href="out/drawings/X-201-s0-spine-plans.svg">SVG</a> · <a href="out/png/X-201-s0-spine-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-202</td><td>S1 ARMATURE PLANS</td>
+    <td class="r"><a href="out/drawings/X-202-s1-armature-plans.svg">SVG</a> · <a href="out/png/X-202-s1-armature-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-203</td><td>S2 BRIDGE PLANS</td>
+    <td class="r"><a href="out/drawings/X-203-s2-bridge-plans.svg">SVG</a> · <a href="out/png/X-203-s2-bridge-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-204</td><td>S3 NARROW PLANS</td>
+    <td class="r"><a href="out/drawings/X-204-s3-narrow-plans.svg">SVG</a> · <a href="out/png/X-204-s3-narrow-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-205</td><td>S4 CORE PLANS</td>
+    <td class="r"><a href="out/drawings/X-205-s4-core-plans.svg">SVG</a> · <a href="out/png/X-205-s4-core-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-206</td><td>S5 PERCH PLANS</td>
+    <td class="r"><a href="out/drawings/X-206-s5-perch-plans.svg">SVG</a> · <a href="out/png/X-206-s5-perch-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-207</td><td>S6 TOWER PLANS</td>
+    <td class="r"><a href="out/drawings/X-207-s6-tower-plans.svg">SVG</a> · <a href="out/png/X-207-s6-tower-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-208</td><td>S7 DATUM PLANS</td>
+    <td class="r"><a href="out/drawings/X-208-s7-datum-plans.svg">SVG</a> · <a href="out/png/X-208-s7-datum-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-209</td><td>S8 WATER PLANS</td>
+    <td class="r"><a href="out/drawings/X-209-s8-water-plans.svg">SVG</a> · <a href="out/png/X-209-s8-water-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-210</td><td>S9 ASSEMBLY PLANS</td>
+    <td class="r"><a href="out/drawings/X-210-s9-assembly-plans.svg">SVG</a> · <a href="out/png/X-210-s9-assembly-plans.png">PNG</a></td></tr>
+<tr><td class="mono">X-211</td><td>S10 SQUARE PLANS</td>
+    <td class="r"><a href="out/drawings/X-211-s10-square-plans.svg">SVG</a> · <a href="out/png/X-211-s10-square-plans.png">PNG</a></td></tr>
+</table></div>
+
+<h2><span class="no">05</span>Quantities, and a number to argue with</h2>
+<div class="stamp"><b>EVERY RATE BELOW IS INVENTED</b>
+<p>No supplier, cost database or local bid was consulted. These rates were also assembled against
+North Carolina, which is not where this parcel is. The range exists so a Johnson County GC has
+something specific to correct. Do not take it to a bank.</p></div>
+<h3>Take-off</h3>
+<div class="scroll"><table>
+<tr><th>Quantity</th><th class="r">Value</th><th>Quantity</th><th class="r">Value</th></tr>
+<tr><td>Heated</td><td class="num">3,747 sf</td><td>Earthwork</td><td class="num">6,124 CY</td></tr>
+<tr><td>Roof</td><td class="num">3,819 sf</td><td>Spoil hauled</td><td class="num">5,845 CY</td></tr>
+<tr><td>Wall</td><td class="num">6,046 sf</td><td>Driveway</td><td class="num">655 lf</td></tr>
+<tr><td>Glazing</td><td class="num">650 sf (17.4%)</td><td>Disturbed</td><td class="num">1.12 ac</td></tr>
+<tr><td>Deck + terrace</td><td class="num">1,152 sf</td><td>Systems run</td><td class="num">4,148 lf</td></tr>
+</table></div>
+<h3>Order of magnitude</h3>
+<div class="scroll"><table>
+<tr><th>Item</th><th class="r">Qty</th><th class="r">Low</th><th class="r">High</th></tr>
+<tr><td>HOUSE — heated, three levels + link (excl. items below)</td><td class="num">3,747 sf</td>
+  <td class="num">$1,087k</td><td class="num">$1,611k</td></tr>
+<tr><td>GARAGE — detached, unheated</td><td class="num">576 sf</td>
+  <td class="num">$81k</td><td class="num">$127k</td></tr>
+<tr><td>MAIN DECK</td><td class="num">576 sf</td>
+  <td class="num">$52k</td><td class="num">$92k</td></tr>
+<tr><td>LOWER TERRACE</td><td class="num">576 sf</td>
+  <td class="num">$32k</td><td class="num">$55k</td></tr>
+<tr><td>GLAZING — premium above shell allowance</td><td class="num">650 sf</td>
+  <td class="num">$59k</td><td class="num">$117k</td></tr>
+<tr><td>CONCRETE SPINE — retains, carries, braces, stores heat</td><td class="num">984 sf</td>
+  <td class="num">$84k</td><td class="num">$148k</td></tr>
+<tr><td>EARTHWORK — cut and fill placed</td><td class="num">6,124 CY</td>
+  <td class="num">$86k</td><td class="num">$159k</td></tr>
+<tr><td>SPOIL — hauled off site</td><td class="num">5,845 CY</td>
+  <td class="num">$129k</td><td class="num">$263k</td></tr>
+<tr><td>DRIVEWAY — 5 switchbacks at 11%</td><td class="num">655 LF</td>
+  <td class="num">$72k</td><td class="num">$157k</td></tr>
+<tr><td>EROSION CONTROL — over the one-acre threshold</td><td class="num">1 LS</td>
+  <td class="num">$12k</td><td class="num">$34k</td></tr>
+<tr><td>WASTEWATER — alternative system</td><td class="num">1 LS</td>
+  <td class="num">$30k</td><td class="num">$75k</td></tr>
+<tr><td>WATER — spring, cistern, treatment</td><td class="num">1 LS</td>
+  <td class="num">$18k</td><td class="num">$42k</td></tr>
+<tr><td>STANDBY POWER — battery + generator</td><td class="num">1 LS</td>
+  <td class="num">$26k</td><td class="num">$55k</td></tr>
+<tr><td>MECHANICAL — heat pumps, ERV, hydronic</td><td class="num">1 LS</td>
+  <td class="num">$34k</td><td class="num">$68k</td></tr>
+<tr><td><b>Construction</b></td><td></td><td class="num"><b>$1,799k</b></td><td class="num"><b>$3,003k</b></td></tr>
+<tr><td>Contingency 15%</td><td></td><td class="num">$270k</td><td class="num">$450k</td></tr>
+<tr><td>Soft costs 12%</td><td></td><td class="num">$216k</td><td class="num">$360k</td></tr>
+<tr><td><b>TOTAL</b></td><td></td><td class="num"><b>$2,285k</b></td><td class="num"><b>$3,814k</b></td></tr>
+<tr><td class="small">per conditioned sf</td><td></td><td class="num small">$610</td><td class="num small">$1018</td></tr>
+</table></div>
+<p class="small"><b>Not included:</b> IF the geotechnical report says the 16.4 ft motor court cut will not stand at 1.5H:1V, it must be retained. 2230 sf of engineered wall, NOT in the total above. That alternate is
+$212k–$379k. The driveway line assumes the drive that was
+designed for the assumed site; §02 shows the real parcel needs a different one, and it is longer.</p>
+
+<h2><span class="no">06</span>What we need from you</h2>
+<p class="lede">Eight questions, in the order they unblock each other. A1 comes before everything.</p>
+<div class="act">
+  <div class="who"><span class="id">A1</span>LAND SURVEYOR</div>
+  <p>Boundary and topographic survey of the 29.34 acres — 2 ft contours minimum, 1 ft over the two candidate building areas. Locate: the existing access road and its grade, the water source, any spring or seep, rock outcrop, the septic reserve area, and the parcel corners.</p>
+  <div class="un"><b>Unblocks</b>Everything. No foundation, driveway, septic or siting decision can be made against a 31 m public DEM. This is the first cheque to write.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A2</span>CIVIL / SITE ENGINEER</div>
+  <p>Driveway feasibility to BOTH candidate positions (§02) at a sustained grade of 12% or less, with turning radii for a ready-mix truck and a fire apparatus. Confirm or reject the 25% straight-line grade this study measured at the client's coordinate.</p>
+  <div class="un"><b>Unblocks</b>Whether the coordinate is buildable at all. If a compliant drive cannot reach it, the siting question is already answered.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A3</span>GEOTECHNICAL ENGINEER</div>
+  <p>Test pits or borings at the chosen bench. Bearing capacity, depth to rock, groundwater, and whether a cut will stand at 1.5H:1V unretained.</p>
+  <div class="un"><b>Unblocks</b>Foundation type, and a $212k–$379k retaining-wall line item that is NOT in the estimate below and becomes real if the cut will not stand.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A4</span>SOIL SCIENTIST / WASTEWATER</div>
+  <p>Soil evaluation and subsurface sewage disposal feasibility on a 30%+ slope, TDEC permit path. Identify the primary and reserve fields.</p>
+  <div class="un"><b>Unblocks</b>This can eliminate a building site outright. It is the single most common reason a steep mountain parcel cannot be built on, and it is cheap to answer early.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A5</span>WELL / SPRING CONTRACTOR</div>
+  <p>Locate and test the existing water source named in the brief. Yield in gallons per minute, seasonal variation, potability, and whether it can serve the house by gravity or needs pumping and storage.</p>
+  <div class="un"><b>Unblocks</b>The water strategy, the cistern size, and whether standby power has to run a pump.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A6</span>JOHNSON COUNTY, TN CODE OFFICIAL</div>
+  <p>Confirm the adopted building and energy code editions, the permit path, and any ridge-protection, steep-slope, stormwater or driveway-grade ordinance that applies.</p>
+  <div class="un"><b>Unblocks</b>The entire code basis. Everything in docs/02 was researched against NORTH CAROLINA before the parcel record showed the land is in Tennessee. Treat none of it as applicable.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A7</span>STRUCTURAL ENGINEER</div>
+  <p>Nothing in this package is engineered. Member sizes, the concrete spine, the lateral system, the deck and pier frames, and the snow and wind loads at 2,364 ft all need designing from the survey and the geotechnical report.</p>
+  <div class="un"><b>Unblocks</b>Any pricing above order-of-magnitude, and any permit.</div>
+</div>
+<div class="act">
+  <div class="who"><span class="id">A8</span>GENERAL CONTRACTOR</div>
+  <p>Read §05, then tell us which of the assumptions are wrong. Rates were invented — no local bid was consulted. What we want is not a bid; it is a reality check on the quantities and the sequence, and your view of access, haul and winter working.</p>
+  <div class="un"><b>Unblocks</b>A budget anyone can rely on, and the buildability of the earthwork sequence.</div>
+</div>
+
+<h2><span class="no">07</span>What this package is not</h2>
+<p>Listed plainly so nobody has to discover it late.</p>
+<h3>NOT ENGINEERED</h3><p>No structural, mechanical, electrical, plumbing or civil engineering has been performed. Member sizes shown anywhere are placeholders for drawing purposes.</p>
+<h3>CODE BASIS VOID</h3><p>Every code reference was gathered against North Carolina. The parcel is in Tennessee. See A6.</p>
+<h3>SITE DATA IS PUBLIC, COARSE, AND NOT A SURVEY</h3><p>Terrain is a 30.8 m public DEM. One sample is wider than the house. Parcel geometry is from the Tennessee Comptroller cadastral service and a property-viewer reconstruction — neither is a boundary survey.</p>
+<h3>COSTS ARE INVENTED</h3><p>No supplier, cost database or local bid was consulted. The range in §05 exists to be replaced, not relied on.</p>
+<h3>ELEVATION CORRECTED LATE</h3><p>Snow load, design temperature and the freeze-depth reasoning throughout the package were argued from an assumed 3,412 ft. The measured elevation is ~2,364 ft. Those numbers have not been recomputed.</p>
+<h3>NO SOILS, NO WATER TEST, NO SEPTIC EVALUATION</h3><p>See A3, A4, A5. Any of the three can change or eliminate the design.</p>
+
+<footer>
+<p><b>HENRY HOUSE</b> · schematic design issue · 2026-08-11 · parcel 100 064.03,
+JOHNSON County, Tennessee.</p>
+<p>Generated from the project model — every quantity, area and coordinate on this page is read from
+the same source that draws the sheets, so the two cannot disagree. Regenerate with
+<span class="mono">node tools/build-issue-package.mjs</span>.</p>
+<p>Reference imagery and precedent studies referred to in the drawing set remain the property of
+their authors and are not reproduced here.</p>
+</footer>
+</div></body></html>

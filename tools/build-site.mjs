@@ -153,6 +153,8 @@ const html = `<!doctype html>
   <div class="eyebrow">Schematic design · not for construction</div>
   <h1>Henry House</h1>
   <div class="eyebrow">Johnson County, Tennessee · 30% slope · 2,364 ft</div>
+  <p style="margin:18px 0 0"><a href="issue-for-review.html" style="display:inline-block;border:2px solid currentColor;padding:11px 16px;text-decoration:none;font-weight:700;letter-spacing:.04em">ISSUE FOR REVIEW &rarr;</a>
+  <span style="display:block;margin-top:8px;opacity:.7;font-size:13px">The package for surveyors, engineers and builders &mdash; what is decided, what is not, and the eight questions that unblock the rest.</span></p>
   <p class="lede">Everything in the package, in one index. <b>${sheets.length} drawing sheets</b>,
   ${renders.length} renders of the house, ${schemeShots.length} scheme renders and ${docs.length} written documents.
   Tap any sheet to open it full screen — pinch to zoom, double-tap for 100%. A 36 × 24 inch sheet
