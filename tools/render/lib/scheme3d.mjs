@@ -132,7 +132,7 @@ export function buildSchemeScene(renderer, { schemeId, sun, realtime = false } =
     // at this sun angle and was being mistaken for the timber structure under it.
     roof: MAT.simple(0x2b3138, 0.42, 0.55),
     conc: MAT.concreteMaterial(),
-    glass: MAT.glassMaterial({ opacity: 0.2 }),
+    glass: MAT.glassMaterial({ clear: true }),
     deck: MAT.floorMaterial(),
     steel: MAT.simple(0x3a4148, 0.55, 0.35),
     timber: MAT.simple(0x9c7f5c, 0.86, 0),

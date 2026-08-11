@@ -16,7 +16,8 @@
     "test": "node tools/check/run-checks.mjs && node tools/check/plan3d.mjs",
     "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/build-site.mjs && node tools/check/run-checks.mjs",
     "check:plan3d": "node tools/check/plan3d.mjs",
-    "site": "node tools/build-site.mjs"
+    "site": "node tools/build-site.mjs",
+    "check:envelope": "node tools/check/envelope.mjs"
   },
   "dependencies": {
     "playwright": "^1.49.0",

@@ -267,7 +267,20 @@ export function gravelMaterial({ size = 512 } = {}) {
 // Real transmission needs an extra scene render per frame; on SwiftShader that
 // doubles an already slow pass. A tinted, reflective, low-opacity surface reads
 // correctly at these angles and costs nothing.
-export function glassMaterial({ opacity = 0.16, tint = 0x0f1a20 } = {}) {
+export function glassMaterial({ opacity = 0.16, tint = 0x0f1a20, clear = false } = {}) {
+  // CLEAR glass is glass you can see THROUGH, which is what an interior view
+  // needs and what the mirrored version could never give: at metalness 0.9 and
+  // 50% opacity every interior render was a photograph of the glazing. Real
+  // transmission, almost no tint, no metal.
+  if (clear) {
+    return new THREE.MeshPhysicalMaterial({
+      color: 0xdfe9ec, metalness: 0, roughness: 0.02,
+      transmission: 0.94, thickness: 0.5, ior: 1.5,
+      transparent: true, opacity: 1,
+      envMapIntensity: 1.2, clearcoat: 1, clearcoatRoughness: 0.02,
+      side: THREE.DoubleSide, depthWrite: false,
+    });
+  }
   return new THREE.MeshPhysicalMaterial({
     color: tint, metalness: 0.9, roughness: 0.06,
     transparent: true, opacity: Math.min(0.85, opacity + 0.34),

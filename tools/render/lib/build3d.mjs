@@ -197,6 +197,7 @@ function stairIn(g, v, zBot, zTop, mat) {
  * coordinates, and both the drawing and the model consume it. Nothing here
  * invents a position, so nothing here can drift out of step with the plan.
  */
+const insetEnd = () => 10;
 function buildInterior(g, scheme, mats) {
   const plan = planFor(scheme.id);
   if (!plan) return 0;
@@ -209,6 +210,36 @@ function buildInterior(g, scheme, mats) {
   // box. Head height is 6'-8", so the panel over each opening stays.
   const HEAD = 80;
   const { doors } = doorways(plan);
+  const { wall: extMat, glass: glassMat } = mats;
+
+  // The envelope, taken from the rooms that were CHECKED — glazed room by room
+  // on the downhill face exactly as the plan draws it, solid on the uphill cut.
+  for (const lv of plan.levels) {
+    const rs = lv.rooms ?? [];
+    if (!rs.length) continue;
+    const z0 = ft(lv.ffe), z1 = z0 + STOREY - 14;
+    const E = { x0: Math.min(...rs.map(r => ft(r.x0))), x1: Math.max(...rs.map(r => ft(r.x0 + r.w))),
+                y0: Math.min(...rs.map(r => ft(r.y0))), y1: Math.max(...rs.map(r => ft(r.y0 + r.d))) };
+    const T = 10;
+    // uphill, and the two ends: solid
+    g.add(box(E.x0, E.x1, E.y1 - T, E.y1, z0, z1, extMat));
+    g.add(box(E.x0, E.x0 + T, E.y0, E.y1, z0, z1, extMat));
+    g.add(box(E.x1 - T, E.x1, E.y0, E.y1, z0, z1, extMat));
+    // downhill: a pier between rooms, glass across each room that earns it
+    for (const r of rs) {
+      const x0 = ft(r.x0), x1 = ft(r.x0 + r.w);
+      if (Math.abs(ft(r.y0) - E.y0) > 6) continue;
+      const dark = r.use === 'bath' || r.use === 'mech' || r.use === 'store';
+      const inset = 18;
+      g.add(box(x0, x0 + inset, E.y0, E.y0 + T, z0, z1, extMat));
+      if (dark) { g.add(box(x0 + inset, x1, E.y0, E.y0 + T, z0, z1, extMat)); continue; }
+      g.add(box(x0 + inset, x1, E.y0, E.y0 + T, z0, z0 + 20, extMat));           // sill
+      g.add(box(x0 + inset, x1, E.y0, E.y0 + T, z1 - 12, z1, extMat));           // head
+      g.add(box(x0 + inset, x1, E.y0 + 3, E.y0 + 7, z0 + 20, z1 - 12, glassMat, { cast: false }));
+    }
+    // close the last bay
+    g.add(box(E.x1 - insetEnd(), E.x1, E.y0, E.y0 + T, z0, z1, extMat));
+  }
   /** One wall run, emitted as the segments left between its openings. */
   const runWith = (axis, fixed, a0, a1, z0, z1, gaps, mat) => {
     const cuts = gaps.filter(gp => gp.a0 < a1 && gp.a1 > a0)
@@ -282,12 +313,31 @@ export function buildScheme(scheme, mats, groundFn) {
   const g = new THREE.Group();
   const { wall, roof, trim, glass, conc, steel, deck } = mats;
 
+  // WHERE THERE IS A CHECKED PLAN, THE PLAN OWNS THE WALLS.
+  //
+  // This is the "jank" at its root. The 3D built exterior walls from the
+  // scheme's VOLUMES while the drawing built them from its checked PLAN, so
+  // two different sources described the same house and nothing forced them to
+  // agree — a scheme whose rooms tile a slightly different outline than its
+  // declared volume produced a model that did not match its own blueprint.
+  // Now the volumes contribute only floor plates where a plan exists, and
+  // buildInterior raises the envelope off the rooms that were actually
+  // checked. tools/check/plan3d.mjs proves the two agree.
+  const hasPlan = !!planFor(scheme.id);
+
   for (const v of scheme.volumes) {
     const ffe = ft(v.ffe);
     const storeys = v.storeys ?? 1;
     const top = ffe + STOREY * storeys;
 
-    if (v.kind === 'cond') {
+    if (v.kind === 'cond' && hasPlan) {
+      // floor plates only — the walls come from the plan
+      for (let sIdx = 0; sIdx <= storeys; sIdx++) {
+        const z = ffe + STOREY * sIdx;
+        g.add(box(v.x0, v.x1, v.y0, v.y1, z - 13, z, sIdx === 0 ? conc : trim, { cast: sIdx > 0 }));
+      }
+      if (storeys > 1) stairIn(g, v, ffe, ffe + STOREY, trim);
+    } else if (v.kind === 'cond') {
       const T = 10;
       // floor plates, one per storey — they read at the reveals and in shadow
       for (let s = 0; s <= storeys; s++) {
