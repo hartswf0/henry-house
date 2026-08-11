@@ -14,6 +14,7 @@ import { serve } from './serve.mjs';
 
 const PAGES = [
   { url: '/web/walk.html', name: 'WALKTHROUGH', settle: 22000, expect: 'canvas' },
+  { url: '/web/walk-schemes.html', name: 'WALK SCHEMES', settle: 22000, expect: 'canvas' },
   { url: '/tools/render/scene.html', name: 'RENDER SCENE', settle: 8000, expect: null },
 ];
 

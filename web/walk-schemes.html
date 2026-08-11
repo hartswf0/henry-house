@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HENRY HOUSE — walk the alternatives</title>
+<style>
+  :root{ --ink:#e9edf2; --panel:rgba(16,19,24,.86); --line:#2c333d; --accent:#e08056; --mid:#93a0ae;
+         --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#0e1114;color:var(--ink);font-family:var(--mono)}
+  canvas{display:block}
+  .panel{position:fixed;top:14px;left:14px;width:250px;max-height:calc(100vh - 28px);overflow:auto;
+    background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:14px;backdrop-filter:blur(8px)}
+  h1{font-size:12px;letter-spacing:.14em;margin:0 0 2px;text-transform:uppercase}
+  .sub{font-size:10.5px;color:var(--mid);line-height:1.45;margin:0 0 12px}
+  .lbl{font-size:9.5px;letter-spacing:.14em;color:var(--mid);text-transform:uppercase;margin:12px 0 5px}
+  button{display:block;width:100%;text-align:left;background:#171c22;color:var(--ink);border:1px solid var(--line);
+    border-radius:2px;padding:6px 8px;margin-bottom:3px;font:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--accent)}
+  button.on{border-color:var(--accent);color:var(--accent)}
+  button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  select{width:100%;background:#171c22;color:var(--ink);border:1px solid var(--line);border-radius:2px;
+    padding:6px 8px;font:inherit;font-size:11px}
+  .stat{font-size:10px;color:var(--mid);line-height:1.5;margin-top:8px}
+  .hint{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:var(--panel);
+    border:1px solid var(--line);border-radius:3px;padding:8px 14px;font-size:10.5px;color:var(--mid)}
+  #err{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:44ch;text-align:center;
+    color:#e0806a;font-size:12px;line-height:1.6;display:none}
+</style>
+</head>
+<body>
+<div class="panel">
+  <h1>Walk the alternatives</h1>
+  <p class="sub">Every scheme, in the same model the drawings come from. The rooms, the doors and the fixtures here are the ones on its sheet.</p>
+  <select id="scheme"></select>
+  <div class="stat" id="stat"></div>
+  <div class="lbl">Mode</div>
+  <button id="mOrbit" class="on">Orbit — drag to turn</button>
+  <button id="mWalk">Walk — W A S D, click to look</button>
+  <div class="lbl">Jump to</div>
+  <div id="jump"></div>
+  <div class="lbl">Show</div>
+  <div id="layers"></div>
+</div>
+<div class="hint" id="hint">Drag to orbit · scroll to zoom · switch to Walk and use W A S D</div>
+<div id="err"></div>
+<script type="importmap">
+{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+import { buildSchemeScene } from '../tools/render/lib/scheme3d.mjs';
+import { sunDirection } from '../tools/render/lib/render.mjs';
+import { SCHEMES, metrics } from '../model/schemes.mjs';
+import { planFor } from '../model/scheme-plans.mjs';
+
+window.__loaded = false; window.__error = null;
+const F = (i) => i / 12;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const sun = sunDirection({ dayOfYear: 288, hour: 14 });
+const camera = new THREE.PerspectiveCamera(58, innerWidth / innerHeight, 0.25, 9000);
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true; orbit.dampingFactor = 0.07;
+orbit.maxPolarAngle = Math.PI * 0.495;
+const walk = new PointerLockControls(camera, renderer.domElement);
+let mode = 'orbit';
+
+let scene = null, rig = null, groups = [];
+const sel = document.getElementById('scheme');
+for (const s of SCHEMES) {
+  const o = document.createElement('option');
+  o.value = s.id; o.textContent = s.name.replace('THE ', '');
+  sel.appendChild(o);
+}
+
+/** Load one scheme: new scene, new jump list, camera parked outside it. */
+function load(id) {
+  try {
+    if (scene) { scene.traverse(o => { o.geometry?.dispose?.(); }); }
+    const built = buildSchemeScene(renderer, { schemeId: id, sun, realtime: true });
+    scene = built.scene; rig = built.rig;
+    rig.sun.position.copy(sun.dir).multiplyScalar(900).add(rig.focus);
+    rig.sun.target.position.copy(rig.focus);
+    rig.skyLight.position.set(rig.focus.x + 200, rig.focus.y + 700, rig.focus.z + 150);
+    rig.skyLight.target.position.copy(rig.focus);
+    scene.add(walk.object);
+
+    const s = SCHEMES.find(x => x.id === id);
+    const m = metrics(s);
+    const plan = planFor(id);
+    document.getElementById('stat').innerHTML =
+      `${m.conditionedSf.toLocaleString()} sf · ${m.perimeterLf} lf perimeter · ${m.cutCY.toLocaleString()} CY<br>` +
+      (plan ? `${plan.levels.reduce((a, l) => a + (l.rooms?.length ?? 0), 0)} rooms, drawn and checked`
+            : '<span style="color:#e0a06a">no checked plan yet — massing only</span>');
+
+    // Jump list: the plan's own rooms, so what you can walk to is what was drawn.
+    const j = document.getElementById('jump');
+    j.innerHTML = '';
+    const add = (label, p, t) => {
+      const b = document.createElement('button');
+      b.textContent = label;
+      b.onclick = () => {
+        camera.position.set(...p);
+        if (mode === 'orbit') { orbit.target.set(...t); orbit.update(); }
+        else camera.lookAt(new THREE.Vector3(...t));
+      };
+      j.appendChild(b);
+    };
+    const cond = s.volumes.filter(v => v.kind !== 'shelt');
+    const bx = (Math.min(...cond.map(v => v.x0)) + Math.max(...cond.map(v => v.x1))) / 24;
+    const by0 = Math.min(...cond.map(v => v.y0)) / 12;
+    const top = Math.max(...cond.map(v => v.ffe + 10 * (v.storeys ?? 1)));
+    add('Outside — downhill face', [bx - 30, top * 0.7 + 8, -(by0 - 70)], [bx, top * 0.4, -(by0 + 10)]);
+    add('Above — the whole site', [bx - 90, 190, 260], [bx + 30, 10, -20]);
+    if (plan) {
+      for (const lv of plan.levels) {
+        for (const r of (lv.rooms ?? []).filter(x => x.use !== 'store' && x.use !== 'mech')) {
+          const eye = lv.ffe + 5.4;
+          add(`${r.name} — ffe ${lv.ffe}`,
+            [r.x0 + r.w / 2, eye, -(r.y0 + r.d - 2)],
+            [r.x0 + r.w / 2, eye - 0.5, -(r.y0 - 30)]);
+        }
+      }
+    }
+
+    // layer toggles
+    const L = document.getElementById('layers');
+    L.innerHTML = '';
+    groups = scene.children.filter(c => c.type === 'Group');
+    groups.forEach((g, i) => {
+      const b = document.createElement('button');
+      b.textContent = ['Building', 'Ground + drive', 'Vegetation', 'Ridges'][i] ?? `Layer ${i + 1}`;
+      b.className = 'on';
+      b.onclick = () => { g.visible = !g.visible; b.className = g.visible ? 'on' : ''; };
+      L.appendChild(b);
+    });
+
+    camera.position.set(bx - 30, top * 0.7 + 8, -(by0 - 70));
+    orbit.target.set(bx, top * 0.4, -(by0 + 10));
+    orbit.update();
+    window.__loaded = true;
+  } catch (e) {
+    window.__error = e.message + '\n' + e.stack;
+    const el = document.getElementById('err');
+    el.style.display = 'block';
+    el.textContent = 'Could not build this scheme: ' + e.message;
+  }
+}
+sel.onchange = () => load(sel.value);
+
+// ── modes ───────────────────────────────────────────────────────────────────
+const bOrbit = document.getElementById('mOrbit'), bWalk = document.getElementById('mWalk');
+bOrbit.onclick = () => { mode = 'orbit'; walk.unlock(); orbit.enabled = true;
+  bOrbit.className = 'on'; bWalk.className = '';
+  document.getElementById('hint').textContent = 'Drag to orbit · scroll to zoom · switch to Walk and use W A S D'; };
+bWalk.onclick = () => { mode = 'walk'; orbit.enabled = false; walk.lock();
+  bWalk.className = 'on'; bOrbit.className = '';
+  document.getElementById('hint').textContent = 'W A S D to move · mouse to look · Shift to run · Esc to release the pointer'; };
+renderer.domElement.addEventListener('click', () => { if (mode === 'walk') walk.lock(); });
+
+const keys = {};
+addEventListener('keydown', e => keys[e.code] = true);
+addEventListener('keyup', e => keys[e.code] = false);
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+const clock = new THREE.Clock();
+function tick() {
+  requestAnimationFrame(tick);
+  const dt = Math.min(clock.getDelta(), 0.05);
+  if (mode === 'walk' && walk.isLocked) {
+    const sp = (keys.ShiftLeft || keys.ShiftRight ? 26 : 11) * dt;
+    if (keys.KeyW) walk.moveForward(sp);
+    if (keys.KeyS) walk.moveForward(-sp);
+    if (keys.KeyA) walk.moveRight(-sp);
+    if (keys.KeyD) walk.moveRight(sp);
+    if (keys.KeyQ) camera.position.y -= sp;
+    if (keys.KeyE) camera.position.y += sp;
+  } else orbit.update();
+  if (scene) renderer.render(scene, camera);
+}
+load(SCHEMES[0].id);
+tick();
+</script>
+</body>
+</html>

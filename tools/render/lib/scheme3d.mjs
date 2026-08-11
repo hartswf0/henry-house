@@ -17,6 +17,7 @@ import { SITE_SLOPE } from '../../../model/geometry.mjs';
 import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
 import { buildScheme } from './build3d.mjs';
+import { planFor } from '../../../model/scheme-plans.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -194,3 +195,72 @@ export const SCHEME_CAMERA = {
   shift: 0.03,
 };
 export function schemeCamera() { return SCHEME_CAMERA; }
+
+/**
+ * The views each scheme is rendered from, at the SAME standard as the main
+ * house: 1700 x 1062, 64 samples, level cameras with a shifted frame so
+ * verticals stay plumb, and the same October afternoon sun.
+ *
+ * Three views, and each has a job:
+ *
+ *   compare  ONE camera, identical for every scheme, never derived. This is
+ *            the A/B shot: the Perch is small in frame because it IS small.
+ *            Deriving it per scheme would flatter whichever scheme framed best.
+ *   hero     derived from the scheme's own bounds, so a 72 ft bar and an 18 ft
+ *            tower are each seen properly rather than one of them being a speck.
+ *   interior  placed INSIDE the scheme's largest living room from its checked
+ *            plan, at eye height, looking downhill at the view the whole site
+ *            argument is about. Only possible now that the plans exist.
+ */
+export function schemeViews(schemeId) {
+  const s = schemeById(schemeId);
+  const out = [{ id: 'compare', ...SCHEME_CAMERA, w: 1700, h: 1062, exposure: 1.0,
+                 sun: { dayOfYear: 288, hour: 13.6 } }];
+  if (!s) return out;
+
+  const cond = s.volumes.filter(v => v.kind !== 'shelt');
+  const bx0 = Math.min(...cond.map(v => v.x0)) / 12, bx1 = Math.max(...cond.map(v => v.x1)) / 12;
+  const by0 = Math.min(...cond.map(v => v.y0)) / 12, by1 = Math.max(...cond.map(v => v.y1)) / 12;
+  const top = Math.max(...cond.map(v => v.ffe + 10 * (v.storeys ?? 1)));
+  const w = bx1 - bx0, d = by1 - by0;
+  const size = Math.max(w, d, top);
+  const cx = (bx0 + bx1) / 2, cy = (by0 + by1) / 2;
+
+  // Stand off downhill and to the west by a distance proportional to the
+  // scheme, so framing is consistent rather than accidental.
+  const dist = size * 1.75 + 26;
+  out.push({
+    id: 'hero',
+    pos: [cx - dist * 0.55, top * 0.62 + 6, -(by0 - dist * 0.8)],
+    target: [cx + w * 0.08, top * 0.42, -(cy - d * 0.1)],
+    focal: 38, shift: 0.16, w: 1700, h: 1062, exposure: 1.02,
+    sun: { dayOfYear: 288, hour: 13.9 },
+  });
+
+  const plan = planFor(schemeId);
+  if (plan) {
+    // the biggest room anyone sits in, on the level with the most of them
+    let best = null;
+    for (const lv of plan.levels) {
+      for (const r of lv.rooms ?? []) {
+        if (r.use !== 'living' && r.use !== 'dining') continue;
+        const a = r.w * r.d;
+        if (!best || a > best.a) best = { a, r, ffe: lv.ffe };
+      }
+    }
+    if (best) {
+      const { r, ffe } = best;
+      const eye = ffe + 5.4;
+      out.push({
+        id: 'interior',
+        // stand at the uphill end of the room and look downhill, out of the glass
+        pos: [r.x0 + r.w / 2, eye, -(r.y0 + r.d - 1.5)],
+        target: [r.x0 + r.w / 2, eye - 0.6, -(r.y0 - 40)],
+        focal: 22, shift: 0.04, w: 1620, h: 1110, exposure: 0.95, interior: true,
+        sun: { dayOfYear: 288, hour: 13.4 },
+        room: r.name,
+      });
+    }
+  }
+  return out;
+}
