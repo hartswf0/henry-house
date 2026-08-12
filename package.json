@@ -13,12 +13,13 @@
     "check": "node tools/check/run-checks.mjs",
     "check:model": "node tools/check/clash.mjs",
     "check:pages": "node tools/render/walkcheck.mjs",
-    "test": "node tools/check/run-checks.mjs && node tools/check/plan3d.mjs && node tools/check/envelope.mjs",
+    "test": "node tools/check/run-checks.mjs && node tools/check/plan3d.mjs && node tools/check/envelope.mjs && node tools/check/links.mjs",
     "all": "node tools/build.mjs && node tools/render/raster.mjs && node tools/build-site.mjs && node tools/check/run-checks.mjs",
     "check:plan3d": "node tools/check/plan3d.mjs",
     "site": "node tools/build-site.mjs",
     "check:envelope": "node tools/check/envelope.mjs",
-    "shoot:one": "node tools/render/shoot-one.mjs"
+    "shoot:one": "node tools/render/shoot-one.mjs",
+    "check:links": "node tools/check/links.mjs"
   },
   "dependencies": {
     "playwright": "^1.49.0",
