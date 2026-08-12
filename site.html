@@ -10,7 +10,7 @@
 <div id="load"><div class="loadbox"><div id="loadText">Loading actual parcel, terrain, and road…</div><div class="loadbar"><i></i></div></div></div>
 <div class="head"><div class="id"><b>HENRY HOUSE · ACTUAL SITE FIT</b><small>Johnson County, Tennessee · parcel 100 064.03 · yellow point = supplied coordinate</small></div><button id="menu" type="button" aria-label="Site settings">≡</button></div>
 <div id="legend"><div><i class="parcel"></i>parcel</div><div><i class="existing"></i>existing cadastral drive</div><div><i class="proposed"></i>new driveway</div><div><span class="swatch cut"></span>cut <span class="swatch fill" style="margin-left:8px"></span>fill</div></div>
-<div class="dock"><button id="site" class="on" type="button">Site</button><button id="drive" type="button">Drive</button><button id="house" type="button">House</button><button id="aerial" type="button">Aerial</button><a href="web/walk.html">Walk</a></div>
+<div class="dock"><button id="site" class="on" type="button">Site</button><button id="drive" type="button">Drive</button><button id="house" type="button">House</button><button id="aerial" type="button">Aerial</button><button id="scale" type="button">Scale</button><a href="web/walk.html">Walk</a></div>
 <aside id="panel">
 <h2>Site fit</h2>
 <p>The coordinate is a reference point, not a building pad. Default bearing is 252°. The selected house area is cut/fill graded to a flat construction bench and blended back into the natural terrain.</p>
@@ -34,8 +34,20 @@
 <p id="prov">Checking Tennessee Comptroller parcel geometry…</p>
 <p>The existing road is registered from the supplied cadastral screenshot against the official parcel. The flattened bench and orange driveway are preliminary grading studies, not survey, soils, septic, floodplain, or permitting determinations.</p>
 </aside>
+
+<section id="scaleCompare" aria-hidden="true">
+  <header class="scale-head"><div><b>TRUE SCALE AUDIT</b><small>Nothing below is visually enlarged to make it easier to see.</small></div><button id="scaleClose" type="button" aria-label="Close scale comparison">×</button></header>
+  <div class="scale-scroll">
+    <section class="scale-section"><h2>1 · Unit chain</h2><div id="scaleAudit" class="audit-grid"></div></section>
+    <section class="scale-section"><h2>2 · Parcel scale</h2><p>Fallback cadastral geometry and a 100 ft ruler share the exact same local-foot coordinate system.</p><div id="parcelScale"></div></section>
+    <section class="scale-section"><h2>3 · Houses at one scale</h2><p id="sharedHouseScale"></p><div id="houseComparisons" class="compare-grid"></div></section>
+    <section class="scale-section"><h2>4 · Saved CREO locations at one scale</h2><p id="locationScaleNote">Loading saved place windows…</p><div id="locationComparisons" class="location-grid"></div></section>
+  </div>
+</section>
+
 <div id="status"><b id="statusTitle">LOADING SITE</b> · <span id="statusText">parcel, terrain, aerial, road registration</span></div>
 <script type="importmap">{"imports":{"three":"./web/vendor/three/three.module.js","three/addons/":"./web/vendor/three/addons/"}}</script>
 <script type="module" src="web/site-v3.mjs"></script>
+<script type="module" src="web/scale-compare.mjs"></script>
 </body>
 </html>
