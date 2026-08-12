@@ -19,6 +19,7 @@ import * as MAT from './textures.mjs';
 import { buildVegetation } from './vegetation.mjs';
 import { buildScheme } from './build3d.mjs';
 import { planFor } from '../../../model/scheme-plans.mjs';
+import { makeShiftCamera } from './render.mjs';
 
 const F = (inches) => inches / 12;
 const ft = (n) => n * 12;
@@ -260,22 +261,99 @@ export function schemeViews(schemeId) {
   const cond = s.volumes.filter(v => v.kind !== 'shelt');
   const bx0 = Math.min(...cond.map(v => v.x0)) / 12, bx1 = Math.max(...cond.map(v => v.x1)) / 12;
   const by0 = Math.min(...cond.map(v => v.y0)) / 12, by1 = Math.max(...cond.map(v => v.y1)) / 12;
+  const base = Math.min(...cond.map(v => v.ffe));
   const top = Math.max(...cond.map(v => v.ffe + 10 * (v.storeys ?? 1)));
   const w = bx1 - bx0, d = by1 - by0;
-  const size = Math.max(w, d, top);
   const cx = (bx0 + bx1) / 2, cy = (by0 + by1) / 2;
 
-  // Stand off downhill and to the west by a distance proportional to the
-  // scheme, so framing is consistent rather than accidental.
+  // HOW FAR TO STAND BACK, AND WHERE TO LOOK.
+  //
+  // This got it wrong for seven of the eleven, and tools/check/framing.mjs is
+  // what found that out — the Tower lost 36% of itself off the bottom of its
+  // own hero shot, the Square 34%, the Perch 29%. Three mistakes compounding:
+  //
+  //   1. the standoff was proportional to max(width, depth, HEIGHT). A tall
+  //      scheme on a small footprint got a SHORT standoff and a steep
+  //      downward angle, which is the opposite of what its height needs;
+  //   2. the camera sat at `top * 0.95 + 16` — an absolute height, so a
+  //      scheme whose floors start at ffe 10 was viewed from far above it;
+  //   3. it aimed at `top * 0.55` rather than the middle of the building, and
+  //      the 0.16 lens shift then pushed the subject further down the frame.
+  //
+  // Now: stand back by the PLAN extent and the height taken separately, sit a
+  // proportion of the building's own height above its roof, and aim at the
+  // middle of the thing rather than at a fraction of an absolute altitude.
+  // WHY THE HERO SHOTS WERE CUT OFF, AND WHAT ACTUALLY FIXES IT.
+  //
+  // makeShiftCamera builds an ARCHITECTURAL camera: it looks at a point at its
+  // OWN height, so the optical axis is horizontal and verticals stay plumb.
+  // `target.y` is therefore ignored, and the only vertical framing control is
+  // the lens shift.
+  //
+  // This code did not know that. It set the camera high above the building and
+  // aimed it at the building's middle, expecting the camera to tilt down. It
+  // cannot tilt. So the subject sat far below a horizontal axis and fell out of
+  // the bottom of the frame — seven of eleven hero shots, the Tower losing 36%
+  // of itself. Three successive rewrites of the DISTANCE formula each moved the
+  // number without touching the cause, and the fit loop below, when it was
+  // first written, "solved" it by retreating to 373 ft from an 18 ft building:
+  // far enough that the depression angle flattened out. In frame, and a
+  // photograph of a hillside.
+  //
+  // The camera height is what matters. Put it near the middle of the building
+  // and the building is near the middle of the picture. Distance is then only
+  // about how much of the frame it fills, which is what the fit loop is for.
+  const hgt = Math.max(12, top - base);
+  const mid = (base + top) / 2;
+  const FIT = 0.90;                      // corners must land inside 90% of the frame
+  const camAt = (dd) => ({
+    pos: [cx - dd * 0.20, mid + hgt * 0.30, -(by0 - dd * 1.0)],
+    target: [cx + w * 0.08, mid, -(cy - d * 0.1)],
+  });
+  // the box to fit: the rooms the plan actually builds, plus a storey of roof
+  const fitBox = (() => {
+    const p = planFor(schemeId);
+    const rs = p ? p.levels.flatMap(l => (l.rooms ?? []).map(r => ({ ...r, ffe: l.ffe }))) : [];
+    if (rs.length) return {
+      x0: Math.min(...rs.map(r => r.x0)), x1: Math.max(...rs.map(r => r.x0 + r.w)),
+      z0: -Math.max(...rs.map(r => r.y0 + r.d)), z1: -Math.min(...rs.map(r => r.y0)),
+      y0: Math.min(...rs.map(r => r.ffe)), y1: Math.max(...rs.map(r => r.ffe)) + 10,
+    };
+    return { x0: bx0, x1: bx1, z0: -by1, z1: -by0, y0: base, y1: top };
+  })();
+  const fitsAt = (dd) => {
+    const c = camAt(dd);
+    const cam = makeShiftCamera({
+      focalMm: 38, aspect: 1700 / 1062,
+      position: new THREE.Vector3(...c.pos), target: new THREE.Vector3(...c.target), shift: 0.05,
+    });
+    cam.updateMatrixWorld(true);
+    let worst = 0;
+    for (let k = 0; k < 8; k++) {
+      const v = new THREE.Vector3(k & 1 ? fitBox.x1 : fitBox.x0, k & 2 ? fitBox.y1 : fitBox.y0,
+                                  k & 4 ? fitBox.z1 : fitBox.z0).project(cam);
+      worst = Math.max(worst, Math.abs(v.x), Math.abs(v.y));
+    }
+    return worst <= FIT;
+  };
+  // Expand until it fits, then bisect back down to the TIGHTEST distance that
+  // still does. Without the second half the first version stopped at whatever
+  // the expansion happened to overshoot to, and framed the Tower at 0.9% of
+  // the frame — in shot, and a photograph of a hillside.
+  let lo = Math.hypot(Math.max(w, d), hgt) * 0.8 + 14, hi = lo;
+  for (let i = 0; i < 40 && !fitsAt(hi); i++) { lo = hi; hi *= 1.25; }
+  for (let i = 0; i < 24; i++) {
+    const midD = (lo + hi) / 2;
+    if (fitsAt(midD)) hi = midD; else lo = midD;
+  }
+  const dist = hi;
   // Stand mostly DOWNHILL rather than off to the west: the west side of this
   // site carries a rock outcrop, and the first version of this camera put it
   // straight through the left third of every hero shot.
-  const dist = size * 1.7 + 38;
   out.push({
     id: 'hero',
-    pos: [cx - dist * 0.20, top * 0.95 + 16, -(by0 - dist * 1.0)],
-    target: [cx + w * 0.08, top * 0.55, -(cy - d * 0.1)],
-    focal: 38, shift: 0.16, w: 1700, h: 1062, exposure: 1.02,
+    ...camAt(dist),
+    focal: 38, shift: 0.05, w: 1700, h: 1062, exposure: 1.02,
     sun: { dayOfYear: 288, hour: 13.9 },
   });
 
