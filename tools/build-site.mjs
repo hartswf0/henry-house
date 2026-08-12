@@ -97,6 +97,25 @@ h2{font-size:clamp(1.25rem,4.4vw,1.7rem);margin:0 0 4px;letter-spacing:-.01em}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}
 header{padding:34px 0 18px;border-bottom:1px solid var(--rule)}
 .lede{color:var(--mid);max-width:62ch;margin:10px 0 0}
+/* Where this stands: the four facts a reader needs before anything else. Two
+   are settled and two are open, and the open ones are marked, because a index
+   that reads as finished when it is not is the most expensive kind of lie. */
+.state{margin:26px 0 0;border-top:2px solid currentColor;padding-top:14px}
+.stateHead{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:12px}
+.stateGrid{display:grid;gap:14px 26px}
+@media(min-width:720px){.stateGrid{grid-template-columns:1fr 1fr}}
+.stateGrid>div{border-left:3px solid var(--good,#2f7d5f);padding-left:13px}
+.stateGrid>div.bad{border-left-color:var(--warnc,#b1512a)}
+.stateGrid>div>b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;color:var(--good,#2f7d5f)}
+.stateGrid>div.bad>b{color:var(--warnc,#b1512a)}
+.stateGrid>div>span{display:block;font-size:14px;line-height:1.5;color:var(--mid)}
+/* Three doors. Most people arriving here are one of three people. */
+.doors{display:grid;gap:10px;margin:28px 0 0}
+@media(min-width:720px){.doors{grid-template-columns:repeat(3,1fr)}}
+.door{display:block;border:2px solid currentColor;padding:15px 16px;text-decoration:none;color:inherit}
+.door b{display:block;font-size:16px;margin-bottom:5px}
+.door span{display:block;font-size:13px;line-height:1.5;color:var(--mid)}
+.door:hover,.door:focus-visible{background:rgba(127,127,127,.09)}
 nav#toc{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
 .tocin{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px 18px;max-width:1080px;margin:0 auto}
 .tocin::-webkit-scrollbar{display:none}
@@ -150,15 +169,47 @@ const html = `<!doctype html>
 </head>
 <body>
 <header><div class="wrap">
-  <div class="eyebrow">Schematic design · not for construction</div>
+  <div class="eyebrow">Schematic design · not for construction · not for permit</div>
   <h1>Henry House</h1>
-  <div class="eyebrow">Johnson County, Tennessee · 30% slope · 2,364 ft</div>
-  <p style="margin:18px 0 0"><a href="issue-for-review.html" style="display:inline-block;border:2px solid currentColor;padding:11px 16px;text-decoration:none;font-weight:700;letter-spacing:.04em">ISSUE FOR REVIEW &rarr;</a>
-  <span style="display:block;margin-top:8px;opacity:.7;font-size:13px">The package for surveyors, engineers and builders &mdash; what is decided, what is not, and the eight questions that unblock the rest.</span></p>
-  <p class="lede">Everything in the package, in one index. <b>${sheets.length} drawing sheets</b>,
-  ${renders.length} renders of the house, ${schemeShots.length} scheme renders and ${docs.length} written documents.
-  Tap any sheet to open it full screen — pinch to zoom, double-tap for 100%. A 36 × 24 inch sheet
-  shrunk to a phone is not a drawing you can read, so it opens in a viewer instead.</p>
+  <div class="eyebrow">Parcel 100 064.03 · Johnson County, Tennessee · 29.34 acres · 2,364 ft</div>
+
+  <p class="lede">A house for a steep parcel, designed as one organism: terrain, structure,
+  water, waste, air, power and envelope resolved together rather than in sequence. Eleven
+  schemes were drawn and checked against each other; one is carried forward.</p>
+
+  <div class="state">
+    <div class="stateHead">Where this stands</div>
+    <div class="stateGrid">
+      <div><b>Settled</b><span>The slope. Assumed at 30%, measured at 30% &mdash; so the stepped
+        section, the walkout level and the whole earthwork comparison hold.</span></div>
+      <div><b>Settled</b><span>The drawings. ${sheets.length} sheets, 11 checked plans, and a 3D model
+        that is proven to be the same building as the plan on every level.</span></div>
+      <div class="bad"><b>Open &mdash; blocking</b><span>Where on the parcel. The named coordinate faces
+        <b>north at 38%</b> with a <b>25% driveway</b>. Better ground sits 656&nbsp;ft north-west,
+        facing south-west at 9%. A survey answers it.</span></div>
+      <div class="bad"><b>Open</b><span>The code basis. Researched against North Carolina; the parcel
+        is in Tennessee. Discard and redo.</span></div>
+    </div>
+  </div>
+
+  <div class="doors">
+    <a class="door" href="issue-for-review.html">
+      <b>Issue for review &rarr;</b>
+      <span>For surveyors, engineers and builders. What is decided, what is not, quantities,
+      an order-of-magnitude number, and the eight questions that unblock the rest.</span></a>
+    <a class="door" href="web/gallery.html">
+      <b>See the houses &rarr;</b>
+      <span>Built for a phone. Next for the next house, one button for its blueprint. No menu.</span></a>
+    <a class="door" href="site.html">
+      <b>The parcel &rarr;</b>
+      <span>The 29 acres with real terrain, the boundary, the road, and the house placed on it.</span></a>
+  </div>
+
+  <p class="lede" style="margin-top:26px">Below: everything in the package, indexed by walking the
+  repository rather than a hand-kept list. <b>${sheets.length} sheets</b>, ${renders.length} renders,
+  ${schemeShots.length} scheme renders, ${docs.length} written documents. A 36 &times; 24 inch sheet
+  shrunk to a phone is not a drawing you can read, so every one opens in a viewer &mdash; pinch to
+  zoom, double-tap for 100%.</p>
 </div></header>
 <nav id="toc"><div class="tocin">
   <a href="#walk">Walk</a>${grouped.map(g => `<a href="#g${g.key}">${esc(g.name.split('—')[0].trim())}</a>`).join('')}<a href="#renders">Renders</a><a href="#schemes">Schemes</a><a href="#docs">Written</a>
@@ -172,6 +223,7 @@ const html = `<!doctype html>
   <a class="big" href="web/gallery.html"><b>The houses, one at a time →</b><span>Built for a phone: Next for the next house, one button for its blueprint. No menu.</span></a>
   <a class="big" href="web/walk.html"><b>The house →</b><span>The current design, with X-ray views of the plumbing, ducts and wiring.</span></a>
   <a class="big" href="web/walk-schemes.html"><b>The alternatives →</b><span>Eleven schemes, each with jump-to points taken from its own checked plan.</span></a>
+  <a class="big" href="site.html"><b>The parcel →</b><span>The real 29 acres: Tennessee cadastral boundary, the access road, public elevation terrain, and the house placed on it.</span></a>
 </section>
 
 ${grouped.map(g => `<section id="g${g.key}">
