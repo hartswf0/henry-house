@@ -123,6 +123,52 @@ export function fitHouseAt({
   }
   return {base,rms:Math.sqrt(ss/samples.length),max};
 }
+/**
+ * WHERE THE FLOOR GOES WHEN THE HILL IS NOT THE HILL THAT WAS DRAWN.
+ *
+ * `fitHouseAt` sets the floor by best-fitting the model's ASSUMED grade — 8%
+ * along the bar, 30% across it — to the real terrain, and then site-v3 drops the
+ * model by that plane's height at the pivot. Where the ground really does fall
+ * 30%, the two agree and the lower level walks out as drawn.
+ *
+ * Where it does not, they do not. The plane still descends 12.6 ft across the
+ * bar and its terrace whatever the hill is doing, so on the flat river bench —
+ * about 1% — the LOWER LEVEL floor is placed roughly 8.6 ft beneath the ground
+ * around it. That is the whole storey: the clear height is 8.9 ft. The walkout,
+ * the lower terrace and the second egress are all drawn against a slope that is
+ * not there, and the fit metric reports a large RMS while the house is drawn
+ * buried anyway.
+ *
+ * The walkout is not a drawing decision. It is a claim about the slope. So this
+ * seats the floor where the slope actually allows — the lower terrace at natural
+ * grade — and reports what that leaves: how much fall the hill gives against the
+ * 12.6 ft the design spends, and how much earth ends up against the back wall.
+ * A caller that wants the assumed plane can still have it; this one says what it
+ * costs.
+ *
+ * All feet, all pivot-relative.
+ */
+export function seatHouse({
+  H, east, north, bearing,
+  terraceY, backY, terraceDrop, designRise,
+}) {
+  const low = localToWorld(0, terraceY, east, north, bearing);
+  const back = localToWorld(0, backY, east, north, bearing);
+  const gLow = H(low.east, low.north), gBack = H(back.east, back.north);
+  // the terrace sits terraceDrop below the lower floor, so putting the terrace
+  // at grade puts the floor that much above it
+  const ffe = gLow + terraceDrop;
+  const fall = gBack - gLow;
+  return {
+    ffe, fall, designRise,
+    crossPct: (fall / Math.abs(backY - terraceY)) * 100,
+    walksOut: fall >= designRise - 0.5,
+    shortfall: Math.max(0, designRise - fall),
+    // earth standing against the uphill wall once the floor is where it can be
+    buried: Math.max(0, gBack - ffe),
+  };
+}
+
 export function findHouseCandidates({
   H,parcelPts,roadPts,terrainMin,terrainMax,fit,modelRelativeGrade,
   step=55,separation=170,count=3,
