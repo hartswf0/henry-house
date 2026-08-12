@@ -1,8 +1,21 @@
 # HENRY HOUSE
 
-A coordinated design package for a house on steep mountain land outside Boone, North Carolina.
+A coordinated design package for a house on steep mountain land — **parcel 100 064.03, Johnson County, Tennessee**, 29.34 acres at 36°17'14.2"N 81°55'30.4"W.
 
-**Phase: Schematic Design · NOT FOR CONSTRUCTION**
+**Phase: Schematic Design · NOT FOR CONSTRUCTION · NOT FOR PERMIT**
+
+**Start here:** [`index.html`](index.html) — the whole package indexed · [`issue-for-review.html`](issue-for-review.html) — the document to send a surveyor, an engineer or a builder.
+
+---
+
+## Where this stands
+
+|  | |
+|---|---|
+| ✅ **Settled** | **The slope.** Assumed at 30%, measured at 30%. Everything downstream of it — the stepped section, the walkout level, the earthwork comparison across eleven schemes — holds. |
+| ✅ **Settled** | **The drawings.** 26 sheets, 11 plans checked by machine, and a 3D model proven to be the same building as the plan on every level. `npm test` is the proof. |
+| ⛔ **Open — blocking** | **Where on the parcel.** The named coordinate faces **north at 38%** with a **25% straight-line driveway**. Better ground sits 656 ft north-west, facing south-west at 9%. A survey answers it. See [`docs/09`](docs/09-the-parcel.md). |
+| ⛔ **Open** | **The code basis.** Researched against North Carolina; the parcel is in Tennessee. Discard and redo. |
 
 ---
 
@@ -16,7 +29,7 @@ The analogy is used as a *generator*, not as decoration. Each system's anatomica
 
 ## The design in one paragraph
 
-A long, narrow bar laid **along** the contour rather than across it — the move that minimises cut and fill on steep ground. Glass and terraces face downhill to the south-southeast, where the view and the winter sun arrive from the same direction; the uphill wall is nearly solid and holds an 11'-0" **service spine** carrying every wet room, every chase and all mechanical distribution. Three levels step with the hill: a walkout lower level the slope gives you almost for free, a main level with everything essential on one floor, and a sleeping level tucked under a 3:12 shed. A reinforced concrete **spine wall** retains the cut, carries the structure, resists lateral load and stores heat — one element doing four jobs. The roofs fall **downhill**, so no roof water is ever delivered to the uphill side where the cut and the groundwater problem already are. A 4'-0" drained **drain gap** runs the length of the uphill wall so the house never touches the cut face. The garage is **detached**, joined by a conditioned mudroom link, which removes garage-to-house fire separation and CO migration problems at the source.
+A long, narrow bar laid **along** the contour rather than across it — the move that minimises cut and fill on steep ground. Glass and terraces face downhill, *on the premise that the view and the winter sun arrive from the same direction* — true on a south slope, and **not true at the coordinate the client named**, where the land falls north. That premise is the one thing the site data broke, and it is the subject of [`docs/09`](docs/09-the-parcel.md); everything else in this paragraph survives it. The uphill wall is nearly solid and holds an 11'-0" **service spine** carrying every wet room, every chase and all mechanical distribution. Three levels step with the hill: a walkout lower level the slope gives you almost for free, a main level with everything essential on one floor, and a sleeping level tucked under a 3:12 shed. A reinforced concrete **spine wall** retains the cut, carries the structure, resists lateral load and stores heat — one element doing four jobs. The roofs fall **downhill**, so no roof water is ever delivered to the uphill side where the cut and the groundwater problem already are. A 4'-0" drained **drain gap** runs the length of the uphill wall so the house never touches the cut face. The garage is **detached**, joined by a conditioned mudroom link, which removes garage-to-house fire separation and CO migration problems at the source.
 
 ---
 
@@ -26,7 +39,7 @@ Two constraints shape what this package can and cannot claim.
 
 ### 1. No code was verified
 
-This package was produced in an environment with **no outbound web access**. Every request to a primary source returned HTTP 403 at the egress proxy — `ncosfm.gov`, `codes.iccsafe.org`, `wataugacounty.org`, the ASCE Hazard Tool and NOAA all refused.
+This package was produced in an environment with **no outbound web access**. Every request to a primary source returned HTTP 403 at the egress proxy — `ncosfm.gov`, `codes.iccsafe.org`, `wataugacounty.org` (the wrong county — see above), the ASCE Hazard Tool and NOAA all refused.
 
 So the brief's instruction to *verify current applicable codes before claiming something is buildable* **could not be satisfied**. No code text was read. Design loads — ground snow, wind exposure, seismic, frost depth, rainfall intensity — are **not established**, and they are the numbers that size the structure and the drainage.
 
