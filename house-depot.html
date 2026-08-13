@@ -7,9 +7,10 @@
 <style>
   :root{ --ink:#0c0e12; --line:#2a2f38; --chalk:#f3f4f6; --dim:#8b93a1; --amber:#e6b84d; }
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;background:var(--ink);overflow:hidden;
+  html,body{height:100%;height:100dvh;background:var(--ink);overflow:hidden;overscroll-behavior:none;
     font-family:"DIN Alternate","Bahnschrift","Arial Narrow",system-ui,sans-serif;
-    color:var(--chalk);-webkit-font-smoothing:antialiased}
+    color:var(--chalk);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
   #app{position:fixed;inset:0}
   canvas{display:block}
   .hud{position:fixed;left:0;right:0;top:0;padding:18px 22px;display:flex;align-items:baseline;gap:14px;
@@ -69,45 +70,47 @@
     .hud{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:none}
     .hud h1{font-size:11px;letter-spacing:.34em;color:rgba(243,244,246,.72)}
     .hud .sub,.kit,.hint,.tag{display:none!important}
-    .mobile-meta{display:flex;position:fixed;z-index:6;top:calc(42px + env(safe-area-inset-top,0px));
-      left:12px;right:12px;align-items:baseline;gap:9px;pointer-events:none;text-transform:uppercase}
+    .mobile-meta{display:flex;position:fixed;z-index:6;top:calc(38px + env(safe-area-inset-top,0px));
+      left:8px;right:8px;min-height:42px;align-items:baseline;gap:9px;padding:8px 4px;border:0;background:none;
+      color:inherit;text-align:left;font-family:inherit;pointer-events:auto;text-transform:uppercase;
+      -webkit-tap-highlight-color:transparent}
     .mobile-meta .count{font-size:10px;letter-spacing:.2em;color:var(--amber)}
     .mobile-meta .name{font-size:14px;letter-spacing:.16em;font-weight:800;color:#fff}
     .mobile-meta .note{margin-left:auto;max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
       font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.58)}
-    .legend{display:none;inset:0 0 calc(64px + env(safe-area-inset-bottom,0px)) 0;max-width:none;
-      padding:calc(72px + env(safe-area-inset-top,0px)) 12px 18px;border:0;background:rgba(12,14,18,.97);
-      backdrop-filter:blur(14px);overflow:auto}
+    .legend{display:none;left:8px;right:8px;top:auto;bottom:calc(66px + env(safe-area-inset-bottom,0px));
+      max-width:none;height:112px;padding:8px;border:1px solid var(--line);border-radius:10px;
+      background:rgba(12,14,18,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overflow:hidden}
     .legend.open{display:block}
-    .legend .lab{display:block;margin:0 0 14px;font-size:10px}
-    .legend ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;columns:auto}
-    .legend ol li{display:flex;min-height:76px;align-items:flex-start;justify-content:flex-end;flex-direction:column;
-      padding:9px;border:1px solid var(--line);border-radius:9px;white-space:normal;font-size:10px;line-height:1.25;
+    .legend .lab{display:none}
+    .legend ol{display:flex;gap:6px;columns:auto;overflow-x:auto;overflow-y:hidden;height:100%;
+      scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+    .legend ol li{display:flex;flex:0 0 104px;min-height:92px;align-items:flex-start;justify-content:flex-end;flex-direction:column;
+      padding:8px;border:1px solid var(--line);border-radius:8px;white-space:normal;font-size:9px;line-height:1.2;
       text-transform:uppercase;letter-spacing:.07em;background:rgba(255,255,255,.025)}
-    .legend ol li b{display:block;width:auto;margin-bottom:auto;font-size:18px;color:var(--dim)}
+    .legend ol li b{display:block;width:auto;margin-bottom:auto;font-size:16px;color:var(--dim)}
     .legend ol li.on{border-color:var(--amber);color:var(--amber)}
-    .spec{display:none;left:8px;right:8px;bottom:calc(72px + env(safe-area-inset-bottom,0px));max-width:none;
-      padding:16px;border:1px solid var(--line);border-left:2px solid var(--amber);border-radius:9px;
-      background:rgba(12,14,18,.96);backdrop-filter:blur(14px);font-size:12px;line-height:1.55}
-    .spec.open{display:block;opacity:1}
+    .spec{display:none!important}
     #touchbar{display:flex;gap:5px;padding:7px 8px calc(7px + env(safe-area-inset-bottom,0px));
       background:linear-gradient(0deg,rgba(10,13,18,.98),rgba(10,13,18,.82))}
     #touchbar button{min-height:50px;border-radius:8px;font-size:10px;letter-spacing:.1em}
     .swipe-note{display:block;position:fixed;z-index:5;left:0;right:0;bottom:calc(67px + env(safe-area-inset-bottom,0px));
       text-align:center;pointer-events:none;font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.52);
       text-transform:uppercase;transition:opacity .2s}
-    .swipe-note.used{opacity:0}
+    html.no-webgl #touchbar,html.no-webgl .legend,html.no-webgl .swipe-note{display:none!important}
   }
+  #fallback{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 </style>
 </head>
 <body>
 <div id="app"></div>
+<img id="fallback" alt="Henry House exterior" hidden>
 <div id="loading">Building house 01</div>
 <div class="hud">
   <h1>House Depot</h1>
   <span class="sub">Henry Kit · 09 Species</span>
 </div>
-<div class="mobile-meta" aria-live="polite"><span class="count" id="mobile-count">01 / 09</span><span class="name" id="mobile-name">Heart House</span><span class="note" id="mobile-note">the fire at the centre</span></div>
+<button class="mobile-meta" id="mobile-index-toggle" type="button" aria-expanded="false" aria-controls="grid" aria-live="polite"><span class="count" id="mobile-count">01 / 09</span><span class="name" id="mobile-name">Heart House</span><span class="note" id="mobile-note">tap for index</span></button>
 <div class="kit">
   <div class="lab">One kit of parts</div>
   <div class="sw"><i style="background:#3c4740"></i>siding</div>
@@ -127,20 +130,16 @@
  <kbd id="wallbtn" style="cursor:pointer;pointer-events:auto">W</kbd> walls off ·
  <kbd id="auditbtn" style="cursor:pointer;pointer-events:auto">B</kbd> buildability check</div>
 <div id="touchbar">
-  <button id="tb-index" type="button" aria-expanded="false">Index</button>
+  <button id="tb-prev" type="button">Prev</button>
   <button id="tb-roof" type="button">Roof off</button>
   <button id="tb-wall" type="button">Walls off</button>
-  <button id="tb-info" type="button" aria-expanded="false">Info</button>
+  <button id="tb-next" type="button">Next</button>
 </div>
-<div class="swipe-note" id="swipe-note">swipe houses · drag to orbit</div>
+<div class="swipe-note" id="swipe-note">drag to orbit · pinch to zoom</div>
 <div class="tag" id="tag"><span class="n"></span><span class="t"></span><span class="f"></span></div>
 
-<script type="importmap">
-{ "imports": { "three": "./web/vendor/three/three.module.js" }}
-</script>
-
 <script type="module">
-import * as THREE from 'three';
+import * as THREE from './web/vendor/three/three.module.js';
 
 /* ============================================================
    HOUSE DEPOT — nine houses, one kit of parts.
@@ -172,7 +171,18 @@ import * as THREE from 'three';
 
 const app = document.getElementById('app');
 const MOBILE = matchMedia('(pointer:coarse)').matches || innerWidth <= 820;
-const renderer = new THREE.WebGLRenderer({ antialias: !MOBILE, powerPreference: 'high-performance' });
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: !MOBILE, powerPreference: 'high-performance', alpha: false });
+} catch (error) {
+  document.documentElement.classList.add('no-webgl');
+  const fallback = document.getElementById('fallback');
+  fallback.hidden = false;
+  fallback.onload = () => document.getElementById('loading').classList.add('done');
+  fallback.src = './out/renders/ext-arrival.png';
+  document.getElementById('loading').textContent = 'Showing project image';
+  throw error;
+}
 renderer.setPixelRatio(MOBILE ? 1 : Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = !MOBILE; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -1203,6 +1213,7 @@ const houses = [], tilePos = [];
 const gridEl = document.getElementById('grid');
 const specEl = document.getElementById('spec');
 let mobileIndex = 0;
+const mobileLRU = [];
 const mobileTile = new THREE.Mesh(new THREE.BoxGeometry(GAP - 0.5, 0.12, GAP - 0.5), M.gravel);
 mobileTile.position.set(0, -0.06, 0); mobileTile.receiveShadow = !MOBILE;
 const mobileFrame = new THREE.LineSegments(
@@ -1210,8 +1221,25 @@ const mobileFrame = new THREE.LineSegments(
   new THREE.LineBasicMaterial({ color: 0x596450 }));
 mobileFrame.position.copy(mobileTile.position);
 
+function rememberHouse(i) {
+  if (!MOBILE) return;
+  const old = mobileLRU.indexOf(i);
+  if (old >= 0) mobileLRU.splice(old, 1);
+  mobileLRU.push(i);
+  while (mobileLRU.length > 3) {
+    const victim = mobileLRU.shift();
+    if (victim === mobileIndex || !houses[victim]) continue;
+    const geometries = new Set();
+    houses[victim].traverse((o) => { if (o.geometry) geometries.add(o.geometry); });
+    geometries.forEach((g) => g.dispose());
+    scene.remove(houses[victim]);
+    houses[victim] = null;
+    if (renderer.renderLists && renderer.renderLists.dispose) renderer.renderLists.dispose();
+  }
+}
+
 function ensureHouse(i) {
-  if (houses[i]) return houses[i];
+  if (houses[i]) { rememberHouse(i); return houses[i]; }
   const r = roster[i];
   CUR = r[1];
   const h = r[3]();
@@ -1222,7 +1250,7 @@ function ensureHouse(i) {
   h.rotation.y = -0.42;
   h.traverse((o) => { if (o.isMesh) { o.castShadow = !MOBILE; if (o.receiveShadow !== false) o.receiveShadow = !MOBILE; } });
   h.userData = { num: r[0], name: r[1], note: r[2], spec: r[4] };
-  scene.add(h); houses[i] = h;
+  scene.add(h); houses[i] = h; rememberHouse(i);
   return h;
 }
 
@@ -1350,7 +1378,8 @@ FIREPITS.forEach((f) => {
    ORBIT · focus · hover
    ============================================================ */
 const target = new THREE.Vector3(0, 1.6, 0), targetGoal = target.clone();
-let azim = 0.5, polar = 0.94, radius = 40, radiusGoal = 40, dragging = false, px = 0, py = 0, moved = 0, downX = 0, downY = 0;
+let azim = 0.5, azimGoal = 0.5, polar = 0.94, polarGoal = 0.94;
+let radius = 40, radiusGoal = 40, dragging = false, px = 0, py = 0, moved = 0, pinchD = 0;
 const minPolar = 0.16, maxPolar = 1.46, minR = 8, maxR = 70;
 function applyCam() {
   const sp = Math.sin(polar), cp = Math.cos(polar);
@@ -1358,35 +1387,51 @@ function applyCam() {
   camera.lookAt(target);
 }
 const el = renderer.domElement;
-el.addEventListener('pointerdown', (e) => { dragging = true; moved = 0; downX = px = e.clientX; downY = py = e.clientY; el.setPointerCapture(e.pointerId); });
-el.addEventListener('pointerup', (e) => {
-  dragging = false;
-  const dx = e.clientX - downX, dy = e.clientY - downY;
-  if (MOBILE && e.pointerType !== 'mouse' && Math.abs(dx) > 64 && Math.abs(dx) > Math.abs(dy) * 1.25) {
-    focusOn((mobileIndex + (dx < 0 ? 1 : -1) + roster.length) % roster.length);
-    document.getElementById('swipe-note').classList.add('used');
-  } else if (moved < 5) tryPick(e);
+const pointers = new Map();
+const pointerDistance = () => {
+  const p = [...pointers.values()];
+  return p.length < 2 ? 0 : Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+};
+el.addEventListener('pointerdown', (e) => {
+  pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  try { el.setPointerCapture(e.pointerId); } catch (_) {}
+  if (pointers.size === 1) {
+    dragging = true; moved = 0; px = e.clientX; py = e.clientY;
+  } else {
+    dragging = false; pinchD = pointerDistance();
+  }
 });
-el.addEventListener('pointerleave', () => { dragging = false; });
 el.addEventListener('pointermove', (e) => {
-  if (dragging) {
-    moved += Math.abs(e.movementX) + Math.abs(e.movementY);
-    azim -= (e.clientX - px) * 0.005;
-    polar = Math.min(maxPolar, Math.max(minPolar, polar - (e.clientY - py) * 0.005));
+  if (pointers.has(e.pointerId)) pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  if (pointers.size >= 2) {
+    const d = pointerDistance();
+    if (pinchD) radiusGoal = Math.min(maxR, Math.max(minR, radiusGoal + (pinchD - d) * 0.045));
+    pinchD = d; e.preventDefault(); return;
+  }
+  if (dragging && pointers.size === 1) {
+    const dx = e.clientX - px, dy = e.clientY - py;
+    moved += Math.abs(dx) + Math.abs(dy);
+    azimGoal -= dx * (MOBILE ? 0.0042 : 0.005);
+    polarGoal = Math.min(maxPolar, Math.max(minPolar, polarGoal - dy * (MOBILE ? 0.0036 : 0.005)));
     px = e.clientX; py = e.clientY;
+    e.preventDefault();
   }
-  updateHover(e);
+  if (!MOBILE) updateHover(e);
 });
+function endPointer(e) {
+  const wasSingle = pointers.size === 1 && pointers.has(e.pointerId);
+  pointers.delete(e.pointerId);
+  pinchD = pointers.size > 1 ? pointerDistance() : 0;
+  if (pointers.size === 1) {
+    const p = [...pointers.values()][0]; px = p.x; py = p.y; dragging = true; moved = 6;
+  } else dragging = false;
+  if (wasSingle && moved < 5) tryPick(e);
+}
+el.addEventListener('pointerup', endPointer);
+el.addEventListener('pointercancel', endPointer);
 el.addEventListener('wheel', (e) => { e.preventDefault(); radiusGoal = Math.min(maxR, Math.max(minR, radiusGoal + e.deltaY * 0.016)); }, { passive: false });
-let pinchD = 0;
-el.addEventListener('touchmove', (e) => {
-  if (e.touches.length === 2) {
-    const dx = e.touches[0].clientX - e.touches[1].clientX, dy = e.touches[0].clientY - e.touches[1].clientY, d = Math.hypot(dx, dy);
-    if (pinchD) radiusGoal = Math.min(maxR, Math.max(minR, radiusGoal + (pinchD - d) * 0.05));
-    pinchD = d; e.preventDefault();
-  }
-}, { passive: false });
-el.addEventListener('touchend', () => { pinchD = 0; });
+el.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+el.addEventListener('contextmenu', (e) => { if (MOBILE) e.preventDefault(); });
 function focusOn(i) {
   if (MOBILE) {
     mobileIndex = (i + roster.length) % roster.length;
@@ -1408,16 +1453,15 @@ function focusOn(i) {
     document.getElementById('mobile-note').textContent = h.userData.note;
     [...gridEl.children].forEach((li, j) => li.classList.toggle('on', j === i));
     document.querySelector('.legend').classList.remove('open');
-    document.getElementById('tb-index').classList.remove('on');
-    document.getElementById('tb-index').setAttribute('aria-expanded', 'false');
+    document.getElementById('mobile-index-toggle').classList.remove('on');
+    document.getElementById('mobile-index-toggle').setAttribute('aria-expanded', 'false');
   }
 }
 function unfocus() {
   if (MOBILE) {
     document.querySelector('.legend').classList.remove('open');
-    specEl.classList.remove('open');
-    document.getElementById('tb-index').classList.remove('on');
-    document.getElementById('tb-info').classList.remove('on');
+    document.getElementById('mobile-index-toggle').classList.remove('on');
+    document.getElementById('mobile-index-toggle').setAttribute('aria-expanded', 'false');
     return;
   }
   targetGoal.set(0, 1.6, 0); radiusGoal = 40; specEl.style.opacity = '0';
@@ -1449,29 +1493,28 @@ function toggleWalls() {
 { const b = document.getElementById('roofbtn'); if (b) b.addEventListener('click', toggleRoofs); }
 { const b = document.getElementById('wallbtn'); if (b) b.addEventListener('click', toggleWalls); }
 { const b = document.getElementById('auditbtn'); if (b) b.addEventListener('click', runAudit); }
-/* On a phone, four thumb controls replace every persistent text panel. */
+/* On a phone, selection is deliberate: PREV/NEXT only. Drag always orbits. */
 {
-  const tb = { index: document.getElementById('tb-index'), roof: document.getElementById('tb-roof'), wall: document.getElementById('tb-wall'), info: document.getElementById('tb-info') };
+  const tb = { prev: document.getElementById('tb-prev'), roof: document.getElementById('tb-roof'), wall: document.getElementById('tb-wall'), next: document.getElementById('tb-next') };
+  const indexToggle = document.getElementById('mobile-index-toggle');
   const sync = () => {
     tb.roof && tb.roof.classList.toggle('on', !roofsOn);
     tb.wall && tb.wall.classList.toggle('on', !wallsOn);
     if (tb.roof) tb.roof.textContent = roofsOn ? 'Roof off' : 'Roof on';
     if (tb.wall) tb.wall.textContent = wallsOn ? 'Walls off' : 'Walls on';
   };
-  tb.index && tb.index.addEventListener('click', () => {
+  indexToggle && indexToggle.addEventListener('click', () => {
     const panel = document.querySelector('.legend'), open = !panel.classList.contains('open');
-    panel.classList.toggle('open', open); specEl.classList.remove('open');
-    tb.index.classList.toggle('on', open); tb.info.classList.remove('on');
-    tb.index.setAttribute('aria-expanded', String(open)); tb.info.setAttribute('aria-expanded', 'false');
+    panel.classList.toggle('open', open);
+    indexToggle.classList.toggle('on', open);
+    indexToggle.setAttribute('aria-expanded', String(open));
+    const active = gridEl.children[mobileIndex];
+    if (open && active && active.scrollIntoView) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   });
+  tb.prev && tb.prev.addEventListener('click', () => focusOn((mobileIndex - 1 + roster.length) % roster.length));
   tb.roof && tb.roof.addEventListener('click', () => { toggleRoofs(); sync(); });
   tb.wall && tb.wall.addEventListener('click', () => { toggleWalls(); sync(); });
-  tb.info && tb.info.addEventListener('click', () => {
-    const open = !specEl.classList.contains('open');
-    specEl.classList.toggle('open', open); document.querySelector('.legend').classList.remove('open');
-    tb.info.classList.toggle('on', open); tb.index.classList.remove('on');
-    tb.info.setAttribute('aria-expanded', String(open)); tb.index.setAttribute('aria-expanded', 'false');
-  });
+  tb.next && tb.next.addEventListener('click', () => focusOn((mobileIndex + 1) % roster.length));
   sync();
 }
 
@@ -1500,10 +1543,21 @@ function tryPick(e) {
   focusOn(houses.indexOf(h));
 }
 
-addEventListener('resize', () => {
+function resizeRenderer() {
   camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setPixelRatio(MOBILE ? 1 : Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
+}
+addEventListener('resize', resizeRenderer, { passive: true });
+addEventListener('orientationchange', resizeRenderer, { passive: true });
+addEventListener('pageshow', resizeRenderer, { passive: true });
+if (window.visualViewport) window.visualViewport.addEventListener('resize', resizeRenderer, { passive: true });
+el.addEventListener('webglcontextlost', (e) => {
+  e.preventDefault();
+  const loading = document.getElementById('loading');
+  loading.textContent = 'Restoring 3D'; loading.classList.remove('done');
 });
+el.addEventListener('webglcontextrestored', () => document.getElementById('loading').classList.add('done'));
 
 (function loop(now) {
   requestAnimationFrame(loop);
@@ -1511,6 +1565,8 @@ addEventListener('resize', () => {
   if (MOBILE && now - (loop.last || 0) < 33) return;
   loop.last = now;
   target.lerp(targetGoal, 0.08);
+  azim += (azimGoal - azim) * 0.2;
+  polar += (polarGoal - polar) * 0.2;
   radius += (radiusGoal - radius) * 0.08;
   applyCam();
   renderer.render(scene, camera);
