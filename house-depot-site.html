@@ -33,7 +33,7 @@
 <div id="app"></div>
 <div class="hud">
   <h1>Depot at the Site</h1>
-  <span class="sub">TN-JOHNSON-100-064.03 · real terrain · ten houses</span>
+  <span class="sub">TN-JOHNSON-100-064.03 · fetched elevation + imagery · ten houses</span>
   <a href="site.html">← the site fit</a>
   <a href="house-depot.html">the depot →</a>
 </div>
@@ -83,6 +83,92 @@ key.position.set(320, 520, 260); key.castShadow = true; key.shadow.mapSize.set(2
 { const d = 320, c = key.shadow.camera; c.left = -d; c.right = d; c.top = d; c.bottom = -d; c.near = 10; c.far = 1600;
   key.shadow.bias = -0.0006; }
 scene.add(key);
+
+/* ── THE REAL LANDSCAPE ────────────────────────────────────────────────────
+   Not a modelled hill: the actual ground. Terrarium elevation tiles (AWS
+   open data) give the height, Esri World Imagery gives the surface, both
+   pulled for a window centred on the parcel anchor and rebuilt in FEET so
+   the houses — which are written in feet — sit on it without conversion.
+   ────────────────────────────────────────────────────────────────────────── */
+const ANCHOR = { lat: 36.28727777777778, lon: -81.92511111111111 };
+const FT_PER_M = 3.280839895;
+const t2 = {
+  x: (lon, z) => (lon + 180) / 360 * Math.pow(2, z),
+  y: (lat, z) => { const r = lat * Math.PI / 180;
+    return (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * Math.pow(2, z); },
+};
+const img = (src) => new Promise((res, rej) => {
+  const im = new Image(); im.crossOrigin = 'anonymous';
+  im.onload = () => res(im); im.onerror = rej; im.src = src;
+});
+async function realGround(halfM) {
+  const { lat, lon } = ANCHOR;
+  const mLat = 111320, mLon = 111320 * Math.cos(lat * Math.PI / 180);
+  const ez = 15;
+  const ex0 = Math.floor(t2.x(lon - halfM / mLon, ez)), ex1 = Math.floor(t2.x(lon + halfM / mLon, ez));
+  const ey0 = Math.floor(t2.y(lat + halfM / mLat, ez)), ey1 = Math.floor(t2.y(lat - halfM / mLat, ez));
+  const ec = document.createElement('canvas');
+  ec.width = (ex1 - ex0 + 1) * 256; ec.height = (ey1 - ey0 + 1) * 256;
+  const eq = ec.getContext('2d', { willReadFrequently: true });
+  const jobs = [];
+  for (let j = ey0; j <= ey1; j++) for (let i = ex0; i <= ex1; i++) {
+    jobs.push(img('https://s3.amazonaws.com/elevation-tiles-prod/terrarium/' + ez + '/' + i + '/' + j + '.png')
+      .then(((ii, jj) => (im) => eq.drawImage(im, (ii - ex0) * 256, (jj - ey0) * 256))(i, j)).catch(() => {}));
+  }
+  await Promise.all(jobs);
+  const ed = eq.getImageData(0, 0, ec.width, ec.height).data;
+  const px = (a, b) => { const k = (Math.max(0, Math.min(ec.height - 1, b)) * ec.width
+    + Math.max(0, Math.min(ec.width - 1, a))) * 4;
+    return ed[k] * 256 + ed[k + 1] + ed[k + 2] / 256 - 32768; };
+  const elevM = (la, lo) => {                       // bilinear — nearest gives terraces
+    const fx = (t2.x(lo, ez) - ex0) * 256 - 0.5, fy = (t2.y(la, ez) - ey0) * 256 - 0.5;
+    const ix = Math.floor(fx), iy = Math.floor(fy), tx = fx - ix, ty = fy - iy;
+    const a = px(ix, iy), b = px(ix + 1, iy), c = px(ix, iy + 1), d = px(ix + 1, iy + 1);
+    return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+  };
+  // the grid, in FEET, x = east, y = north, centred on the anchor
+  const N = 193, halfFt = halfM * FT_PER_M;
+  const H = new Float32Array(N * N);
+  const z0 = elevM(lat, lon) * FT_PER_M;
+  for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+    const eFt = -halfFt + 2 * halfFt * i / (N - 1), nFt = halfFt - 2 * halfFt * j / (N - 1);
+    const la = lat + (nFt / FT_PER_M) / mLat, lo = lon + (eFt / FT_PER_M) / mLon;
+    H[j * N + i] = elevM(la, lo) * FT_PER_M - z0;   // datum: the anchor is zero
+  }
+  const zAt = (xFt, yFt) => {                       // bilinear again, for seating houses
+    const u = (xFt + halfFt) / (2 * halfFt) * (N - 1), v = (halfFt - yFt) / (2 * halfFt) * (N - 1);
+    const i = Math.max(0, Math.min(N - 2, Math.floor(u))), j = Math.max(0, Math.min(N - 2, Math.floor(v)));
+    const tu = Math.max(0, Math.min(1, u - i)), tv = Math.max(0, Math.min(1, v - j));
+    const a = H[j * N + i], b = H[j * N + i + 1], c = H[(j + 1) * N + i], d = H[(j + 1) * N + i + 1];
+    return (a * (1 - tu) + b * tu) * (1 - tv) + (c * (1 - tu) + d * tu) * tv;
+  };
+  // the surface: Esri World Imagery over the same window
+  const iz = 17;
+  const ix0 = Math.floor(t2.x(lon - halfM / mLon, iz)), ix1 = Math.floor(t2.x(lon + halfM / mLon, iz));
+  const iy0 = Math.floor(t2.y(lat + halfM / mLat, iz)), iy1 = Math.floor(t2.y(lat - halfM / mLat, iz));
+  const cc = document.createElement('canvas');
+  cc.width = (ix1 - ix0 + 1) * 256; cc.height = (iy1 - iy0 + 1) * 256;
+  const cq = cc.getContext('2d');
+  const ij = [];
+  for (let j = iy0; j <= iy1; j++) for (let i = ix0; i <= ix1; i++) {
+    ij.push(img('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/' + iz + '/' + j + '/' + i)
+      .then(((ii, jj) => (im) => cq.drawImage(im, (ii - ix0) * 256, (jj - iy0) * 256))(i, j)).catch(() => {}));
+  }
+  await Promise.all(ij);
+  const sx0 = (t2.x(lon - halfM / mLon, iz) - ix0) * 256, sx1 = (t2.x(lon + halfM / mLon, iz) - ix0) * 256;
+  const sy0 = (t2.y(lat + halfM / mLat, iz) - iy0) * 256, sy1 = (t2.y(lat - halfM / mLat, iz) - iy0) * 256;
+  const oc = document.createElement('canvas'); oc.width = oc.height = 2048;
+  oc.getContext('2d').drawImage(cc, sx0, sy0, sx1 - sx0, sy1 - sy0, 0, 0, 2048, 2048);
+  const tex = new THREE.CanvasTexture(oc); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  const geo = new THREE.PlaneGeometry(2 * halfFt, 2 * halfFt, N - 1, N - 1);
+  geo.rotateX(-Math.PI / 2);
+  const pos = geo.attributes.position;
+  for (let k = 0; k < pos.count; k++) pos.setY(k, zAt(pos.getX(k), -pos.getZ(k)));
+  geo.computeVertexNormals();
+  const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.96 }));
+  mesh.receiveShadow = true;
+  return { mesh, zAt, reliefFt: Math.max(...H) - Math.min(...H) };
+}
 
 /* ── their scene module, with its privates exported ───────────────────────── */
 async function siteModule() {
@@ -150,9 +236,17 @@ function setHouse(i, btns) {
   try {
     status('reading the mountain from the repo…');
     const site = await siteModule();
-    siteZ = site.siteZ;
-    scene.add(site.terrain);
     henryBuild = site.house;
+    status('fetching the real ground — elevation + imagery…');
+    try {
+      const G = await realGround(300);              // ±300 m ≈ ±985 ft of actual mountain
+      siteZ = G.zAt;
+      scene.add(G.mesh);
+      status('real ground · ' + Math.round(G.reliefFt) + ' ft of relief across the window');
+    } catch (e) {
+      siteZ = site.siteZ; scene.add(site.terrain);  // the repo's modelled hill, if the tiles refuse
+      status('tiles unavailable — modelled terrain (' + e.message.slice(0, 30) + ')');
+    }
     status('reading the depot…');
     const kit = await depotKit();
     roster = kit.roster;
