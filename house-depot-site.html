@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HENRY HOUSE · Depot at the Site</title>
+<style>
+  :root{ --ink:#0c0e12; --line:#2a2f38; --chalk:#f3f4f6; --dim:#8b93a1; --amber:#e6b84d; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#dfe6ee;overflow:hidden;
+    font-family:"DIN Alternate","Bahnschrift","Arial Narrow",system-ui,sans-serif;color:#1a2129}
+  #app{position:fixed;inset:0}
+  canvas{display:block}
+  .hud{position:fixed;left:0;right:0;top:0;padding:14px 18px;display:flex;align-items:baseline;gap:12px;
+    pointer-events:none;background:linear-gradient(180deg,rgba(20,26,34,.78),rgba(20,26,34,0));z-index:5;color:#f3f4f6}
+  .hud h1{font-size:clamp(13px,1.8vw,19px);letter-spacing:.4em;font-weight:700;text-transform:uppercase}
+  .hud .sub{font-size:10px;letter-spacing:.3em;color:#aeb6c2;text-transform:uppercase}
+  .hud a{pointer-events:auto;color:var(--amber);font-size:10px;letter-spacing:.24em;text-decoration:none;text-transform:uppercase}
+  .roster{position:fixed;left:14px;top:64px;z-index:5;border:1px solid var(--line);
+    background:rgba(16,18,24,.88);backdrop-filter:blur(4px);padding:10px 12px;color:#e8edf2;max-width:210px}
+  .roster .lab{font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+  .roster button{display:block;width:100%;text-align:left;background:none;border:0;color:#c3cad4;
+    font:600 11.5px/1.9 inherit;letter-spacing:.05em;cursor:pointer;padding:1px 4px;border-radius:3px}
+  .roster button:hover{color:#fff;background:rgba(255,255,255,.06)}
+  .roster button.on{color:#10191b;background:var(--amber);font-weight:800}
+  .hint{position:fixed;left:16px;bottom:14px;z-index:5;font-size:9.5px;letter-spacing:.24em;
+    color:#5c6672;text-transform:uppercase;line-height:1.8}
+  #status{position:fixed;right:16px;bottom:14px;z-index:5;font-size:10px;letter-spacing:.2em;
+    color:#5c6672;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="hud">
+  <h1>Depot at the Site</h1>
+  <span class="sub">TN-JOHNSON-100-064.03 · real terrain · ten houses</span>
+  <a href="site.html">← the site fit</a>
+  <a href="house-depot.html">the depot →</a>
+</div>
+<div class="roster"><div class="lab">Set on the land</div><div id="list"></div></div>
+<div class="hint">drag orbit · wheel zoom</div>
+<div id="status">loading the mountain…</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://hartswf0.github.io/henry-house/web/vendor/three/three.module.js",
+  "three/addons/": "https://hartswf0.github.io/henry-house/web/vendor/three/addons/"
+}}
+</script>
+
+<script type="module">
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEPOT AT THE SITE — every house, on the actual parcel.
+
+   Nothing is copied here. The terrain, the Henry House and its materials are
+   the repo's own scene.mjs, blob-imported with only its relative paths made
+   absolute; the nine species are the depot page's own builders, cut between
+   its KIT markers. Both worlds are written in FEET with the same axis
+   convention, so a house from either source sits on siteZ() unchanged.
+   ═══════════════════════════════════════════════════════════════════════════ */
+import * as THREE from 'three';
+
+const BASE = 'https://hartswf0.github.io/henry-house/';
+const status = (t) => { document.getElementById('status').textContent = t; };
+
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xd7e0ea);
+scene.fog = new THREE.Fog(0xd7e0ea, 700, 2400);
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 1, 6000);
+
+scene.add(new THREE.HemisphereLight(0xdde7f2, 0x4a4438, 0.75));
+const key = new THREE.DirectionalLight(0xfff2dd, 1.9);
+key.position.set(320, 520, 260); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+{ const d = 320, c = key.shadow.camera; c.left = -d; c.right = d; c.top = d; c.bottom = -d; c.near = 10; c.far = 1600;
+  key.shadow.bias = -0.0006; }
+scene.add(key);
+
+/* ── their scene module, with its privates exported ───────────────────────── */
+async function siteModule() {
+  const entry = BASE + 'tools/render/lib/scene.mjs';
+  const r = await fetch(entry);
+  if (!r.ok) throw new Error('scene.mjs http ' + r.status);
+  let src = await r.text();
+  src = src.replace(/(\bfrom\s*['"])(\.[^'"]*)(['"])/g, (m0, a, p, c) => a + new URL(p, entry).href + c);
+  const mm = src.match(/\n  const M = \{[\s\S]*?\n  \};/);
+  if (!mm) throw new Error('their material block moved');
+  src += '\nexport function __site(){\n  const interior = false;\n' + mm[0]
+    + '\n  try { _M = M; } catch(_){}\n'
+    + '  return { terrain: buildTerrain(false), house: () => { const g = buildHouse(M); g.add(buildFrames(M)); return g; }, siteZ };\n}\n';
+  const url = URL.createObjectURL(new Blob([src], { type: 'text/javascript' }));
+  try { return (await import(url)).__site(); } finally { setTimeout(() => URL.revokeObjectURL(url), 30000); }
+}
+/* ── the depot kit, cut between its markers ───────────────────────────────── */
+async function depotKit() {
+  const r = await fetch(BASE + 'house-depot.html');
+  if (!r.ok) throw new Error('depot http ' + r.status);
+  const src = await r.text();
+  const m0 = src.indexOf('KIT START'), m1 = src.indexOf('KIT END');
+  if (m0 < 0 || m1 < 0) throw new Error('kit markers moved');
+  let kit = src.slice(src.indexOf('*/', m0) + 2, src.lastIndexOf('/*', m1));
+  kit = "import * as THREE from 'three';\nconst envMap = null;\nlet scene = null;\n" + kit
+    + '\nexport const KIT = { roster, setCUR: (n) => { CUR = n; } };\n';
+  const url = URL.createObjectURL(new Blob([kit], { type: 'text/javascript' }));
+  try { return (await import(url)).KIT; } finally { setTimeout(() => URL.revokeObjectURL(url), 30000); }
+}
+
+/* ── the yard ─────────────────────────────────────────────────────────────── */
+const AZ = 70;                                  // the drawn siting azimuth
+const houseRoot = new THREE.Group(); scene.add(houseRoot);
+let siteZ = () => 0;
+let henryBuild = null, roster = null;
+
+function setHouse(i, btns) {
+  houseRoot.clear();
+  let inner, name;
+  if (i === 0) {
+    inner = henryBuild(); name = 'HENRY HOUSE';
+    inner.position.set(-60, 0, 14.5);           // their pivot (60, 14.5) onto the anchor
+  } else {
+    const R = roster[i - 1]; name = R[1];
+    inner = R[3]();
+    const bb = new THREE.Box3().setFromObject(inner), c = bb.getCenter(new THREE.Vector3());
+    inner.position.set(-c.x, -bb.min.y, -c.z);  // footprint centre on the anchor, base at 0
+    const sprites = [];                          // never remove DURING traverse — it mutates the list under you
+    inner.traverse((o) => { if (o.isSprite) sprites.push(o); });
+    sprites.forEach((o) => o.parent && o.parent.remove(o));
+  }
+  const root = new THREE.Group();
+  root.rotation.y = (90 - AZ) * Math.PI / 180;
+  root.add(inner);
+  root.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(root);
+  root.position.y = siteZ(0, 0) - (i === 0 ? bb.min.y - 1.5 : bb.min.y - 1.2);   // foundations bite the slope
+  houseRoot.add(root);
+  root.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  btns.forEach((b, j) => b.classList.toggle('on', j === i));
+  status(name + ' · az ' + AZ + '° · on the real ground');
+}
+
+(async () => {
+  try {
+    status('reading the mountain from the repo…');
+    const site = await siteModule();
+    siteZ = site.siteZ;
+    scene.add(site.terrain);
+    henryBuild = site.house;
+    status('reading the depot…');
+    const kit = await depotKit();
+    roster = kit.roster;
+    const list = document.getElementById('list'), btns = [];
+    ['Henry House', ...roster.map((r) => r[1])].forEach((nm, i) => {
+      const b = document.createElement('button');
+      b.textContent = (i === 0 ? '◆ ' : i + ' · ') + nm;
+      b.addEventListener('click', () => setHouse(i, btns));
+      list.appendChild(b); btns.push(b);
+    });
+    setHouse(0, btns);
+  } catch (e) { status('failed: ' + e.message); console.error(e); }
+})();
+
+/* ── orbit ────────────────────────────────────────────────────────────────── */
+const target = new THREE.Vector3(0, 24, 0);
+let azim = 2.6, polar = 1.12, radius = 260, radiusGoal = 260, dragging = false, px = 0, py = 0;
+function applyCam() {
+  const sp = Math.sin(polar), cp = Math.cos(polar);
+  camera.position.set(target.x + radius * sp * Math.sin(azim), target.y + radius * cp, target.z + radius * sp * Math.cos(azim));
+  camera.lookAt(target);
+}
+const el = renderer.domElement;
+el.addEventListener('pointerdown', (e) => { dragging = true; px = e.clientX; py = e.clientY; el.setPointerCapture(e.pointerId); });
+el.addEventListener('pointerup', () => { dragging = false; });
+el.addEventListener('pointermove', (e) => {
+  if (!dragging) return;
+  azim -= (e.clientX - px) * 0.005;
+  polar = Math.min(1.5, Math.max(0.15, polar - (e.clientY - py) * 0.005));
+  px = e.clientX; py = e.clientY;
+});
+el.addEventListener('wheel', (e) => { e.preventDefault(); radiusGoal = Math.min(1400, Math.max(60, radiusGoal + e.deltaY * 0.5)); }, { passive: false });
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+(function loop() {
+  requestAnimationFrame(loop);
+  radius += (radiusGoal - radius) * 0.08;
+  applyCam();
+  renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>
