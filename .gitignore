@@ -5,3 +5,7 @@ node_modules/
 # working frames from tools/render/shoot-one.mjs — low sample counts, rendered
 # to answer "did that change do what I think", never the published set
 out/preview/
+
+# generated builder traces — regenerate with tools/export-traces.mjs
+out/traces/
+henry-house-traces.zip
