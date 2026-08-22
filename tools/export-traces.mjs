@@ -32,7 +32,7 @@
 //
 //   node tools/export-traces.mjs            → out/traces/*.json + index.json
 //   node tools/export-traces.mjs --zip      → also henry-house-traces.zip
-import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { SCHEMES, schemeById, metrics } from '../model/schemes.mjs';
 import { PLANS, planFor } from '../model/scheme-plans.mjs';
@@ -235,6 +235,20 @@ for (const scheme of SCHEMES) {
 }
 function doc_ref(sheet) { return sheet ? sheet.replace(/\.png$/, '') : 'no sheet'; }
 
+// the two whole-project traces, if they have been generated
+for (const [file, note, intent] of [
+  ['henry-house-transcript.json', 'the actual session, verbatim', 'Henry House — the conversation that designed it'],
+  ['henry-house-process.json', 'the commit history, with the pictures as they were', 'Henry House — the build process'],
+]) {
+  if (!existsSync(`${OUT}/${file}`)) continue;
+  const d = JSON.parse(readFileSync(`${OUT}/${file}`, 'utf8'));
+  index.unshift({
+    file, note, builder: 'human', intent, model: d.engine,
+    reference_name: d.who, exported_at: ISO, cycles: d.turns.length,
+    parts: 0, scores: [], bytes: statSync(`${OUT}/${file}`).size,
+  });
+}
+
 writeFileSync(`${OUT}/index.json`, JSON.stringify({
   generators: { operative: 'henry-house tools/export-traces.mjs' },
   formats: { operative: 'OPERATIVE_BUILDER_TRACE_V1' },
@@ -253,4 +267,6 @@ if (process.argv.includes('--zip')) {
   console.log(`  ✓ ${zip}  (${(statSync(zip).size / 1024 / 1024).toFixed(1)} MB)`);
 }
 console.log('='.repeat(74));
-console.log(`  ${index.length} houses · open one at a time in operative-builder-trace.html`);
+const houses = index.filter((i) => i.builder === 'operative').length;
+console.log(`  ${houses} houses + ${index.length - houses} whole-project traces · ` +
+            `open one at a time in operative-builder-trace.html`);
