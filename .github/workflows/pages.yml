@@ -1,0 +1,63 @@
+# PUBLISH THE PACKAGE.
+#
+# Everything a person is meant to look at is a static file at the root of this
+# repository — index.html, issue-for-review.html, trace.html, site.html, the
+# drawings under out/, the traces under assets/traces/ — so Pages serves the
+# repository as it stands. There is no build step on purpose: the generators
+# run here and their output is committed, which is what lets the drawings, the
+# renders and the issue package be checked against each other before anyone
+# sees them.
+#
+# BRANCHES. This repository's default branch is the working branch, and main
+# does not exist yet. Both are listed so the site keeps publishing if the work
+# is later merged to main; the concurrency group means the last push wins
+# rather than two runs fighting over one environment.
+#
+# SIZE. About 142 MB is tracked, 130 MB of it renders and rasterised sheets.
+# Well inside the 1 GB Pages limit, but it does mean every deploy uploads that
+# much — if it becomes slow, the thing to drop is out/schemes (78 MB of 1700px
+# PNGs), not the drawings.
+name: Pages
+
+on:
+  push:
+    branches:
+      - claude/henry-house-mountain-wsydn3
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # The pages that matter must exist before anything is published. This is
+      # not the full test suite — that needs a browser and several minutes —
+      # but a deploy that 404s its own front door is worth catching here.
+      - name: The front door and its neighbours exist
+        run: |
+          for f in index.html issue-for-review.html trace.html site.html \
+                   assets/traces/index.json out/drawings/X-201-s0-spine-plans.svg; do
+            test -f "$f" || { echo "missing: $f"; exit 1; }
+          done
+          echo "$(git ls-files | wc -l) files tracked"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - id: deployment
+        uses: actions/deploy-pages@v4
