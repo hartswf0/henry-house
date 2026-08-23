@@ -11,7 +11,17 @@
 // of it at the time.
 //
 //   node tools/trace/world-at.mjs <model-dir>
-//     → {schemeId: {parts, flags, name, tag}} on stdout
+//     → {schemeId: {parts, rooms, roofs, flags, name, tag}} on stdout
+//
+// TWO GEOMETRIES COME OUT, because two readers want different things.
+//
+//   parts   OPERATIVE_BUILDER_TRACE_V1 — metres, y up, flat roof slabs. That
+//           schema's part carries rotation_y and nothing else, so a 3:12 pitch
+//           cannot be stated in it and is not faked.
+//   rooms   RURAL_STUDIO_TRACE_V1 — feet, the drawing's own units, with the room
+//           +roofs  NAME and USE kept and the roof's real pitch and base. Our own
+//           reader builds gables from these, because this project's roofs are
+//           pitched and a slab is a lie about the building.
 //
 // The flags travel with the parts on purpose. They are the machine critic's
 // findings AS THEY STOOD at that commit, baked into scheme-plans.mjs at the
@@ -69,12 +79,48 @@ function worldFor(scheme) {
   return parts;
 }
 
+// The same house in the units it was drawn in, with everything the operative
+// schema has to drop on the way through it.
+function nativeFor(scheme) {
+  const plan = planFor(scheme.id);
+  const rooms = [];
+  for (const lv of plan?.levels ?? []) {
+    for (const r of lv.rooms ?? []) {
+      rooms.push({
+        id: `${lv.name ?? 'L'}_${r.name}`.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+        name: r.name, use: r.use, level: lv.name ?? 'L', ffe: lv.ffe,
+        x0: r.x0, y0: r.y0, w: r.w, d: r.d, h: 8.8,
+      });
+    }
+  }
+  // WHERE THE ROOF ACTUALLY STARTS. schemes.mjs derives this — the underside at
+  // the low edge, taken from the highest top plate the plane really covers — and
+  // it exists because taking zLow literally once put the Spine's roof twelve feet
+  // up through its own volume. Use the model's answer; approximating it here
+  // would be the same mistake in a second place, which is how the section and the
+  // 3D came to disagree in the first place. The fallback is for the early
+  // commits, where the function had not been written yet.
+  const top = Math.max(0, ...(plan?.levels ?? []).map((l) => l.ffe));
+  const roofs = (scheme.roofs ?? []).map((r) => {
+    let base = 10.5 + top;
+    try { if (schemes.roofBase) base = schemes.roofBase(scheme, r) / 12; } catch { /* older model */ }
+    return {
+      id: `roof_${r.id}`.toLowerCase(),
+      x0: r.x0 / 12, x1: r.x1 / 12, y0: r.y0 / 12, y1: r.y1 / 12,
+      pitch: r.pitch, base,
+    };
+  });
+  return { rooms, roofs };
+}
+
 const out = {};
 for (const s of schemes.SCHEMES ?? []) {
-  let parts = [];
+  let parts = [], native = { rooms: [], roofs: [] };
   try { parts = worldFor(s); } catch { /* the model of the day would not build it */ }
+  try { native = nativeFor(s); } catch { /* likewise */ }
   out[s.id] = {
-    parts, flags: planFor(s.id)?.flags ?? [],
+    parts, rooms: native.rooms, roofs: native.roofs,
+    flags: planFor(s.id)?.flags ?? [],
     name: s.name ?? s.id, tag: s.tag ?? '',
   };
 }

@@ -82,7 +82,13 @@ say(`  ${COMMITS.length} commits`);
 // of the PROCESS and stays a turn in the process trace. A merge commit changes
 // no files at all and so is a link in nothing, which is right: it is
 // bookkeeping, not an argument about a house.
-const READS_THE_WORK = /^(tools\/(trace\/|export-)|corpus\/|\.github\/|\.gitignore$|package(-lock)?\.json$|README\.md$)/;
+const READS_THE_WORK = new RegExp([
+  'tools/(trace/|export-)',      // the exporters and the vendored player
+  'corpus/',                     // the words somebody collected, not a design move
+  'out/(chains|henry-house-chains)/', 'out/henry-house-chains\\.zip$',
+  'out/traces/', 'henry-house-traces\\.zip$',   // this export's own output
+  '\\.github/', '\\.gitignore$', 'package(-lock)?\\.json$', 'README\\.md$',
+].map((r) => `^${r}`).join('|'));
 const attributed = (c, s) => {
   if (!c.files.some((f) => !READS_THE_WORK.test(f))) return false;
   const word = s.id.split('-')[1];
@@ -187,7 +193,8 @@ function opsBetween(before, after) {
 }
 
 // ── one house ───────────────────────────────────────────────────────────────
-const index = [];
+const index = [];        // what the depot's reader picks from
+const nativeIndex = [];  // what ours does
 for (const scheme of SCHEMES) {
   const links = CHAIN.get(scheme.id);
   const sheet = sheetPath(scheme.id);
@@ -201,6 +208,7 @@ for (const scheme of SCHEMES) {
     && git(['show', `${c.sha}:model/scheme-critiques.mjs`]).includes(`'${scheme.id}'`));
 
   const history = [], builder_log = [], critic_log = [], events = [];
+  const native = [];                               // the same chain, in feet, with pitch
   let prevWorld = [], stand = 0, lastScore = 0, lastSay = '';
 
   builder_log.push({ role: 'user', ts: links[0]?.ts ?? ISO, cls: '',
@@ -286,6 +294,19 @@ for (const scheme of SCHEMES) {
     events.push({ type: 'critique', ts: c.ts, cycle, worldVersion: cycle,
       data: { view: k === 0 ? 'PLAN' : 'FRONT', score } });
 
+    native.push({
+      n: cycle, commit: c.short, ts: c.ts,
+      ask: { text: said ? said.prompt : c.subject, verbatim: Boolean(said),
+             kind: said?.kind ?? null, images: said?.images ?? [],
+             imageNames: said?.imageNames ?? [] },
+      reasoning: c.body || c.subject,
+      code,
+      capture: shot || '',
+      world: { rooms: w.rooms ?? [], roofs: w.roofs ?? [] },
+      diff,
+      critique: { score, headline: accusation, flags, findings },
+    });
+
     prevWorld = world; stand = world.length; lastScore = score;
     if (shot) lastSay = shot;
   });
@@ -326,6 +347,36 @@ for (const scheme of SCHEMES) {
   const file = `${scheme.id.toLowerCase()}.json`;
   const body = JSON.stringify(doc);
   writeFileSync(`${OUT}/${file}`, body);
+
+  // THE SAME CHAIN, IN THIS PROJECT'S OWN TERMS.
+  //
+  // The file above is written to somebody else's schema and loses things on the
+  // way in: a room becomes an anonymous box, a 3:12 roof becomes a flat slab, and
+  // a FATAL finding becomes a sentence with no severity on it. This one keeps
+  // them, in feet, and rural-studio-trace.html reads it.
+  const nativeDoc = {
+    format: 'RURAL_STUDIO_TRACE_V1',
+    exported_at: ISO,
+    house: { id: scheme.id, name: scheme.name, tag: scheme.tag, operation: scheme.operation,
+             from: scheme.from, doNotCopy: scheme.doNotCopy, henryTest: scheme.henryTest },
+    site: { parcel: SITE_CONTEXT.parcelId, county: `${SITE.county} County, ${SITE.state}`,
+            coordinate: SITE_CONTEXT.anchor.label,
+            status: 'SCHEMATIC DESIGN — NOT FOR CONSTRUCTION. Nothing engineered; ' +
+                    'code basis void (researched against the wrong state).' },
+    metrics: m,
+    reference: { name: doc.reference_name, sheet: refURI },
+    critiqued_by_a_person: Boolean(crit),
+    verdict: crit?.verdict ?? null,
+    provenance: doc.henry_house.provenance,
+    links: native,
+  };
+  const nativeFile = `${scheme.id.toLowerCase()}.rs.json`;
+  const nativeBody = JSON.stringify(nativeDoc);
+  writeFileSync(`${OUT}/${nativeFile}`, nativeBody);
+  nativeIndex.push({ file: nativeFile, id: scheme.id, name: scheme.name, tag: scheme.tag,
+    links: native.length, parts: stand,
+    scores: native.map((l) => l.critique.score), critiqued: Boolean(crit),
+    prompts_verbatim: doc.henry_house.prompts_verbatim, bytes: nativeBody.length });
   index.push({ file, builder: 'operative', note: scheme.tag, intent: doc.intent, model: doc.model,
     reference_name: doc.reference_name, exported_at: ISO, cycles: history.length,
     parts: stand, scores: history.map((h) => h.critiques[0].score), bytes: body.length,
@@ -410,6 +461,11 @@ writeFileSync(`${OUT}/index.json`, JSON.stringify({
          'as it was at that moment, and the findings against it. Twelfth file is the process itself.',
   reader: 'https://hartswf0.github.io/gunnars-depot.html/operative-builder-trace.html — "Open a trace"',
   traces: index,
+  // Kept out of `traces` on purpose: the depot's picker lists everything in that
+  // array and would offer a file it cannot read.
+  native_format: 'RURAL_STUDIO_TRACE_V1',
+  native_reader: 'rural-studio-trace.html',
+  native: nativeIndex,
 }, null, 1));
 say('  ✓ index.json');
 
@@ -427,25 +483,32 @@ say('  ✓ index.json');
   L.push('Eleven houses for one steep parcel in Johnson County, Tennessee, and the process');
   L.push(`that produced them. ${houses.length} house chains + 1 process chain.`, '');
   L.push('## Open one', '');
-  L.push('**Locally, and this always works.** In this folder:', '');
+  L.push('Two readers ship in this folder. Serve it once and both work:', '');
   L.push('    python3 -m http.server 8000', '');
-  L.push(`then <http://localhost:8000/chains.html>. ${B}chains.html${B} is the same reader,`);
-  L.push('vendored here so nothing depends on a site being up — see PROVENANCE.md.');
-  L.push(`Deep-link a single house with ${B}?trace=s3-narrow${B}.`, '');
-  L.push('It has to be **served**, not double-clicked: browsers refuse ES modules over');
-  L.push(`${B}file://${B}, and three.js would never load. The page says so if you try.`, '');
-  L.push('**Or on the hosted reader.**');
+  L.push('| | |', '|---|---|');
+  L.push(`| <http://localhost:8000/rural-studio-trace.html> | **ours.** Reads the ${B}.rs.json${B} ` +
+         'files — rooms keep their names, roofs keep their pitch, findings keep their severity. |');
+  L.push(`| <http://localhost:8000/chains.html> | the depot's reader, vendored. Reads the ${B}.json${B} ` +
+         'files, in its schema. |', '');
+  L.push(`Both take ${B}?trace=s3-narrow${B} to open one house. For the process chain, ours`);
+  L.push(`takes ${B}?trace=process${B} and the depot's takes ${B}?trace=henry-house-process${B}.`);
+  L.push('Both have to be **served**, not double-clicked: browsers refuse ES modules over');
+  L.push(`${B}file://${B}, and three.js would never load. Each says so if you try.`, '');
+  L.push("**Or on the depot's hosted page.**");
   L.push('<https://hartswf0.github.io/gunnars-depot.html/operative-builder-trace.html> →');
-  L.push(`**Open a trace** → pick one ${B}.json${B} from this folder. Every chain here is`);
-  L.push('verified against that page at 1280px and 390px before it ships.', '');
-  L.push('Either way: one file at a time, each self-contained, pictures and all.', '');
-  L.push('| file | what it is |', '|---|---|');
-  for (const t of houses) {
-    L.push(`| ${B}${t.file}${B} | ${t.intent} — ${t.cycles} links, ${t.parts} parts, ` +
-           `suck ${t.scores[0]} → ${t.scores[t.scores.length - 1]} |`);
-  }
-  L.push(`| ${B}henry-house-process.json${B} | the whole build, ${turns.length} turns, oldest first |`);
-  L.push(`| ${B}index.json${B} | machine-readable list of all of the above |`, '');
+  L.push(`**Open a trace** → pick one of the plain ${B}.json${B} files. Every one is verified`);
+  L.push('against that page at 1280px and 390px before it ships.', '');
+  L.push('## Two files per house, on purpose', '');
+  L.push(`| | format | what it is for |`, '|---|---|---|');
+  L.push(`| ${B}s3-narrow.json${B} | OPERATIVE_BUILDER_TRACE_V1 | opens in the depot's reader, ` +
+         'anywhere it is hosted |');
+  L.push(`| ${B}s3-narrow.rs.json${B} | RURAL_STUDIO_TRACE_V1 | this project's own, and lossless |`, '');
+  L.push("The depot's schema drops three things on the way in, and they are three this");
+  L.push('project argues with: a room becomes an anonymous box, a 3:12 roof becomes a flat');
+  L.push(`slab (an operative part carries ${B}rotation_y${B} and pitch cannot be stated in it), and`);
+  L.push('a FATAL finding becomes a sentence with no severity on it. The native file keeps');
+  L.push('all three, in feet, and sets each roof on the base the model derives for it rather');
+  L.push('than one height guessed for the whole house.', '');
   L.push('## What a link holds', '');
   L.push('A chain is the loop this project ran, and every link carries all six parts of it:', '');
   L.push('| in the file | what it is | where it came from |', '|---|---|---|');

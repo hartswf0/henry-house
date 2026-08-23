@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f6f3">
+<title>Rural Studio Trace</title>
+<!--
+  ELEVEN HOUSES FOR ONE STEEP PARCEL, ONE STEP AT A TIME.
+
+  This reads RURAL_STUDIO_TRACE_V1, which is this project's own format rather
+  than a borrowed one. The chains also export to the depot's
+  OPERATIVE_BUILDER_TRACE_V1 and open in its reader, and they should keep doing
+  that — but that schema drops three things on the way in, and they are the
+  three this project argues with:
+
+    a room      becomes an anonymous box. Here it keeps its NAME and its USE,
+                so the plan can be read rather than just counted.
+    a roof      becomes a flat slab, because an operative part carries
+                rotation_y and a 3:12 pitch cannot be stated in it. Here the
+                roof is built at its real pitch off its real base.
+    a finding   becomes a sentence. Here it keeps FATAL / MAJOR / MINOR, where
+                it is, and the fix that was proposed.
+
+  The aesthetic is deliberately the depot's — paper rather than console, one
+  thread, two voices, the score in large type — because these are the same kind
+  of document and they should read as a set.
+-->
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+<style>
+/* Paper, not a console. A transcript is for reading. */
+:root{
+  --paper:#f7f6f3; --ink:#1c1b19; --soft:#78746c; --faint:#a8a49b;
+  --rule:#e4e1da; --card:#ffffff; --mine:#ebe8e1;
+  --alarm:#c0492f; --calm:#5c7a5e; --warn:#b08a2e;
+  --sky-top:#cfd8dd; --sky-bot:#e8e6e0;
+  --accent:#5c6b4a; --accent-soft:#eceee6; --added:#2f8f84; --changed:#b08a2e;
+  --split:52%;
+}
+/* The process chain is a different animal — no geometry, a person's sequence —
+   so it gets the human traces' quieter ground rather than the houses' green. */
+[data-kind="process"]{ --accent:#6b6250; --accent-soft:#efece4;
+  --sky-top:#e6e3dc; --sky-bot:#efece6; }
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);
+  font:400 15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button,select,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  border:1px solid currentColor;border-radius:99px;padding:3px 8px;white-space:nowrap;opacity:.85}
+
+#app{display:grid;height:100%;overflow:hidden;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto minmax(0,var(--split,42%)) 7px minmax(0,1fr)}
+@media(min-width:860px){
+  #app{grid-template-columns:minmax(0,var(--split,52%)) 7px minmax(0,1fr);
+       grid-template-rows:auto minmax(0,1fr);
+       grid-template-areas:"head head head" "stage grip thread"}
+  header{grid-area:head}#stage{grid-area:stage}#grip{grid-area:grip}#thread{grid-area:thread}
+}
+#grip{position:relative;background:var(--rule);cursor:row-resize;touch-action:none}
+@media(min-width:860px){#grip{cursor:col-resize}}
+#grip:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:34px;height:3px;border-radius:2px;background:var(--faint);opacity:.55}
+@media(min-width:860px){#grip:after{width:3px;height:34px}}
+#grip:hover:after,#grip.on:after{opacity:1;background:var(--accent)}
+
+header{display:flex;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--rule);
+  background:var(--paper);min-width:0;overflow:hidden}
+header .name{font-size:13px;font-weight:500;white-space:nowrap}
+header .sp{flex:1}
+header select,header button,header label{font-size:11.5px;color:var(--soft);background:#fff;
+  border:1px solid var(--rule);border-radius:99px;padding:6px 12px;cursor:pointer;white-space:nowrap;
+  flex:0 0 auto}
+header select{max-width:min(46vw,320px);letter-spacing:0;min-width:0}
+@media(max-width:700px){.wide{display:none}}
+@media(min-width:701px){.narrow{display:none}}
+
+#stage{position:relative;overflow:hidden;background:linear-gradient(var(--sky-top),var(--sky-bot))}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#ref{position:absolute;top:16px;left:16px;z-index:5;width:104px}
+#ref img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;
+  background:#fff;box-shadow:0 1px 3px #0000001f,0 8px 24px #00000014;cursor:zoom-in}
+#ref .cap{margin-top:7px}
+#meter{position:absolute;top:16px;right:16px;z-index:5;text-align:right}
+#score{font-size:40px;line-height:1;font-weight:300;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+#meter .cap{margin-bottom:3px}
+#meterNote{font-size:11px;color:var(--soft);margin-top:4px;letter-spacing:0;max-width:190px}
+
+/* The photograph is the moment everything turns on: the critic only ever sees one. */
+#flash{position:absolute;inset:0;z-index:8;background:#fff;opacity:0;pointer-events:none}
+#flash.pop{animation:pop .5s ease-out}
+@keyframes pop{0%{opacity:0}12%{opacity:.92}100%{opacity:0}}
+#shutter{position:absolute;z-index:9;left:50%;top:50%;transform:translate(-50%,-50%) scale(.94);
+  opacity:0;pointer-events:none;border:1px solid var(--ink);border-radius:4px;
+  width:44%;aspect-ratio:4/3;max-width:340px}
+#shutter span{position:absolute;left:0;bottom:-19px;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink)}
+#shutter.pop{animation:shut .75s ease-out}
+@keyframes shut{0%{opacity:0;transform:translate(-50%,-50%) scale(1.06)}
+  14%{opacity:.9;transform:translate(-50%,-50%) scale(1)}
+  70%{opacity:.9}100%{opacity:0;transform:translate(-50%,-50%) scale(.99)}}
+
+#legend{position:absolute;left:16px;bottom:62px;z-index:5;display:none;gap:4px 12px;
+  flex-wrap:wrap;max-width:min(62%,420px);font-size:10px;color:var(--soft);letter-spacing:0}
+#legend.on{display:flex}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;
+  vertical-align:-1px}
+#plate{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px;
+  color:var(--faint);z-index:3}
+#plate.on{display:grid}
+#plate b{display:block;font-size:13px;font-weight:500;color:var(--soft);letter-spacing:.04em}
+#plate span{display:block;max-width:320px;margin:7px auto 0;font-size:12px;line-height:1.55}
+
+#bar{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;gap:12px;align-items:center;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(#f7f6f300,#f7f6f3cc 42%,var(--paper));backdrop-filter:blur(6px)}
+#bar button.round{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-size:12px;flex:none}
+#seek{flex:1;-webkit-appearance:none;appearance:none;height:22px;background:transparent;min-width:40px}
+#seek::-webkit-slider-runnable-track{height:2px;background:var(--rule);border-radius:2px}
+#seek::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;
+  background:var(--ink);margin-top:-5.5px}
+#seek::-moz-range-track{height:2px;background:var(--rule);border-radius:2px}
+#seek::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:var(--ink)}
+#speed,#tick{font-size:11px;color:var(--soft);flex:none;font-variant-numeric:tabular-nums;
+  white-space:nowrap;letter-spacing:0}
+#speed{border:1px solid var(--rule);background:#fff;border-radius:99px;padding:4px 9px}
+
+#thread{overflow-y:auto;overscroll-behavior:contain;background:var(--paper);
+  border-top:1px solid var(--rule);padding:20px 0 28px;scroll-behavior:smooth}
+.wrap{max-width:660px;margin:0 auto;padding:0 20px}
+.turn{display:flex;margin-bottom:16px;animation:rise .32s cubic-bezier(.2,.7,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.turn.right{justify-content:flex-end}
+.bub{max-width:78%;padding:12px 15px;border-radius:20px;background:var(--card);
+  box-shadow:0 1px 2px #00000010;border:1px solid var(--rule)}
+.turn.right .bub{background:var(--mine);border-color:#00000000;box-shadow:none}
+.who{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  margin-bottom:6px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.turn.right .who{justify-content:flex-end}
+.turn.you .bub{background:var(--accent-soft);border-color:#00000000}
+.turn.you .who{color:var(--accent)}
+.ico{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:1.3;
+  stroke-linecap:round;stroke-linejoin:round}
+.txt{white-space:pre-wrap;word-break:break-word}
+.note{text-align:center;font-size:11.5px;color:var(--faint);margin:0 0 16px;letter-spacing:0}
+.note b{color:var(--soft);font-weight:500}
+
+/* A prompt that is not a quotation must never look like one. */
+.tag{font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;border-radius:99px;
+  padding:2px 7px;border:1px solid currentColor;opacity:.9}
+.tag.said{color:var(--calm)}
+.tag.stood{color:var(--warn)}
+.standin{margin-top:8px;font-size:11px;line-height:1.5;color:var(--soft);letter-spacing:0;
+  border-left:2px solid var(--warn);padding-left:9px}
+
+.verdict{display:flex;gap:14px;align-items:flex-start}
+.verdict .n{font-size:30px;line-height:.95;font-weight:300;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;flex:none;min-width:46px}
+.verdict .n small{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin-top:4px;font-weight:400}
+.finding{margin-top:10px;border-left:2px solid var(--rule);padding-left:10px}
+.finding .sev{font-size:9px;letter-spacing:.13em;text-transform:uppercase;font-weight:500}
+.finding.FATAL{border-left-color:var(--alarm)} .finding.FATAL .sev{color:var(--alarm)}
+.finding.MAJOR{border-left-color:var(--warn)}  .finding.MAJOR .sev{color:var(--warn)}
+.finding.MINOR{border-left-color:var(--faint)} .finding.MINOR .sev{color:var(--soft)}
+.finding .where{font-size:11px;color:var(--soft);letter-spacing:0;margin:2px 0 4px}
+.finding .fix{margin-top:5px;font-size:12.5px;color:var(--soft)}
+.finding .fix b{color:var(--ink);font-weight:500}
+details.more summary{margin-top:8px}
+details.more .txt{margin-top:7px}
+details{margin-top:10px}
+summary{font-size:11px;color:var(--soft);cursor:pointer;letter-spacing:0}
+details ul{margin:7px 0 0;padding-left:17px;font-size:12px;color:var(--soft);line-height:1.5}
+details li{margin-bottom:4px}
+.code{margin-top:9px;font-size:11.5px;color:var(--soft);letter-spacing:0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.code b{display:block;font:inherit;font-family:inherit;color:var(--faint);font-size:10px;
+  letter-spacing:.13em;text-transform:uppercase;margin-bottom:3px}
+.shots{display:grid;grid-template-columns:1fr;gap:5px;margin:10px 0 0}
+.shots.two{grid-template-columns:1fr 1fr}
+.shots figure{margin:0}
+.shots img{display:block;width:100%;border-radius:9px;background:#fff;border:1px solid var(--rule);
+  cursor:zoom-in}
+.shots figcaption{margin-top:4px;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint)}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:var(--paper);z-index:20;
+  text-align:center;padding:26px;color:var(--soft);font-size:13px;line-height:1.6}
+#boot code{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:2px 6px;
+  font-size:12px}
+#lb{position:fixed;inset:0;z-index:30;background:#1c1b19ee;display:none;place-items:center;
+  padding:24px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:100%;border-radius:6px}
+</style>
+</head>
+<body>
+<div id="boot">reading the trace…</div>
+<div id="app">
+  <header>
+    <span class="name">Rural Studio Trace</span>
+    <span class="badge" id="badge">—</span>
+    <span class="sp"></span>
+    <select id="pick"></select>
+    <label><span class="wide">Open a trace</span><span class="narrow">Open</span>
+      <input id="file" type="file" accept="application/json,.json" hidden></label>
+    <button id="docsBtn"><span class="wide">How to read this</span><span class="narrow">?</span></button>
+  </header>
+  <section id="stage">
+    <canvas id="gl"></canvas>
+    <div id="ref"><img id="refImg" alt="the reference"><div class="cap" id="refCap"></div></div>
+    <div id="meter"><div class="cap">suck</div><div id="score">—</div><div id="meterNote"></div></div>
+    <div id="flash"></div>
+    <div id="shutter"><span>capture</span></div>
+    <div id="legend"></div>
+    <div id="plate"><div><b id="plateB"></b><span id="plateS"></span></div></div>
+    <div id="bar">
+      <button class="round" id="play">▶</button>
+      <input id="seek" type="range" min="0" max="0" value="0">
+      <button id="speed">1×</button>
+      <span id="tick">—</span>
+    </div>
+  </section>
+  <div id="grip"></div>
+  <section id="thread"><div class="wrap" id="wrap"></div></section>
+</div>
+<div id="lb"><img id="lbImg" alt=""></div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+// ── the scene ───────────────────────────────────────────────────────────────
+// Feet throughout, because that is what the drawings are in and converting twice
+// is how a roof ends up somewhere the section disagrees with.
+const renderer = new THREE.WebGLRenderer({ canvas: $('#gl'), antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 4000);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xb9bdb4, 1.3));
+const sun = new THREE.DirectionalLight(0xfffaf0, .9); sun.position.set(90, 150, 70); scene.add(sun);
+const rim = new THREE.DirectionalLight(0xd7e4f2, .3); rim.position.set(-100, 60, -90); scene.add(rim);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000),
+  new THREE.MeshBasicMaterial({ color: 0xdedbd4 }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -0.4; scene.add(ground);
+const world = new THREE.Group(); scene.add(world);
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true; orbit.dampingFactor = .08; orbit.enablePan = false;
+camera.position.set(90, 62, 96); orbit.target.set(0, 8, 0);
+
+function resize() {
+  const r = $('#stage').getBoundingClientRect();
+  if (!r.width || !r.height) return;
+  renderer.setSize(r.width, r.height, false);
+  camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+(function loop() { requestAnimationFrame(loop); orbit.update(); renderer.render(scene, camera); })();
+
+// Every use the plans actually contain — checked against them, so nothing falls
+// through to the grey default and reads as a room with no purpose.
+const USE_COLOR = {
+  bed: '#8d7f6a', bath: '#6f8b93', kitchen: '#7d8b6e', living: '#a3927a',
+  dining: '#9b8c74', circ: '#6e6a63', mech: '#5f6a72', store: '#67635c',
+  work: '#87806e', laundry: '#6b7a80', entry: '#9a8b6d',
+};
+const ROOF_COLOR = '#3a4046';
+
+/**
+ * The house at one link.
+ *
+ * Rooms are boxes at their own finished floor. Roofs are the reason this reader
+ * exists: each is one sloping plane rising `pitch/12` over its own depth, so it
+ * is built as a slab tilted by that angle and set on its real base, rather than
+ * laid flat because the schema could not say otherwise.
+ */
+function build(link, prev) {
+  world.clear();
+  const added = new Set((link.diff && link.diff.added) || []);
+  const changed = new Set((link.diff && link.diff.changed) || []);
+  const box = new THREE.Box3();
+  const put = (geo, mat, pos, rotX) => {
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set(pos[0], pos[1], pos[2]);
+    if (rotX) m.rotation.x = rotX;
+    world.add(m); box.expandByObject(m);
+    return m;
+  };
+  for (const r of link.world.rooms || []) {
+    const mat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(USE_COLOR[r.use] || '#8a8578'),
+      roughness: .92, metalness: .03, transparent: true, opacity: 1,
+    });
+    if (added.has(r.id)) mat.emissive = new THREE.Color('#2f8f84').multiplyScalar(.20);
+    else if (changed.has(r.id)) mat.emissive = new THREE.Color('#b08a2e').multiplyScalar(.20);
+    put(new THREE.BoxGeometry(r.w, r.h, r.d), mat,
+        [r.x0 + r.w / 2, r.ffe + r.h / 2, -(r.y0 + r.d / 2)]);
+  }
+  for (const f of link.world.roofs || []) {
+    const depth = f.y1 - f.y0, width = f.x1 - f.x0;
+    const rise = (f.pitch / 12) * depth;
+    const slope = Math.hypot(depth, rise);
+    const mat = new THREE.MeshStandardMaterial({ color: new THREE.Color(ROOF_COLOR),
+      roughness: .7, metalness: .12 });
+    put(new THREE.BoxGeometry(width, 0.6, slope), mat,
+        [(f.x0 + f.x1) / 2, f.base + rise / 2, -(f.y0 + f.y1) / 2],
+        -Math.atan2(rise, depth));
+  }
+  if (!world.children.length) return false;
+  // Frame it. The camera keeps its direction so the house does not jump about
+  // between links; only the distance and the target move.
+  const c = box.getCenter(new THREE.Vector3()), s = box.getSize(new THREE.Vector3());
+  const radius = Math.max(s.x, s.y, s.z) * .5 || 20;
+  const dist = radius / Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.65;
+  const dir = camera.position.clone().sub(orbit.target).normalize();
+  orbit.target.copy(c);
+  camera.position.copy(c).add(dir.multiplyScalar(dist));
+  camera.near = Math.max(.5, dist / 900); camera.far = dist * 8;
+  camera.updateProjectionMatrix();
+  return true;
+}
+
+// ── the beats ───────────────────────────────────────────────────────────────
+// A link is four moments and they are not the same length: being asked, working,
+// the photograph, and the verdict. Splitting them is what makes a replay legible
+// instead of a wall arriving at once.
+let doc = null, kind = 'house', beats = [], at = 0, playing = false, timer = 0, rate = 1;
+const RATE = [1, 2, 4];
+
+function beatsFor(d) {
+  const out = [];
+  if (d.format === 'HUMAN_CORRESPONDENCE_V1') {
+    out.push({ t: 'open', title: d.intent, sub: d.who, note: d.note });
+    for (const t of d.turns) {
+      out.push({ t: 'ask', n: t.i + 1, text: t.prompt, verbatim: t.prompt_is_verbatim, images: [] });
+      out.push({ t: 'build', n: t.i + 1, text: t.result, code: [], shot: t.image || '',
+                 shotName: t.imageName, houses: t.houses || [], ms: 1400 });
+    }
+    return out;
+  }
+  out.push({ t: 'open', title: `${d.house.name} — ${d.house.tag}`, sub: d.house.operation,
+             note: d.provenance });
+  for (const l of d.links) {
+    out.push({ t: 'ask', n: l.n, text: l.ask.text, verbatim: l.ask.verbatim,
+               images: l.ask.images || [], commit: l.commit });
+    out.push({ t: 'build', n: l.n, text: l.reasoning, code: l.code || [], link: l, ms: 1500 });
+    if (l.capture) out.push({ t: 'shoot', n: l.n, shot: l.capture, ms: 900 });
+    out.push({ t: 'crit', n: l.n, c: l.critique, ms: 1700 });
+  }
+  return out;
+}
+
+// ── the thread ──────────────────────────────────────────────────────────────
+const icon = (k) => ({
+  you: '<svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg>',
+  build: '<svg class="ico" viewBox="0 0 24 24"><path d="M3 20h18M6 20V9l6-5 6 5v11"/></svg>',
+  crit: '<svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+}[k] || '');
+
+/**
+ * Long reasoning, without hiding any of it.
+ *
+ * Some commit bodies run to forty lines — the full argument, which is the
+ * valuable part and must not be summarised away. But a bubble that fills the
+ * column three times over stops being readable, so it opens at its first
+ * paragraphs with the rest one tap behind a toggle. Evidence kept, repetition
+ * off the first screen.
+ */
+const CLAMP = 520;
+function clamp(text) {
+  const t = String(text ?? '');
+  if (t.length <= CLAMP) return `<div class="txt">${esc(t)}</div>`;
+  const cut = t.lastIndexOf('\n', CLAMP) > 200 ? t.lastIndexOf('\n', CLAMP) : CLAMP;
+  return `<div class="txt">${esc(t.slice(0, cut))}</div>
+    <details class="more"><summary>the rest of it — ${t.length - cut} more characters</summary>
+      <div class="txt">${esc(t.slice(cut).trim())}</div></details>`;
+}
+
+function render(b) {
+  const w = $('#wrap');
+  const div = document.createElement('div');
+  if (b.t === 'open') {
+    div.innerHTML = `<div class="note"><b>${esc(b.title)}</b><br>${esc(b.sub || '')}</div>`;
+  } else if (b.t === 'ask') {
+    const tag = b.verbatim
+      ? '<span class="tag said">their words</span>'
+      : '<span class="tag stood">stand-in</span>';
+    div.innerHTML = `<div class="turn you"><div class="bub">
+      <div class="who">${icon('you')}<span>the ask</span><span>${b.n}</span>${tag}</div>
+      <div class="txt">${esc(b.text)}</div>
+      ${b.verbatim ? '' : `<div class="standin">Not a quotation. The conversation was
+        not kept in this repository, so the commit subject stands in for the instruction
+        that produced this step${b.commit ? ` (<code>${esc(b.commit)}</code>)` : ''}.</div>`}
+      ${(b.images || []).length ? `<div class="shots"><figure>
+        <img src="${b.images[0]}" alt="supplied"><figcaption>what they put in front of it</figcaption>
+        </figure></div>` : ''}
+    </div></div>`;
+  } else if (b.t === 'build') {
+    div.innerHTML = `<div class="turn right"><div class="bub">
+      <div class="who"><span>${b.n}</span>${icon('build')}<span>what came back</span></div>
+      ${clamp(b.text)}
+      ${b.code && b.code.length ? `<div class="code"><b>wrote ${b.code.length} file${b.code.length === 1 ? '' : 's'}</b>
+        ${b.code.slice(0, 8).map(esc).join('<br>')}${b.code.length > 8 ? `<br>+${b.code.length - 8} more` : ''}</div>` : ''}
+      ${b.shot ? `<div class="shots"><figure><img src="${b.shot}" alt="capture">
+        <figcaption>${esc(b.shotName || 'the picture at that moment')}</figcaption></figure></div>` : ''}
+    </div></div>`;
+  } else if (b.t === 'shoot') {
+    div.innerHTML = `<div class="note"><b>the photograph</b> — the critic only ever sees one</div>`;
+  } else if (b.t === 'crit') {
+    const c = b.c;
+    div.innerHTML = `<div class="turn"><div class="bub">
+      <div class="who">${icon('crit')}<span>the critic</span><span>${b.n}</span></div>
+      <div class="verdict"><div class="n">${c.score}<small>suck</small></div>
+        <div class="txt">${esc(c.headline)}</div></div>
+      ${(c.findings || []).map((f) => `<div class="finding ${esc(f.severity)}">
+        <div class="sev">${esc(f.severity)}</div>
+        <div class="where">${esc(f.where)}</div>
+        <div>${esc(f.finding)}</div>
+        ${f.fix ? `<div class="fix"><b>Fix.</b> ${esc(f.fix)}</div>` : ''}</div>`).join('')}
+      ${(c.flags || []).length ? `<details><summary>${c.flags.length} machine
+        flag${c.flags.length === 1 ? '' : 's'} from tools/build-plans.mjs</summary>
+        <ul>${c.flags.map((f) => `<li>${esc(f)}</li>`).join('')}</ul></details>` : ''}
+    </div></div>`;
+  }
+  w.appendChild(div.firstElementChild || div);
+  $('#thread').scrollTop = $('#thread').scrollHeight;
+}
+
+function pop(el, cls) { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+
+function show(i) {
+  at = Math.max(0, Math.min(beats.length - 1, i));
+  $('#wrap').innerHTML = '';
+  let lastCrit = null, built = false;
+  for (let k = 0; k <= at; k++) {
+    const b = beats[k];
+    render(b);
+    if (b.t === 'build' && b.link) built = build(b.link) || built;
+    if (b.t === 'crit') lastCrit = b.c;
+  }
+  const b = beats[at];
+  if (b.t === 'shoot') { pop($('#flash'), 'pop'); pop($('#shutter'), 'pop'); }
+  $('#score').textContent = lastCrit ? lastCrit.score : '—';
+  $('#meterNote').textContent = lastCrit
+    ? (doc.critiqued_by_a_person ? '' : 'nobody has read this house')
+    : '';
+  $('#seek').value = at;
+  $('#tick').textContent = `${at + 1} / ${beats.length}`;
+  $('#plate').classList.toggle('on', kind !== 'process' && !built);
+  if (kind === 'process') {
+    $('#plateB').textContent = 'No geometry in this one';
+    $('#plateS').textContent = 'The process chain is the argument, not a building. ' +
+      'The pictures are the record — each one is the file as it stood at that commit.';
+    $('#plate').classList.add('on');
+  } else if (!built) {
+    $('#plateB').textContent = 'Nothing built yet';
+    $('#plateS').textContent = 'This house had no checked plan at this point in its chain.';
+  }
+}
+
+function step() {
+  if (at >= beats.length - 1) { stop(); return; }
+  show(at + 1);
+  timer = setTimeout(step, (beats[at].ms || 1200) / rate);
+}
+function play() { if (playing) return; playing = true; $('#play').textContent = '❚❚'; step(); }
+function stop() { playing = false; clearTimeout(timer); $('#play').textContent = '▶'; }
+
+// ── opening one ─────────────────────────────────────────────────────────────
+function open(d, autoplay) {
+  stop();
+  doc = d;
+  kind = d.format === 'HUMAN_CORRESPONDENCE_V1' ? 'process' : 'house';
+  document.documentElement.dataset.kind = kind;
+  beats = beatsFor(d);
+  $('#seek').max = beats.length - 1;
+  $('#badge').textContent = kind === 'process' ? 'the process' : d.house.id;
+  const ref = kind === 'process' ? null : (d.reference && d.reference.sheet);
+  $('#ref').style.display = ref ? '' : 'none';
+  if (ref) { $('#refImg').src = ref; $('#refCap').textContent = d.reference.name; }
+  const uses = kind === 'process' ? []
+    : [...new Set((d.links.at(-1)?.world.rooms || []).map((r) => r.use))];
+  $('#legend').innerHTML = uses.map((u) =>
+    `<span><i style="background:${USE_COLOR[u] || '#8a8578'}"></i>${esc(u)}</span>`).join('');
+  $('#legend').classList.toggle('on', uses.length > 0);
+  $('#boot').style.display = 'none';
+  resize();
+  show(0);
+  if (autoplay) setTimeout(play, 650);
+}
+
+$('#play').onclick = () => (playing ? stop() : play());
+$('#seek').oninput = (e) => { stop(); show(+e.target.value); };
+$('#speed').onclick = () => {
+  rate = RATE[(RATE.indexOf(rate) + 1) % RATE.length];
+  $('#speed').textContent = `${rate}×`;
+};
+$('#thread').addEventListener('click', (e) => {
+  const img = e.target.closest('.shots img, #ref img');
+  if (!img) return;
+  $('#lbImg').src = img.src; $('#lb').classList.add('on');
+});
+$('#ref').onclick = () => { $('#lbImg').src = $('#refImg').src; $('#lb').classList.add('on'); };
+$('#lb').onclick = () => $('#lb').classList.remove('on');
+$('#docsBtn').onclick = () => alert(
+  'A chain is one house, one step at a time.\n\n' +
+  'THE ASK — what the step was for. Marked "their words" when the real prompt was ' +
+  'supplied, "stand-in" when it is the commit subject standing in for it.\n' +
+  'WHAT CAME BACK — the reasoning written at the time, and the files it wrote.\n' +
+  'THE PHOTOGRAPH — the render as it was at that commit, recovered with git show.\n' +
+  'THE CRITIC — a suck score (lower is better), the flags, and any written findings ' +
+  'with their severity.\n\n' +
+  'A low score is not a good building. Most of these houses have never had a written ' +
+  'critic pass, and a zero can mean only that nothing looked.');
+
+// ── the divider ─────────────────────────────────────────────────────────────
+{
+  const grip = $('#grip');
+  let on = false;
+  const move = (e) => {
+    if (!on) return;
+    const p = e.touches ? e.touches[0] : e;
+    const wide = matchMedia('(min-width:860px)').matches;
+    const r = $('#app').getBoundingClientRect();
+    const v = wide ? (p.clientX - r.left) / r.width : (p.clientY - r.top - 46) / (r.height - 46);
+    document.documentElement.style.setProperty('--split', `${Math.max(18, Math.min(82, v * 100))}%`);
+    resize();
+  };
+  const up = () => { on = false; grip.classList.remove('on'); };
+  grip.addEventListener('pointerdown', (e) => { on = true; grip.classList.add('on'); e.preventDefault(); });
+  addEventListener('pointermove', move); addEventListener('pointerup', up);
+}
+
+$('#file').onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  try { open(JSON.parse(await f.text()), true); }
+  catch (err) { alert('could not read that trace: ' + err.message); }
+};
+$('#pick').onchange = async (e) => {
+  const f = e.target.value; if (!f) return;
+  $('#boot').textContent = 'reading the trace…'; $('#boot').style.display = 'grid';
+  try { open(await (await fetch(f)).json(), true); }
+  catch (err) { $('#boot').textContent = 'could not read that trace: ' + err.message; }
+};
+
+// Open for inspection: the argument of this project is that a claim should be
+// checkable, and that includes this page.
+window.trace = {
+  get beats() { return beats; }, get msgs() { return beats; },
+  get at() { return at; }, get doc() { return doc; }, get file() { return current; },
+  goto(i) { stop(); show(i); },
+  stage() {
+    const b = new THREE.Box3(); let shown = 0;
+    world.traverse((o) => { if (o.isMesh) { shown++; b.expandByObject(o); } });
+    if (!shown) return null;
+    const s = new THREE.Vector3(); b.getSize(s);
+    const pts = [b.min, b.max].flatMap((v) => [v]).map((v) => v.clone().project(camera));
+    return { shown, total: shown, onscreen: pts.every((p) => Math.abs(p.x) < 1.6 && Math.abs(p.y) < 1.6) };
+  },
+};
+
+let current = null;
+(async () => {
+  try {
+    const idx = await (await fetch('index.json')).json();
+    const rows = idx.native || [];
+    $('#pick').innerHTML =
+      `<optgroup label="Eleven houses">${rows.map((t) =>
+        `<option value="${t.file}">${esc(t.name)} · ${t.links} links</option>`).join('')}</optgroup>` +
+      `<optgroup label="How they were made"><option value="henry-house-process.json">
+         the whole build · ${(idx.traces.find((t) => t.builder === 'human') || {}).turns || ''} turns
+       </option></optgroup>`;
+    const want = new URLSearchParams(location.search).get('trace');
+    const pickRow = (want && rows.find((t) => t.file === want ||
+        t.file.replace(/\.rs\.json$/, '') === want || t.id.toLowerCase() === want.toLowerCase()));
+    current = want === 'process' || want === 'henry-house-process'
+      ? 'henry-house-process.json' : (pickRow ? pickRow.file : (rows[0] || {}).file);
+    if (!current) throw new Error('index.json lists no native chains');
+    $('#pick').value = current;
+    open(await (await fetch(current)).json(), true);
+  } catch (e) {
+    $('#boot').innerHTML = '<div><b>No index.json beside this page.</b><br><br>' +
+      'Use <b>Open a trace</b> to pick a <code>.rs.json</code> file, or serve this folder:<br><br>' +
+      '<code>python3 -m http.server 8000</code><br><br>' +
+      '<span style="font-size:11px;opacity:.7">' + esc((e && e.message) || e) + '</span></div>';
+  }
+})();
+</script>
+<!-- Not a module, so it runs even when the module above never does. -->
+<script>
+setTimeout(function () {
+  if (window.trace) return;
+  var b = document.getElementById('boot');
+  if (!b) return;
+  b.innerHTML = location.protocol === 'file:'
+    ? '<div><b>This page has to be served, not opened off the disk.</b><br><br>' +
+      'Browsers refuse ES modules over file://, so three.js never loaded.<br><br>' +
+      'In this folder, run<br><code>python3 -m http.server 8000</code><br>' +
+      'then open <code>http://localhost:8000/rural-studio-trace.html</code></div>'
+    : '<div><b>The reader did not start.</b><br><br>vendor/three/ has to sit beside this page.</div>';
+  b.style.display = 'grid';
+}, 4000);
+</script>
+</body>
+</html>
