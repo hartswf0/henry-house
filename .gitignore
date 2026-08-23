@@ -6,6 +6,10 @@ node_modules/
 # to answer "did that change do what I think", never the published set
 out/preview/
 
-# generated builder traces — regenerate with tools/export-traces.mjs
+# generated build chains — regenerate with tools/export-chains.mjs.
+# The zip itself IS committed: it is the deliverable, and a 5 MB bag of JSON that
+# somebody has to be able to download is worth more in the repository than the
+# instruction to rebuild it.
+out/chains/
 out/traces/
 henry-house-traces.zip
