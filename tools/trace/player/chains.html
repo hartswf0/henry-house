@@ -1,0 +1,1879 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f6f3">
+<title>Operative Builder Trace</title>
+<link rel="icon" href="assets/branding/favicon.svg">
+<style>
+/* Paper, not a console. The loop's own interface is a monospace instrument panel and
+   it is right to be; this is the transcript afterwards, and a transcript is for
+   reading. One column, two voices, plenty of air, and nothing said twice. */
+:root{
+  --paper:#f7f6f3; --ink:#1c1b19; --soft:#78746c; --faint:#a8a49b;
+  --rule:#e4e1da; --card:#ffffff; --mine:#ebe8e1;
+  --alarm:#c0492f; --calm:#5c7a5e;
+  --sky-top:#cfd8dd; --sky-bot:#e8e6e0;
+  /* Two builders wrote these traces and they are not the same machine, so they do
+     not get the same colour. Operative is clay; correspondence is ink-blue. */
+  --accent:#a85a34; --accent-soft:#f3ece6; --added:#2f8f84; --changed:#b08a2e;
+}
+[data-builder="human"]{
+  --accent:#6b6250; --accent-soft:#efece4; --added:#6b6250; --changed:#8a7f66;
+  --sky-top:#e6e3dc; --sky-bot:#efece6;
+}
+[data-builder="correspondence"]{
+  --accent:#3d6591; --accent-soft:#e9eef4; --added:#3d6591; --changed:#8a7bb0;
+  --sky-top:#d3d8dd; --sky-bot:#e9e7e2;
+}
+.badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  border:1px solid currentColor;border-radius:99px;padding:3px 8px;white-space:nowrap;opacity:.85}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);
+  font:400 15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button,select,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* `minmax(0,1fr)` on the column, not just `100%`: a grid track is sized to its
+   content by default, so one header that would not fit quietly widened the whole
+   page, and `right:16px` on the score then measured from an edge off the screen. */
+/* Rows on a phone — model above chat. Columns on a desktop — model beside chat,
+   because a 15px paragraph in a 1400px-wide column is a bad way to read anything.
+   `--split` is the divider's position and is the same number in both.
+   `minmax(0,…)` on every track: a grid track is sized to its content by default, and
+   one header that would not fit quietly widened the whole page, which put the suck
+   score off the right-hand edge. */
+#app{display:grid;height:100%;overflow:hidden;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto minmax(0,var(--split,42%)) 7px minmax(0,1fr)}
+@media(min-width:860px){
+  #app{grid-template-columns:minmax(0,var(--split,52%)) 7px minmax(0,1fr);
+       grid-template-rows:auto minmax(0,1fr);
+       grid-template-areas:"head head head" "stage grip thread"}
+  header{grid-area:head}#stage{grid-area:stage}#grip{grid-area:grip}#thread{grid-area:thread}
+}
+#grip{position:relative;background:var(--rule);cursor:row-resize;touch-action:none}
+@media(min-width:860px){#grip{cursor:col-resize}}
+#grip:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:34px;height:3px;border-radius:2px;background:var(--faint);opacity:.55}
+@media(min-width:860px){#grip:after{width:3px;height:34px}}
+#grip:hover:after,#grip.on:after{opacity:1;background:var(--accent)}
+
+/* ---------------- header ---------------- */
+header{display:flex;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--rule);
+  background:var(--paper);min-width:0;overflow:hidden}
+header .name{font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+header .sp{flex:1}
+header select,header button,header label{font-size:11.5px;color:var(--soft);background:#fff;
+  border:1px solid var(--rule);border-radius:99px;padding:6px 12px;cursor:pointer;white-space:nowrap;
+  flex:0 0 auto}
+header select{max-width:min(46vw,300px);letter-spacing:0;min-width:0}
+.narrow{display:none}
+
+/* ---------------- the model ---------------- */
+#stage{position:relative;overflow:hidden;background:linear-gradient(var(--sky-top),var(--sky-bot))}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+
+#ref{position:absolute;top:16px;left:16px;z-index:5;width:104px}
+#ref img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;
+  background:#fff;box-shadow:0 1px 3px #0000001f,0 8px 24px #00000014;cursor:zoom-in}
+#ref .cap{margin-top:7px}
+
+#meter{position:absolute;top:16px;right:16px;z-index:5;text-align:right}
+#score{font-size:40px;line-height:1;font-weight:300;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+#meter .cap{margin-bottom:3px}
+#meterNote{font-size:11px;color:var(--soft);margin-top:4px;letter-spacing:0}
+
+/* The picture being taken. In the loop this is the moment everything turns on —
+   the critic only ever sees a photograph — and in a silent replay it went by with
+   nothing to mark it at all. */
+#flash{position:absolute;inset:0;z-index:8;background:#fff;opacity:0;pointer-events:none}
+#flash.pop{animation:pop .5s ease-out}
+@keyframes pop{0%{opacity:0}12%{opacity:.92}100%{opacity:0}}
+#shutter{position:absolute;z-index:9;left:50%;top:50%;transform:translate(-50%,-50%) scale(.94);
+  opacity:0;pointer-events:none;border:1px solid var(--ink);border-radius:4px;
+  width:44%;aspect-ratio:4/3;max-width:340px}
+#shutter span{position:absolute;left:0;bottom:-19px;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink)}
+#shutter.pop{animation:shut .75s ease-out}
+@keyframes shut{0%{opacity:0;transform:translate(-50%,-50%) scale(1.06)}
+  14%{opacity:.9;transform:translate(-50%,-50%) scale(1)}
+  70%{opacity:.9}100%{opacity:0;transform:translate(-50%,-50%) scale(.99)}}
+#ghost{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);
+  max-width:86%;max-height:86%;opacity:0;pointer-events:none;mix-blend-mode:multiply}
+#fadeWrap{display:flex;gap:7px;align-items:center;flex:none;font-size:11px;color:var(--soft)}
+#fadeWrap input{width:74px;-webkit-appearance:none;appearance:none;height:18px;background:transparent}
+#fadeWrap input::-webkit-slider-runnable-track{height:2px;background:var(--rule);border-radius:2px}
+#fadeWrap input::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;
+  background:var(--accent);margin-top:-4.5px}
+#fadeWrap input::-moz-range-track{height:2px;background:var(--rule)}
+#fadeWrap input::-moz-range-thumb{width:11px;height:11px;border:0;border-radius:50%;background:var(--accent)}
+/* A card, not floating text. These overlays sit on top of whatever the stage is
+   showing, and for the human traces the stage is somebody else's web page with its
+   own title bar and metric panels — unbacked, the two read as one garbled thing. */
+[data-builder="human"] /* Everything that used to float over the model now lives on the bar. The stage is
+   for the building; a caption that covers what it captions is worse than no caption. */
+#stageTag{font-size:10.5px;color:var(--soft);letter-spacing:0;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:34%;flex:0 1 auto}
+#passRow{display:none;flex:none;border:1px solid var(--rule);border-radius:99px;
+  overflow:hidden;background:#fff}
+#passRow button{font-size:11px;color:var(--soft);padding:4px 10px;border-right:1px solid var(--rule)}
+#passRow button:last-child{border-right:0}
+#passRow button.on{background:var(--ink);color:var(--paper)}
+#passRow button:disabled{opacity:.3;cursor:default}
+#boxes{font-size:11px;color:var(--soft);border:1px solid var(--rule);background:#fff;
+  border-radius:99px;padding:4px 9px;flex:none}
+#boxes.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#brokenTag{position:absolute;z-index:7;left:16px;top:16px;max-width:min(360px,68%);
+  background:#fff;border:1px solid var(--rule);border-left:3px solid var(--alarm);border-radius:9px;
+  padding:9px 11px;font-size:11.5px;line-height:1.45;color:var(--soft);letter-spacing:0;display:none}
+#brokenTag.on{display:block}
+#brokenTag b{display:block;color:var(--alarm);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;margin-bottom:3px}
+#noModel{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px;
+  color:var(--faint);z-index:3}
+#noModel.on{display:grid}
+#noModel b{display:block;font-size:13px;font-weight:500;color:var(--soft);letter-spacing:.04em}
+#noModel span{display:block;max-width:300px;margin:7px auto 0;font-size:12px;line-height:1.55}
+#stopNote{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);display:none;
+  max-width:min(88%,420px);padding:6px 12px;border-radius:99px;background:rgba(20,18,16,.86);
+  color:#f0e6df;font-size:11px;line-height:1.45;letter-spacing:.02em;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:6}
+#stopNote.on{display:block}
+@media(max-width:600px){#stopNote{bottom:58px;font-size:10px;padding:5px 10px}}
+#emptyPlate{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:24px;
+  color:var(--faint);z-index:2}
+#emptyPlate.on{display:grid}
+#emptyPlate b{display:block;font-size:13px;font-weight:500;color:var(--soft);letter-spacing:.04em}
+#emptyPlate span{display:block;max-width:280px;margin:6px auto 0;font-size:12px;line-height:1.5}
+
+#bar{position:absolute;left:0;right:0;bottom:0;z-index:6;display:flex;gap:14px;align-items:center;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(#f7f6f300,#f7f6f3cc 42%,var(--paper));backdrop-filter:blur(6px)}
+#bar button.round{width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-size:12px;flex:none}
+#seek{flex:1;-webkit-appearance:none;appearance:none;height:22px;background:transparent;min-width:40px}
+#seek::-webkit-slider-runnable-track{height:2px;background:var(--rule);border-radius:2px}
+#seek::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;
+  background:var(--ink);margin-top:-5.5px}
+#seek::-moz-range-track{height:2px;background:var(--rule);border-radius:2px}
+#seek::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:50%;background:var(--ink)}
+#speed{font-size:11px;color:var(--soft);border:1px solid var(--rule);background:#fff;
+  border-radius:99px;padding:4px 9px;flex:none;font-variant-numeric:tabular-nums}
+#tick{font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:0}
+
+/* ---------------- the thread ---------------- */
+#thread{overflow-y:auto;overscroll-behavior:contain;background:var(--paper);
+  border-top:1px solid var(--rule);padding:20px 0 28px;scroll-behavior:smooth}
+.wrap{max-width:660px;margin:0 auto;padding:0 20px}
+
+.turn{display:flex;margin-bottom:16px;animation:rise .32s cubic-bezier(.2,.7,.3,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.turn.right{justify-content:flex-end}
+.bub{max-width:76%;padding:12px 15px;border-radius:20px;background:var(--card);
+  box-shadow:0 1px 2px #00000010;border:1px solid var(--rule)}
+.turn.right .bub{background:var(--mine);border-color:#00000000;box-shadow:none}
+.who{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  margin-bottom:6px;display:flex;gap:7px;align-items:center}
+.ico{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:1.3;
+  stroke-linecap:round;stroke-linejoin:round}
+.note .ico{width:12px;height:12px;vertical-align:-2px;margin-right:3px;display:inline-block}
+.turn.you .bub{background:var(--accent-soft);border-color:#00000000}
+.turn.you .who{color:var(--accent)}
+.turn.right .who{justify-content:flex-end}
+.txt{white-space:pre-wrap;word-break:break-word}
+.big{font-size:16px}
+
+.note{text-align:center;font-size:11.5px;color:var(--faint);margin:0 0 16px;letter-spacing:0}
+.note b{color:var(--soft);font-weight:500}
+.note.warn b{color:var(--alarm)}
+
+.verdict{display:flex;gap:14px;align-items:flex-start}
+.verdict .n{font-size:30px;line-height:.95;font-weight:300;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;flex:none;min-width:44px}
+.verdict .n small{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin-top:4px;font-weight:400}
+
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:0 0 10px}
+.shots.one{grid-template-columns:1fr}
+.shots.one img{aspect-ratio:auto;max-height:280px;object-fit:contain;background:#fff}
+.focus{font-size:11.5px;color:var(--soft);margin:6px 0 0;letter-spacing:0}
+.verdict + .focus{margin-top:10px}
+.caveat a{color:var(--ink)}
+.caveat{font-size:11.5px;color:var(--soft);margin:7px 0 0;padding-left:9px;
+  border-left:2px solid var(--rule);letter-spacing:0}
+.waiting{font-size:11px;color:var(--soft);margin-top:7px;letter-spacing:0}
+.waiting b{color:var(--ink);font-variant-numeric:tabular-nums}
+.focus b{color:var(--accent);font-weight:500}
+.note.shootnote{color:var(--soft)}
+.note.shootnote b{color:var(--ink)}
+.turn.you .bub{background:var(--accent-soft);border-color:#00000000}
+.turn.you .who{color:var(--accent)}
+.shots figure{margin:0}
+.shots img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:9px;
+  background:#fff;border:1px solid var(--rule);cursor:zoom-in}
+.shots figcaption{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:5px}
+
+.opener .bub{max-width:100%;width:100%;text-align:center;padding:18px 16px 16px}
+.opener img{display:block;width:100%;max-width:340px;margin:0 auto 12px;border-radius:12px;
+  border:1px solid var(--rule);cursor:zoom-in}
+.opener .big{font-weight:500}
+
+.raw{margin-top:9px}
+.raw button{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:0}
+.raw button:hover{color:var(--soft)}
+.raw pre{display:none;margin:9px 0 0;padding:11px 12px;background:var(--paper);border:1px solid var(--rule);
+  border-radius:11px;font:400 11.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;
+  white-space:pre-wrap;word-break:break-word;color:var(--soft);max-height:280px;overflow:auto;letter-spacing:0}
+.raw.on pre{display:block}
+
+.typing .bub{padding:14px 16px}
+.dots{display:flex;gap:4px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--faint);animation:blink 1.25s infinite}
+.dots i:nth-child(2){animation-delay:.18s}.dots i:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:.85}}
+
+/* ---------------- chrome ---------------- */
+
+#lb{position:fixed;inset:0;z-index:60;background:#f7f6f3f2;display:none;place-items:center;
+  padding:24px;cursor:zoom-out}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px #00000022}
+#lb b{position:fixed;top:18px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);font-weight:400}
+
+#docs{position:fixed;inset:0;z-index:70;background:var(--paper);display:none;overflow:auto}
+#docs.on{display:block}
+#docs .wrap{padding:44px 20px 60px}
+#docs h2{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:0 0 14px}
+#docs h3{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  margin:34px 0 10px;font-weight:400}
+#docs p,#docs li{color:#3a3833;margin:0 0 12px}
+#docs pre{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:14px;overflow:auto;
+  font:400 11.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--soft);
+  white-space:pre-wrap;letter-spacing:0}
+#docs a{color:var(--ink)}
+.prov{border:1px solid var(--rule);border-radius:12px;padding:12px 15px;margin:0 0 18px;background:#fff}
+.prov p{margin:0 0 5px;font-size:12px;color:var(--soft)}
+.prov p:last-child{margin:0}
+.prov b{display:inline-block;min-width:64px;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);font-weight:400}
+#docs code{font:400 12px ui-monospace,SFMono-Regular,Menlo,monospace;background:#fff;
+  border:1px solid var(--rule);border-radius:5px;padding:1px 5px}
+#docs b.op{color:#a85a34}#docs b.co{color:#3d6591}#docs b.hu{color:#6b6250}
+#docsClose{position:fixed;top:16px;right:18px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--soft);background:#fff;border-radius:99px;padding:8px 14px;box-shadow:0 1px 3px #00000014}
+
+#boot{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:var(--paper);
+  color:var(--faint);font-size:12px;letter-spacing:.1em;text-align:center;padding:24px}
+
+@media(max-width:700px){
+  /* Four rows, not three. Left at three, the divider fell into an implicit row, and
+     an implicit row is sized to its content — which for a bar whose only mark is an
+     ::after is nothing at all. The handle was there and zero pixels tall. */
+  #app{grid-template-rows:auto minmax(0,var(--split,42%)) 9px minmax(0,1fr)}
+  #grip{min-height:9px}
+  /* Everything must fit 390px. Overflowing, the header widened the document, and
+     `right:12px` on the score then measured from an edge that was off the screen —
+     so the suck score, the one number this page exists to show, was invisible. */
+  header{padding:9px 10px;gap:6px}
+  header .name{display:none}
+  header select,header button,header label{font-size:11px;padding:6px 9px}
+  header select{flex:1 1 auto;max-width:none;min-width:0;text-overflow:ellipsis}
+  .wide{display:none}.narrow{display:inline}
+  /* Eight controls do not fit in 390 px. The filename is the first to go — it is on
+     the message in the thread anyway — and the seek is allowed to shrink. */
+  #stageTag{display:none}
+  #bar{gap:9px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+  #seek{min-width:24px}
+  #speed,#boxes,#passRow button{font-size:10.5px;padding:4px 8px}
+  #tick{font-size:10px}
+  #fadeWrap span{display:none}
+  #fadeWrap input{width:52px}
+      #boxes{padding:4px 7px}
+  #ref{width:76px;top:12px;left:12px}
+  #meter{top:12px;right:12px}
+  #score{font-size:32px}
+  #meterNote{display:none}
+  .bub{max-width:86%}
+  .wrap{padding:0 14px}
+  }
+@media(prefers-reduced-motion:reduce){
+  .turn{animation:none}.dots i{animation:none;opacity:.5}#thread{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div id="boot">reading the trace…</div>
+
+<div id="app">
+  <header>
+    <span class="name">Builder Traces</span>
+    <span class="badge" id="badge">—</span>
+    <span class="sp"></span>
+    <select id="pick"></select>
+    <label><span class="wide">Open a trace</span><span class="narrow">Open</span>
+      <input id="file" type="file" accept="application/json" hidden></label>
+    <button id="docsBtn"><span class="wide">How to read this</span><span class="narrow">Read me</span></button>
+  </header>
+
+  <section id="stage">
+    <canvas id="gl"></canvas>
+
+    <div id="ref">
+      <img id="refimg" alt="the reference">
+      <div class="cap" id="refname">reference</div>
+    </div>
+
+
+    <!-- Who made this, on what, judged how, photographed how. Four facts, always on
+         screen, because "which builder am I watching" should never need a click. -->
+    <div id="brokenTag"></div>
+
+    <div id="meter">
+      <div class="cap">suck score</div>
+      <div id="score">—</div>
+      <div id="meterNote">fucked until proven otherwise</div>
+    </div>
+
+    <!-- The one view worth having. The argument is always render-against-reference,
+         so being able to slide one over the other is the argument itself, made
+         visible. Everything else a viewer could offer is a preference. -->
+    <img id="ghost" alt="">
+    <div id="flash"></div>
+    <div id="shutter"><span id="shutterView">front</span></div>
+
+    <!-- The human trace's models are not geometry in a file, they are thirty
+         standalone Three.js pages — which is a format, not an absence. They run here,
+         live, on the build this repo vendors. -->
+    <div id="noModel"><div><b>Nothing was built on this turn.</b>
+      <span>Not every message produced a page. The model above stays on the last one
+      that did.</span></div></div>
+
+    <!-- A build that stopped mid-way says so here, in the words its own proof gate
+         used, rather than being reported as an absence. -->
+    <div id="stopNote"></div>
+
+    <div id="emptyPlate"><div><b>Nothing was built.</b>
+      <span>Every operation was rejected, so the captures below are blank. That is the trace being honest, not a fault in this page.</span></div></div>
+
+    <div id="bar">
+      <button class="round" id="play">▶</button>
+      <input id="seek" type="range" min="0" max="0" value="0">
+      <button id="speed" title="how fast to replay it">4×</button>
+      <span id="stageTag"></span>
+      <span id="passRow"><button data-pass="mass">mass</button><button data-pass="resolved"
+        class="on">resolved</button><button data-pass="both">both</button></span>
+      <button id="boxes" title="show every part's bounding box">boxes</button>
+      <label id="fadeWrap" title="fade the reference over the build">
+        <span>fade</span><input id="fade" type="range" min="0" max="100" value="0"></label>
+      <span id="tick">—</span>
+    </div>
+  </section>
+
+  <div id="grip" title="drag to resize"></div>
+  <section id="thread"><div class="wrap" id="log"></div></section>
+</div>
+
+<div id="lb"><b id="lbcap"></b><img id="lbimg" alt=""></div>
+<div id="docs"><button id="docsClose">Close</button><div class="wrap" id="docsBody"></div></div>
+
+<!--
+  CHAINS — the Henry House build, one house at a time.
+
+  This page is gunnars-depot.html/operative-builder-trace.html, vendored so the
+  chains can be read without depending on that site being up. Four things
+  changed and nothing else: the three fetches now read index.json and the trace
+  files from THIS folder rather than assets/traces/; a missing index leaves the
+  file picker usable instead of hanging behind the curtain; and the classic
+  script at the end of <body> puts up an instruction if the module never ran,
+  which is what happens when this file is opened straight off the disk.
+
+  Source: github.com/hartswf0/gunnars-depot.html @ da5b704
+  three.js in vendor/ is MIT — see vendor/three/LICENSE.
+
+  IT MUST BE SERVED, NOT DOUBLE-CLICKED. Browsers refuse ES modules over
+  file://, so:  python3 -m http.server 8000   then open
+  http://localhost:8000/chains.html
+-->
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+// Two builders, two file formats, one reader.
+//
+// An OPERATIVE trace keeps four separate logs and a full world before and after
+// every cycle. A CORRESPONDENCE trace keeps one interleaved transcript — including
+// the human — and only the finished scene. Both get the same treatment as far as
+// what they actually contain allows, and where one contains less, the page says so
+// rather than inventing it.
+//
+// Either way the raw file says everything two or three times: an accusation appears
+// as the critic's verdict, as the bridge that carries it, and again inside the next
+// prompt under sixteen hundred characters of identical boilerplate. Said once, the
+// six-cycle castle goes from fifty-four entries to fifteen messages, and the full
+// text stays one tap away.
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+let idx = null, doc = null, msgs = [], at = 0, playing = false, timer = null, rate = 4;
+const BUILDERS = {
+  operative: 'operative builder · a loop with a schema between it and the world',
+  correspondence: 'correspondence builder · a loop that hunts one target at a time',
+  human: 'a person, typing · the trace the automatic ones were built from'
+};
+
+// ------------------------------------------------------------------ adapters
+//
+// Two builders wrote these files and they do not agree about anything except that
+// there is a reference, somebody builds, and somebody else says it is wrong.
+//
+//   OPERATIVE     format: 'OPERATIVE_BUILDER_TRACE_V1'
+//                 four separate logs; a full world snapshot before and after every
+//                 cycle; three captures per cycle; one score for the whole view.
+//
+//   CORRESPONDENCE  version: 1, with `scene` and `transcript`
+//                 one interleaved transcript including the human; ONE scene, the
+//                 final one; one picture per snapshot; and a score against a named
+//                 *target* rather than the whole building.
+//
+// Both are normalised to the same thing here — an opener, a list of messages, and a
+// scene for any message that has one — so the rest of the page never asks which it
+// is reading. What cannot be normalised is stated rather than faked: a
+// correspondence file simply does not contain the intermediate worlds, so its model
+// is the finished build with the critic's target lit up, and the page says so.
+
+const rad = (d) => d * Math.PI / 180;
+
+/** One part, in the shape the renderer wants, whichever file it came from. */
+const OPERATIVE_PART = (o) => ({
+  id: o.id, prim: o.primitive, pos: o.position || [0, 0, 0],
+  size: o.size || [1, 1, 1], rot: [0, o.rotation_y || 0, 0],
+  scale: o.scale || [1, 1, 1], color: o.color || '#9aa3ad',
+  metal: o.material === 'metal' ? 0.55 : 0.04,
+  rough: o.material === 'metal' ? 0.4 : 0.9, opacity: 1, profile: null
+});
+
+const CORRESPONDENCE_PART = (p) => ({
+  id: p.id, prim: p.kind, pos: p.position || [0, 0, 0],
+  size: p.size || [1, 1, 1],
+  // Degrees here, radians in the other one. Fed to three.js unconverted, every
+  // wheel on the lunar lander lay flat and the antenna pointed into the ground.
+  rot: (p.rotation || [0, 0, 0]).map(rad),
+  scale: [1, 1, 1], color: p.color || '#9aa3ad',
+  metal: p.metalness ?? 0.1, rough: p.roughness ?? 0.8,
+  opacity: p.opacity ?? 1, profile: p.profile && p.profile.length ? p.profile : null
+});
+
+function adapt(doc) {
+  if (doc && doc.format === 'OPERATIVE_BUILDER_TRACE_V1') return adaptOperative(doc);
+  if (doc && doc.format === 'HUMAN_CORRESPONDENCE_V1') return adaptHuman(doc);
+  if (doc && doc.scene && doc.transcript) return adaptCorrespondence(doc);
+  throw new Error('not a builder trace this page knows how to read');
+}
+
+/**
+ * Before any of it was automatic, it was a person typing.
+ *
+ * Thirty-six turns over two days: a prompt, a thing that got built, a screenshot
+ * pasted back in, and a blunt human verdict — "the wings do not look good", "now the
+ * roof is fucked up", "we have no windows". The same loop the two machine builders
+ * run, with a person as both the instruction and the critic, and it is the trace the
+ * automatic ones were built out of. There is no geometry in it, because the geometry
+ * was a web page at the time. The pictures are the record.
+ */
+function adaptHuman(t) {
+  const msgs = [{ kind: 'opener', ref: (t.turns.find(x => x.image) || {}).image || null,
+                  intent: t.intent, name: t.who, note: t.note }];
+  for (const turn of t.turns) {
+    msgs.push({ kind: 'you', text: turn.prompt, cycle: turn.i + 1, ts: turn.ts });
+    msgs.push({ kind: 'builder', cycle: turn.i + 1, text: turn.result,
+      artifact: turn.artifact || null, model: turn.model || null, broken: turn.broken || null,
+      shots: turn.image ? [{ src: turn.image, cap: 'what came back', blank: false }] : [] });
+  }
+  return { builder: 'human', intent: t.intent, reference: null, name: t.who,
+           model: t.engine, msgs, perCycleWorlds: false, note: t.note,
+           provenance: { engine: t.engine, critic: t.critic, capture: t.capture,
+                         turns: t.turns.length } };
+}
+
+function adaptOperative(t) {
+  const msgs = [{ kind: 'opener', ref: t.reference, intent: t.intent, name: t.reference_name }];
+  const T = (s) => (s ? Date.parse(s) : 0);
+  const prompts = (t.builder_log || []).filter(b => b.role === 'user');
+  const errs = (t.builder_log || []).filter(b => b.role === 'error');
+
+  // How long each turn actually took. There are no token counts anywhere in either
+  // format, so this is the only honest measure of effort in the file — and it is a
+  // good one: the builder sat for eighty-six seconds on cycle 3.
+  const think = (log, atMost) => {
+    let ask = null;
+    for (const e of log) {
+      if (!e.ts) continue;
+      if (e.role === 'user') ask = T(e.ts);
+      else if (e.role === 'assistant' && ask && Math.abs(T(e.ts) - atMost) < 4000) return T(e.ts) - ask;
+    }
+    return null;
+  };
+
+  for (const h of t.history) {
+    const ok = (h.receipts || []).filter(r => !/^REJECT/.test(r)).length;
+    const no = (h.receipts || []).length - ok;
+    const p = prompts.filter(x => T(x.ts) <= T(h.ts)).pop();
+    msgs.push({
+      kind: 'builder', cycle: h.cycle, text: h.summary || '', raw: p ? p.text : null,
+      think: think(t.builder_log || [], T(h.ts)),
+      scene: { parts: (h.afterWorld || []).map(OPERATIVE_PART),
+               added: new Set((h.diff || {}).added || []),
+               changed: new Set((h.diff || {}).changed || []),
+               was: (h.beforeWorld || []).length }
+    });
+    if (no) msgs.push({ kind: 'note', warn: true,
+      text: `${no} of ${ok + no} operations rejected — nothing was built` });
+    const c = (h.critiques || [])[0];
+    if (c) {
+      msgs.push({ kind: 'shoot', view: c.view || 'front' });
+      msgs.push({ kind: 'critic', cycle: h.cycle, score: c.score, text: c.criticism || '',
+        think: think(t.critic_log || [], T(c.ts || h.ts)),
+        shots: [['beforeShot', 'before'], ['afterShot', 'after'], ['diffShot', 'what changed']]
+          .filter(([k]) => h[k])
+          .map(([k, cap]) => ({ src: h[k], cap,
+            blank: k === 'beforeShot' ? !(h.beforeWorld || []).length : !(h.afterWorld || []).length })) });
+    }
+  }
+  if (errs.length) {
+    const last = msgs.map((m, i) => [m, i]).filter(([m]) => m.kind === 'critic').slice(-2)[0];
+    msgs.splice(last ? last[1] + 1 : msgs.length, 0, { kind: 'note', warn: true,
+      text: errs.length > 1 ? `${errs[0].text} — the loop retried ${errs.length} times before it caught`
+                            : errs[0].text });
+  }
+  return { builder: 'operative', intent: t.intent, reference: t.reference,
+           name: t.reference_name, model: t.model, msgs, perCycleWorlds: true,
+           provenance: { engine: t.model, critic: 'FUCKED UNTIL PROVEN OTHERWISE · one score for the view',
+             capture: 'three renders a cycle — before, after, geometry diff',
+             tool: 'operative-builder-scan.html', cycles: t.history.length } };
+}
+
+function adaptCorrespondence(t) {
+  const parts = (t.scene.parts || []).map(CORRESPONDENCE_PART);
+  const you = (t.transcript || []).filter(x => x.role === 'you').map(x => x.text);
+  const intent = you[0] || t.pendingUser || t.referenceName || 'untitled';
+  const msgs = [{ kind: 'opener', ref: t.reference, intent, name: t.referenceName }];
+  const snapByCycle = new Map();
+  for (const s of t.snapshots || []) if (!snapByCycle.has(s.cycle)) snapByCycle.set(s.cycle, s);
+
+  // The transcript is already one conversation, which is the nice thing about this
+  // format. `world` and `api` lines are the machinery — kept, but as quiet notes,
+  // and the transport chatter is dropped: forty "→ OPENAI · attempt 1/4" lines say
+  // nothing a reader of the argument needs.
+  let cycle = 0, saidTarget = null, pending = null, told = [];
+  const counts = [];
+  for (const e of t.transcript || []) {
+    const text = String(e.text || '');
+    // The transport lines are noise as conversation and gold as measurement: each
+    // return carries the wall-clock of the call, the size of the answer, and how
+    // much was posted to get it. Neither format records tokens — this is what there
+    // is, and it is real rather than estimated.
+    if (e.role === 'api') {
+      const out = /(BUILDER|CRITIC) → OPENAI[^]*?~(\d+) KB/.exec(text);
+      if (out) { pending = { who: out[1].toLowerCase(), kb: +out[2] }; continue; }
+      const back = /(BUILDER|CRITIC) ← OPENAI · (\d+) ms · (\d+) chars/.exec(text);
+      if (back && pending && pending.who === back[1].toLowerCase())
+        pending = { ...pending, ms: +back[2], chars: +back[3] };
+      continue;
+    }
+    if (e.role === 'you') { msgs.push({ kind: 'you', text }); continue; }
+    if (e.role === 'world') {
+      const m = /^CYCLE (\d+) START/.exec(text);
+      if (m) { cycle = +m[1]; continue; }
+      // The one thing that makes a correspondence trace buildable step by step.
+      //
+      // The file keeps only the finished scene — but every cycle logs how many parts
+      // stood when it ended, those counts rise monotonically and land exactly on the
+      // final total, and `scene.parts` is in insertion order (the nine locked trailer
+      // parts first, the late cabin braces last). So the world at cycle N is the
+      // first N-many parts. It is a reconstruction and it is labelled as one: a part
+      // added early and moved later is shown here where it finished, because where it
+      // stood at the time is not in the file.
+      const upd = /^WORLD UPDATED · \d+ target changes · (\d+) total parts/.exec(text);
+      if (upd) { counts.push({ cycle, total: +upd[1] }); continue; }
+      if (/^PICTURE/.test(text)) continue;
+      if (/^TARGET LOCKED|^TARGET SURVIVED|^TARGET STALLED|^STOP|^ERROR|^camera →/.test(text))
+        msgs.push({ kind: 'note', cycle, warn: /ERROR|STALLED/.test(text),
+                    text: text.replace(/\s*·\s*/g, ' · ') });
+      continue;
+    }
+    if (e.role === 'builder') {
+      // The outgoing prompt is not conversation, but it names the exact parts the
+      // builder was told to work on — which is the only record of what a cycle
+      // touched when it moved things instead of adding them.
+      if (/^→ OPENAI/.test(text)) {
+        const ids = /IDS:\s*([^\n]+)/.exec(text);
+        told = ids ? ids[1].split(',').map(x => x.trim()).filter(Boolean) : [];
+        continue;
+      }
+      const body = text.replace(/^← TARGETED BUILD · /, '');
+      const n = /(\d+) changed parts/.exec(text);
+      msgs.push({ kind: 'builder', cycle, text: body.replace(/^\d+ changed parts\n?/, ''),
+                  changedCount: n ? +n[1] : null, raw: null,
+                  think: pending && pending.who === 'builder' ? pending.ms : null,
+                  cost: pending && pending.who === 'builder' ? pending : null,
+                  told: told.slice() });
+      pending = null; told = [];
+      continue;
+    }
+    if (e.role === 'critic') {
+      if (/^→ OPENAI/.test(text)) continue;
+      const m = /^WORST · ([^\n]+)\n?([\s\S]*)$/.exec(text);
+      const focusLabel = m ? m[1] : null;
+      const body = m ? m[2] : text;
+      const snap = snapByCycle.get(cycle);
+      if (snap === saidTarget) continue;
+      saidTarget = snap;
+      msgs.push({ kind: 'shoot', view: (snap && snap.view) || 'front' });
+      msgs.push({ kind: 'critic', cycle, score: snap ? snap.score : null, text: body,
+        think: pending && pending.who === 'critic' ? pending.ms : null,
+        cost: pending && pending.who === 'critic' ? pending : null,
+        focus: focusLabel || (snap && snap.focus) || null,
+        focusIds: (snap && snap.focusIds) || [],
+        shots: snap && snap.image ? [{ src: snap.image, cap: snap.view || 'the picture', blank: false }] : [] });
+      pending = null;
+      continue;
+    }
+  }
+  // Hang a scene on each builder message: the first N parts, N being what that cycle
+  // logged. Where no counts were logged at all, the finished scene goes on the first
+  // builder message and that is all anyone can be shown.
+  const builders = msgs.map((m, i) => [m, i]).filter(([m]) => m.kind === 'builder');
+  let prev = 0, k = 0;
+  for (const [m] of builders) {
+    const c = counts[k++];
+    if (!c) break;
+    const upto = parts.slice(0, c.total);
+    // A cycle that relocates nine parts and adds none leaves the count where it was,
+    // so a prefix reconstruction shows nothing happening and the move reads as a
+    // skipped step. The parts it was told to move are recorded, so they are marked as
+    // changed and the message says the model cannot show them moving — only where
+    // they ended up.
+    const inPlace = c.total === prev;
+    m.scene = { parts: upto, added: new Set(upto.slice(prev).map(p => p.id)),
+                changed: new Set(inPlace ? (m.told || []) : []), was: prev, rebuilt: true };
+    m.inPlace = inPlace && (m.told || []).length ? m.told.length : 0;
+    prev = c.total;
+  }
+  if (!counts.length && builders.length)
+    builders[0][0].scene = { parts, added: new Set(parts.map(p => p.id)),
+                             changed: new Set(), was: 0, final: true };
+  const set = t.settings || {};
+  return { builder: 'correspondence', intent, reference: t.reference, name: t.referenceName,
+           model: set.model || 'unknown', msgs,
+           provenance: { engine: `${set.model || 'unknown'}${set.effort ? ' · ' + set.effort + ' effort' : ''}`,
+             critic: `hunts one worst target at a time${set.threshold != null ? ' · stops under ' + set.threshold : ''}`,
+             capture: 'one render a cycle, from one of eight fixed cameras',
+             tool: 'correspondence depot clinic', cycles: t.cycle },
+           perCycleWorlds: counts.length > 0, reconstructed: counts.length > 0,
+           background: t.scene.background, ground: t.scene.groundColor };
+}
+
+
+// ------------------------------------------------------------------ the model
+const renderer = new THREE.WebGLRenderer({ canvas: $('#gl'), antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene();
+// 42°, which is the clinic's lens. A different focal length is a different picture.
+const camera = new THREE.PerspectiveCamera(42, 1, 0.03, 900);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xb9bdb4, 1.25));
+const sun = new THREE.DirectionalLight(0xfffaf0, .95); sun.position.set(28, 44, 22); scene.add(sun);
+const rim = new THREE.DirectionalLight(0xd7e4f2, .35); rim.position.set(-30, 18, -28); scene.add(rim);
+const shadowPlane = new THREE.Mesh(new THREE.PlaneGeometry(600, 600),
+  new THREE.MeshBasicMaterial({ color: 0xdedbd4 }));
+shadowPlane.rotation.x = -Math.PI / 2; shadowPlane.position.y = -0.05; scene.add(shadowPlane);
+const worldGroup = new THREE.Group(), rings = new THREE.Group(); scene.add(worldGroup, rings);
+// Open for inspection: the argument of this whole project is that you should be able
+// to check a claim rather than take it, and that includes this page.
+window.__wg = worldGroup; window.__rings = rings; window.camera = camera; window.scene = scene;
+setTimeout(() => { window.__orbit = orbit; }, 0);   // for the verification harness
+// Open for inspection. The argument of this whole project is that you should be able
+// to check a claim rather than take it, and that includes this page.
+window.trace = {
+  get msgs() { return msgs; }, get doc() { return doc; }, get at() { return at; },
+  get file() { return docFile; },
+  // Enough of a handle to drive the page from a test: jump to a turn, then ask
+  // what actually ended up on the stage.
+  goto(i) { stop(); show(i); },
+  stage() {
+    // Only what is actually being drawn: a pass on its way out still has meshes in
+    // the group, and counting those would measure a frame nobody is looking at.
+    const b = new THREE.Box3();
+    let shown = 0;
+    const collect = (o) => { if (o.isMesh && o.visible && (!o.material || o.material.opacity > .05)) {
+      shown++; b.expandByObject(o); } };
+    if (artPasses) for (const g of [artPasses.mass, artPasses.built]) { if (g.visible) g.children.forEach(collect); }
+    else worldGroup.traverse(collect);
+    if (!shown) return null;
+
+    const pts = [];
+    for (const x of [b.min.x, b.max.x]) for (const y of [b.min.y, b.max.y]) for (const z of [b.min.z, b.max.z])
+      pts.push(new THREE.Vector3(x, y, z).project(camera));
+    const onscreen = pts.every(p => Math.abs(p.x) <= 1.02 && Math.abs(p.y) <= 1.02);
+
+    return artPasses
+      ? { file: artPasses.file, mass: artPasses.mass.children.length, built: artPasses.built.children.length,
+          shown, onscreen, total: artPasses.mass.children.length + artPasses.built.children.length,
+          note: $('#stopNote').classList.contains('on') ? $('#stopNote').textContent : null }
+      : { file: null, shown, onscreen, total: shown, note: null };
+  }
+};
+
+// The eight cameras the loop actually uses, lifted from the clinic that took these
+// pictures. Every snapshot records which one it was shot from, so the model can be
+// stood exactly where the camera stood — the picture in the message and the geometry
+// above it are then the same view, and you can hold one against the other.
+//
+// A slow orbit was the wrong idea. It looks alive and it means the render is never
+// the shot the critic was handed, which is the one thing the whole page is for.
+// theta, phi and the distance, exactly as the clinic holds them. A correspondence
+// scene is in the same metric space the clinic works in, so using its numbers whole —
+// including the target at (0, 1.15, 0) — puts this camera where that camera was, and
+// the render and the photograph become the same shot rather than two views that
+// happen to face the same way.
+const VIEWS = {
+  'front 3/4': [0.78, 1.07, 10.8], 'left side': [1.57, 1.18, 10.6],
+  'rear 3/4': [2.36, 1.08, 10.8], 'rear': [3.14, 1.18, 10.8],
+  'right side': [4.71, 1.18, 10.6], 'front': [0, 1.18, 10.8],
+  'high 3/4': [0.90, 0.64, 11.2], 'plan': [0.01, 0.16, 12.5]
+};
+const viewAngles = (name) => VIEWS[String(name || '').toLowerCase().trim()] || VIEWS['front 3/4'];
+
+// theta is the compass bearing, phi the angle down from straight up — the clinic's
+// own spherical convention, so the numbers above mean here what they mean there.
+const orbit = { theta: 0.78, phi: 1.07, dist: 46, target: new THREE.Vector3(0, 3, 0) };
+let framed = null, camTween = 0, autoplayTimer = 0;
+let docFile = null;   // which trace is open, so a test can tell it got the one it asked for
+
+function meshFor(o) {
+  const [sx, sy, sz] = o.size || [1, 1, 1];
+  let g;
+  if (o.prim === 'cylinder') g = new THREE.CylinderGeometry(sx, sx, sy, Math.max(8, sz | 0) || 20);
+  else if (o.prim === 'cone') g = new THREE.ConeGeometry(sx, sy, Math.max(8, sz | 0) || 20);
+  else if (o.prim === 'sphere') g = new THREE.SphereGeometry(sx / 2, 20, 14);
+  else if (o.prim === 'extrude' && o.profile) {
+    // A real outline, not a box pretending. The correspondence builder draws faceted
+    // cabins and roofs as a 2D profile plus a depth, and boxed instead they came back
+    // as a stack of blocks — which is precisely what its critic kept complaining the
+    // build was.
+    const sh = new THREE.Shape();
+    o.profile.forEach(([x, y], k) => k ? sh.lineTo(x, y) : sh.moveTo(x, y));
+    sh.closePath();
+    g = new THREE.ExtrudeGeometry(sh, { depth: sz, bevelEnabled: false });
+    g.translate(0, 0, -sz / 2);
+  } else if (o.prim === 'gable') {
+    const sh = new THREE.Shape();
+    sh.moveTo(-sx / 2, -sy / 2); sh.lineTo(sx / 2, -sy / 2); sh.lineTo(0, sy / 2); sh.closePath();
+    g = new THREE.ExtrudeGeometry(sh, { depth: sz, bevelEnabled: false }); g.translate(0, 0, -sz / 2);
+  } else g = new THREE.BoxGeometry(sx, sy, sz);
+
+  const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({
+    color: new THREE.Color(o.color), roughness: o.rough, metalness: o.metal,
+    transparent: o.opacity < 1, opacity: o.opacity }));
+  m.position.set(o.pos[0], o.pos[1], o.pos[2]);
+  m.rotation.set(o.rot[0] || 0, o.rot[1] || 0, o.rot[2] || 0);
+  m.scale.set(o.scale[0], o.scale[1], o.scale[2]);
+  m.userData.id = o.id;
+  return m;
+}
+
+/**
+ * Put the scene up one part at a time.
+ *
+ * The whole thing appearing between two frames is a slide show; a building that
+ * assembles itself is the thing you actually want to watch, and it is also the only
+ * way to see *what* a cycle added — which is the question the diff is answering.
+ * Parts that were already standing come back instantly; the ones this move brought
+ * are laid in one by one, and rung as they land.
+ */
+let laying = 0;
+const live = new Map();                       // id → mesh, so a part can be moved rather than replaced
+
+/**
+ * Put the scene up, and move what was already standing.
+ *
+ * Clearing the group and rebuilding it every cycle is a slide show: the castle
+ * blinks and you cannot tell whether a tower moved four inches or was demolished and
+ * rebuilt somewhere else. So parts that survive a cycle are kept and *eased* to their
+ * new position, size and angle, which is the difference the diff is actually
+ * describing. New ones grow in, one at a time. Ones that are gone shrink away.
+ */
+async function drawScene(sc, { animate = true } = {}) {
+  const token = ++laying;
+  rings.clear();
+  $('#emptyPlate').classList.toggle('on', !!sc && !sc.parts.length);
+  if (!sc) { worldGroup.clear(); live.clear(); return; }
+
+  const want = new Map(sc.parts.map(p => [p.id, p]));
+  // gone
+  for (const [id, m] of [...live]) {
+    if (want.has(id)) continue;
+    live.delete(id);
+    if (!animate) { worldGroup.remove(m); continue; }
+    ease(m, { scale: [0.01, 0.01, 0.01] }, 260, () => worldGroup.remove(m));
+  }
+  // standing: move them
+  const fresh = [];
+  for (const p of sc.parts) {
+    const m = live.get(p.id);
+    if (!m) { fresh.push(p); continue; }
+    const moved = Math.abs(m.position.x - p.pos[0]) + Math.abs(m.position.y - p.pos[1]) +
+                  Math.abs(m.position.z - p.pos[2]) > 1e-4 ||
+                  Math.abs(m.scale.x - p.scale[0]) > 1e-4;
+    if (!animate) { applyNow(m, p); }
+    else if (moved) ease(m, { pos: p.pos, rot: p.rot, scale: p.scale }, 420);
+    else applyNow(m, p);
+    if (m.material && m.material.color) m.material.color.set(p.color);
+    ring(m, sc, p);
+  }
+  frameOn(sc.parts);
+
+  // Framed once here so the camera is right as the parts arrive, and again below once
+  // they are standing. Only the first pass would frame the build as it was before this
+  // turn added to it, so a growing build walks off the edge one turn at a time.
+  if (!animate) {
+    for (const p of fresh) { const m = born(p); applyNow(m, p); ring(m, sc, p); }
+    frameOn(sc.parts); drawBoxes(); return;
+  }
+
+  // Fast enough to feel like assembly, slow enough to see. The per-part pause shrinks
+  // as the pile grows, so a hundred and five parts is a couple of seconds, not twelve.
+  const step = Math.max(18, Math.min(110, 1300 / Math.max(1, fresh.length))) / rate;
+  for (const p of fresh) {
+    // Superseded: a newer turn is drawing now and owns the world. Finishing this one's
+    // parts would drop them back into a scene that has already moved on — which is how
+    // scrubbing to the opening turn could leave a building standing on a turn where
+    // nothing had been built yet.
+    if (token !== laying) return;
+    const m = born(p);
+    m.scale.set(0.01, 0.01, 0.01);
+    ease(m, { scale: p.scale }, 200);
+    ring(m, sc, p);
+    await new Promise(r => setTimeout(r, step));
+  }
+  frameOn(sc.parts);
+  drawBoxes();
+  if (doc && doc.builder === 'correspondence') {
+    const [, , r] = viewAngles(paint._v);
+    orbit.dist = framed = Math.max(r, fitDistance());
+  }
+}
+
+function born(p) { const m = meshFor(p); worldGroup.add(m); live.set(p.id, m); return m; }
+function applyNow(m, p) {
+  m.position.set(p.pos[0], p.pos[1], p.pos[2]);
+  m.rotation.set(p.rot[0] || 0, p.rot[1] || 0, p.rot[2] || 0);
+  m.scale.set(p.scale[0], p.scale[1], p.scale[2]);
+}
+/** One tween, cubic out, cancelling any tween already running on that mesh. */
+function ease(m, to, ms, done) {
+  const from = { pos: m.position.clone(), rot: m.rotation.clone(), scale: m.scale.clone() };
+  const t0 = performance.now();
+  m.userData.tween = (m.userData.tween || 0) + 1;
+  const mine = m.userData.tween;
+  (function step(now) {
+    if (m.userData.tween !== mine) return;
+    const f = Math.min(1, ((now || performance.now()) - t0) / ms), e = 1 - Math.pow(1 - f, 3);
+    if (to.pos) m.position.set(from.pos.x + (to.pos[0] - from.pos.x) * e,
+                               from.pos.y + (to.pos[1] - from.pos.y) * e,
+                               from.pos.z + (to.pos[2] - from.pos.z) * e);
+    if (to.rot) m.rotation.set(from.rot.x + ((to.rot[0] || 0) - from.rot.x) * e,
+                               from.rot.y + ((to.rot[1] || 0) - from.rot.y) * e,
+                               from.rot.z + ((to.rot[2] || 0) - from.rot.z) * e);
+    if (to.scale) m.scale.set(from.scale.x + (to.scale[0] - from.scale.x) * e,
+                              from.scale.y + (to.scale[1] - from.scale.y) * e,
+                              from.scale.z + (to.scale[2] - from.scale.z) * e);
+    if (f < 1) requestAnimationFrame(step); else if (done) done();
+  })();
+}
+
+// The clinic marks a change on the part itself: amber, hot, for a second and a half
+// after a move lands; red and breathing for whatever the critic has named as its
+// target. Outlines alone are a diagram of a difference; this is the difference.
+let flashIds = new Set(), flashUntil = 0, focusIds = new Set();
+function pulse() {
+  const t = performance.now();
+  const breathe = .78 + .46 * (.5 + .5 * Math.sin(t * .0065));
+  for (const [id, m] of live) {
+    const e = m.material && m.material.emissive;
+    if (!e) continue;
+    if (flashIds.has(id) && t < flashUntil) {
+      e.setHex(0xffb52e); m.material.emissiveIntensity = 1.15 + .45 * Math.sin(t * .018);
+    } else if (focusIds.has(id)) {
+      e.setHex(0xff3426); m.material.emissiveIntensity = breathe;
+    } else if (m.material.emissiveIntensity) {
+      e.setHex(0x000000); m.material.emissiveIntensity = 0;
+    }
+  }
+}
+function flashChanged(ids) { flashIds = new Set(ids || []); flashUntil = performance.now() + 1450; }
+
+/** Every part's box, when you want to see the geometry rather than the render. */
+let boxesOn = false;
+const boxGroup = new THREE.Group(); scene.add(boxGroup);
+function drawBoxes() {
+  boxGroup.clear();
+  if (!boxesOn) return;
+  for (const [, m] of live) {
+    const h = new THREE.Box3Helper(new THREE.Box3().setFromObject(m), new THREE.Color(0x4b5560));
+    h.material.transparent = true; h.material.opacity = .5; boxGroup.add(h);
+  }
+}
+
+function ring(m, sc, p) {
+  const col = sc.added.has(p.id) ? cssColour('--added') : sc.changed.has(p.id) ? cssColour('--changed') : null;
+  if (!col || sc.final) return;
+  const hx = new THREE.Box3Helper(new THREE.Box3().setFromObject(m), new THREE.Color(col));
+  hx.material.depthTest = false; hx.material.transparent = true; hx.material.opacity = .75;
+  hx.renderOrder = 5; rings.add(hx);
+}
+const cssColour = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim() || '#888';
+
+/** Light the parts the critic named as its target. Correspondence traces carry the ids. */
+function lightFocus(ids) {
+  rings.clear();
+  focusIds = new Set(ids || []);
+  if (!focusIds.size) return;
+  // One box round the whole target, not one per part: the critic named a region, and
+  // a region is what it should read as.
+  const box = new THREE.Box3();
+  for (const [id, m] of live) if (focusIds.has(id)) box.expandByObject(m);
+  if (box.isEmpty()) return;
+  const hx = new THREE.Box3Helper(box, new THREE.Color(0xff4b3e));
+  hx.material.transparent = true; hx.material.opacity = .9; hx.material.depthTest = false;
+  hx.renderOrder = 6; rings.add(hx);
+}
+
+/** How far back this panel has to be to hold everything standing, at this aspect. */
+/**
+ * How far back the camera has to sit for a box to be wholly inside this panel.
+ *
+ * Measuring a footprint as max(x, z) is only right when you are looking down an axis.
+ * A long, shallow building seen from three-quarters projects wider than either of its
+ * sides, so that measure quietly under-reports and the ends of the building hang off
+ * the frame — which is what a phone, where there is no spare width to absorb it,
+ * shows first. So all eight corners go through the camera basis, and the distance is
+ * the one that holds the worst of them inside both fields at once. Exact, and exact
+ * at any angle.
+ */
+function distanceToFrame(b, target) {
+  if (b.isEmpty()) return 0;
+  const aspect = Math.max(0.3, camera.aspect || 1);
+  const tanV = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const tanH = tanV * aspect;
+
+  const sp = Math.sin(orbit.phi);
+  const back = new THREE.Vector3(sp * Math.cos(orbit.theta), Math.cos(orbit.phi), sp * Math.sin(orbit.theta)).normalize();
+  const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), back);
+  if (right.lengthSq() < 1e-6) right.set(1, 0, 0); else right.normalize();
+  const up = new THREE.Vector3().crossVectors(back, right).normalize();
+
+  let dist = 0;
+  const p = new THREE.Vector3();
+  for (const x of [b.min.x, b.max.x]) for (const y of [b.min.y, b.max.y]) for (const z of [b.min.z, b.max.z]) {
+    p.set(x, y, z).sub(target);
+    const depth = p.dot(back);
+    dist = Math.max(dist, depth + Math.abs(p.dot(right)) / tanH,
+                          depth + Math.abs(p.dot(up)) / tanV);
+  }
+  // A little air, and more of it on a short panel where the transport bar takes the
+  // bottom of the frame.
+  return dist * (aspect < 1.5 ? 1.26 : 1.18);
+}
+
+function fitDistance() {
+  const b = new THREE.Box3().setFromObject(worldGroup);
+  if (b.isEmpty()) return 0;
+  return Math.max(distanceToFrame(b, orbit.target), b.getSize(new THREE.Vector3()).length() * .6);
+}
+
+/**
+ * Centre on what is standing and open out far enough to hold all of it.
+ *
+ * The clinic's own framing used to stand untouched for a correspondence run, on the
+ * grounds that the render should be the shot the critic was handed. But its target is
+ * a fixed point at (0, 1.15, 0), and a build that does not happen to straddle that
+ * point sits off to one side of the frame or half out of it — which is the thing you
+ * cannot read. So the angle stays the clinic's, exactly the camera the picture was
+ * taken from, and only the aim and the distance move: same view, centred, whole.
+ */
+function frameOn(parts) {
+  const b = new THREE.Box3().setFromObject(worldGroup);
+  if (b.isEmpty()) {
+    // Nothing is standing yet, so measure the parts that are about to be.
+    for (const p of parts) b.expandByPoint(new THREE.Vector3(p.pos[0], p.pos[1], p.pos[2]));
+    if (b.isEmpty()) return;
+    b.expandByScalar(2);
+  }
+  orbit.target.copy(b.getCenter(new THREE.Vector3()));
+  // Held steady across a run and only ever opened out, so the eye watches the thing
+  // change rather than the camera move.
+  const want = Math.max(distanceToFrame(b, orbit.target),
+                        b.getSize(new THREE.Vector3()).length() * .6);
+  orbit.dist = framed ? Math.max(framed, want) : want; framed = orbit.dist;
+}
+
+// ------------------------------------------------------------------ rendering
+// A mark per voice, so you can tell at a glance who is speaking without reading a
+// label. Small, line-only, and drawn from what each one actually does: a person, a
+// square being set out, an eye, a shutter, a machine.
+const ICONS = {
+  human:   '<path d="M8 8.2a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2Zm-5 5.3c0-2.6 2.2-4 5-4s5 1.4 5 4"/>',
+  builder: '<path d="M2.2 13.8V5.2L8 2.2l5.8 3v8.6M2.2 13.8h11.6M6 13.8V8.6h4v5.2"/>',
+  critic:  '<path d="M1.6 8S4 3.6 8 3.6 14.4 8 14.4 8 12 12.4 8 12.4 1.6 8 1.6 8Z"/><circle cx="8" cy="8" r="1.9"/>',
+  camera:  '<path d="M1.8 5.4h2.6l1-1.6h5.2l1 1.6h2.6v7.2H1.8z"/><circle cx="8" cy="9" r="2.4"/>',
+  world:   '<circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c1.8 2 1.8 10.4 0 12.4M8 1.8c-1.8 2-1.8 10.4 0 12.4"/>'
+};
+const icon = (k) => `<svg class="ico" viewBox="0 0 16 16" aria-hidden="true">${ICONS[k] || ICONS.world}</svg>`;
+
+const scoreInk = (n) => n == null ? 'var(--faint)'
+  : n >= 85 ? 'var(--alarm)' : n >= 70 ? '#b4622f' : n >= 50 ? '#8a7a33' : 'var(--calm)';
+
+function bubble(m, i) {
+  if (m.kind === 'opener') return `
+    <div class="turn opener" data-i="${i}"><div class="bub">
+      <img src="${m.ref}" data-cap="the reference" alt="the reference">
+      <div class="cap">build this</div>
+      <div class="big" style="margin-top:5px">${esc(m.intent)}</div>
+    </div></div>`;
+
+  if (m.kind === 'note') return `<div class="note ${m.warn ? 'warn' : ''}" data-i="${i}"><b>${esc(m.text)}</b></div>`;
+  if (m.kind === 'shoot') return `<div class="note shootnote" data-i="${i}">${icon('camera')}
+    <b>picture taken</b> · ${esc(m.view)}</div>`;
+
+  if (m.kind === 'you') return `
+    <div class="turn you" data-i="${i}"><div class="bub">
+      <div class="who">${icon('human')}<span>${esc((doc && doc.name) || 'you')}</span>
+        ${m.ts ? `<span>${m.ts.slice(5, 16).replace('T', ' ')}</span>` : ''}</div>
+      <div class="txt">${esc(m.text)}</div></div></div>`;
+
+  if (m.kind === 'critic') {
+    const caps = m.shots || [];
+    return `
+    <div class="turn" data-i="${i}"><div class="bub">
+      <div class="who">${icon('critic')}<span>critic</span>${m.cycle ? `<span>cycle ${m.cycle}</span>` : ''}</div>
+      ${caps.length ? `<div class="shots ${caps.length === 1 ? 'one' : ''}">${caps.map(c =>
+        `<figure><img src="${c.src}" data-cap="${esc(c.cap)}${m.cycle ? ' · cycle ' + m.cycle : ''}" alt="${esc(c.cap)}">
+           <figcaption>${esc(c.cap)}${c.blank ? ' · blank' : ''}</figcaption></figure>`).join('')}</div>` : ''}
+      ${m.focus ? `<div class="focus">worst thing here · <b>${esc(m.focus)}</b></div>` : ''}
+      <div class="verdict">
+        <div class="n" style="color:${scoreInk(m.score)}">${m.score ?? '—'}<small>suck</small></div>
+        <div class="txt">${esc(m.text)}</div>
+      </div>
+      ${effort(m)}
+    </div></div>`;
+  }
+
+  return `
+    <div class="turn right" data-i="${i}"><div class="bub">
+      <div class="who">${m.cycle ? `<span>${doc && doc.builder === 'human' ? 'turn' : 'cycle'} ${m.cycle}</span>` : ''}
+        ${icon('builder')}<span>${doc && doc.builder === 'human' ? 'what came back' : 'builder'}</span></div>
+      <div class="txt">${esc(m.text)}</div>
+      ${(m.shots || []).length ? `<div class="shots one">${m.shots.map(c =>
+        `<figure><img src="${c.src}" data-cap="${esc(c.cap)}" alt="${esc(c.cap)}">
+           <figcaption>${esc(c.cap)}</figcaption></figure>`).join('')}</div>` : ''}
+      ${m.artifact ? `<div class="caveat">${m.model ? `<a href="assets/artifacts/${m.model}" target="_blank"
+        rel="noopener">${esc(m.artifact)}</a> — open it on its own` : esc(m.artifact)}
+        ${m.broken ? `<br><span style="color:var(--alarm)">${esc(m.broken)}</span>` : ''}</div>` : ''}
+      ${m.inPlace ? `<div class="caveat">${m.inPlace} parts moved rather than added — the file keeps
+        only their final positions, so the model can show where they ended up but not the move</div>` : ''}
+      ${effort(m)}
+      ${m.raw ? `<div class="raw"><button data-raw="${i}">what it was asked</button>
+        <pre>${esc(m.raw)}</pre></div>` : ''}
+    </div></div>`;
+}
+
+/** What the turn cost, in the only units either file records. */
+function effort(m) {
+  const bits = [];
+  if (m.changedCount != null) bits.push(`${m.changedCount} parts changed`);
+  if (m.think) bits.push(`${fmt(m.think)} thinking`);
+  if (m.cost && m.cost.chars) bits.push(`${m.cost.chars.toLocaleString()} chars back`);
+  if (m.cost && m.cost.kb) bits.push(`~${m.cost.kb} KB sent`);
+  return bits.length ? `<div class="focus">${bits.join(' · ')}</div>` : '';
+}
+
+function paint({ animate = false } = {}) {
+  $('#log').innerHTML = msgs.slice(0, at + 1).map((m, i) => bubble(m, i)).join('');
+  const cur = $('#log').querySelector(`.turn[data-i="${at}"], .note[data-i="${at}"]`);
+  if (cur) cur.classList.add('now');
+  // A human turn's model is a whole page. Its geometry is read out of it and drawn
+  // here, so it is centred, fitted, and has nothing on top of it.
+  if (doc && doc.builder === 'human') {
+    const m = modelFor(at);
+    if (m !== paint._m) {
+      paint._m = m;
+      $('#passRow').style.display = m ? 'flex' : 'none';
+      $('#stageTag').textContent = m ? m.artifact : '';
+      $('#brokenTag').classList.toggle('on', !!(m && m.broken));
+      if (m && m.broken) $('#brokenTag').innerHTML =
+        `<b>this one is broken, and was</b>${esc(m.broken)} — the next turn is the fix. Kept as it
+         failed, because a repaired archive would be a worse one.`;
+      if (m) showArtifact(m.model, { animate });
+      else { artToken++; worldGroup.clear(); artPasses = null; $('#noModel').classList.add('on'); $('#stopNote').classList.remove('on'); }
+    }
+    $('#seek').value = String(at);
+    $('#tick').textContent = `${at + 1} / ${msgs.length}`;
+    for (const el of document.querySelectorAll('.msg.now')) el.classList.remove('now');
+    return;
+  }
+  const sc = sceneFor(at);
+  // The second clause is not redundant. A turn before anything was built has no scene,
+  // and neither did the turn painted before it, so the guard let both through unchanged
+  // — while the world could still be holding parts laid by a run that had gone further.
+  // Scrubbing back to the opening turn then showed a building on a turn that had none.
+  if (sc !== paint._s || (!sc && worldGroup.children.length)) {
+    paint._s = sc;
+    if (sc) flashChanged([...(sc.added || []), ...(sc.changed || [])]);
+    drawScene(sc, { animate });
+  }
+  // Framed on every turn, not only the ones that change the scene. A turn that adds
+  // nothing still skipped the reframe, so the camera kept whatever aim it happened to
+  // have — on a correspondence run that is the clinic's fixed point, and the build
+  // sits off to one side of it. Framing only ever opens out, so doing it every turn
+  // costs nothing and cannot crop.
+  frameOn(sc ? sc.parts : []);
+  // Stand where the camera stood. Every picture records its view, so the geometry
+  // above the message is the shot the critic was handed rather than a different angle
+  // on the same thing.
+  const v = viewFor(at);
+  if (v && v !== paint._v) { paint._v = v; goToView(v, { snap: !animate }); }
+  lightFocus(focusFor(at));
+  const score = lastScore(at);
+  $('#score').textContent = score ?? '—';
+  $('#score').style.color = scoreInk(score);
+  $('#seek').value = String(at);
+  $('#tick').textContent = `${at + 1} / ${msgs.length}`;
+}
+const sceneFor = (i) => { for (let k = i; k >= 0; k--) if (msgs[k].scene) return msgs[k].scene; return null; };
+const focusFor = (i) => { for (let k = i; k >= 0; k--) if (msgs[k].kind === 'critic') return msgs[k].focusIds || []; return []; };
+/**
+ * Read the building out of the artifact, and draw it here.
+ *
+ * Showing the page itself was the wrong idea twice over. Each one lays its two
+ * passes side by side under a title bar, a topology card, two metric cards and a
+ * button row — so the model is never centred, never fitted, and always half covered.
+ * And its camera is its own: a scene composed for a landscape window comes up cropped
+ * in a column, and nothing here could reach in to fix it.
+ *
+ * So the page is loaded out of sight, its geometry is read straight off the two
+ * groups it already exposes on `window.__HDL_PROOF`, and the meshes are rebuilt in
+ * this renderer — centred, fitted, lit the same way as every other trace, and with
+ * nothing on top of them. The massing goes up piece by piece, then dissolves into the
+ * resolved building, which is the argument those pages were making and could not show
+ * because both halves were on screen at once.
+ */
+const oven = document.createElement('iframe');
+oven.style.cssText = 'position:absolute;width:900px;height:640px;left:-9999px;top:0;border:0';
+oven.setAttribute('aria-hidden', 'true');
+document.body.appendChild(oven);
+const baked = new Map();
+
+/** Geometry as plain arrays, copied into this realm so three will take them. */
+function readGroup(g) {
+  const out = [];
+  g.updateWorldMatrix(true, true);
+  g.traverse(o => {
+    if (!o.isMesh || !o.geometry || !o.geometry.attributes || !o.geometry.attributes.position) return;
+    if (o.visible === false) return;
+    const at = o.geometry.attributes;
+    out.push({
+      p: new Float32Array(at.position.array),
+      n: at.normal ? new Float32Array(at.normal.array) : null,
+      i: o.geometry.index ? new Uint32Array(o.geometry.index.array) : null,
+      m: Array.from(o.matrixWorld.elements),
+      c: (o.material && o.material.color) ? '#' + o.material.color.getHexString() : '#9aa3ad',
+      r: (o.material && o.material.roughness != null) ? o.material.roughness : .9,
+      me: (o.material && o.material.metalness != null) ? o.material.metalness : .03
+    });
+  });
+  return out;
+}
+
+/**
+ * Why a build stopped, in its own words.
+ *
+ * Two of these pages fail their own proof gate and one hits a plain ReferenceError.
+ * That is not noise to hide — it is the reason the next message in the thread exists,
+ * so the turn reads as "here is what it got to, and here is what stopped it".
+ */
+function abortNote(w) {
+  try {
+    if (w.__HDL_ABORT) return String(w.__HDL_ABORT);
+    const el = w.document.getElementById('fail');
+    if (el && el.style.display !== 'none' && el.textContent.trim())
+      return el.textContent.trim().replace(/\s+/g, ' ');
+  } catch (e) {}
+  return null;
+}
+
+function bake(file) {
+  if (baked.has(file)) return Promise.resolve(baked.get(file));
+  return new Promise(resolve => {
+    let done = false;
+    const finish = (v) => { if (done) return; done = true; baked.set(file, v); resolve(v); };
+    oven.onload = () => {
+      const w = oven.contentWindow;
+      let tries = 0;
+      (function wait() {
+        const P = w && w.__HDL_PROOF;
+        if (P && P.raw) {
+          // The resolved pass can be missing and the turn still be worth showing:
+          // three of these builds threw, and what they got as far as is the evidence.
+          try {
+            finish({
+              mass: readGroup(P.raw),
+              built: P.hdl ? readGroup(P.hdl) : [],
+              note: abortNote(w)
+            });
+          } catch (e) { finish(null); }
+          return;
+        }
+        if (++tries > 40) return finish(null);
+        setTimeout(wait, 120);
+      })();
+    };
+    oven.src = 'assets/artifacts/' + file;
+  });
+}
+
+/** Meshes in this renderer, centred on their own footprint so the two passes overlay. */
+function layGroup(items, tint) {
+  const g = new THREE.Group();
+  for (const it of items) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(it.p, 3));
+    if (it.n) geo.setAttribute('normal', new THREE.BufferAttribute(it.n, 3));
+    if (it.i) geo.setIndex(new THREE.BufferAttribute(it.i, 1));
+    if (!it.n) geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+      color: new THREE.Color(tint || it.c), roughness: it.r, metalness: it.me,
+      transparent: true, opacity: 1 }));
+    m.applyMatrix4(new THREE.Matrix4().fromArray(it.m));
+    g.add(m);
+  }
+  const b = new THREE.Box3().setFromObject(g);
+  if (!b.isEmpty()) {
+    const c = b.getCenter(new THREE.Vector3());
+    // Centred on x and z, sitting on the ground: the two passes then stand in the
+    // same place rather than twenty-five units apart, which is what lets one become
+    // the other.
+    for (const m of g.children) { m.position.x -= c.x; m.position.z -= c.z; m.position.y -= b.min.y; }
+  }
+  return g;
+}
+
+let artToken = 0;
+async function showArtifact(file, { animate = true } = {}) {
+  const token = ++artToken;
+  const data = await bake(file);
+  if (token !== artToken) return;
+  worldGroup.clear(); rings.clear(); live.clear(); boxGroup.clear();
+  $('#noModel').classList.toggle('on', !data);
+  $('#stopNote').classList.toggle('on', !!(data && data.note));
+  $('#stopNote').textContent = (data && data.note) || '';
+  if (!data) return;
+
+  const mass = layGroup(data.mass), built = layGroup(data.built);
+  worldGroup.add(mass, built);
+  artPasses = { mass, built, file };
+  // A build that threw has a massing and no resolved pass. Rather than cutting to an
+  // empty stage, it holds on the massing — which is exactly how far it got.
+  const halted = !built.children.length;
+  for (const b of document.querySelectorAll('#passRow button'))
+    b.disabled = halted && b.dataset.pass !== 'mass';
+  if (halted) { fitTo(mass); setArtPass('mass', { grow: animate }); return; }
+  fitTo(built);
+  if (!animate) { setArtPass('resolved'); return; }
+  setArtPass('mass', { grow: true });
+  clearTimeout(passTimer);
+  passTimer = setTimeout(() => { if (token === artToken) setArtPass('resolved', { grow: true }); }, 2600 / rate);
+}
+
+let artPasses = null, passTimer = 0;
+/**
+ * One pass, laid in piece by piece; the other faded away under it.
+ *
+ * The dissolve is the interesting half: the massing does not blink out, it thins
+ * while the resolved building assembles through it, so for a second you can see the
+ * blocks the rooms came from.
+ */
+function setArtPass(which, { grow = false } = {}) {
+  if (!artPasses) return;
+  let show = which === 'mass' ? artPasses.mass : artPasses.built;
+  let hide = which === 'mass' ? artPasses.built : artPasses.mass;
+  let both = which === 'both';
+  if (!artPasses.built.children.length) { show = artPasses.mass; hide = artPasses.built; both = false; which = 'mass'; }
+  for (const b of document.querySelectorAll('#passRow button')) b.classList.toggle('on', b.dataset.pass === which);
+  if (both) {
+    for (const g of [artPasses.mass, artPasses.built]) { g.visible = true; for (const m of g.children) m.material.opacity = 1; }
+    fitTo(artPasses.built); return;
+  }
+  hide.visible = true;
+  for (const m of hide.children) fade(m, 0, 620, () => { hide.visible = false; });
+  show.visible = true;
+  if (!grow) { for (const m of show.children) { m.material.opacity = 1; m.scale.setScalar(1); } fitTo(show); return; }
+  const n = show.children.length;
+  const step = Math.max(6, Math.min(60, 1500 / Math.max(1, n))) / rate;
+  show.children.forEach((m, k) => {
+    m.material.opacity = 0; m.scale.setScalar(1);
+    setTimeout(() => { if (artPasses && show.visible) fade(m, 1, 260); }, k * step);
+  });
+  fitTo(show);
+}
+function fade(m, to, ms, done) {
+  const from = m.material.opacity, t0 = performance.now();
+  m.userData.f = (m.userData.f || 0) + 1; const mine = m.userData.f;
+  (function step(now) {
+    if (m.userData.f !== mine) return;
+    const f = Math.min(1, ((now || performance.now()) - t0) / ms);
+    m.material.opacity = from + (to - from) * f;
+    if (f < 1) requestAnimationFrame(step); else if (done) done();
+  })();
+}
+
+/** Centre it and back off until all of it is inside this panel, whatever shape it is. */
+/** Centre one pass and back off until all of it is inside this panel. */
+function fitTo(g) {
+  const b = new THREE.Box3().setFromObject(g);
+  if (b.isEmpty()) return;
+  const c = b.getCenter(new THREE.Vector3()), s = b.getSize(new THREE.Vector3());
+  orbit.target.copy(c);
+  orbit.target.y += s.y * .06;
+  orbit.dist = framed = Math.max(distanceToFrame(b, orbit.target), s.length() * .6);
+}
+
+// The last turn that produced a page. A turn with no artifact leaves the last one up,
+// which is what was on the screen at the time.
+const modelFor = (i) => { for (let k = i; k >= 0; k--) { const m = msgs[k];
+  if (m.kind === 'builder' && m.model) return m; } return null; };
+const viewFor = (i) => { for (let k = i; k >= 0; k--) if (msgs[k].kind === 'shoot' || msgs[k].view) return msgs[k].view; return null; };
+const lastScore = (i) => { for (let k = i; k >= 0; k--) if (msgs[k].kind === 'critic' && msgs[k].score != null) return msgs[k].score; return null; };
+
+// While it is playing, the thread follows. Sticking only when you happen to be at the
+// bottom already is right for a chat you are reading and wrong for one you are
+// watching arrive — scroll up to look at something and playback silently leaves you
+// behind. Playing means following; touching the scrollbar stops playback anyway.
+const atBottom = () => playing || (() => { const t = $('#thread');
+  return t.scrollHeight - t.scrollTop - t.clientHeight < 90; })();
+const toBottom = () => { const t = $('#thread'); t.scrollTop = t.scrollHeight; };
+
+function shutter(view) {
+  $('#shutterView').textContent = view || 'front';
+  for (const el of ['#flash', '#shutter']) {
+    const n = $(el); n.classList.remove('pop'); void n.offsetWidth; n.classList.add('pop');
+  }
+}
+
+/** Reveal the next message the way one arrives: someone types, then it lands. */
+async function advance() {
+  if (at >= msgs.length - 1) return stop();
+  const next = msgs[at + 1];
+  const stick = atBottom();
+
+  if (next.kind === 'shoot') {
+    at++; paint(); shutter(next.view);
+    if (stick) toBottom();
+    await hold(900);
+    return;
+  }
+  if (next.kind !== 'note') {
+    const side = (next.kind === 'builder' || next.kind === 'you') ? 'right' : '';
+    const who = next.kind === 'critic' ? 'critic' : next.kind === 'you' ? 'you' : 'builder';
+    // The real wait, if the file recorded one. This is the whole of "slow it down to
+    // how long it actually took": the builder sat for eighty-six seconds on cycle 3
+    // of the castle, and watching that number climb is the most honest thing on the
+    // page. No file records tokens, so seconds is the only measure of effort there is.
+    const real = next.think || (next.kind === 'critic' ? 950 : 750);
+    $('#log').insertAdjacentHTML('beforeend',
+      `<div class="turn typing ${side}" id="typing"><div class="bub">
+         <div class="dots"><i></i><i></i><i></i></div>
+         ${next.think ? `<div class="waiting">${who} thinking · <b id="waited">0s</b> of ${fmt(next.think)}</div>` : ''}
+       </div></div>`);
+    if (stick) toBottom();
+    await countdown(real);
+    const t = document.getElementById('typing'); if (t) t.remove();
+    if (!playing) return;
+  }
+  at++;
+  paint({ animate: true });
+  if (stick) toBottom();
+  // Wait for the building to finish going up before anybody speaks over it.
+  if (next.scene) await hold(Math.min(2600, 300 + next.scene.parts.length * 12));
+  if (next.model) await hold(2900);          // the mass, then the resolved building
+  await hold(dwell(next));
+}
+
+/**
+ * How long to sit on a message before the next one arrives.
+ *
+ * A flat beat is wrong in both directions: it hurries a four-line criticism and it
+ * dawdles on "Cook." Reading is roughly fifteen characters a second and a picture is
+ * worth a breath of its own, so the pause is measured from what there is to take in.
+ * The human trace suffered worst — its turns carry the longest prompts and a
+ * screenshot each, and at a flat beat the whole two days went past unread.
+ */
+function dwell(m) {
+  const words = String(m.text || '').length;
+  const pics = (m.shots || []).length;
+  return Math.min(9000, 900 + words * 26 + pics * 1100);
+}
+const hold = (ms) => new Promise(r => setTimeout(r, ms / rate));
+const fmt = (ms) => ms >= 60000 ? Math.round(ms / 6000) / 10 + 'min'
+  : ms >= 1000 ? Math.round(ms / 100) / 10 + 's' : ms + 'ms';
+/** Wait out a turn at the chosen pace, showing the real clock rather than the replay's. */
+function countdown(realMs) {
+  const t0 = performance.now(), out = document.getElementById('waited');
+  return new Promise(done => {
+    (function step(now) {
+      const f = Math.min(1, ((now || performance.now()) - t0) / (realMs / rate));
+      if (out && out.isConnected) out.textContent = fmt(Math.round(realMs * f / 100) * 100);
+      if (f < 1 && playing) requestAnimationFrame(step); else done();
+    })();
+  });
+}
+
+function show(i) {
+  at = Math.max(0, Math.min(msgs.length - 1, i));
+  // Scrubbing cancels whatever was being laid, and the cancelled run leaves the
+  // building half up. Because the scene object had not changed, `paint` then saw no
+  // reason to draw it again — so dragging the scrubber during a build left the lunar
+  // lander permanently missing sixty of its eighty-one parts.
+  paint._s = undefined;
+  paint({ animate: false }); toBottom();
+}
+
+// ------------------------------------------------------------------ transport
+// A chain rather than an interval: a cycle that is still laying eighty parts must
+// not be talked over by the next message arriving on a timer.
+async function play() {
+  if (playing) return;
+  playing = true; $('#play').textContent = '❚❚';
+  while (playing && at < msgs.length - 1) { await advance(); if (playing) await hold(420); }
+  if (at >= msgs.length - 1) stop();
+}
+function stop() {
+  // Including one that has not begun. A trace opens with playback armed on a timer, and
+  // a stop before that timer fired used to leave it armed — so anything that stopped and
+  // jumped in that first moment got overtaken a beat later by playback starting anyway.
+  clearTimeout(autoplayTimer); autoplayTimer = 0;
+  playing = false; $('#play').textContent = '▶';
+  const t = document.getElementById('typing'); if (t) t.remove();
+}
+// One control, four stops, and the first one is the truth: the loop's own pace, read
+// off the timestamps. The castle took seven and a half minutes and the lander nearly
+// nine, most of it the models thinking — which is worth sitting through once.
+const PACE = [{ r: 1, label: 'read it' }, { r: 2.5, label: 'brisk' },
+              { r: 6, label: '6×' }, { r: 18, label: 'skim' }];
+let pace = 1;
+$('#speed').onclick = () => { pace = (pace + 1) % PACE.length; rate = PACE[pace].r;
+  $('#speed').textContent = PACE[pace].label; };
+$('#play').onclick = () => playing ? stop() : play();
+$('#seek').oninput = e => { stop(); show(+e.target.value); };
+$('#fade').oninput = e => { $('#ghost').style.opacity = (+e.target.value / 100) * 0.85; };
+for (const b of document.querySelectorAll('#passRow button'))
+  b.onclick = () => { clearTimeout(passTimer); setArtPass(b.dataset.pass, { grow: true }); };
+$('#boxes').onclick = () => { boxesOn = !boxesOn; $('#boxes').classList.toggle('on', boxesOn); drawBoxes(); };
+addEventListener('keydown', e => {
+  if (/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+  if (e.key === ' ') { e.preventDefault(); playing ? stop() : play(); }
+  if (e.key === 'ArrowRight') { stop(); show(at + 1); }
+  if (e.key === 'ArrowLeft') { stop(); show(at - 1); }
+});
+
+document.addEventListener('click', e => {
+  const raw = e.target.closest('[data-raw]');
+  if (raw) { const box = raw.parentElement; box.classList.toggle('on');
+    raw.textContent = box.classList.contains('on') ? 'hide' : 'what it was asked'; return; }
+  const img = e.target.closest('.shots img, .opener img, #ref img');
+  if (img) { $('#lbimg').src = img.src; $('#lbcap').textContent = img.dataset.cap || 'the reference';
+    $('#lb').classList.add('on'); return; }
+  const turn = e.target.closest('.turn');
+  if (turn && !e.target.closest('.raw')) { stop(); show(+turn.dataset.i); }
+});
+$('#lb').onclick = () => $('#lb').classList.remove('on');
+$('#docsBtn').onclick = () => $('#docs').classList.add('on');
+$('#docsClose').onclick = () => $('#docs').classList.remove('on');
+
+// The divider. One number, `--split`, which is a row height on a phone and a column
+// width on a desktop — the same drag either way.
+(function divider() {
+  const grip = $('#grip'); let dragging = false;
+  const wide = () => matchMedia('(min-width:860px)').matches;
+  const set = (px) => {
+    const r = $('#app').getBoundingClientRect();
+    const frac = wide() ? (px - r.left) / r.width : (px - $('#stage').getBoundingClientRect().top) / r.height;
+    const pct = Math.max(18, Math.min(82, frac * 100));
+    document.documentElement.style.setProperty('--split', pct + '%');
+    resize();
+  };
+  grip.addEventListener('pointerdown', e => { dragging = true; grip.classList.add('on');
+    grip.setPointerCapture(e.pointerId); e.preventDefault(); });
+  grip.addEventListener('pointermove', e => { if (dragging) set(wide() ? e.clientX : e.clientY); });
+  grip.addEventListener('pointerup', () => { dragging = false; grip.classList.remove('on');
+    try { localStorage.setItem('trace.split',
+      getComputedStyle(document.documentElement).getPropertyValue('--split')); } catch {} });
+  grip.addEventListener('dblclick', () => {
+    document.documentElement.style.removeProperty('--split'); resize();
+    try { localStorage.removeItem('trace.split'); } catch {} });
+  try { const v = localStorage.getItem('trace.split');
+    if (v) document.documentElement.style.setProperty('--split', v.trim()); } catch {}
+})();
+
+let drag = null;
+const gl = $('#gl');
+gl.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; camTween++; gl.setPointerCapture(e.pointerId); });
+gl.addEventListener('pointerup', () => { drag = null; });
+gl.addEventListener('pointermove', e => { if (!drag) return;
+  orbit.theta -= (e.clientX - drag.x) * .007;
+  orbit.phi = Math.max(.1, Math.min(Math.PI - .12, orbit.phi - (e.clientY - drag.y) * .006));
+  drag = { x: e.clientX, y: e.clientY }; });
+
+function placeCamera() {
+  const s = Math.sin(orbit.phi);
+  camera.position.set(orbit.target.x + orbit.dist * s * Math.cos(orbit.theta),
+                      orbit.target.y + orbit.dist * Math.cos(orbit.phi),
+                      orbit.target.z + orbit.dist * s * Math.sin(orbit.theta));
+  camera.lookAt(orbit.target);
+}
+
+/** Swing to a named camera. Eased, because a cut tells you nothing about where you went. */
+function goToView(name, { snap = false } = {}) {
+  const [th, ph, r] = viewAngles(name);
+  const vn = $('#viewName'); if (vn) vn.textContent = String(name || 'front 3/4');
+  // Only for the builder whose units these are. An operative castle is twenty units
+  // across in nobody's metres, so it keeps the framing derived from its own bounds.
+  if (doc && doc.builder === 'correspondence') {
+    // The clinic's distance, unless this panel is narrower than the clinic's canvas —
+    // in which case the same distance would crop the lander, so it backs off just far
+    // enough to hold the whole thing. Never closer than the shot was taken.
+    //
+    // What it no longer does is aim at the clinic's fixed point at (0, 1.15, 0). A
+    // build that does not straddle that point sat off to one side of every frame, and
+    // this was the last of four places quietly putting the aim back there. The angle
+    // is still the recorded one; where it looks is decided by where the build is.
+    orbit.dist = framed = Math.max(r, fitDistance());
+  }
+  if (snap) { orbit.theta = th; orbit.phi = ph; return; }
+  const from = { th: orbit.theta, ph: orbit.phi }, t0 = performance.now(), mine = ++camTween;
+  // Always the short way round the compass.
+  let d = th - from.th; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+  (function step(now) {
+    if (mine !== camTween) return;
+    const f = Math.min(1, ((now || performance.now()) - t0) / 850), e = 1 - Math.pow(1 - f, 3);
+    orbit.theta = from.th + d * e;
+    orbit.phi = from.ph + (ph - from.ph) * e;
+    if (f < 1) requestAnimationFrame(step);
+  })();
+}
+function resize() {
+  const r = $('#stage').getBoundingClientRect();
+  if (!r.width || !r.height) return;
+  renderer.setSize(r.width, r.height, false);
+  const was = camera.aspect;
+  camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+  if (Math.abs((was || 0) - camera.aspect) > .01) {
+    framed = null;
+    if (doc && doc.builder === 'correspondence') { const [, , r] = viewAngles(paint._v);
+      orbit.dist = framed = Math.max(r, fitDistance()); }
+    else drawScene(paint._s, { animate: false });
+  }
+}
+addEventListener('resize', resize);
+/**
+ * Keep the frame true, whatever order things happened in.
+ *
+ * Framing at the right moment turned out to be a losing game: the parts of a turn are
+ * laid asynchronously, a jump can land while the previous turn is still laying, and
+ * each of those left one turn framed against a build that was somewhere else. So the
+ * camera checks its own work instead. Once a frame, if the standing build no longer
+ * matches what the camera was aimed and fitted for, it is re-aimed and re-fitted.
+ * Cheap, because the check is a bounding box and it only ever runs when the box moved.
+ */
+let fitFor = '';
+function keepFramed() {
+  if (artPasses || !worldGroup.children.length) return;   // artifacts fit themselves
+  const b = new THREE.Box3().setFromObject(worldGroup);
+  if (b.isEmpty()) return;
+  const key = [b.min.x, b.min.y, b.min.z, b.max.x, b.max.y, b.max.z, camera.aspect]
+    .map(n => n.toFixed(2)).join(',');
+  if (key === fitFor) return;
+  fitFor = key;
+  orbit.target.copy(b.getCenter(new THREE.Vector3()));
+  const want = Math.max(distanceToFrame(b, orbit.target),
+                        b.getSize(new THREE.Vector3()).length() * .6);
+  // Only ever opened out within a run, so the eye watches the thing change rather
+  // than the camera move.
+  orbit.dist = framed = framed ? Math.max(framed, want) : want;
+}
+
+(function tick() { keepFramed(); placeCamera(); pulse(); renderer.render(scene, camera); requestAnimationFrame(tick); })();
+
+// ------------------------------------------------------------------ loading
+function curtain(msg) { const b = $('#boot'); if (!b) return;
+  b.style.display = msg ? 'grid' : 'none'; if (msg) b.textContent = msg; }
+
+function open(raw, { autoplay = false } = {}) {
+  stop();
+  doc = adapt(raw);
+  msgs = doc.msgs; at = 0; framed = null; paint._s = undefined; paint._v = undefined;
+  focusIds = new Set(); flashIds = new Set();
+  worldGroup.clear(); rings.clear(); live.clear();
+  document.documentElement.dataset.builder = doc.builder;
+  $('#badge').textContent = doc.builder === 'human' ? 'the human original'
+    : doc.builder === 'operative' ? 'operative builder' : 'correspondence builder';
+  $('#refimg').src = doc.reference || '';
+  $('#ghost').src = doc.reference || '';
+  $('#ref').style.display = doc.reference ? '' : 'none';
+  paint._m = undefined;
+  artToken++; artPasses = null; $('#brokenTag').classList.remove('on');
+  // No score to show on a trace nobody scored.
+  $('#meter').style.display = doc.builder === 'human' ? 'none' : '';
+  $('#passRow').style.display = 'none'; $('#stageTag').textContent = '';
+  $('#stopNote').classList.remove('on');
+  if (doc.builder !== 'human') $('#noModel').classList.remove('on');
+  for (const el of ['#boxes', '#fadeWrap']) $(el).style.display = doc.builder === 'human' ? 'none' : '';
+  // Provenance moved off the model and into the sheet — it was a card sitting on top
+  // of the thing it described.
+  const pv = doc.provenance || {};
+  $('#provSheet').innerHTML = [['builder', BUILDERS[doc.builder]], ['engine', pv.engine],
+    ['critic', pv.critic], ['picture', pv.capture]]
+    .filter(([, v]) => v).map(([k, v]) => `<p><b>${k}</b> ${esc(v)}</p>`).join('');
+  $('#refname').textContent = doc.name || 'reference';
+  $('#seek').max = String(msgs.length - 1);
+  resize(); paint(); $('#thread').scrollTop = 0;
+  // A trace of a person typing wants a person's pace. The machine loops carry their
+  // own thinking times and are already slow where it matters.
+  // The artifact pages lay their two passes out side by side and were composed for a
+  // landscape window. In a 52% column they come up cropped, so the human traces open
+  // with more of the width — the divider still moves.
+  if (doc.builder === 'human' && !localStorage.getItem('trace.split'))
+    try { document.documentElement.style.setProperty('--split', '64%'); } catch {}
+  pace = doc.builder === 'human' ? 0 : 1;
+  rate = PACE[pace].r; $('#speed').textContent = PACE[pace].label;
+  if (autoplay) autoplayTimer = setTimeout(play, 700);
+}
+
+$('#pick').onchange = async e => {
+  stop(); const f = e.target.value; if (!f) return;
+  curtain('reading the trace…');
+  try { const t = await (await fetch(f)).json(); curtain(null); docFile = f; open(t, { autoplay: true }); }
+  catch (err) { curtain('could not read that trace: ' + ((err && err.message) || err)); }
+};
+$('#file').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return; stop();
+  try {
+    const t = JSON.parse(await f.text());
+    open(t, { autoplay: true });
+  } catch (err) { alert('could not read that trace: ' + err.message); }
+};
+
+function renderDocs() {
+  $('#docsBody').innerHTML = `
+  <h2>How to read a trace</h2>
+  <div id="provSheet" class="prov"></div>
+  <p>A trace is the complete record of one argument. A reference photograph is pinned.
+  A <b>builder</b> proposes geometry. A <b>critic</b> is told the building is fucked
+  until proven otherwise, is shown a picture of the result against that reference, and
+  returns a suck score and one concrete accusation. The accusation becomes the
+  builder's next instruction. That is the whole loop.</p>
+  <p>It is a <em>suck</em> score, so lower is better, and zero would mean only that
+  this view failed to find a discrepancy — never that the thing is done.</p>
+
+  <h3>Three ways of building, one loop</h3>
+  <p><b class="hu">A person, typing.</b> Thirty-six turns over two days in August 2026:
+  Watson Hartsoe asking for a windmill, a typewriter house, an octopus house; a thing
+  coming back; a screenshot pasted in; and a verdict — <em>the wings do not look
+  good</em>, <em>now the roof is fucked up</em>, <em>we have no windows</em>. That is
+  the whole loop already, with a person as both the instruction and the critic. It is
+  the trace the two automatic builders were built out of, and it is here first because
+  it came first. It has no geometry: the geometry was a web page at the time, and the
+  pictures are the record. The archive it came from says it is a reconstruction from
+  the live conversation rather than a raw export, and so does this.</p>
+
+  <h3>Two builders wrote these files</h3>
+  <p><b class="op">Operative</b> keeps four separate logs and a full snapshot of the
+  world before and after every cycle, takes three pictures a cycle — before, after and
+  a geometry diff — and scores the whole view.</p>
+  <p><b class="co">Correspondence</b> keeps one interleaved transcript that includes
+  you, takes one picture a cycle, and does something the other does not: it hunts
+  <em>one worst target at a time</em>. Its score is against that target, not the
+  building, so the numbers are not comparable across cycles — a 10 on the crew cabin
+  and a 94 on the landing legs are answers to different questions.</p>
+  <p>They are shown in different colours for that reason. The reader is the same; what
+  each can honestly show is not.</p>
+
+  <h3>Standing where the camera stood</h3>
+  <p>The model does not turn on its own. Every picture in a trace records which of the
+  loop's eight cameras took it — front, front 3/4, left side, rear, plan and so on —
+  and the model is swung to that camera when the picture is taken, using the loop's own
+  angles and, for correspondence traces, its own target and lens. The render above the
+  message and the photograph inside it are then <em>the same shot</em>, which is the
+  only way to hold one against the other. Drag if you want to look elsewhere; the next
+  picture puts it back.</p>
+  <p><b>The diff, as the clinic shows it.</b> A part that just changed burns amber for
+  a second and a half. Whatever the critic has named as its target breathes red, with a
+  single box round the whole region rather than one per part, because a region is what
+  it named. <b>Boxes</b> draws every part's bounding box, for when you want the
+  geometry rather than the render.</p>
+
+  <h3>Taking your time</h3>
+  <p>How long a message sits before the next arrives is measured from how much there
+  is to take in — reading runs at about fifteen characters a second, and a picture is
+  worth a breath of its own. A flat beat hurried a four-line criticism and dawdled on
+  <em>Cook.</em>; the human trace suffered worst, since its turns carry the longest
+  prompts and a screenshot each, and it opens at <b>read it</b> for that reason.</p>
+  <p>The pace button starts at brisk on the machine traces. Its first stop is <b>as it happened</b>, which
+  replays the run at the speed it actually ran — and most of a run is waiting. The
+  castle took seven and a half minutes, the lunar lander nearly nine, and while
+  something is thinking you get the real clock climbing: <em>builder thinking · 12s of
+  40.4s</em>. The eighty-six seconds the builder spent on cycle 3 of the castle was
+  eighty-six real seconds.</p>
+  <p><b>Neither file records tokens.</b> What is there is wall-clock, the size of the
+  answer in characters, and how much was posted to get it — for the correspondence
+  runs, around half a megabyte per call, because every call carries the pictures. That
+  is on each message and it is measured, not estimated.</p>
+  <p>The <b>fade</b> slider lays the reference photograph over the build. The argument
+  is always render-against-reference, so sliding one onto the other is the argument
+  itself. It is usually more damning than the critic.</p>
+
+  <h3>What the model is doing</h3>
+  <p>It is the real geometry, rebuilt from the parts the file carries. It goes up a
+  piece at a time, and a part that survives a cycle is <em>moved</em> rather than
+  destroyed and remade — so when a tower shifts four inches you see it shift, which is
+  the difference the diff is actually describing.</p>
+  <p>An operative trace carries a full world for every cycle, so each one is exact,
+  ringed where that move added or changed something.</p>
+  <p>A correspondence trace carries only the finished scene — but every cycle logs how
+  many parts stood when it ended, those counts rise and land exactly on the final
+  total, and the parts are stored in the order they were made. So the world at each
+  cycle is reconstructed as the first N-many parts. <b>It is a reconstruction.</b> A
+  part added early and moved later is shown where it finished, because where it stood
+  at the time is not in the file. Critic messages also light the parts they named as
+  the target, in red, exactly as the loop does — those ids <em>are</em> recorded.</p>
+  <p>The white flash is the picture being taken. The critic never sees the model; it
+  only ever sees that photograph, which is why the loop can be wrong about a building
+  that is fine, and why the flash is worth marking.</p>
+
+  <h3>Running it, rather than reading it</h3>
+  <p>This page is a reader. It holds a normalised shape — an opener, a list of
+  messages, and a scene for any message that has one — and every builder is adapted
+  into that shape and nothing else. Which means the seam for driving a live loop is
+  already the right shape: hand it an endpoint and a key, and a running builder would
+  append to the same message list, take a picture at the same shutter, and light the
+  same target. That is deliberately <em>not</em> built here. The job right now is to
+  record what has already been made, and a reader that cannot spend your money is a
+  reader you can leave open.</p>
+
+  <h3>The other instruments</h3>
+  <p>These three loops build by argument. The rest of the depot argues with a building
+  that already exists, and on the Ingold trailer specifically: <a href="hospital.html">the
+  hospital</a> fills it with light and slices it, <a href="ant-scout.html">a colony of
+  ants</a> crawls its surfaces with lidar and forages for the places the geometry gives
+  out, and <a href="whats-fucked.html">what's fucked</a> puts the deterministic checks
+  and the critic side by side. Same question in every case — is the building fucked, or
+  are our eyes fucked — asked with a different instrument.</p>
+
+  <h3>What a correspondence file would need for the full treatment</h3>
+  <p>Only one thing: <b>the scene at each cycle</b>, or the per-cycle diff. Everything
+  else is already there and better than the operative format — one transcript, the
+  human's own messages, named targets with ids. Add <code>sceneBefore</code> and
+  <code>sceneAfter</code> (or an <code>ops</code> list) to each snapshot and every
+  cycle becomes rebuildable and ringed, exactly like an operative trace. Two smaller
+  ones: a <code>format</code> string so a reader need not sniff for <code>scene</code>
+  and <code>transcript</code>, and a before/after pair of pictures rather than one.</p>
+
+  <h3>Where the loops show their seams</h3>
+  <p>The tiny-house frame has a cycle that relocated nine parts and added none. A
+  reconstruction from part counts cannot show that, so the message says so rather than
+  letting the step look skipped — the ids it was told to move are marked, but only
+  where they finished.</p>
+  <p>In both castle runs, cycle 1 proposed forty objects and the world rejected every
+  one — <b>ADD missing id</b> — so nothing was built. The critic, looking at an empty
+  stage, scored it 100 and said so, and the builder rebuilt from that. The six-cycle
+  run also lost its connection and retried six times, which is why its last cycle is
+  numbered 12.</p>
+  <p>Howl's moving castle never got below 98 in six cycles. The Pagoda run took no
+  picture at all. Neither is hidden.</p>
+
+  <h3>Reading it</h3>
+  <ul>
+    <li>Drag the divider to give the model or the argument more room. Double-click it
+    to put it back.</li>
+    <li>1× steps the speed through ½, 1, 2 and 4.</li>
+    <li>Tap any picture to enlarge it, any message to jump the model to that moment.</li>
+    <li>On a builder message, <em>what it was asked</em> opens the raw prompt, verbatim
+    — the readable thread drops repetition, never evidence.</li>
+  </ul>
+
+  <h3>Making your own</h3>
+  <p>Run <a href="operative-builder-scan.html">the operative builder</a>, pin a
+  reference, let the loop go, then export. Drop the file on <b>Open a trace</b> and it
+  plays here. Either format is read. Nothing is uploaded and no key is needed to read
+  one.</p>`;
+}
+
+(async () => {
+  try {
+    idx = await (await fetch('index.json')).json();
+    const group = (kind, label) => {
+      const rows = idx.traces.filter(t => t.builder === kind);
+      return rows.length ? `<optgroup label="${label}">` + rows.map(t =>
+        `<option value="${t.file}">${t.intent} · ${t.cycles} cycles</option>`).join('') + '</optgroup>' : '';
+    };
+    $('#pick').innerHTML = group('human', 'Where it came from') +
+                           group('operative', 'Operative builder') +
+                           group('correspondence', 'Correspondence builder');
+    renderDocs();
+    // ?trace=castle-6-cycles opens straight into that one. A particular run is the
+    // thing worth sending someone, and without this every link lands on the same
+    // first trace and leaves them hunting through the picker for it.
+    const want = new URLSearchParams(location.search).get('trace');
+    const pick = (want && idx.traces.find(t => t.file === want || t.file.replace(/\.json$/, '') === want))
+              || idx.traces[0];
+    $('#pick').value = pick.file;
+    const t = await (await fetch(pick.file)).json();
+    curtain(null);
+    docFile = pick.file;
+    open(t, { autoplay: true });
+  } catch (e) {
+    // No index beside the page — that is not fatal. Everything this reader needs
+    // is inside a single trace file, so leave the curtain up only long enough to
+    // say which button opens one.
+    curtain('no index.json beside this page — use "Open a trace" to pick a file. ' +
+            '(' + ((e && e.message) || e) + ')');
+    document.querySelector('#boot').style.pointerEvents = 'none';
+  }
+})();
+</script>
+<!-- Not a module, so it runs even when the module above never does — which is
+     exactly the case this is here to explain. -->
+<script>
+setTimeout(function () {
+  if (window.trace) return;                     // the reader came up; nothing to say
+  var b = document.getElementById('boot');
+  if (!b) return;
+  b.innerHTML = location.protocol === 'file:'
+    ? '<b>This page has to be served, not opened off the disk.</b><br><br>' +
+      'Browsers refuse ES modules over file://, so three.js never loaded.<br><br>' +
+      'In this folder, run<br><code>python3 -m http.server 8000</code><br>' +
+      'then open <code>http://localhost:8000/chains.html</code>'
+    : '<b>The reader did not start.</b><br><br>' +
+      'vendor/three/three.module.min.js has to sit beside this page. ' +
+      'Check the browser console for what failed.';
+  b.style.display = 'flex';
+}, 4000);
+</script>
+</body>
+</html>

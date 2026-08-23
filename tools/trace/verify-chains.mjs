@@ -1,10 +1,17 @@
-// DO THE CHAINS ACTUALLY OPEN IN THE PAGE THEY WERE WRITTEN FOR?
+// DO THE CHAINS ACTUALLY OPEN, AND PLAY, IN THE PAGE THEY WERE WRITTEN FOR?
 //
 // The schema is only as good as the reader's opinion of it, so this loads every
 // exported chain into a local copy of
 // gunnars-depot.html/operative-builder-trace.html, walks its links, and reports
 // what the page believes it is holding: how many messages, how many parts on
 // the stage, whether the building fits the frame, and any console error.
+//
+// AND WHETHER IT PLAYS. Driving the page with goto() proves a trace can be
+// stepped through; it says nothing about whether the thing advances on its own,
+// which is the first thing anybody opening it will notice. So each chain is also
+// left alone for twelve seconds with its own autoplay running, and the cursor
+// has to move. One of the reader's own bundled traces fails exactly this and
+// passes everything else.
 //
 //   npm i --no-save playwright-core
 //   node tools/trace/verify-chains.mjs <path-to-gunnars-depot-checkout>
@@ -14,7 +21,7 @@ import { readFile, readdir, copyFile } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 
 const DEPOT = resolve(process.argv[2] ?? '../gunnars-depot.html');
-const CHAINS = resolve('out/chains');
+const CHAINS = resolve('out/henry-house-chains');
 const PORT = Number(process.env.PORT || 8097);
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript',
   '.json': 'application/json', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg',
@@ -62,6 +69,20 @@ for (const [w, h, label] of [[1280, 820, 'desktop'], [390, 780, 'phone']]) {
       for (let k = 0; k < m.length; k += Math.max(1, Math.ceil(m.length / 6))) s.add(k);
       return [...s].sort((a, b) => a - b);
     });
+    // Left alone, does it advance? Desktop only — playback does not know the
+    // viewport, and this costs twelve seconds a chain.
+    if (label === 'desktop') {
+      const seen = [];
+      for (let k = 0; k < 6; k++) {
+        await page.waitForTimeout(2000);
+        seen.push(await page.evaluate(() => window.trace.at));
+      }
+      if (new Set(seen).size === 1) {
+        bad++;
+        console.log(` ! ${slug.padEnd(26)} STUCK — autoplay never left message ${seen[0]}`);
+      }
+    }
+
     let fails = 0, started = false, most = 0;
     for (const i of at) {
       const got = await page.evaluate(async (i) => {

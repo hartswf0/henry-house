@@ -10,6 +10,6 @@ out/preview/
 # The zip itself IS committed: it is the deliverable, and a 5 MB bag of JSON that
 # somebody has to be able to download is worth more in the repository than the
 # instruction to rebuild it.
-out/chains/
+out/henry-house-chains/
 out/traces/
 henry-house-traces.zip

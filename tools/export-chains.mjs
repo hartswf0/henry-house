@@ -30,7 +30,7 @@
 //   node tools/export-chains.mjs           → out/chains/*.json + index.json
 //   node tools/export-chains.mjs --zip     → also out/henry-house-chains.zip
 //   node tools/export-chains.mjs --fast    → skip per-commit geometry recovery
-import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync, rmSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readdirSync, statSync, rmSync, cpSync } from 'node:fs';
 import { execFileSync, execSync } from 'node:child_process';
 import { SCHEMES, metrics } from '../model/schemes.mjs';
 import { critiqueFor } from '../model/scheme-critiques.mjs';
@@ -38,7 +38,7 @@ import { SITE } from '../model/geometry.mjs';
 import { SITE_CONTEXT } from '../model/site-context.mjs';
 import { loadCorpus, corpusReport } from './trace/corpus.mjs';
 
-const OUT = 'out/chains';
+const OUT = 'out/henry-house-chains';
 const TMP = '/tmp/henry-chains';
 const FAST = process.argv.includes('--fast');
 const ISO = new Date().toISOString();
@@ -69,7 +69,22 @@ say(`  ${COMMITS.length} commits`);
 // A commit is a link in a house's chain when it touched that house's files or
 // argued about it by name. A commit that changed all eleven at once — a camera
 // fix, a rebuild — is a link in all eleven, because it was.
+//
+// But it has to have touched the DESIGN to be a link at all. This exporter's own
+// commit message names the Spine, the Loop and the Square while describing what
+// it does to their traces, and without this guard it walks into three chains as
+// a design move, which it is not.
+//
+// Stated as a denylist rather than a list of design directories, because the
+// design is nearly everything here — the model, the drawings, the checkers, the
+// renderer — and what is NOT design is a short, nameable list: the machinery
+// that READS the work, and repo furniture. Tooling of that kind is still part
+// of the PROCESS and stays a turn in the process trace. A merge commit changes
+// no files at all and so is a link in nothing, which is right: it is
+// bookkeeping, not an argument about a house.
+const READS_THE_WORK = /^(tools\/(trace\/|export-)|corpus\/|\.github\/|\.gitignore$|package(-lock)?\.json$|README\.md$)/;
 const attributed = (c, s) => {
+  if (!c.files.some((f) => !READS_THE_WORK.test(f))) return false;
   const word = s.id.split('-')[1];
   const num = s.id.split('-')[0].toLowerCase();
   return c.files.some((f) => f.includes(s.id) || f.toLowerCase().includes(`${num}-${word.toLowerCase()}`))
@@ -412,9 +427,18 @@ say('  ✓ index.json');
   L.push('Eleven houses for one steep parcel in Johnson County, Tennessee, and the process');
   L.push(`that produced them. ${houses.length} house chains + 1 process chain.`, '');
   L.push('## Open one', '');
+  L.push('**Locally, and this always works.** In this folder:', '');
+  L.push('    python3 -m http.server 8000', '');
+  L.push(`then <http://localhost:8000/chains.html>. ${B}chains.html${B} is the same reader,`);
+  L.push('vendored here so nothing depends on a site being up — see PROVENANCE.md.');
+  L.push(`Deep-link a single house with ${B}?trace=s3-narrow${B}.`, '');
+  L.push('It has to be **served**, not double-clicked: browsers refuse ES modules over');
+  L.push(`${B}file://${B}, and three.js would never load. The page says so if you try.`, '');
+  L.push('**Or on the hosted reader.**');
   L.push('<https://hartswf0.github.io/gunnars-depot.html/operative-builder-trace.html> →');
-  L.push(`**Open a trace** → pick one ${B}.json${B} from this folder. One file at a time; each`);
-  L.push('is self-contained, pictures and all.', '');
+  L.push(`**Open a trace** → pick one ${B}.json${B} from this folder. Every chain here is`);
+  L.push('verified against that page at 1280px and 390px before it ships.', '');
+  L.push('Either way: one file at a time, each self-contained, pictures and all.', '');
   L.push('| file | what it is |', '|---|---|');
   for (const t of houses) {
     L.push(`| ${B}${t.file}${B} | ${t.intent} — ${t.cycles} links, ${t.parts} parts, ` +
@@ -478,14 +502,23 @@ say('  ✓ index.json');
   say('  ✓ README.md');
 }
 
+// ── a reader that travels with them ─────────────────────────────────────────
+// The chains are written to a schema a public page reads, and they are verified
+// against that page. But a bag of JSON whose only reader is somebody else's
+// website is one outage away from being unopenable, so a copy of the reader
+// goes in the bag. See tools/trace/player/PROVENANCE.md.
+cpSync('tools/trace/player', OUT, { recursive: true });
+say('  ✓ chains.html + vendor/  (the reader, so this folder opens on its own)');
+
 // ── the zip ─────────────────────────────────────────────────────────────────
 if (process.argv.includes('--zip')) {
   const zip = 'out/henry-house-chains.zip';
   try { execFileSync('rm', ['-f', zip]); } catch { /* nothing to remove */ }
-  const all = readdirSync(OUT).filter((f) => /\.(json|md)$/.test(f)).map((f) => `${OUT}/${f}`);
-  execFileSync('zip', ['-q', '-j', zip, ...all]);
-  say(`  ✓ ${zip}  (${(statSync(zip).size / 1024 / 1024).toFixed(1)} MB, ${all.length} files)`);
+  // -r, not -j: the player needs vendor/three/ to still be a directory.
+  execFileSync('zip', ['-q', '-r', 'henry-house-chains.zip', 'henry-house-chains'], { cwd: 'out' });
+  const n = execFileSync('unzip', ['-Z1', zip]).toString().trim().split('\n').length;
+  say(`  ✓ ${zip}  (${(statSync(zip).size / 1024 / 1024).toFixed(1)} MB, ${n} entries)`);
 }
 rmSync(TMP, { recursive: true, force: true });
 say('='.repeat(74));
-say(`  ${index.length} chains · open one at a time in operative-builder-trace.html`);
+say(`  ${index.length} chains · cd ${OUT} && python3 -m http.server 8000 → /chains.html`);
