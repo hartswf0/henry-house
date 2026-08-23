@@ -117,6 +117,13 @@ function scoreOf(plan, crit) {
   return Math.max(0, Math.min(100, Math.round(s)));
 }
 
+const recRooms = (p) => {
+  if (!p) return 'no checked plan';
+  const rs = p.levels.flatMap((l) => l.rooms ?? []);
+  return `${p.levels.length} levels, ${rs.length} rooms, ` +
+         `${rs.filter((r) => r.use === 'bed').length} bed, ${rs.filter((r) => r.use === 'bath').length} bath`;
+};
+
 // ── one trace ───────────────────────────────────────────────────────────────
 const index = [];
 for (const scheme of SCHEMES) {
@@ -219,11 +226,68 @@ for (const scheme of SCHEMES) {
     },
   };
 
-  const file = `${scheme.id.toLowerCase()}.json`;
+  // ONE FOLDER PER HOUSE. The traces are separable because each house really
+  // is a separate build; the CONVERSATION is not, and conversation.json says so
+  // in its own header rather than pretending otherwise.
+  const slug = scheme.id.toLowerCase();
+  const dir = `${OUT}/houses/${slug}`;
+  mkdirSync(dir, { recursive: true });
+  const file = `houses/${slug}/trace.json`;
   const body = JSON.stringify(doc);
   writeFileSync(`${OUT}/${file}`, body);
+
+  // the turns of the real conversation that mention this house, if it exists
+  const txPath = [`${OUT}/project/henry-house-transcript.json`, `${OUT}/henry-house-transcript.json`]
+    .find((q) => existsSync(q));
+  if (txPath) {
+    const tx = JSON.parse(readFileSync(txPath, 'utf8'));
+    const short = scheme.name.replace(/^THE\s+/i, '');
+    // CASE-SENSITIVE, deliberately. The schemes are always written in capitals
+    // — S0-SPINE, THE SPINE — while this project also has a concrete "spine
+    // wall" and a "water" system in ordinary prose. Matching case-insensitively
+    // pulled in turns about the spine wall of the main house and called them
+    // discussion of the Spine scheme.
+    const rx = new RegExp(`\\b(${scheme.id}|THE ${short}\\b)`);
+    const all = SCHEMES.map((x) => new RegExp(`\\b(${x.id}|THE ${x.name.replace(/^THE\s+/i, '')}\\b)`));
+    const picked = tx.turns
+      .map((t) => ({ t, hay: `${t.prompt || ''} ${t.result || ''}` }))
+      .filter(({ hay }) => rx.test(hay))
+      .map(({ t, hay }) => ({
+        i: t.i, ts: t.ts, source: t.source, prompt: t.prompt, result: t.result,
+        files: t.files, tool_sequence: t.tool_sequence,
+        alongside: SCHEMES.filter((x, k) => x.id !== scheme.id && all[k].test(hay)).map((x) => x.id),
+      }));
+    writeFileSync(`${dir}/conversation.json`, JSON.stringify({
+      scheme: scheme.id,
+      what_this_is: 'Turns of the real session that MENTION this house. It is an index, not a chain.',
+      why_not_a_chain:
+        'The eleven houses were developed in parallel, so the conversation has no per-house path. ' +
+        `Across 99 turns, 61 mention no scheme at all, 16 mention exactly one, and 22 mention several. ` +
+        `Of the ${picked.length} turns here, ${picked.filter((x) => x.alongside.length).length} also discuss other schemes — ` +
+        'the `alongside` field on each says which. Filter on `alongside: []` for the turns that are ' +
+        'genuinely only about this house.',
+      turns_total: tx.turns.length, turns_mentioning: picked.length,
+      turns_only_this_house: picked.filter((x) => !x.alongside.length).length,
+      turns: picked,
+    }));
+  }
+
+  // a one-page card, so the folder is readable without a parser
+  writeFileSync(`${dir}/about.md`,
+    `# ${scheme.name} — ${scheme.tag}\n\n` +
+    `**${m.conditionedSf.toLocaleString()} sf conditioned** · ${m.shelteredSf.toLocaleString()} sf sheltered · ` +
+    `${recRooms(plan)} · ${m.perimeterLf} lf perimeter · ${m.wetWallLf} lf wet wall · ${m.cutCY} CY cut\n\n` +
+    `**Suck score ${score}**${crit ? ` — verdict ${crit.verdict}` : ' — NOT YET CRITIQUED, see below'}\n\n` +
+    `## Where it comes from\n${scheme.from}\n\n` +
+    `## What it does\n${scheme.operation}\n\n` +
+    `## What must not be copied\n${scheme.doNotCopy}\n\n` +
+    `## The test it has to pass\n${scheme.henryTest}\n\n` +
+    `## The accusation against it\n${accusation}\n\n` +
+    `## Files here\n` +
+    '- trace.json — OPERATIVE_BUILDER_TRACE_V1, opens in operative-builder-trace.html\n' +
+    '- conversation.json — the session turns that mention this house (an index, not a chain)\n');
   index.push({
-    file, note: scheme.tag, builder: 'operative',
+    file, note: scheme.tag, builder: 'operative', house: slug,
     intent: doc.intent, model: doc.model, reference_name: doc.reference_name,
     exported_at: t0, cycles: cycles.length, parts: world.length,
     scores: [cycles[0].critiques[0]?.score ?? 0, score], bytes: body.length,
@@ -240,12 +304,15 @@ for (const [file, note, intent] of [
   ['henry-house-transcript.json', 'the actual session, verbatim', 'Henry House — the conversation that designed it'],
   ['henry-house-process.json', 'the commit history, with the pictures as they were', 'Henry House — the build process'],
 ]) {
-  if (!existsSync(`${OUT}/${file}`)) continue;
-  const d = JSON.parse(readFileSync(`${OUT}/${file}`, 'utf8'));
+  // idempotent: the file may already have been filed under project/
+  mkdirSync(`${OUT}/project`, { recursive: true });
+  if (existsSync(`${OUT}/${file}`)) execFileSync('mv', ['-f', `${OUT}/${file}`, `${OUT}/project/${file}`]);
+  if (!existsSync(`${OUT}/project/${file}`)) continue;
+  const d = JSON.parse(readFileSync(`${OUT}/project/${file}`, 'utf8'));
   index.unshift({
-    file, note, builder: 'human', intent, model: d.engine,
+    file: `project/${file}`, note, builder: 'human', intent, model: d.engine,
     reference_name: d.who, exported_at: ISO, cycles: d.turns.length,
-    parts: 0, scores: [], bytes: statSync(`${OUT}/${file}`).size,
+    parts: 0, scores: [], bytes: statSync(`${OUT}/project/${file}`).size,
   });
 }
 
@@ -262,8 +329,8 @@ console.log(`  ✓ index.json`);
 if (process.argv.includes('--zip')) {
   const zip = 'henry-house-traces.zip';
   try { execFileSync('rm', ['-f', zip]); } catch {}
-  const all = readdirSync(OUT).filter((f) => /\.(json|md)$/.test(f)).map((f) => `${OUT}/${f}`);
-  execFileSync('zip', ['-q', '-j', zip, ...all]);
+  execFileSync('zip', ['-q', '-r', `${process.cwd()}/${zip}`, '.',
+    '-i', '*.json', '*.md'], { cwd: OUT });
   console.log(`  ✓ ${zip}  (${(statSync(zip).size / 1024 / 1024).toFixed(1)} MB)`);
 }
 console.log('='.repeat(74));
