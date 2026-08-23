@@ -111,7 +111,8 @@ header{padding:34px 0 18px;border-bottom:1px solid var(--rule)}
 .stateGrid>div>span{display:block;font-size:14px;line-height:1.5;color:var(--mid)}
 /* Three doors. Most people arriving here are one of three people. */
 .doors{display:grid;gap:10px;margin:28px 0 0}
-@media(min-width:720px){.doors{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:720px){.doors{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.doors{grid-template-columns:repeat(4,1fr)}}
 .door{display:block;border:2px solid currentColor;padding:15px 16px;text-decoration:none;color:inherit}
 .door b{display:block;font-size:16px;margin-bottom:5px}
 .door span{display:block;font-size:13px;line-height:1.5;color:var(--mid)}
@@ -203,6 +204,10 @@ const html = `<!doctype html>
     <a class="door" href="site.html">
       <b>The parcel &rarr;</b>
       <span>The 29 acres with real terrain, the boundary, the road, and the house placed on it.</span></a>
+    <a class="door" href="trace.html">
+      <b>How it was argued &rarr;</b>
+      <span>The build traces: eleven houses as reference &rarr; build &rarr; picture &rarr; finding, plus
+      the whole conversation, played back a message at a time.</span></a>
   </div>
 
   <p class="lede" style="margin-top:26px">Below: everything in the package, indexed by walking the

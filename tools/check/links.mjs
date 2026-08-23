@@ -13,7 +13,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
-const PAGES = ['index.html', 'issue-for-review.html', 'site.html'];
+const PAGES = ['index.html', 'issue-for-review.html', 'site.html', 'trace.html'];
 
 console.log('HENRY HOUSE — DO THE LINKS RESOLVE');
 console.log('='.repeat(72));
@@ -27,6 +27,10 @@ for (const page of PAGES) {
   for (const m of html.matchAll(/(?:href|src)\s*=\s*"([^"]+)"/g)) {
     const u = m[1];
     if (/^(https?:|mailto:|data:|#|\/\/)/.test(u)) continue;   // external or in-page
+    // A URL built at runtime inside a template literal is not a static link and
+    // cannot be resolved against the tree. Flagging it was a false positive of
+    // this checker, not a broken link in the page.
+    if (u.includes('${')) continue;
     refs.add(u.split('#')[0].split('?')[0]);
   }
   const bad = [];

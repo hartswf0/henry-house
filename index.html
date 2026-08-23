@@ -40,7 +40,8 @@ header{padding:34px 0 18px;border-bottom:1px solid var(--rule)}
 .stateGrid>div>span{display:block;font-size:14px;line-height:1.5;color:var(--mid)}
 /* Three doors. Most people arriving here are one of three people. */
 .doors{display:grid;gap:10px;margin:28px 0 0}
-@media(min-width:720px){.doors{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:720px){.doors{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.doors{grid-template-columns:repeat(4,1fr)}}
 .door{display:block;border:2px solid currentColor;padding:15px 16px;text-decoration:none;color:inherit}
 .door b{display:block;font-size:16px;margin-bottom:5px}
 .door span{display:block;font-size:13px;line-height:1.5;color:var(--mid)}
@@ -119,11 +120,15 @@ footer{padding:34px 0 60px;border-top:1px solid var(--rule);color:var(--mid);fon
     <a class="door" href="site.html">
       <b>The parcel &rarr;</b>
       <span>The 29 acres with real terrain, the boundary, the road, and the house placed on it.</span></a>
+    <a class="door" href="trace.html">
+      <b>How it was argued &rarr;</b>
+      <span>The build traces: eleven houses as reference &rarr; build &rarr; picture &rarr; finding, plus
+      the whole conversation, played back a message at a time.</span></a>
   </div>
 
   <p class="lede" style="margin-top:26px">Below: everything in the package, indexed by walking the
   repository rather than a hand-kept list. <b>26 sheets</b>, 7 renders,
-  21 scheme renders, 9 written documents. A 36 &times; 24 inch sheet
+  23 scheme renders, 9 written documents. A 36 &times; 24 inch sheet
   shrunk to a phone is not a drawing you can read, so every one opens in a viewer &mdash; pinch to
   zoom, double-tap for 100%.</p>
 </div></header>
@@ -340,7 +345,7 @@ footer{padding:34px 0 60px;border-top:1px solid var(--rule);color:var(--mid);fon
 </section>
 
 <section id="schemes">
-  <div class="eyebrow">Scheme renders <span class="count">21</span></div>
+  <div class="eyebrow">Scheme renders <span class="count">23</span></div>
   <h2>The alternatives, from one camera</h2>
   <p class="note">The <b>compare</b> shot uses one identical camera for every scheme, so this is a comparison and not a
   beauty contest — a small house is small in frame. <b>hero</b> is framed to each scheme's own size.</p>
@@ -428,6 +433,14 @@ footer{padding:34px 0 60px;border-top:1px solid var(--rule);color:var(--mid);fon
     <a class="card" href="out/schemes/S8-WATER.png" data-full="out/schemes/S8-WATER.png" data-name=" S8-WATER">
   <img src="out/schemes/S8-WATER.png" alt="S8-WATER" loading="lazy">
   <span class="m"><span class="no"></span><h3>S8-WATER</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S9-ASSEMBLY-hero.png" data-full="out/schemes/S9-ASSEMBLY-hero.png" data-name=" S9-ASSEMBLY-hero">
+  <img src="out/schemes/S9-ASSEMBLY-hero.png" alt="S9-ASSEMBLY-hero" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S9-ASSEMBLY-hero</h3><p></p></span>
+</a>
+    <a class="card" href="out/schemes/S9-ASSEMBLY.png" data-full="out/schemes/S9-ASSEMBLY.png" data-name=" S9-ASSEMBLY">
+  <img src="out/schemes/S9-ASSEMBLY.png" alt="S9-ASSEMBLY" loading="lazy">
+  <span class="m"><span class="no"></span><h3>S9-ASSEMBLY</h3><p></p></span>
 </a>
   </div>
 </section>

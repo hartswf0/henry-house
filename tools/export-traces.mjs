@@ -34,7 +34,7 @@
 //   node tools/export-traces.mjs --zip      → also henry-house-traces.zip
 import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { SCHEMES, schemeById, metrics } from '../model/schemes.mjs';
+import { SCHEMES, schemeById, metrics, roofBase } from '../model/schemes.mjs';
 import { PLANS, planFor } from '../model/scheme-plans.mjs';
 import { critiqueFor } from '../model/scheme-critiques.mjs';
 import { SITE } from '../model/geometry.mjs';
@@ -93,7 +93,11 @@ function worldFor(scheme, plan) {
   for (const r of scheme.roofs) {
     const y0 = r.y0 / 12, y1 = r.y1 / 12, x0 = r.x0 / 12, x1 = r.x1 / 12;
     const rise = (r.pitch / 12) * (y1 - y0);
-    const base = 10.5 + (plan ? Math.max(...plan.levels.map((l) => l.ffe)) : 0);
+    // The same roofBase the drawings and the 3D use, rather than a guess at the
+    // top of the rooms. Guessed, the slabs floated a couple of feet clear of the
+    // building in the trace viewer — a small lie, and an avoidable one when the
+    // right number is exported from the model.
+    const base = roofBase(scheme, r) / 12;
     parts.push({
       id: `roof_${r.id}`.toLowerCase(), primitive: 'box', role: 'roof',
       position: [+(((x0 + x1) / 2) * M).toFixed(3), +((base + rise / 2) * M).toFixed(3),
@@ -329,8 +333,9 @@ console.log(`  ✓ index.json`);
 if (process.argv.includes('--zip')) {
   const zip = 'henry-house-traces.zip';
   try { execFileSync('rm', ['-f', zip]); } catch {}
+  // the drop-in is a separate deliverable, not part of the dataset zip
   execFileSync('zip', ['-q', '-r', `${process.cwd()}/${zip}`, '.',
-    '-i', '*.json', '*.md'], { cwd: OUT });
+    '-i', '*.json', '*.md', '-x', 'assets-traces-dropin/*'], { cwd: OUT });
   console.log(`  ✓ ${zip}  (${(statSync(zip).size / 1024 / 1024).toFixed(1)} MB)`);
 }
 console.log('='.repeat(74));

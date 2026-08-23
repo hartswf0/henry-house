@@ -1,0 +1,209 @@
+{
+ "generators": {
+  "operative": "henry-house tools/export-traces.mjs",
+  "human": "henry-house tools/export-process-trace.mjs and tools/trace/export-transcript.py"
+ },
+ "formats": {
+  "operative": "OPERATIVE_BUILDER_TRACE_V1",
+  "correspondence": "CORRESPONDENCE v1 (version:1 + scene + transcript)",
+  "human": "HUMAN_CORRESPONDENCE_V1"
+ },
+ "prompts": {
+  "builder": "You are BUILDER in a brutish visual correspondence loop. Return ONLY JSON. Never write code or prose outside JSON. Operate on CURRENT WORLD using operations. Preserve good work and preserve explicit USER BLUEPRINT moves unless the criticism targets them. If an OFFLINE MEDICAL SCAN is supplied, treat it as evidence about what is visually observable versus what exact geometry contains; do not confuse low visual coverage with a proven building defect. Allowed operations: ADD, MOVE, SCALE, ROTATE_Y, COLOR, REMOVE, CLEAR. Allowed primitives: box, cylinder, cone, sphere, gable. Every object has id, primitive, role, position [x,y,z], size [x,y,z], rotation_y radians, color hex, material matte|metal, scale [x,y,z]. JSON shape: {\"summary\":\"...\",\"operations\":[{...}]}. IF WORLD IS EMPTY: make a BLUEPRINT/MASSING PASS first, not a decorated final object. Establish footprint, major volumes, entrance axis, path/stair/door, dominant roof envelopes and spatial hierarchy with at most 24 operations. Do not spend the first pass on windows, trim or ornament. IF WORLD IS NOT EMPTY: change ONE consequential region only and use AT MOST 12 operations. Do not churn dozens of unrelated parts. The next observation must be able to tell what this move did. Role labels such as door, window, stair, path, landing, wall, roof, support matter to deterministic checks.",
+  "critic": "You are CRITIC. FUCKED UNTIL PROVEN OTHERWISE. Your governing distinction is: IS THE BUILDING FUCKED, OR ARE OUR EYES FUCKED? You may receive explicitly labeled images: REFERENCE; CURRENT WORLD; BEFORE/AFTER/GEOMETRY DIFF; and optionally one OFFLINE MEDICAL SCAN sheet containing multi-view cameras, CT occupancy, laser/light-leak maps, and a virtual photogrammetry surface cloud. In GEOMETRY DIFF, cyan means added geometry, yellow means current changed geometry, and red means old/removed geometry. Use BEFORE/AFTER/DIFF to understand WHAT THE BUILDER ACTUALLY CHANGED and whether that repair introduced regressions. Search hard for a supported consequential discrepancy against REFERENCE. Do not praise. Do not propose fixes. Do not invent unseen reference facts. Return ONLY JSON: {\"suck_score\":0-100,\"what_sucks\":\"one concise concrete criticism grounded in visible evidence\"}. A score of 0 means only this view failed to find a meaningful discrepancy; it never means finished."
+ },
+ "traces": [
+  {
+   "file": "henry-house-transcript.json",
+   "note": "the actual session, verbatim",
+   "builder": "human",
+   "intent": "Henry House \u2014 the conversation that designed it",
+   "model": "Claude Code \u2014 henry-house repository",
+   "reference_name": "Watson Hartsoe",
+   "exported_at": "",
+   "cycles": 99,
+   "parts": 0,
+   "scores": [],
+   "bytes": 5184107
+  },
+  {
+   "file": "henry-house-process.json",
+   "note": "the commit history, pictures as they were",
+   "builder": "human",
+   "intent": "Henry House \u2014 the build process",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "Watson Hartsoe, with a generated model",
+   "exported_at": "",
+   "cycles": 63,
+   "parts": 0,
+   "scores": [],
+   "bytes": 2318115
+  },
+  {
+   "file": "henry-s0-spine.json",
+   "note": "the current design",
+   "builder": "operative",
+   "intent": "THE SPINE \u2014 CONTROL \u2014 the current design",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-201-s0-spine-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 35,
+   "scores": [
+    100
+   ],
+   "bytes": 185782
+  },
+  {
+   "file": "henry-s1-armature.json",
+   "note": "phased growth under one permanent roof",
+   "builder": "operative",
+   "intent": "THE ARMATURE \u2014 phased growth under one permanent roof",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-202-s1-armature-plans-crop",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 23,
+   "scores": [
+    20
+   ],
+   "bytes": 211029
+  },
+  {
+   "file": "henry-s10-square.json",
+   "note": "the least wall a family can live behind",
+   "builder": "operative",
+   "intent": "THE SQUARE \u2014 the least wall a family can live behind",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-211-s10-square-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 22,
+   "scores": [
+    0
+   ],
+   "bytes": 143431
+  },
+  {
+   "file": "henry-s2-bridge.json",
+   "note": "span the hill instead of cutting it",
+   "builder": "operative",
+   "intent": "THE BRIDGE \u2014 span the hill instead of cutting it",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-203-s2-bridge-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 17,
+   "scores": [
+    24
+   ],
+   "bytes": 140802
+  },
+  {
+   "file": "henry-s3-narrow.json",
+   "note": "how narrow before it stops being generous",
+   "builder": "operative",
+   "intent": "THE NARROW \u2014 how narrow before it stops being generous",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-204-s3-narrow-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 21,
+   "scores": [
+    100
+   ],
+   "bytes": 166225
+  },
+  {
+   "file": "henry-s4-core.json",
+   "note": "what must be permanent, and what should stay transient",
+   "builder": "operative",
+   "intent": "THE CORE \u2014 what must be permanent, and what should stay transient",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-205-s4-core-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 23,
+   "scores": [
+    40
+   ],
+   "bytes": 145716
+  },
+  {
+   "file": "henry-s5-perch.json",
+   "note": "small footprint, large presence",
+   "builder": "operative",
+   "intent": "THE PERCH \u2014 small footprint, large presence",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-206-s5-perch-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 21,
+   "scores": [
+    100
+   ],
+   "bytes": 159707
+  },
+  {
+   "file": "henry-s6-tower.json",
+   "note": "the counter-hypothesis",
+   "builder": "operative",
+   "intent": "THE TOWER \u2014 the counter-hypothesis",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-207-s6-tower-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 27,
+   "scores": [
+    40
+   ],
+   "bytes": 145739
+  },
+  {
+   "file": "henry-s7-datum.json",
+   "note": "one plane, four times the house",
+   "builder": "operative",
+   "intent": "THE DATUM \u2014 one plane, four times the house",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-208-s7-datum-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 21,
+   "scores": [
+    36
+   ],
+   "bytes": 144804
+  },
+  {
+   "file": "henry-s8-water.json",
+   "note": "the roof is sized in gallons",
+   "builder": "operative",
+   "intent": "THE CATCH \u2014 the roof is sized in gallons",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-209-s8-water-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 25,
+   "scores": [
+    28
+   ],
+   "bytes": 155428
+  },
+  {
+   "file": "henry-s9-assembly.json",
+   "note": "one wall section, structure to finish",
+   "builder": "operative",
+   "intent": "THE LOOP \u2014 one wall section, structure to finish",
+   "model": "henry-house \u2014 parametric model, generated drawings, machine critics",
+   "reference_name": "X-210-s9-assembly-plans",
+   "exported_at": "2026-08-23T00:10:17.614Z",
+   "cycles": 2,
+   "parts": 14,
+   "scores": [
+    4
+   ],
+   "bytes": 130925
+  }
+ ],
+ "about": "Eleven houses for one steep parcel in Johnson County, Tennessee, plus the conversation that produced them and the commit history behind it."
+}

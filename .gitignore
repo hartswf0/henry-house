@@ -6,7 +6,8 @@ node_modules/
 # to answer "did that change do what I think", never the published set
 out/preview/
 
-# generated builder traces — regenerate with tools/export-traces.mjs
+# generated builder traces — the working directory. The COPIES under
+# assets/traces/ are committed on purpose: trace.html serves them.
 out/traces/
 assets-traces-dropin.zip
 henry-house-traces.zip
